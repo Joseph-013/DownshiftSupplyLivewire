@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::redirect('/', '/login');
 
-Route::view('dashboard', 'dashboard')
+Route::view('/admin', 'livewire/main/admin/inventory')
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('admin.inventory');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-shadow {
+    filter: drop-shadow(0px 3px 1px rgba(0, 0, 0, 0.2));
+}
+
+.text-spacing {
+    letter-spacing: 2px;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* text-orange-500 */

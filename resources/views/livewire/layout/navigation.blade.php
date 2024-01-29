@@ -25,34 +25,37 @@ new class extends Component {
                 <!-- Logo -->
                 <div class="flex items-center anchor-clean">
                     <a href="{{ route('admin.inventory') }}" wire:navigate class="flex items-center">
-                        <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="block h-12 w-auto shadow-md mr-4">
-                        <h1 class="block text-shadow text-sm text-spacing font-montserrat">DOWNSHIFT<br>SUPPLY</h1>
+                        <img src="{{ asset('assets/logo.png') }}" alt="Logo"
+                            class="block h-12 w-12 shadow-md mr-4 rounded-full">
+                        <h1 class="block text-shadow text-sm text-spacing font-montserrat">
+                            DOWNSHIFT&nbsp;<br class="hidden md:inline lg:hidden">SUPPLY
+                        </h1>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-5 lg:ms-8 md:flex">
                     <x-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
                         {{-- {{ __('Inventory') }} --}}
                         Inventory
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
                     <x-nav-link :href="route('admin.salestransactions')" :active="request()->routeIs('admin.salestransactions')" wire:navigate>
                         Sales<br />Transactions
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
                     <x-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
                         Orders
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
                     <x-nav-link :href="route('admin.faqs')" :active="request()->routeIs('admin.faqs')" wire:navigate>
                         FAQs
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
                     <x-nav-link :href="route('admin.reports')" :active="request()->routeIs('admin.reports')" wire:navigate>
                         Reports
                     </x-nav-link>
@@ -60,7 +63,7 @@ new class extends Component {
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden md:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -95,7 +98,7 @@ new class extends Component {
             </div>
 
             <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+            <div class="-me-2 flex items-center md:hidden">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -111,7 +114,7 @@ new class extends Component {
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
                 Inventory

@@ -129,8 +129,7 @@ new class extends Component {
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 mb-2">
-                    <img src="{{ asset('assets/logo.png') }}" alt="Logo"
-                        class="block h-12 w-12 shadow-md mr-4 rounded-full">
+                    <img src="{{ asset('assets/profile.jpg') }}" alt="Logo" class="block h-7 w-7 mr-4">
                 </div>
                 <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
             </div>

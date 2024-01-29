@@ -14,4 +14,9 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.anchor-clean {
+    text-decoration: none;
+    color: black;
+}
+
 /* text-orange-500 */

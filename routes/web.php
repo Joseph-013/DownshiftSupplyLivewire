@@ -23,6 +23,21 @@ Route::view('/admin', 'livewire/main/admin/inventory')
     ->middleware(['auth', 'verified'])
     ->name('admin.inventory');
 
+// Route::view('/admin/salestransactions', 'livewire/main/admin/salestransactions')
+
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function() {
+        Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
+        Route::view('/inventory', 'livewire/main/admin/inventory');
+        Route::view('/salestransactions', 'livewire/main/admin/salestransactions')->name('salestransactions');
+        Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
+        Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
+        Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
+    });
+
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');

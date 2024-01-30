@@ -131,7 +131,11 @@ new class extends Component {
                 <div class="font-medium text-base text-gray-800 mb-2">
                     <img src="{{ asset('assets/profile.jpg') }}" alt="Logo" class="block h-7 w-7 mr-4">
                 </div>
-                <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                @if (auth()->guest())
+                    <div class="font-medium text-sm text-gray-500">Guest</div>
+                @else
+                    <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                @endif
             </div>
 
             <div class="mt-3 space-y-1">

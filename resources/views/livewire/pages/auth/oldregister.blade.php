@@ -55,19 +55,17 @@ new #[Layout('layouts.guest')] class extends Component {
                                 type="email" placeholder="E-mail" autocomplete="email" autofocus>
                             <input
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
-                                type="text" placeholder="Full Name">
-                            <input
-                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
                                 type="password" placeholder="Password">
-                            <div class="text-white text-sm mt-1">• Minimum of 8 characters</div>
-                            <input
-                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-4 mb-3"
-                                type="password" placeholder="Confirm Password">
+                            <a class="font-montserrat text-white text-sm tracking-wider hover:underline"
+                                href="#">Forgot&nbsp;Password?</a>
                         </div>
                         {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
-                        <x-auth-button class="sm-40 md:w-60">SIGN UP</x-auth-button>
+                        <x-auth-button class="sm-40 md:w-60">LOG IN</x-auth-button>
                         <a href="#"
-                            class="no-underline tracking-wider text-white font-montserrat hover:underline">Already signed up?&nbsp;<span class="underline font-semibold">Log in</span></a>
+                            class="no-underline tracking-wider text-white font-montserrat hover:underline">Not
+                            signed up
+                            yet?&nbsp;<span class="underline font-semibold">Sign
+                                up</span></a>
                     </form>
                 </div>
             </div>

@@ -61,7 +61,7 @@ new #[Layout('layouts.guest')] class extends Component {
                         </div>
                         {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
                         <x-auth-button class="sm-40 md:w-60">LOG IN</x-auth-button>
-                        <a href="#"
+                        <a href="{{ route('register') }}"
                             class="no-underline tracking-wider text-white font-montserrat hover:underline">Not
                             signed up
                             yet?&nbsp;<span class="underline font-semibold">Sign

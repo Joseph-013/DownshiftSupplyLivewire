@@ -37,27 +37,32 @@ new #[Layout('layouts.guest')] class extends Component {
                     </div>
                 </div>
                 {{-- Right Panel --}}
-                <div class="bg-orange-400 flex-1 py-5">
-                    <form class="p-4 w-full h-full flex flex-col items-center justify-between">
+                <div class="bg-orange-400 flex-1 py-7">
+                    <form wire:submit="login" class="p-4 w-full h-full flex flex-col items-center justify-between">
                         <div class="flex flex-col items-center">
                             <h1
                                 class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
-                                Downshift
-                                Supply
+                                Downshift Supply
                             </h1>
                             <h3 class="font-montserrat text-white default-shadow text-lg">
                                 Welcome! Let&#39;s get started!
                             </h3>
                         </div>
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
                         <div class="w-full flex flex-col items-center">
-                            <input
+                            <input wire:model="form.email" name="email" required
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2"
                                 type="email" placeholder="E-mail" autocomplete="email" autofocus>
-                            <input
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            <input required wire:model="form.password" name="password" autocomplete="current-password"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
                                 type="password" placeholder="Password">
-                            <a class="font-montserrat text-white text-sm tracking-wider hover:underline"
-                                href="#">Forgot&nbsp;Password?</a>
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                            @if (Route::has('password.request'))
+                                <a class="font-montserrat text-white text-sm tracking-wider hover:underline"
+                                    href="{{ route('password.request') }}">Forgot&nbsp;Password?</a>
+                            @endif
                         </div>
                         {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
                         <x-auth-button class="sm-40 md:w-60">LOG IN</x-auth-button>

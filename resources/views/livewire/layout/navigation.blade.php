@@ -15,10 +15,10 @@ new class extends Component {
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white ">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-black shadow-sm">
+        <div class="flex justify-between h-20">
 
             <!-- Logo and Navigation Links -->
             <div class="flex">
@@ -27,7 +27,7 @@ new class extends Component {
                     <a href="{{ route('admin.inventory') }}" wire:navigate class="flex items-center">
                         <img src="{{ asset('assets/logo.png') }}" alt="Logo"
                             class="block h-12 w-12 shadow-md mr-4 rounded-full">
-                        <h1 class="block text-shadow text-sm text-spacing font-montserrat">
+                        <h1 class="block default-shadow text-sm text-spacing font-montserrat">
                             DOWNSHIFT&nbsp;<br class="hidden md:inline lg:hidden">SUPPLY
                         </h1>
                     </a>

@@ -17,7 +17,7 @@ new class extends Component {
 
 <nav x-data="{ open: false }" class="bg-white ">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-black shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-b-black">
         <div class="flex justify-between h-20">
 
             <!-- Logo and Navigation Links -->

@@ -1,26 +1,38 @@
 <?php
 
-use App\Livewire\Forms\LoginForm;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component {
-    public LoginForm $form;
+    public string $fullname = '';
+    public string $email = '';
+    public string $password = '';
+    public string $password_confirmation = '';
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming registration request.
      */
-    public function login(): void
+    public function register(): void
     {
-        $this->validate();
+        $validated = $this->validate([
+            'fullname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+        ]);
 
-        $this->form->authenticate();
+        $validated['password'] = Hash::make($validated['password']);
 
-        Session::regenerate();
+        event(new Registered(($user = User::create($validated))));
 
-        $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
+        Auth::login($user);
+
+        $this->redirect(RouteServiceProvider::HOME, navigate: true);
     }
 }; ?>
 
@@ -37,8 +49,8 @@ new #[Layout('layouts.guest')] class extends Component {
                     </div>
                 </div>
                 {{-- Right Panel --}}
-                <div class="bg-orange-400 flex-1 py-5">
-                    <form class="p-4 w-full h-full flex flex-col items-center justify-between">
+                <div class="bg-orange-400 flex-1 py-7">
+                    <form wire:submit="register" class="p-4 w-full h-full flex flex-col items-center justify-between">
                         <div class="flex flex-col items-center">
                             <h1
                                 class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
@@ -50,22 +62,34 @@ new #[Layout('layouts.guest')] class extends Component {
                             </h3>
                         </div>
                         <div class="w-full flex flex-col items-center">
-                            <input
+                            {{-- Email --}}
+                            <input required wire:model="email" name="email"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2"
                                 type="email" placeholder="E-mail" autocomplete="email" autofocus>
-                            <input
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+                            {{-- Name --}}
+                            <input required wire:model="name" name="name"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
                                 type="text" placeholder="Full Name">
-                            <input
+                            <x-input-error :messages="$errors->get('fullname')" class="mt-2" />
+
+                            {{-- New Pass --}}
+                            <input required wire:model="password" name="password"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
-                                type="password" placeholder="Password">
-                            <div class="text-white text-sm mt-1">• Minimum of 8 characters</div>
-                            <input
+                                type="password" placeholder="Password" autocomplete="new-password">
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <div class="text-white text-sm mt-1 font-montserrat italic">• Minimum of 8 characters</div>
+
+                            {{-- Confirm New Pass --}}
+                            <input required wire:model="password_confirmation" name="password_confirmation"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-4 mb-3"
                                 type="password" placeholder="Confirm Password">
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
                         </div>
                         {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
-                        <x-auth-button class="sm-40 md:w-60">SIGN UP</x-auth-button>
+                        <x-auth-button class="sm-40 md:w-60" type="submit">SIGN UP</x-auth-button>
                         <a href="{{ route('login') }}"
                             class="no-underline tracking-wider text-white font-montserrat hover:underline">Already
                             signed up?&nbsp;<span class="underline font-semibold">Log in</span></a>

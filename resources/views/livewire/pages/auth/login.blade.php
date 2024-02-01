@@ -53,11 +53,11 @@ new #[Layout('layouts.guest')] class extends Component {
                             <input wire:model="form.email" name="email" required
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2"
                                 type="email" placeholder="E-mail" autocomplete="email" autofocus>
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('email')" />
                             <input required wire:model="form.password" name="password" autocomplete="current-password"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
                                 type="password" placeholder="Password">
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('password')" />
 
                             @if (Route::has('password.request'))
                                 <a class="font-montserrat text-white text-sm tracking-wider hover:underline"

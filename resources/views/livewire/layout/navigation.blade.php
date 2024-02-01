@@ -24,7 +24,8 @@ new class extends Component {
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center anchor-clean">
-                    <a href="{{ route('admin.inventory') }}" wire:navigate class="flex items-center">
+                    <a href="{{ route('admin.inventory') }}" wire:navigate
+                        class="flex items-center no-underline text-black">
                         <img src="{{ asset('assets/logo.png') }}" alt="Logo"
                             class="block h-12 w-12 shadow-md mr-4 rounded-full">
                         <h1 class="block default-shadow text-sm text-spacing font-montserrat">
@@ -34,32 +35,20 @@ new class extends Component {
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-5 lg:ms-8 md:flex">
-                    <x-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
-                        {{-- {{ __('Inventory') }} --}}
-                        Inventory
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
-                    <x-nav-link :href="route('admin.salestransactions')" :active="request()->routeIs('admin.salestransactions')" wire:navigate>
-                        Sales<br />Transactions
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
-                    <x-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
-                        Orders
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
-                    <x-nav-link :href="route('admin.faqs')" :active="request()->routeIs('admin.faqs')" wire:navigate>
-                        FAQs
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
-                    <x-nav-link :href="route('admin.reports')" :active="request()->routeIs('admin.reports')" wire:navigate>
-                        Reports
-                    </x-nav-link>
-                </div>
+                @auth
+                    @if (auth()->user()->usertype === 'admin')
+                        {
+                        @include('livewire.layout.adminnav')
+                        }
+                    @else
+                        {
+                        @include('livewire.layout.usernav')
+                        }
+                    @endif
+                @endauth
+
+
+                <!-- /Navigation Links -->
             </div>
 
             <!-- Settings Dropdown -->
@@ -108,21 +97,7 @@ new class extends Component {
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
-                Inventory
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.salestransactions')" :active="request()->routeIs('admin.salestransactions')" wire:navigate>
-                Sales Transactions
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
-                Orders
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.faqs')" :active="request()->routeIs('admin.faqs')" wire:navigate>
-                FAQs
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.reports')" :active="request()->routeIs('admin.reports')" wire:navigate>
-                Reports
-            </x-responsive-nav-link>
+            @include('livewire.layout.adminnavresponsive')
         </div>
 
         <!-- Responsive Settings Options -->

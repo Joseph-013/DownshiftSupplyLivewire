@@ -1,74 +1,88 @@
 <?php
 
-use App\Livewire\Forms\LoginForm;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component {
-    public LoginForm $form;
+    public string $name = '';
+    public string $email = '';
+    public string $password = '';
+    public string $password_confirmation = '';
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming registration request.
      */
-    public function login(): void
+    public function register(): void
     {
-        $this->validate();
+        $validated = $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+        ]);
 
-        $this->form->authenticate();
+        $validated['password'] = Hash::make($validated['password']);
 
-        Session::regenerate();
+        event(new Registered(($user = User::create($validated))));
 
-        $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
+        Auth::login($user);
+
+        $this->redirect(RouteServiceProvider::HOME, navigate: true);
     }
 }; ?>
 
-<div class="h-full">
-    <div class="h-full">
-        <div class="hidden sm:block w-screen h-full">
-            <div class="bg-white overflow-hidden flex flex-row h-full">
-                {{-- Left Panel --}}
-                <div class="max-w-full flex-1 relative">
-                    <img src="/assets/g567ah.jpg" class="relative object-cover h-full w-full z-10">
-                    {{-- Logo on top middle --}}
-                    <div class="absolute top-1 left-1/2 transform -translate-x-1/2 z-20 mt-16">
-                        <img src="assets/logo1.png" class="w-64" alt="">
-                    </div>
-                </div>
-                {{-- Right Panel --}}
-                <div class="bg-orange-400 flex-1 py-5">
-                    <form class="p-4 w-full h-full flex flex-col items-center justify-between">
-                        <div class="flex flex-col items-center">
-                            <h1
-                                class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
-                                Downshift
-                                Supply
-                            </h1>
-                            <h3 class="font-montserrat text-white default-shadow text-lg">
-                                Welcome! Let&#39;s get started!
-                            </h3>
-                        </div>
-                        <div class="w-full flex flex-col items-center">
-                            <input
-                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2"
-                                type="email" placeholder="E-mail" autocomplete="email" autofocus>
-                            <input
-                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
-                                type="password" placeholder="Password">
-                            <a class="font-montserrat text-white text-sm tracking-wider hover:underline"
-                                href="#">Forgot&nbsp;Password?</a>
-                        </div>
-                        {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
-                        <x-auth-button class="sm-40 md:w-60">LOG IN</x-auth-button>
-                        <a href="#"
-                            class="no-underline tracking-wider text-white font-montserrat hover:underline">Not
-                            signed up
-                            yet?&nbsp;<span class="underline font-semibold">Sign
-                                up</span></a>
-                    </form>
-                </div>
-            </div>
+<div>
+    <form wire:submit="register">
+        <!-- Name -->
+        <div>
+            <x-input-label for="name" :value="__('Name')" />
+            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required
+                autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-    </div>
+
+        <!-- Email Address -->
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email"
+                required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password"
+                required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
+                type="password" name="password_confirmation" required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                href="{{ route('login') }}" wire:navigate>
+                {{ __('Already registered?') }}
+            </a>
+
+            <x-primary-button class="ms-4">
+                {{ __('Register') }}
+            </x-primary-button>
+        </div>
+    </form>
 </div>

@@ -20,14 +20,16 @@ new #[Layout('layouts.guest')] class extends Component {
 
         Session::regenerate();
 
-        if (auth()->user()->usertype === 'admin') {
-            app(UserController::class)->index();
-        } elseif (auth()->user()->usertype === 'user') {
-            app(UserController::class)->index();
-        } else {
-            // Default redirect if usertype is not recognized
-            abort(404, 'Unrecognized Action');
-        }
+        // if (auth()->user()->usertype === 'admin') {
+        //     app(UserController::class)->index();
+        // } elseif (auth()->user()->usertype === 'user') {
+        //     app(UserController::class)->index();
+        // } else {
+        //     // Default redirect if usertype is not recognized
+        //     abort(404, 'Unrecognized Action');
+        // }
+
+        $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
     }
 }; ?>
 

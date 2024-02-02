@@ -12,7 +12,7 @@
                             <input
                                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
                                 type="text" />
-                            <button type="button"
+                            <button type="clear"
                                 class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
                                 <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16"
                                     height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">

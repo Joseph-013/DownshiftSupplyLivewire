@@ -25,6 +25,8 @@ Route::view('/admin/inventory', 'livewire/main/admin/inventory')
 
 // Route::view('/admin/salestransactions', 'livewire/main/admin/salestransactions')
 
+//, 'isadmin'
+
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
@@ -37,9 +39,16 @@ Route::middleware(['auth', 'verified'])
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
     });
 
+// Route::middleware([])
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+Route::middleware(['auth', 'verified'])->group(function() {
+        // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
+        Route::view('/products', 'livewire/main/user/products')->name('products');
+        Route::view('/orders', 'livewire/main/user/orders')->name('orders');
+        Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');
+        Route::view('/cart', 'livewire/main/user/cart')->name('cart');
+    });
+
+Route::view('/profile', 'livewire/profile')->name('profile')->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

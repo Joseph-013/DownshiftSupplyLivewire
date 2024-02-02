@@ -9,4 +9,6 @@ class Transaction extends Model
 {
     public $table = 'transactions';
     use HasFactory;
+
+    protected $guarded = [];
 }

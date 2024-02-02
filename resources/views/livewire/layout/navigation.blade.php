@@ -35,48 +35,68 @@ new class extends Component {
                 </div>
 
                 <!-- Navigation Links -->
-                @auth
-                    @if (auth()->user()->usertype === 'admin')
-                        {
-                        @include('livewire.layout.adminnav')
-                        }
-                    @else
-                        {
-                        @include('livewire.layout.usernav')
-                        }
-                    @endif
-                @endauth
+                @if (auth()->check())
+                    <!-- Content for authenticated users -->
+                    @auth
+                        @if (auth()->user()->usertype === 'admin')
+                            @include('livewire.layout.adminnav')
+                        @else
+                            @include('livewire.layout.usernav')
+                        @endif
+                    @endauth
+                @else
+                    <!-- Content for guests -->
+                    @include('livewire.layout.usernav')
+                @endif
+
+
 
 
                 <!-- /Navigation Links -->
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden md:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button
-                            class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>
-                                <img src="{{ asset('assets/profile.jpg') }}" alt="Logo" class="block h-5 w-5">
-                            </div>
-                        </button>
-                    </x-slot>
+            <div class="h-full flex items-center">
 
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+                @if (auth()->check())
+                    <!-- Content for authenticated users -->
+                    @auth
+                        @if (auth()->user()->usertype === 'user')
+                            <a href="#" class="h-8 w-8">
+                                <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
+                            </a>
+                        @endif
+                    @endauth
+                @endif
 
-                        <!-- Authentication -->
-                        <button wire:click="logout" class="w-full text-start">
-                            <x-dropdown-link>
-                                {{ __('Log Out') }}
+                <div class="hidden md:flex sm:items-center sm:ms-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button
+                                class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div>
+                                    <img src="{{ asset('assets/profile.jpg') }}" alt="Logo" class="block h-5 w-5">
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile')" wire:navigate>
+                                {{ __('Profile') }}
                             </x-dropdown-link>
-                        </button>
-                    </x-slot>
-                </x-dropdown>
+
+                            <!-- Authentication -->
+                            <button wire:click="logout" class="w-full text-start">
+                                <x-dropdown-link>
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </button>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
             </div>
+
+
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center md:hidden">

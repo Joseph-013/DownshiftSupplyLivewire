@@ -167,7 +167,8 @@
                                         class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
                                         for="productId2">
                                         <ul class="flex flex-row w-full">
-                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-7/12 text-center text-sm">Yellow Speed Racing Coilovers for FD
+                                            </li>
                                             <li class="w-2/12 text-center text-sm">23</li>
                                             <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
                                         </ul>

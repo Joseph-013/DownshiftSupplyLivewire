@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,10 @@ Route::view('/admin/inventory', 'livewire/main/admin/inventory')
 // Route::view('/admin/salestransactions', 'livewire/main/admin/salestransactions')
 
 //, 'isadmin'
+
+Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('admin.dashboard');
+Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
+
 
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')

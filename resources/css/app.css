@@ -24,3 +24,7 @@
 #questions-container{
     height: 32rem !important;
 }
+
+#transactions-container{
+    height: 20rem !important;
+}

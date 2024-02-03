@@ -19,3 +19,8 @@
     height: 3rem;
     border-color: gray;
 }
+
+/* FAQs */
+#questions-container{
+    height: 32rem !important;
+}

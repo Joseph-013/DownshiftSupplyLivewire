@@ -24,7 +24,7 @@ new class extends Component {
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center anchor-clean">
-                    <a href="{{ route('admin.inventory') }}" wire:navigate
+                    <a href="{{ auth()->check() ? (auth()->user()->usertype === 'admin' ? route('admin.inventory') : route('user.products')) : route('user.products') }}" wire:navigate
                         class="flex items-center no-underline text-black">
                         <img src="{{ asset('assets/logo.png') }}" alt="Logo"
                             class="block h-12 w-12 shadow-md mr-4 rounded-full">

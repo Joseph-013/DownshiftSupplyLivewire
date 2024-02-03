@@ -2,6 +2,8 @@
 
 use App\Livewire\Forms\LoginForm;
 use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
@@ -29,7 +31,25 @@ new #[Layout('layouts.guest')] class extends Component {
         //     abort(404, 'Unrecognized Action');
         // }
 
-        $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
+        $redirectUrl = $this->getRedirectUrl();
+
+        $this->redirect($redirectUrl, ['navigate' => true]);
+    }
+
+    private function getRedirectUrl(): string
+    {
+        $user = auth()->user();
+
+        if ($user->usertype === 'admin') {
+            // Redirect admin to admin dashboard
+            return route('admin.inventory');
+        } elseif ($user->usertype === 'user') {
+            // Redirect user to user products page
+            return route('user.products');
+        } else {
+            // Default redirect if usertype is not recognized
+            abort(404, 'Unrecognized Action');
+        }
     }
 }; ?>
 

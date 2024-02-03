@@ -38,9 +38,6 @@
                         {{-- Left Main Container --}}
                         <div class="border-black border-1 w-full rounded-lg">
 
-
-
-
                             {{-- Top --}}
                             <div class="columns-2">
                                 <div class="p-2">
@@ -137,13 +134,10 @@
                         <hr class="my-1">
 
                         {{-- Products List  --}}
-                        <div class="w-full flex-1">
+                        <div class="w-full h-96 overflow-y-auto" id="questions-container"">
                             <ul class="w-full flex flex-col items-center">
-
-
-
                                 {{-- Single Unit of Product --}}
-                                <li class="w-full flex justify-center select-none">
+                                <li class="w-full flex justify-center select-none px-2">
                                     {{-- Product Details --}}
                                     <input class="widenWhenSelected" hidden type="radio" id="productId1"
                                         name="productList">
@@ -159,7 +153,7 @@
                                 </li>
 
                                 {{-- Single Unit of Product --}}
-                                <li class="w-full flex justify-center select-none">
+                                <li class="w-full flex justify-center select-none px-2">
                                     {{-- Product Details --}}
                                     <input class="widenWhenSelected" hidden type="radio" id="productId2"
                                         name="productList">
@@ -175,8 +169,181 @@
                                     </label>
                                 </li>
 
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId3"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId3">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
 
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId4"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId4">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
 
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId5"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId5">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId6"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId6">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId7"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId7">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId8"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId8">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId9"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId9">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId10"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId10">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId11"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId11">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId12"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId12">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
+
+                                {{-- Single Unit of Product --}}
+                                <li class="w-full flex justify-center select-none px-2">
+                                    {{-- Product Details --}}
+                                    <input class="widenWhenSelected" hidden type="radio" id="productId13"
+                                        name="productList">
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId13">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-7/12 text-center text-sm">BC Racing V1 Series Coilovers</li>
+                                            <li class="w-2/12 text-center text-sm">23</li>
+                                            <li class="w-3/12 text-center text-sm">₱&nbsp;38,000</li>
+                                        </ul>
+                                    </label>
+                                </li>
 
                             </ul>
                         </div>

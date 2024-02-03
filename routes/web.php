@@ -21,9 +21,9 @@ Route::redirect('/', 'login');
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
 
-Route::view('/admin/inventory', 'livewire/main/admin/inventory')
-    ->middleware(['auth', 'verified'])
-    ->name('admin.inventory');
+// Route::view('/admin/inventory', 'livewire/main/admin/inventory')
+//     ->middleware(['auth', 'verified'])
+//     ->name('admin.inventory');
 
 // Route::view('/admin/salestransactions', 'livewire/main/admin/salestransactions')
 
@@ -33,11 +33,33 @@ Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('adm
 Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
 
 
+// Route::middleware(['auth', 'verified'])
+//     ->prefix('admin')
+//     ->name('admin.')
+//     ->group(function() {
+//         // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
+//         Route::view('/inventory', 'livewire/main/admin/inventory')->name('inventory');
+//         Route::view('/salestransactions', 'livewire/main/admin/salestransactions')->name('salestransactions');
+//         Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
+//         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
+//         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
+//     });
+
+// // Route::middleware([])
+
+// Route::middleware(['auth', 'verified'])->group(function() {
+//         // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
+//         Route::view('/products', 'livewire/main/user/products')->name('products');
+//         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
+//         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');
+//         Route::view('/cart', 'livewire/main/user/cart')->name('cart');
+//     });
+
+// Admin routes with middleware protection
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
-    ->group(function() {
-        // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
+    ->group(function () {
         Route::view('/inventory', 'livewire/main/admin/inventory')->name('inventory');
         Route::view('/salestransactions', 'livewire/main/admin/salestransactions')->name('salestransactions');
         Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
@@ -45,10 +67,11 @@ Route::middleware(['auth', 'verified'])
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
     });
 
-// Route::middleware([])
-
-Route::middleware(['auth', 'verified'])->group(function() {
-        // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
+// User routes with middleware protection
+Route::middleware(['auth', 'verified'])
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
         Route::view('/products', 'livewire/main/user/products')->name('products');
         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');

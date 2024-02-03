@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'role:user']);
+    }
+
     public function products()
     {
-        // Add your user products page logic here
         return view('livewire.main.user.products');
     }
 }

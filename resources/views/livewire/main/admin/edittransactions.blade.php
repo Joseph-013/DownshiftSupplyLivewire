@@ -1,6 +1,11 @@
 <x-app-layout>
 
-    {{-- Transaction ID: {{ $transactionId }} --}}
-    <div>Viewing Edit Transactions. Transaction ID: {{ $transaction->id }}</div>
+    <div class="flex flex-col">
+        <div>Viewing Edit Transactions.</div>
+        <br>
+        <div>Transaction ID: {{ $transaction->id }}</div>
+        <br>
+        <div>Transaction Subtotal: {{ $transaction->subtotal }}</div>
+    </div>
 
 </x-app-layout>

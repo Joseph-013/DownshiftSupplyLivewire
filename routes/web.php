@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -81,5 +82,7 @@ Route::middleware(['auth', 'verified'])
 Route::view('admin/edittransactions', 'livewire/main/admin/edittransactions')->middleware(['auth', 'verified', 'checkadmin'])->name('edittransactions');
 
 Route::view('/profile', 'livewire/profile')->name('profile')->middleware(['auth', 'verified']);
+
+Route::get('/admin/inventory', [ProductController::class, 'index'])->name('admin.inventory');
 
 require __DIR__.'/auth.php';

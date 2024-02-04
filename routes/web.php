@@ -29,8 +29,8 @@ Route::redirect('/', 'login');
 
 //, 'isadmin'
 
-Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('admin.dashboard');
-Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
+// Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('admin.dashboard');
+// Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
 
 
 // Route::middleware(['auth', 'verified'])
@@ -56,7 +56,7 @@ Route::get('/user/products', [UserController::class, 'products'])->name('user.pr
 //     });
 
 // Admin routes with middleware protection
-Route::middleware(['auth', 'verified'])
+Route::middleware(['auth', 'verified', 'checkadmin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {

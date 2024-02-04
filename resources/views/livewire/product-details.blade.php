@@ -63,7 +63,7 @@
         {{-- Top --}}
         <div class="columns-2">
             <div class="p-2">
-                <img src="https://via.placeholder.com/640x480.png/0088cc?text=No+Image+Available">
+                <img src="https://via.placeholder.com/640x480.png/000000?text=No+Image+Available">
             </div>
             <div class="p-2 flex flex-col h-full justify-center">
                 <div class="text-lg h-min">

@@ -28,3 +28,7 @@
 #transactions-container{
     height: 24rem !important;
 }
+
+#orders-container{
+    height: 26rem !important;
+}

@@ -18,6 +18,6 @@ class ProductList extends Component
     public function selectProduct($productId)
     {
         $this->selectedProductId = $productId;
-        dd($productId);
+        $this->dispatch('productSelected', $productId);
     }
 }

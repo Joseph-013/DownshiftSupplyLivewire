@@ -9,14 +9,14 @@ class ProductDetails extends Component
 {
     public $selectedProduct;
 
-    protected $listeners = ['selectProduct'];
+    protected $listeners = ['productSelected'];
 
     public function mount()
     {
         $this->selectedProduct = null;
     }
 
-    public function selectProduct($productId)
+    public function productSelected($productId)
     {
         $this->selectedProduct = Product::find($productId);
     }

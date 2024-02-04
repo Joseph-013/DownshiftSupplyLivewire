@@ -39,25 +39,7 @@
                         <div class="border-black border-1 w-full rounded-lg">
 
                             {{-- Top --}}
-                            <div class="columns-2">
-                                <div class="p-2">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}">
-                                </div>
-                                <div class="p-2 flex flex-col h-full justify-center">
-                                    <div class="text-sm h-min">
-                                        Item ID: 123456789
-                                    </div>
-                                    <div class="text-sm h-min">
-                                        Name: BC Racing V1 Series Coilovers
-                                    </div>
-                                    <div class="text-sm h-min">
-                                        Price: ₱&nbsp;38,000.00
-                                    </div>
-                                    <div class="text-sm h-min">
-                                        Remaining: 23 left
-                                    </div>
-                                </div>
-                            </div>
+                            <livewire:product-details />
 
 
 
@@ -134,27 +116,7 @@
                         <hr class="my-1">
 
                         {{-- Products List  --}}
-                        <div class="w-full h-96 overflow-y-auto" id="questions-container">
-                            <ul class="w-full flex flex-col items-center">
-                            @foreach($products as $product)
-                                {{-- Single Unit of Product --}}
-                                <li class="w-full flex justify-center select-none px-2">
-                                    {{-- Product Details --}}
-                                    <input class="widenWhenSelected" hidden type="radio" id="productId{{ $product->id }}"
-                                        name="productList">
-                                    <label
-                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
-                                        for="productId{{ $product->id }}">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-7/12 text-center text-sm">{{ $product->name }}</li>
-                                            <li class="w-2/12 text-center text-sm">{{ $product->stockquantity }}</li>
-                                            <li class="w-3/12 text-center text-sm">₱&nbsp;{{ number_format($product->price, 2) }}</li>
-                                        </ul>
-                                    </label>
-                                </li>
-                            @endforeach
-                            </ul>
-                        </div>
+                        <livewire:product-list />
                     </div>
                     {{-- Products --}}
                 </div>

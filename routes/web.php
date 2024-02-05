@@ -79,7 +79,10 @@ Route::middleware(['auth', 'verified'])
         Route::view('/cart', 'livewire/main/user/cart')->name('cart');
     });
 
-Route::view('admin/edittransactions', 'livewire/main/admin/edittransactions')->middleware(['auth', 'verified', 'checkadmin'])->name('edittransactions');
+// Route::view('admin/edittransactions/{transactionid}', 'livewire/main/admin/edittransactions')->middleware(['auth', 'verified', 'checkadmin'])->name('edittransactions');
+Route::get('admin/edittransactions/{transactionId}', [AdminController::class, 'edittransaction'])
+    ->middleware(['auth', 'verified', 'checkadmin'])
+    ->name('edittransactions');
 
 Route::view('/profile', 'livewire/profile')->name('profile')->middleware(['auth', 'verified']);
 

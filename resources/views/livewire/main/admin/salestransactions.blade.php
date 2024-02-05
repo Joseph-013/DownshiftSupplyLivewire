@@ -275,7 +275,7 @@
                                 </span>₱ 101,000.00 </div>
 
                             <div class="w-full mt-4 flex justify-end">
-                                <a
+                                <a href="{{ route('edittransactions', ['transactionId' => 1]) }}"
                                     class="h-9 px-6 flex flex-row items-center justify-center rounded-lg bg-gray-500 ml-3 border-1 border-black text-black text-sm font-semibold text-spacing">
                                     Update&nbsp;Transaction
                                     <svg class="svg-icon ml-2"

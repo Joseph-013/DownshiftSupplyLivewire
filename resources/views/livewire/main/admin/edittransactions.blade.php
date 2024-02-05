@@ -265,23 +265,12 @@
                                         </svg>
                                     </button>
                                 </li>
-
-
                             </ul>
                         </div>
-
-
-
-
                     </div>
                     {{-- Products --}}
-
-
-
                 </div>
-
             </div>
-
         </div>
     </div>
 </x-app-layout>

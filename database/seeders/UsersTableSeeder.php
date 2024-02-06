@@ -34,6 +34,6 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('11111111'),
                 'usertype' => 'user',
             ],
-]);
+        ]);
     }
 }

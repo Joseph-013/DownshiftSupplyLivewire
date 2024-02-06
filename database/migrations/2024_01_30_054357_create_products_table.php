@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->decimal('price', 10, 2)->unsigned();
             $table->integer('stockquantity')->unsigned();
-            $table->string('image')->nullable();
+            $table->integer('criticallevel')->unsigned();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

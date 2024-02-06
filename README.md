@@ -8,7 +8,7 @@
 </p>
 
 ## NOTE/S TO ALL COLLABORATORS: 
-- Gawa po branch bago edit code. Wag po galawin yung main ng basta basta.
+- Gawa po branch bago eddit code. Wag po galawin yung main ng basta basta.
 - Etong repository po installed with breeze-livewire
 
 ## Links

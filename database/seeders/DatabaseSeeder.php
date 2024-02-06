@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(5)->create();
 
         $this->call(ProductsTableSeeder::class);
-        \App\Models\Product::factory(5)->create();
+        \App\Models\Product::factory(20)->create();
 
         $this->call(FAQsTableSeeder::class);
         \App\Models\FAQ::factory(5)->create();

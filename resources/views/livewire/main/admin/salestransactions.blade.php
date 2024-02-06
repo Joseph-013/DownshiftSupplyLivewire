@@ -43,7 +43,7 @@
                             </div>
                             <hr class="my-1">
                             {{-- Products List  --}}
-                            <div class="w-full h-96 overflow-y-auto" id="transactions-container"">
+                            <div class="w-full h-96 overflow-y-auto" id="transactions-container">
                                 <div class=" flex flex-1 w-full">
                                     <div class="w-2/4 h-full text-left text-sm my-1"><span class="font-semibold">Order
                                             ID:</span> 754321569</div>

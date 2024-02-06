@@ -112,7 +112,7 @@
                         </div>
                         <hr class="my-1">
                         {{-- Products List  --}}
-                        <div class="w-full h-96 overflow-y-auto mb-3" id="edittransactions-container"">
+                        <div class="w-full h-96 overflow-y-auto mb-3" id="edittransactions-container">
                             <ul class=" w-full flex flex-col items-center">
                                 {{-- Single Unit of Product --}}
                                 <li class="w-full flex justify-center select-none px-2">

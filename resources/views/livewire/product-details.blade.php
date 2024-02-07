@@ -35,7 +35,7 @@
                 <input class="w-1/4 h-10 flex items-center" type="number"
                     value="{{ $selectedProduct->stockquantity }}">
                 <label class="w-1/4 h-10 flex items-center justify-center">Crit. Level:</label>
-                <input class="w-1/4 h-10 flex items-center" type="number" value="5">
+                <input class="w-1/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->criticallevel }}">
             </div>
             <div class="flex w-full py-2 mt-4">
                 <button type="submit"

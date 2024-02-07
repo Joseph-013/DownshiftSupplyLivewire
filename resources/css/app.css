@@ -29,6 +29,10 @@
     height: 24rem !important;
 }
 
+#cart-container{
+    height: 22rem !important;
+}
+
 /* Edit Transactions */
 #edittransactions-container{
     height: 20rem !important;

@@ -7,8 +7,6 @@ use Livewire\Component;
 
 class FaqList extends Component
 {
-    public $showDeleteAlert = false;
-
     public $selectedFaqId;
 
     protected $listeners = ['faqDeleted', 'faqCreated'];

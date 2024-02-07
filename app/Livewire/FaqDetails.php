@@ -31,17 +31,4 @@ class FaqDetails extends Component
             $this->dispatch('faqDeleted');
         }
     }
-
-    public function createFaq()
-    {
-        $newFaq = FAQ::create([
-            'question' => $this->newQuestion,
-            'answer' => $this->newAnswer,
-        ]);
-
-        $this->newQuestion = null;
-        $this->newAnswer = null;
-        $this->dispatch('faqCreated', $newFaq->id);
-    }
-
 }

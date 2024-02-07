@@ -39,14 +39,9 @@ class FaqDetails extends Component
             'answer' => $this->newAnswer,
         ]);
 
-        $this->newQuestion = '';
-        $this->newAnswer = '';
-
+        $this->newQuestion = null;
+        $this->newAnswer = null;
         $this->dispatch('faqCreated', $newFaq->id);
     }
 
-    public function render()
-    {
-        return view('livewire.faq-details');
-    }
 }

@@ -36,9 +36,7 @@
                 <div class="w-2/5 h-full px-3">
                     <form class="w-full h-full">
                         {{-- Left Main Container --}}
-                        <div class="border-black border-1 w-full rounded-lg">
-                            <livewire:product-details />
-                        </div>
+                        <livewire:product-details />
                         <div class="w-full mt-3 flex justify-center">
                             <button type="reset"
                                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">

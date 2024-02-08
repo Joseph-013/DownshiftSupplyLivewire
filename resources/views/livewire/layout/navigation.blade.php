@@ -24,11 +24,11 @@ new class extends Component {
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center anchor-clean">
-                    <a href="{{ auth()->check() ? (auth()->user()->usertype === 'admin' ? route('admin.inventory') : route('user.products')) : route('user.products') }}" wire:navigate
-                        class="flex items-center no-underline text-black">
+                    <a href="{{ auth()->check() ? (auth()->user()->usertype === 'admin' ? route('admin.inventory') : route('user.products')) : route('user.products') }}"
+                        wire:navigate class="flex items-center no-underline text-black">
                         <img src="{{ asset('assets/logo.png') }}" alt="Logo"
                             class="block h-12 w-12 shadow-md mr-4 rounded-full">
-                        <h1 class="block default-shadow text-sm text-spacing font-montserrat">
+                        <h1 class="block default-shadow text-sm text-spacing font-montserrat h-full">
                             DOWNSHIFT&nbsp;<br class="hidden md:inline lg:hidden">SUPPLY
                         </h1>
                     </a>
@@ -49,25 +49,15 @@ new class extends Component {
                     @include('livewire.layout.usernav')
                 @endif
 
-
-
-
                 <!-- /Navigation Links -->
             </div>
 
             <!-- Settings Dropdown -->
             <div class="h-full flex items-center">
 
-                @if (auth()->check())
-                    <!-- Content for authenticated users -->
-                    @auth
-                        @if (auth()->user()->usertype === 'user')
-                            <a href="#" class="h-8 w-8">
-                                <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
-                            </a>
-                        @endif
-                    @endauth
-                @endif
+                <a href="{{ route('user.cart') }}" class="h-8 w-8">
+                    <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
+                </a>
 
                 <div class="hidden md:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
@@ -88,7 +78,11 @@ new class extends Component {
                             <!-- Authentication -->
                             <button wire:click="logout" class="w-full text-start">
                                 <x-dropdown-link>
-                                    {{ __('Log Out') }}
+                                    @if (auth()->guest())
+                                        {{ __('Log In') }}
+                                    @elseif (auth()->user())
+                                        {{ __('Log Out') }}
+                                    @endif
                                 </x-dropdown-link>
                             </button>
                         </x-slot>

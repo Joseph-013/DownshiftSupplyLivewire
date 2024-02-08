@@ -10,8 +10,9 @@ use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component {
-    public string $fullname = '';
     public string $email = '';
+    public string $username = '';
+    public string $fullname = '';
     public string $password = '';
     public string $password_confirmation = '';
 
@@ -21,8 +22,9 @@ new #[Layout('layouts.guest')] class extends Component {
     public function register(): void
     {
         $validated = $this->validate([
-            'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'username' => ['required', 'string', 'max:255'],
+            'fullname' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -69,7 +71,13 @@ new #[Layout('layouts.guest')] class extends Component {
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
                             {{-- Name --}}
-                            <input required wire:model="name" name="name"
+                            <input required wire:model="username" name="username"
+                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
+                                type="text" placeholder="Username">
+                            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+
+                            {{-- Name --}}
+                            <input required wire:model="fullname" name="fullname"
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
                                 type="text" placeholder="Full Name">
                             <x-input-error :messages="$errors->get('fullname')" class="mt-2" />

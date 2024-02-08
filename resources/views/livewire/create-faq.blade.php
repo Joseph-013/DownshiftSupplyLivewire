@@ -4,12 +4,12 @@
             <div class="text-sm h-min mb-1">
                 Question:
             </div>
-            <textarea wire:model="newQuestion" class="w-full h-30 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="4"></textarea>
+            <textarea wire:model="question" class="w-full h-30 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="4"></textarea>
 
             <div class="text-sm h-min mb-1">
                 Answer:
             </div>
-            <textarea wire:model="newAnswer" class="w-full h-30 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="4"></textarea>
+            <textarea wire:model="answer" class="w-full h-30 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="4"></textarea>
         </div>
     </div>
     {{-- Bottom --}}

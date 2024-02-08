@@ -7,8 +7,13 @@ use Livewire\Component;
 
 class CreateFaq extends Component
 {
-    public $newQuestion;
-    public $newAnswer;
+    public $question;
+    public $answer;
+
+    protected $rules = [
+        'question' => 'required|string',
+        'answer' => 'required|string',
+    ];
     
     public function render()
     {
@@ -17,14 +22,14 @@ class CreateFaq extends Component
 
     public function createFaq()
     {
-        $newFaq = FAQ::create([
-            'question' => $this->newQuestion,
-            'answer' => $this->newAnswer,
-        ]);
-
-        $this->newQuestion = null;
-        $this->newAnswer = null;
-        $this->dispatch('faqCreated', $newFaq->id);
+        if($this->question && $this->answer) {
+            $newFaq = FAQ::create([
+                'question' => $this->question,
+                'answer' => $this->answer,
+            ]);
+            $this->question = null;
+            $this->answer = null;
+            $this->dispatch('faqCreated', $newFaq->id);
+        }
     }
-
 }

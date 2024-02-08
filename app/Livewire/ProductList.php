@@ -9,7 +9,7 @@ class ProductList extends Component
 {
     public $selectedProductId;
 
-    protected $listeners = ['productDeleted'];
+    protected $listeners = ['productDeleted', 'productCreated'];
 
     public function render()
     {
@@ -20,6 +20,11 @@ class ProductList extends Component
     public function productDeleted($productId)
     {
         Product::find($productId)->delete();
+        $this->render();
+    }
+
+    public function productCreated()
+    {
         $this->render();
     }
 

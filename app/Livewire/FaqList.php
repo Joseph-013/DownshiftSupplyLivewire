@@ -20,6 +20,7 @@ class FaqList extends Component
     public function faqDeleted($faqId)
     {
         FAQ::find($faqId)->delete();
+        $this->render();
     }
 
     public function faqCreated()

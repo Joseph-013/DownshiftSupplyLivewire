@@ -22,6 +22,11 @@
         </div>
         {{-- Bottom --}}
         <div class="px-2 w-full">
+            <div class="text-sm h-min mt-2">
+                <label for="productImage" class="block text-sm font-medium text-gray-700">Upload Image (JPG or PNG only)</label>
+                <input type="file" wire:model="image" id="productImage" accept=".jpg, .jpeg, .png" >
+                @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
             <div class="flex w-full py-2">
                 <label class="w-1/4 h-10 flex items-center">Name:</label>
                 <input class="w-3/4 h-10 flex items-center" type="text" value="{{ $selectedProduct->name }}">
@@ -38,7 +43,7 @@
                 <input class="w-1/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->criticallevel }}">
             </div>
             <div class="flex w-full py-2 mt-4">
-                <button type="submit"
+                <button wire:click="deleteProduct" type="submit"
                     class="h-10 flex-1 items-center justify-center rounded-lg bg-red-600 mr-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
                     Delete
                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"

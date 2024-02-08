@@ -21,6 +21,15 @@ class ProductDetails extends Component
         $this->selectedProduct = Product::find($productId);
     }
 
+    public function deleteProduct()
+    {
+        if ($this->selectedProduct) {
+            $this->selectedProduct->delete();
+            $this->selectedProduct = null;
+            $this->dispatch('productDeleted');
+        }
+    }
+
     public function render()
     {
         return view('livewire.product-details');

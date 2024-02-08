@@ -9,10 +9,18 @@ class ProductList extends Component
 {
     public $selectedProductId;
 
+    protected $listeners = ['productDeleted'];
+
     public function render()
     {
         $products = Product::all();
         return view('livewire.product-list', compact('products'));
+    }
+
+    public function productDeleted($productId)
+    {
+        Product::find($productId)->delete();
+        $this->render();
     }
 
     public function selectProduct($productId)

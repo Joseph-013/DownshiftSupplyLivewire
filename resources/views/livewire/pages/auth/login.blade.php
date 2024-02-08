@@ -1,7 +1,7 @@
 <?php
 
 use App\Livewire\Forms\LoginForm;
-use App\Providers\RouteServiceProvider;
+use App\Pro1viders\RouteServiceProvider;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;

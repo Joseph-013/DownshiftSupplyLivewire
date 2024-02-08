@@ -28,7 +28,7 @@ new class extends Component {
                         wire:navigate class="flex items-center no-underline text-black">
                         <img src="{{ asset('assets/logo.png') }}" alt="Logo"
                             class="block h-12 w-12 shadow-md mr-4 rounded-full">
-                        <h1 class="block default-shadow text-sm text-spacing font-montserrat">
+                        <h1 class="block default-shadow text-sm text-spacing font-montserrat h-full">
                             DOWNSHIFT&nbsp;<br class="hidden md:inline lg:hidden">SUPPLY
                         </h1>
                     </a>
@@ -78,7 +78,11 @@ new class extends Component {
                             <!-- Authentication -->
                             <button wire:click="logout" class="w-full text-start">
                                 <x-dropdown-link>
-                                    {{ __('Log Out') }}
+                                    @if (auth()->guest())
+                                        {{ __('Log In') }}
+                                    @elseif (auth()->user())
+                                        {{ __('Log Out') }}
+                                    @endif
                                 </x-dropdown-link>
                             </button>
                         </x-slot>

@@ -3,7 +3,7 @@
         {{-- Top --}}
         <div class="columns-2">
             <div class="p-2">
-                <img src="{{ $selectedProduct->image }}">
+                <img src="{{ asset('storage/assets/' . $selectedProduct->image) }}">
             </div>
             <div class="p-2 flex flex-col h-full justify-center">
                 <div class="text-sm h-min">

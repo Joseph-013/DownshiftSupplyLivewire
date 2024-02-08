@@ -4,11 +4,11 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
-use Livewire\WithFileUploads as LivewireWithFileUploads;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CreateProduct extends Component
 {
-    use LivewireWithFileUploads;
+    use WithFileUploads;
 
     public $name;
     public $price;
@@ -29,7 +29,7 @@ class CreateProduct extends Component
         if ($this->image && $this->name && $this->price && $this->stockquantity && $this->criticallevel) {
             $imageName = time().'.'.$this->image->extension();  
        
-            $this->image->storeAs('./public/assets', $imageName);
+            $this->image->storeAs('public/assets', $imageName);
     
             $newProduct = Product::create([
                 'name' => $this->name,

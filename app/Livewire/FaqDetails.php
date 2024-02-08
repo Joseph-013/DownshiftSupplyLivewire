@@ -21,6 +21,8 @@ class FaqDetails extends Component
     public function faqSelected($faqId)
     {
         $this->selectedFaq = FAQ::find($faqId);
+        $this->newQuestion = $this->selectedFaq->question;
+        $this->newAnswer = $this->selectedFaq->answer;
     }
 
     public function deleteFaq()
@@ -30,5 +32,20 @@ class FaqDetails extends Component
             $this->selectedFaq = null;
             $this->dispatch('faqDeleted');
         }
+    }
+
+    public function updateFaq()
+    {
+        if ($this->selectedFaq) {
+            $this->selectedFaq->question = $this->newQuestion;
+            $this->selectedFaq->answer = $this->newAnswer;
+            $this->selectedFaq->save();
+            $this->dispatch('faqUpdated');
+        }
+    }
+
+    public function render()
+    {
+        return view('livewire.faq-details');
     }
 }

@@ -4,9 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class ProductDetails extends Component
 {
+    use WithFileUploads;
+
     public $selectedProduct;
     public $newName;
     public $newPrice;
@@ -34,6 +37,11 @@ class ProductDetails extends Component
     public function deleteProduct()
     {
         if ($this->selectedProduct) {
+            $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
             $this->selectedProduct->delete();
             $this->selectedProduct = null;
             $this->dispatch('productDeleted');
@@ -43,12 +51,23 @@ class ProductDetails extends Component
     public function updateProduct()
     {
         if ($this->selectedProduct) {
+            if ($this->newImage instanceof \Illuminate\Http\UploadedFile) {
+                $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                
+                $newImageName = time() . '.' . $this->newImage->extension();
+                $this->newImage->storeAs('public/assets/', $newImageName);
+                
+                $this->selectedProduct->image = $newImageName;
+            }
             $this->selectedProduct->name = $this->newName;
             $this->selectedProduct->price = $this->newPrice;
             $this->selectedProduct->stockquantity = $this->newStockquantity;
             $this->selectedProduct->criticallevel = $this->newCriticallevel;
-            $this->selectedProduct->image = $this->newImage;
             $this->selectedProduct->save();
+            $this->dispatch('productCreated');
         }
     }
 

@@ -40,6 +40,7 @@ class FaqDetails extends Component
             $this->selectedFaq->question = $this->newQuestion;
             $this->selectedFaq->answer = $this->newAnswer;
             $this->selectedFaq->save();
+            $this->dispatch('faqCreated');
         }
     }
 

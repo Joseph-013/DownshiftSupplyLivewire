@@ -17,10 +17,10 @@ class CartFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->randomNumber(3, false),
-            'product_id' => fake()->randomNumber(2, false),
-            'quantity' => fake()->randomNumber(2, false),
-            'subtotal' => fake()->randomNumber(4, false)
+            // 'user_id' => fake()->randomNumber(3, false),
+            // 'product_id' => fake()->randomNumber(2, false),
+            // 'quantity' => fake()->randomNumber(2, false),
+            // 'subtotal' => fake()->randomNumber(4, false)
         ];
     }
 }

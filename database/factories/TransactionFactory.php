@@ -17,10 +17,10 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'order_id' => fake()->randomNumber(3, false),
-            'product_id' => fake()->randomNumber(3, false),
-            'quantity' => fake()->randomNumber(2, false),
-            'subtotal' => fake()->randomNumber(4, false)
+            // 'order_id' => fake()->randomNumber(3, false),
+            // 'product_id' => fake()->randomNumber(3, false),
+            // 'quantity' => fake()->randomNumber(2, false),
+            // 'subtotal' => fake()->randomNumber(4, false)
         ];
     }
 }

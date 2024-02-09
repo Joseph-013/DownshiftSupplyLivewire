@@ -20,21 +20,21 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UsersTableSeeder::class);
-        \App\Models\User::factory(5)->create();
+        // \App\Models\User::factory(5)->create();
 
-        $this->call(ProductsTableSeeder::class);
-        \App\Models\Product::factory(20)->create();
+        // $this->call(ProductsTableSeeder::class);
+        // \App\Models\Product::factory(20)->create();
 
-        $this->call(FAQsTableSeeder::class);
-        \App\Models\FAQ::factory(5)->create();
+        // $this->call(FAQsTableSeeder::class);
+        // \App\Models\FAQ::factory(5)->create();
 
-        $this->call(CartsTableSeeder::class);
-        \App\Models\Cart::factory(5)->create();
+        // $this->call(CartsTableSeeder::class);
+        // \App\Models\Cart::factory(5)->create();
 
-        $this->call(OrdersTableSeeder::class);
-        \App\Models\Order::factory(5)->create();
+        // $this->call(DetailsTableSeeder::class);
+        // \App\Models\Detail::factory(5)->create();
 
-        $this->call(TransactionsTableSeeder::class);
-        \App\Models\Transaction::factory(5)->create();
+        // $this->call(TransactionsTableSeeder::class);
+        // \App\Models\Transaction::factory(5)->create();
     }
 }

@@ -14,7 +14,7 @@ class FaqList extends Component
     public function render()
     {
         $faqs = FAQ::all();
-        return view('livewire.faq-list', compact('faqs'));
+        return view('livewire.main.admin.livewire.faq-list', compact('faqs'));
     }   
 
     public function faqDeleted($faqId)

@@ -17,7 +17,7 @@ class CreateFaq extends Component
     
     public function render()
     {
-        return view('livewire.create-faq');
+        return view('livewire.main.admin.livewire.create-faq');
     }
 
     public function createFaq()

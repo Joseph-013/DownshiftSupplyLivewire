@@ -45,6 +45,6 @@ class FaqDetails extends Component
 
     public function render()
     {
-        return view('livewire.faq-details');
+        return view('livewire.main.admin.livewire.faq-details');
     }
 }

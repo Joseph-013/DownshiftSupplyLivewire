@@ -42,6 +42,13 @@
     height: 26rem !important;
 }
 
+#faqs-container{
+    height: 10rem !important;
+}
+#faqs-email-container{
+    height: 14rem !important;
+}
+
 /* Edit Transactions */
 .widenWhenSelectedEdit:checked + label {
     width: 100%;

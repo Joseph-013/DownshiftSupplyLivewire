@@ -40,7 +40,7 @@ new class extends Component
 
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-orange-400">
             {{ __('Update Password') }}
         </h2>
 
@@ -69,7 +69,7 @@ new class extends Component
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-orange-button>{{ __('Save') }}</x-orange-button>
 
             <x-action-message class="me-3" on="password-updated">
                 {{ __('Saved.') }}

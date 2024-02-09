@@ -20,6 +20,13 @@ class TransactionsTableSeeder extends Seeder
                 'contact' => 9053942636,
                 'purchaseType' => 'Onsite',
                 'grandTotal' => 100000
+            ],
+            [
+                'firstName' => 'J',
+                'lastName' => 'V',
+                'contact' => 9053942636,
+                'purchaseType' => 'Onsite',
+                'grandTotal' => 100000
             ]
         ]);
     }

@@ -14,7 +14,7 @@ class ProductList extends Component
     public function render()
     {
         $products = Product::all();
-        return view('livewire.product-list', compact('products'));
+        return view('livewire.main.admin.livewire.product-list', compact('products'));
     }
 
     public function productDeleted($productId)

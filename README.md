@@ -37,14 +37,16 @@ Installing node on project directory:
 ## Project Progress
 
 - Login
+    - (DONE)Login User and Admin
     - Recover Account Password
     - Register new account
+        >Needs API (email verification) to complete
 - Inventory Management
-    - Add new inventory items
-    - Update existing inventory items
-    - Delete inventory items
+    - (DONE)Add new inventory items
+    - (DONE)Update existing inventory items
+    - (DONE)Delete inventory items
     - Search inventory items
-    - View product listings
+    - (DONE)View product listings
     - Inquire products through FAQs thread
     - Talk to agent through embedded email form
 - Sales Management

@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
         // $this->call(CartsTableSeeder::class);
         // \App\Models\Cart::factory(5)->create();
 
-        // $this->call(DetailsTableSeeder::class);
+        $this->call(DetailsTableSeeder::class);
         // \App\Models\Detail::factory(5)->create();
 
-        // $this->call(TransactionsTableSeeder::class);
+        $this->call(TransactionsTableSeeder::class);
         // \App\Models\Transaction::factory(5)->create();
     }
 }

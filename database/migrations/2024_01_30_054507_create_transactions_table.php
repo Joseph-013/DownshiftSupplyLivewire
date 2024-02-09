@@ -35,9 +35,9 @@ return new class extends Migration
             $table->id();
             $table->string('firstName');
             $table->string('lastName');
-            $table->integer('contact')->unsigned();
+            $table->bigInteger('contact')->unsigned();
             $table->timestamp('purchaseDate')->default(now());
-            $table->string('purchaseType');
+            $table->enum('purchaseType', ['Onsite', 'Online']);
             $table->foreignId('user_id')->nullable();
             $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable();
             $table->string('paymentOption')->nullable();
@@ -47,7 +47,7 @@ return new class extends Migration
             $table->string('courierUsed')->nullable();
             $table->decimal('shippingFee', 6, 2)->unsigned()->nullable();
             $table->string('trackingNumber')->nullable();
-            $table->decimal('grandTotal', 6, 2)->unsigned();
+            $table->decimal('grandTotal', 10, 2)->unsigned();
             $table->timestamps();
         });
     }

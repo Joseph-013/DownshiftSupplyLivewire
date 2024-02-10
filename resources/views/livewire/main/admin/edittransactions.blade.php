@@ -296,33 +296,44 @@
                         </div>
 
                         <div class="w-full flex-row px-5 ml-[-.5rem]">
-                            <ul class="flex flex-row w-full rounded border border-gray-500 px-2 py-2">
-                                <li class="w-6/12 text-center text-xs flex items-center justify-center ">
+                            <ul class="flex flex-row w-full rounded border border-gray-500 px-1 py-2">
+                                <li class="w-5/12 text-center text-xs flex items-center justify-center ">
                                     <div class="flex items-center"> <!-- Wrapping content in a flex container -->
 
                                         <div class=""> <!-- Adding margin to separate image and text -->
                                             <label class="w-full h-10 flex items-center font-semibold">Item
                                                 ID/Name:</label>
-                                            <input class="w-5/6 h-10 flex items-center text-xs" type="text"
+                                            <input class="w-4/6 h-10 flex items-center text-xs" type="text"
                                                 value="23">
                                         </div>
                                         <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                            class="w-24 h-20 ml-[-1rem]">
+                                            class="w-24 h-20 ml-[-3rem]">
                                     </div>
                                 </li>
-                                <li class="w-3/12 text-center flex items-center justify-center text-xs ">Random Item
+                                <li class="w-2/12 text-center flex items-center justify-center text-xs ">Random Item
                                 </li>
-                                <li class="w-2/12 text-center flex items-center justify-center text-xs ">
+                                <li class="w-3/12 text-center flex items-center justify-center text-xs mr-2">
                                     <div class=""> <!-- Adding margin to separate image and text -->
                                         <label
                                             class="w-full h-10 flex items-center font-semibold text-xs">Quantity:</label>
-                                        <input class="w-5/6 h-10 flex items-center text-xs" type="number"
-                                            value="23">
+                                            <div class="relative flex items-center max-w-[6rem]">
+                                                <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                                    <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                                    </svg>
+                                                </button>
+                                                <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-white border-gray-300 h-8 text-center text-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="999" required>
+                                                <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                                    <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
                                     </div>
                                 </li>
-                                <li class="w-3/12 text-center flex items-center justify-center text-sm">
+                                <li class="w-3/12 text-center flex items-center justify-center pr-2 ">
                                     <button type="submit"
-                                        class="h-10 w-60 items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-xs  font-semibold text-spacing flex flex-row">
+                                        class="h-9 w-60 text-xs items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-xs  font-semibold text-spacing flex flex-row">
                                         Add Item
                                         <svg fill="#FFFFFF" height="20px" width="20px" version="1.1"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -346,5 +357,32 @@
                 </div>
             </div>
         </div>
+        <script>
+                                                    // Get references to the elements
+                                                    const decrementButton = document.getElementById('decrement-button');
+                                                    const incrementButton = document.getElementById('increment-button');
+                                                    const quantityInput = document.getElementById('quantity-input');
+
+                                                    // Add event listeners to the buttons
+                                                    decrementButton.addEventListener('click', () => {
+                                                        // Decrease the value by 1 if it's greater than 0
+                                                        let currentValue = parseInt(quantityInput.value);
+                                                        if (!isNaN(currentValue) && currentValue > 0) {
+                                                            quantityInput.value = currentValue - 1;
+                                                        } else {
+                                                            quantityInput.value = 0;
+                                                        }
+                                                    });
+
+                                                    incrementButton.addEventListener('click', () => {
+                                                        // Increase the value by 1, or set to 1 if it's not a number or less than 0
+                                                        let currentValue = parseInt(quantityInput.value);
+                                                        if (isNaN(currentValue) || currentValue < 0) {
+                                                            quantityInput.value = 1;
+                                                        } else {
+                                                            quantityInput.value = currentValue + 1;
+                                                        }
+                                                    });
+                                                </script>
     </div>
 </x-app-layout>

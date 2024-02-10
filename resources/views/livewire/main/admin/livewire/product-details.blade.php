@@ -3,7 +3,8 @@
         {{-- Top --}}
         <div class="columns-2">
             <div class="p-2">
-                <img src="{{ asset('storage/assets/' . $selectedProduct->image) }}">
+                {{-- <img src="{{ $selectedProduct->image }}"> --}}
+                <img src="{{ asset('storage/assets/' . $selectedProduct->image) }}" alt="{{ $selectedProduct->name }}">
             </div>
             <div class="p-2 flex flex-col h-full justify-center">
                 <div class="text-sm h-min">
@@ -23,24 +24,30 @@
         {{-- Bottom --}}
         <div class="px-2 w-full">
             <div class="text-sm h-min mt-2">
-                <label for="productImage" class="block text-sm font-medium text-gray-700">Upload Image (JPG or PNG only)</label>
-                <input type="file" wire:model="newImage" id="productImage" accept=".jpg, .jpeg, .png" >
-                @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
+                <label for="productImage" class="block text-sm font-medium text-gray-700">Upload Image (JPG or PNG
+                    only)</label>
+                <input type="file" wire:model="newImage" id="productImage" accept=".jpg, .jpeg, .png">
+                @error('image')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
             </div>
             <div class="flex w-full py-2">
                 <label class="w-1/4 h-10 flex items-center">Name:</label>
-                <input wire:model="newName" class="w-3/4 h-10 flex items-center" type="text" value="{{ $selectedProduct->name }}">
+                <input wire:model="newName" class="w-3/4 h-10 flex items-center" type="text"
+                    value="{{ $selectedProduct->name }}">
             </div>
             <div class="flex w-full py-2">
                 <label class="w-1/4 h-10 flex items-center">Price:</label>
-                <input wire:model="newPrice" class="w-3/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->price }}">
+                <input wire:model="newPrice" class="w-3/4 h-10 flex items-center" type="number"
+                    value="{{ $selectedProduct->price }}">
             </div>
             <div class="flex w-full py-2">
                 <label class="w-1/4 h-10 flex items-center">Remaining:</label>
                 <input wire:model="newStockquantity" class="w-1/4 h-10 flex items-center" type="number"
                     value="{{ $selectedProduct->stockquantity }}">
                 <label class="w-1/4 h-10 flex items-center justify-center">Crit. Level:</label>
-                <input wire:model="newCriticallevel" class="w-1/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->criticallevel }}">
+                <input wire:model="newCriticallevel" class="w-1/4 h-10 flex items-center" type="number"
+                    value="{{ $selectedProduct->criticallevel }}">
             </div>
             <div class="flex w-full py-2 mt-4">
                 <button wire:click="deleteProduct" type="submit"

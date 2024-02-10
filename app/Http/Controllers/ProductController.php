@@ -14,6 +14,6 @@ class ProductController extends Controller
         return view('livewire.main.admin.inventory', compact('products'));
     }
 
-
+    
 
 }

@@ -26,7 +26,7 @@
                         <hr class="my-1">
                         <!-- Single Unit of Product -->
                         @foreach($selectedTransaction->details as $detail)
-                            @if($detail->product)
+                            @if($detail->products)
                             <div class="w-full flex-row px-5 my-2">
                                 <ul class="flex flex-row w-full">
                                     <li

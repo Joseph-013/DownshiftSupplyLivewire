@@ -77,6 +77,7 @@ Route::middleware(['auth', 'verified'])
         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');
         Route::view('/cart', 'livewire/main/user/cart')->name('cart');
+        Route::view('/checkout', 'livewire/main/user/checkout')->name('checkout');
 });
 
 // These pages/actions do not require middleware

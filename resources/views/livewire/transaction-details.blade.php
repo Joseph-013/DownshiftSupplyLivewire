@@ -25,8 +25,15 @@
                         </div>
                         <hr class="my-1">
                         <!-- Single Unit of Product -->
+                        @php
+                            $grandTotal = 0;
+                        @endphp
                         @foreach($selectedTransaction->details as $detail)
                             @if($detail->products)
+                            @php
+                                $subtotal = $detail->products->price * $detail->quantity;
+                                $grandTotal += $subtotal;
+                            @endphp
                             <div class="w-full flex-row px-5 my-2">
                                 <ul class="flex flex-row w-full">
                                     <li
@@ -43,7 +50,7 @@
                                     <li class="w-2/12 text-center text-xs items-center justify-center">
                                         {{ $detail->quantity }}</li>
                                     <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                        {{ $detail->subtotal }}</li>
+                                        {{ $subtotal }}</li>
                                 </ul>
                             </div>
                             @endif
@@ -54,7 +61,7 @@
             </div>
             <hr class="mt-5 mb-2">
             <div class="w-full text-xs text-right pr-5 mx-[-3rem]"><span class="font-semibold">Total:
-                </span>₱ {{ $selectedTransaction->grandTotal }} 
+                </span>₱ {{ $grandTotal }} 
         </div>
     @endif
 </div>

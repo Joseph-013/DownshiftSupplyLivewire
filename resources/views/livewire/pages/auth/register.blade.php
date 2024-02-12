@@ -348,9 +348,9 @@ By use of any other description of our Website being linked to that makes sense 
     </div>
 
     <!-- Existing code -->
-    <div class="h-full">
-        <!-- Your existing content here -->
-    </div>
+    <!-- <div class="h-full overflow-hidden">
+        
+    </div> -->
 
     <script>
         // Get the modal

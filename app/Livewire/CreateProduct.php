@@ -21,7 +21,7 @@ class CreateProduct extends Component
         'price' => 'required|numeric',
         'stockquantity' => 'required|numeric',
         'criticallevel' => 'required|numeric',
-        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        'image' => 'required|image|mimes:jpeg,png,jpg|max:4096',
     ];
 
     public function createProduct()
@@ -42,6 +42,12 @@ class CreateProduct extends Component
     
             $this->dispatch('productCreated', $newProduct->id);
         }
+    }
+
+    public function updatedImage() {
+        $this->validate([
+            'image' => 'image|max:4096',
+        ]);
     }
 
     public function render()

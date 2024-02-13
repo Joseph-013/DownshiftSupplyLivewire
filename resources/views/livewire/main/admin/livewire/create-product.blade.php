@@ -1,7 +1,11 @@
 <div>
 <div class="columns-2">
             <div class="p-2">
-                <img src="https://via.placeholder.com/640x480.png/000000?text=No+Image+Available">
+                @if ($image)
+                <img src="{{ $image->temporaryUrl() }}" alt="Preview">
+                @else
+                <img src="https://via.placeholder.com/640x480.png/000000?text=No+Image+Available" alt="No Image Available">
+                @endif
             </div>
             <div class="p-2 flex flex-col h-full justify-center">
                 <div class="text-lg h-min">
@@ -13,7 +17,7 @@
         <div class="px-2 w-full">
             <div class="text-sm h-min mt-2">
                 <label for="productImage" class="block text-sm font-medium text-gray-700">Upload Image (JPG or PNG only)</label>
-                <input type="file" wire:model="image" id="productImage" accept=".jpg, .jpeg, .png" >
+                <input type="file" wire:model="image" id="productImage" accept=".jpg, .jpeg, .png">
                 @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
             <div class="flex w-full py-2">

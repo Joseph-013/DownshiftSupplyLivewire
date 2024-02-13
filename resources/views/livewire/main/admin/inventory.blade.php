@@ -34,7 +34,7 @@
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
-                    <form class="w-full h-full">
+                    <form class="w-full h-full" enctype="multipart/form-data">
                         {{-- Left Main Container --}}
                         <livewire:product-details />
                     </form>

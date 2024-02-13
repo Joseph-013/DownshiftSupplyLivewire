@@ -51,7 +51,7 @@ new #[Layout('layouts.guest')] class extends Component
 
                 {{-- Right Panel --}}
                 <div class="bg-orange-400 flex-1 py-7">
-                    <form wire:submit="register" class="p-4 w-full h-full flex flex-col items-center justify-between">
+                    <form wire:submit="sendPasswordResetLink" class="p-4 w-full h-full flex flex-col items-center justify-between">
                         <div class="flex flex-col items-center">
                             <h1 class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
                                 Downshift Supply

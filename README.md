@@ -72,3 +72,11 @@ Installing node on project directory:
 
 - Others
     - Email content.
+
+
+**Hide as soon as possible:
+SQL Database Server:
+    - dsldb-sqldbserver
+    - Southeast Asia
+    - Capuno
+    - Downshift!1242024

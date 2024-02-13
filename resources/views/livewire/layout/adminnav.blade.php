@@ -1,4 +1,4 @@
-<div class="hidden space-x-8 sm:-my-px sm:ms-5 lg:ms-8 md:flex">
+<div class="hidden space-x-8 sm:-my-px sm:ms-5 lg:ms-8 md:flex ml-20 gap-10 pl-20">
     <x-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
         Inventory
     </x-nav-link>

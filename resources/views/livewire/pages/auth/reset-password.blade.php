@@ -69,37 +69,67 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div>
-    <form wire:submit="resetPassword">
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+<div class="h-full">
+    <div class="h-full">
+        <div class="hidden sm:block w-screen h-full">
+            <div class="bg-white overflow-hidden flex flex-row h-full">
+                {{-- Left Panel --}}
+                <div class="max-w-full flex-1 relative">
+                    <img src="/assets/g567ah.jpg" class="relative object-cover h-full w-full z-10">
+                    {{-- Logo on top middle --}}
+                    <div class="absolute top-1 left-1/2 transform -translate-x-1/2 z-20 mt-16">
+                        <img src="assets/logo1.png" class="w-64" alt="">
+                    </div>
+                </div>
+                {{-- Right Panel --}}
+                <div class="bg-orange-400 flex-1 py-7">
+                    <div class="p-4 w-full h-full flex flex-col items-center justify-between">
+                        <div class="flex flex-col items-center">
+                            <h1 class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
+                                Downshift Supply
+                            </h1>
+                            <h3 class="font-montserrat text-white default-shadow text-lg">
+                                Welcome! Let&#39;s get started!
+                            </h3>
+                        </div>
+                        <div>
+                            <form wire:submit="resetPassword">
+                                <!-- Email Address -->
+                                <div>
+                                    <x-input-label for="email" :value="__('Email')" />
+                                    <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                </div>
+
+                                <!-- Password -->
+                                <div class="mt-4">
+                                    <x-input-label for="password" :value="__('Password')" />
+                                    <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                </div>
+
+                                <!-- Confirm Password -->
+                                <div class="mt-4">
+                                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                                    <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                </div>
+
+                                <div class="flex items-center justify-end mt-4">
+                                    <x-primary-button>
+                                        {{ __('Reset Password') }}
+                                    </x-primary-button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                          type="password"
-                          name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </div>
+

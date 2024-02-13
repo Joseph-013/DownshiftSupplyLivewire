@@ -68,3 +68,7 @@ Installing node on project directory:
     - View screenshots or photos of proof of payment
 - Generate Sales Reports
     - Generate organized daily, weekly, monthly, and yearly sales reports based on inventory and sales
+
+
+- Others
+    - Email content.

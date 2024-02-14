@@ -8,13 +8,13 @@ use App\Models\Product;
 class ProductList extends Component
 {
     public $selectedProductId;
+    public $products;
 
     protected $listeners = ['productDeleted', 'productCreated'];
 
     public function render()
     {
-        $products = Product::all();
-        return view('livewire.main.admin.livewire.product-list', compact('products'));
+        return view('livewire.main.admin.livewire.product-list');
     }
 
     public function productDeleted($productId)

@@ -8,11 +8,12 @@
                     Inventory
                 </h1>
                 <div class="flex-1">
-                    <form class="flex flex-row">
+                    <form action="{{ route('admin.inventory.search') }}" method="GET" class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
                             <input
+                                name="search"
                                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
-                                type="text" />
+                                type="text">
                             <button type="clear"
                                 class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
                                 <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -25,6 +26,7 @@
                         <button
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200">Filters</button>
                         <button
+                            type="submit"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200">Search</button>
                     </form>
                 </div>
@@ -53,7 +55,7 @@
                         <hr class="my-1">
 
                         {{-- Products List  --}}
-                        <livewire:product-list />
+                        <livewire:product-list :products="$products" />
                     </div>
                     {{-- Products --}}
                 </div>

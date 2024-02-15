@@ -39,8 +39,8 @@ Installing node on project directory:
 
 - Login
     - (DONE)Login User and Admin
-    - Recover Account Password
-    - Register new account
+    - (DONE)Recover Account Password
+    - (DONE)Register new account
         >Needs API (email verification) to complete
 - Inventory Management
     - (DONE)Add new inventory items

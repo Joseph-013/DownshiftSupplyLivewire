@@ -12,7 +12,7 @@ class TransactionList extends Component
     public function render()
     {
         $transactions = Transaction::all();
-        return view('livewire.transaction-list', compact('transactions'));
+        return view('livewire.main.admin.livewire.transaction-list', compact('transactions'));
     }
 
     public function selectTransaction($transactionId)

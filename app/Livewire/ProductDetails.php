@@ -16,12 +16,14 @@ class ProductDetails extends Component
     public $newStockquantity;
     public $newCriticallevel;
     public $newImage;
+    public $newlyUploadedImage;
 
     protected $listeners = ['productSelected'];
 
     public function mount()
     {
         $this->selectedProduct = null;
+        $this->newlyUploadedImage = false;
     }
 
     public function productSelected($productId)
@@ -32,6 +34,7 @@ class ProductDetails extends Component
         $this->newStockquantity = $this->selectedProduct->stockquantity;
         $this->newCriticallevel = $this->selectedProduct->criticallevel;
         $this->newImage = $this->selectedProduct->image;
+        $this->newlyUploadedImage = false;
     }
 
     public function deleteProduct()
@@ -69,6 +72,11 @@ class ProductDetails extends Component
             $this->selectedProduct->save();
             $this->dispatch('productCreated');
         }
+    }
+
+    public function updatedNewImage()
+    {
+        $this->newlyUploadedImage = true;
     }
 
     public function render()

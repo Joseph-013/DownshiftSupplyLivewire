@@ -64,6 +64,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/inventory', [ProductController::class, 'index'])->name('inventory');
+        Route::get('/inventory/search', [ProductController::class, 'search'])->name('inventory.search');
         Route::view('/salestransactions', 'livewire/main/admin/salestransactions')->name('salestransactions');
         Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');

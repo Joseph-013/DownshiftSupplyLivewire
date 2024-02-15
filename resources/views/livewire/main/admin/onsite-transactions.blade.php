@@ -8,9 +8,10 @@
                     Onsite Transactions
                 </h1>
                 <div class="flex-1">
-                    <form class="flex flex-row">
+                    <form action="{{ route('admin.onsitetransactions.search') }}" method="GET" class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
                             <input
+                                name="search"
                                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
                                 type="text" />
                             <button type="clear"
@@ -25,6 +26,7 @@
                         <button
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200">Filters</button>
                         <button
+                            type="submit"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200">Search</button>
                     </form>
                 </div>
@@ -78,7 +80,7 @@
                         </div>
                         <hr class="my-1">
                         {{-- Products List  --}}
-                        <livewire:transaction-list />
+                        <livewire:transaction-list :transactions="$transactions" />
                         <div class="w-full mt-5 flex justify-center">
                             <button type="reset"
                                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OnsiteTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -65,7 +66,8 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
     ->group(function () {
         Route::get('/inventory', [ProductController::class, 'index'])->name('inventory');
         Route::get('/inventory/search', [ProductController::class, 'search'])->name('inventory.search');
-        Route::view('/onsitetransactions', 'livewire/main/admin/onsite-transactions')->name('onsitetransactions');
+        Route::get('/onsitetransactions', [OnsiteTransactionController::class, 'index'])->name('onsitetransactions');
+        Route::get('/onsitetransactions/search', [OnsiteTransactionController::class, 'search'])->name('onsitetransactions.search');
         Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');

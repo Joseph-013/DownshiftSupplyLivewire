@@ -8,11 +8,11 @@ use Livewire\Component;
 class TransactionList extends Component
 {
     public $selectedTransactionId;
+    public $transactions;
 
     public function render()
     {
-        $transactions = Transaction::all();
-        return view('livewire.main.admin.livewire.transaction-list', compact('transactions'));
+        return view('livewire.main.admin.livewire.transaction-list');
     }
 
     public function selectTransaction($transactionId)

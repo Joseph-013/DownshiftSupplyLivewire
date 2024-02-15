@@ -4,7 +4,7 @@
     </x-nav-link>
 </div>
 <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
-    <x-nav-link :href="route('admin.salestransactions')" :active="request()->routeIs('admin.salestransactions')" wire:navigate>
+    <x-nav-link :href="route('admin.onsitetransactions')" :active="request()->routeIs('admin.onsitetransactions')" wire:navigate>
         Onsite<br />Transactions
     </x-nav-link>
 </div>

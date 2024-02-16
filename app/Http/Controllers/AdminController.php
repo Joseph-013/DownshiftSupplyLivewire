@@ -28,4 +28,23 @@ class AdminController extends Controller
 
         return view('livewire/main/admin/edittransactions', ['transaction' => $transaction]);
     }
+
+    public function updateTransaction(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'contact' => 'required|string|max:20',
+        ]);
+
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->update([
+            'firstName' => $validatedData['firstName'],
+            'lastName' => $validatedData['lastName'],
+            'contact' => $validatedData['contact'],
+        ]);
+
+        return redirect()->back();
+    }
 }

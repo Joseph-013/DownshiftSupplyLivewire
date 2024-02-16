@@ -94,6 +94,10 @@ Route::get('admin/edittransactions/{transactionId}', [AdminController::class, 'e
     ->middleware(['auth', 'verified', 'checkadmin'])
     ->name('edittransactions');
 
+Route::put('admin/update-transaction/{id}', [AdminController::class, 'updateTransaction'])
+    ->middleware(['auth', 'verified', 'checkadmin'])
+    ->name('update.transaction');
+
 Route::view('/profile', 'livewire/profile')->name('profile')->middleware(['auth', 'verified']);
 
 // Route::get('/email/verify', function () {

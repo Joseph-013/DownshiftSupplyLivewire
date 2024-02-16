@@ -31,6 +31,6 @@ class TransactionDetails extends Component
 
     public function render()
     {
-        return view('livewire.transaction-details');
+        return view('livewire.main.admin.livewire.transaction-details');
     }
 }

@@ -8,8 +8,6 @@ use App\Models\Product;
 class ProductSearch extends Component
 {
     public $search;
-    public $productId;
-    public $quantity;
 
     protected $listeners = ['itemAdded'];
 
@@ -23,10 +21,8 @@ class ProductSearch extends Component
         return view('livewire.product-search', compact('results'));
     }
 
-    public function itemAdded($addedProductId, $addedQuantity)
+    public function itemAdded($productId, $quantity)
     {
-        $this->productId = $addedProductId;
-        $this->quantity = $addedQuantity;
-        dd($this->quantity);
+        $this->dispatch('addedItem', $productId, $quantity);
     }
 }

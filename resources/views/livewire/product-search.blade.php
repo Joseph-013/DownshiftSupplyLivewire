@@ -59,6 +59,7 @@
     </ul>
 </div>
 
+@livewireScripts
 <script>
     var selectedProductId;
 
@@ -78,11 +79,9 @@
             var productId = selectedProductId;
             var quantity = document.getElementById('quantity-input').value;
             Livewire.dispatch('itemAdded', {
-                addedProductId: productId, 
-                addedQuantity: quantity
+                productId: productId, 
+                quantity: quantity
             });
-            console.log("Selected Product ID:", productId);
-            console.log("Quantity:", quantity);
         }
     }
 </script>

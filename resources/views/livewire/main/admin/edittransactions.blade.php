@@ -221,6 +221,19 @@
                 });
                 document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
             }
+
+            Livewire.on('addedItem', (data) => {
+                // Send an AJAX request to fetch the product details based on productId if needed
+                // For demonstration purposes, assume productId and quantity are received
+                console.log('Product ID:', data[0]);
+                console.log('Quantity:', data[1]);
+        
+                // Add the new transaction item to the transaction list
+                var productList = document.querySelector('#product-list');
+                var newProductItem = document.createElement('li');
+                newProductItem.textContent = 'Product ID: ' + data[0] + ' - Quantity: ' + data[1];
+                productList.appendChild(newProductItem);
+            });
         </script>
     </div>
 </x-app-layout>

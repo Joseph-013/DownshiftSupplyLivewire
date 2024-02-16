@@ -55,9 +55,12 @@ new class extends Component {
             <!-- Settings Dropdown -->
             <div class="h-full flex items-center">
 
-                <a href="{{ route('user.cart') }}" class="h-8 w-8">
-                    <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
-                </a>
+                @if (auth()->check() && auth()->user()->usertype === 'user')
+                    <a href="{{ route('user.cart') }}" class="h-8 w-8">
+                        <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
+                    </a>
+                @endif
+
 
                 <div class="hidden md:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">

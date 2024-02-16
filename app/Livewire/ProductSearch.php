@@ -18,4 +18,9 @@ class ProductSearch extends Component
         }
         return view('livewire.product-search', compact('results'));
     }
+
+    public function selectProduct($name, $image)
+    {
+        $this->dispatch('productSelected', $name, $image);
+    }
 }

@@ -73,7 +73,16 @@
     }
 
     function addItem() {
-        var productId = selectedProductId;
-        console.log("Selected Product ID:", productId);
+        if(selectedProductId != null)
+        {
+            var productId = selectedProductId;
+            var quantity = document.getElementById('quantity-input').value;
+            Livewire.dispatch('itemAdded', {
+                addedProductId: productId, 
+                addedQuantity: quantity
+            });
+            console.log("Selected Product ID:", productId);
+            console.log("Quantity:", quantity);
+        }
     }
 </script>

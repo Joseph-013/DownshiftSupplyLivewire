@@ -33,7 +33,14 @@
                                     <ul class="flex flex-row w-full">
                                         <li class="w-6/14 flex items-center text-sm">
                                             <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-25 border-2 border-gray rounded mr-2">
-                                            <span class="flex-grow text-left mx-2 mr-5 px-3">BC Racing Coilovers</span>
+                                            <div class="container">
+                                                <div class="fixed-width-container ml-[-3.5rem]">
+                                                    <span class="flex-grow text-left ">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                                <div class="hover-text">
+                                                    <span class="full-text">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                            </div>
                                         </li>
 
                                         <li class="w-3/12 text-center text-sm flex items-center mx-2  ">₱ 28, 500.00 </li>
@@ -72,7 +79,14 @@
                                     <ul class="flex flex-row w-full">
                                         <li class="w-6/14 flex items-center text-sm">
                                             <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-25 border-2 border-gray rounded mr-2">
-                                            <span class="flex-grow text-left mx-2 mr-5 px-3">BC Racing Coilovers</span>
+                                            <div class="container">
+                                                <div class="fixed-width-container ml-[-3.5rem]">
+                                                    <span class="flex-grow text-left ">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                                <div class="hover-text">
+                                                    <span class="full-text">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                            </div>
                                         </li>
 
                                         <li class="w-3/12 text-center text-sm flex items-center mx-2  ">₱ 28, 500.00 </li>
@@ -111,7 +125,14 @@
                                     <ul class="flex flex-row w-full">
                                         <li class="w-6/14 flex items-center text-sm">
                                             <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-25 border-2 border-gray rounded mr-2">
-                                            <span class="flex-grow text-left mx-2 mr-5 px-3">BC Racing Coilovers</span>
+                                            <div class="container">
+                                                <div class="fixed-width-container ml-[-3.5rem]">
+                                                    <span class="flex-grow text-left ">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                                <div class="hover-text">
+                                                    <span class="full-text">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                            </div>
                                         </li>
 
                                         <li class="w-3/12 text-center text-sm flex items-center mx-2  ">₱ 28, 500.00 </li>
@@ -150,7 +171,14 @@
                                     <ul class="flex flex-row w-full">
                                         <li class="w-6/14 flex items-center text-sm">
                                             <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-25 border-2 border-gray rounded mr-2">
-                                            <span class="flex-grow text-left mx-2 mr-5 px-3">BC Racing Coilovers</span>
+                                            <div class="container">
+                                                <div class="fixed-width-container ml-[-3.5rem]">
+                                                    <span class="flex-grow text-left ">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                                <div class="hover-text">
+                                                    <span class="full-text">BC Racing Coiloverskdasdkalsdklahskdhakhsdlahsdlkahsdklhasdkhasklhdaksdhalskdaksdhalskdhalshdasdasdlkasd</span>
+                                                </div>
+                                            </div>
                                         </li>
 
                                         <li class="w-3/12 text-center text-sm flex items-center mx-2  ">₱ 28, 500.00 </li>
@@ -184,7 +212,7 @@
                                 </li>
 
 
-                                
+
                             </ul>
 
                         </div>
@@ -196,67 +224,66 @@
                                     Total:
                                 </li>
                                 <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
-                                ₱ 104, 500.00
+                                    ₱ 104, 500.00
                                 </li>
                             </ul>
-                            
+
                         </div>
                         <div class="w-full text-sm-right">
                             <ul class="flex flex-row w-full">
                                 <li class="w-4/5"></li>
                                 <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
-                                
+
                                 </li>
                                 <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
-                                <hr class="my-2">
+                                    <hr class="my-2">
                                 </li>
                             </ul>
-                            
+
                         </div>
 
                         <div class="w-full mt-3 flex justify-end px-5">
-                            <button type="reset"
-                                class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+                            <button type="reset" class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                                 Check out
-                                
+
                             </button>
 
-                    </div>
-                    <div class="w-full mt-3 flex justify-end px-5 text-sm">
-                    Additional fees may be added upon checkout. 
+                        </div>
+                        <div class="w-full mt-3 flex justify-end px-5 text-sm">
+                            Additional fees may be added upon checkout.
 
+                        </div>
+                        {{-- Products --}}
                     </div>
-                    {{-- Products --}}
                 </div>
+
             </div>
+            <script>
+                // Get references to the elements
+                const decrementButton = document.getElementById('decrement-button');
+                const incrementButton = document.getElementById('increment-button');
+                const quantityInput = document.getElementById('quantity-input');
 
+                // Add event listeners to the buttons
+                decrementButton.addEventListener('click', () => {
+                    // Decrease the value by 1 if it's greater than 0
+                    let currentValue = parseInt(quantityInput.value);
+                    if (!isNaN(currentValue) && currentValue > 0) {
+                        quantityInput.value = currentValue - 1;
+                    } else {
+                        quantityInput.value = 0;
+                    }
+                });
+
+                incrementButton.addEventListener('click', () => {
+                    // Increase the value by 1, or set to 1 if it's not a number or less than 0
+                    let currentValue = parseInt(quantityInput.value);
+                    if (isNaN(currentValue) || currentValue < 0) {
+                        quantityInput.value = 1;
+                    } else {
+                        quantityInput.value = currentValue + 1;
+                    }
+                });
+            </script>
         </div>
-        <script>
-                                                    // Get references to the elements
-                                                    const decrementButton = document.getElementById('decrement-button');
-                                                    const incrementButton = document.getElementById('increment-button');
-                                                    const quantityInput = document.getElementById('quantity-input');
-
-                                                    // Add event listeners to the buttons
-                                                    decrementButton.addEventListener('click', () => {
-                                                        // Decrease the value by 1 if it's greater than 0
-                                                        let currentValue = parseInt(quantityInput.value);
-                                                        if (!isNaN(currentValue) && currentValue > 0) {
-                                                            quantityInput.value = currentValue - 1;
-                                                        } else {
-                                                            quantityInput.value = 0;
-                                                        }
-                                                    });
-
-                                                    incrementButton.addEventListener('click', () => {
-                                                        // Increase the value by 1, or set to 1 if it's not a number or less than 0
-                                                        let currentValue = parseInt(quantityInput.value);
-                                                        if (isNaN(currentValue) || currentValue < 0) {
-                                                            quantityInput.value = 1;
-                                                        } else {
-                                                            quantityInput.value = currentValue + 1;
-                                                        }
-                                                    });
-                                                </script>
-    </div>
 </x-app-layout>

@@ -171,14 +171,7 @@
                             <ul class="flex flex-row w-full rounded border border-gray-500 px-1 py-2">
                                 <li class="w-5/12 text-center text-xs flex items-center justify-center ">
                                     <div class="flex items-center"> <!-- Wrapping content in a flex container -->
-
-                                        <div class=""> <!-- Adding margin to separate image and text -->
-                                            <label class="w-full h-10 flex items-center font-semibold">Item
-                                                ID/Name:</label>
-                                            <input class="w-4/6 h-10 flex items-center text-xs" type="text"
-                                                id="searchInput">
-                                            <ul id="searchResults"></ul>
-                                        </div>
+                                            <livewire:product-search />
                                         <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
                                             class="w-24 h-20 ml-[-3rem]">
                                     </div>

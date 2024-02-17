@@ -117,6 +117,7 @@
                                 @php
                                     $subtotal = number_format($detail->products->price * $detail->quantity, 2);
                                     $grandTotal += $subtotal;
+                                    $grandTotal = number_format($grandTotal, 2);
                                 @endphp
                                 {{-- Single Unit of Product --}}
                                 <li data-product-id="{{ $detail->products->id }}" class="product-item w-full flex justify-center select-none px-2">
@@ -167,7 +168,7 @@
                         <hr class="mb-2">
                         <div class="w-full text-sm text-right pr-7 mx-[-5rem] mb-5">
                             <span class="font-semibold">Total:
-                            </span>₱ {{ $grandTotal }}
+                            </span><p id="grand-total">₱ {{ $grandTotal }}</p>
                         </div>
                         <livewire:product-search />
                         </form>
@@ -218,9 +219,10 @@
                 let grandTotal = 0;
                 const subtotalElements = document.querySelectorAll('.subtotal');
                 subtotalElements.forEach(subtotalElement => {
-                    grandTotal += parseFloat(subtotalElement.textContent.replace('₱ ', ''));
+                    const subtotalText = subtotalElement.textContent.trim();
+                    grandTotal += parseFloat(subtotalText.replace('₱', '').trim());
                 });
-                document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toFixed(2);
             }
 
             Livewire.on('addedItem', (data) => {
@@ -291,6 +293,7 @@
                             }
                         });
                 }
+                updateTotal();
             });
         </script>
     </div>

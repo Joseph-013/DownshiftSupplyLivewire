@@ -27,18 +27,18 @@ class UserCart extends Component
     public function decrementQuantity($productId)
     {
         $product = Cart::find($productId);
-        $product->quantity = $product->quantity + 1;
-        $product->save();
+        if ($product->quantity != 1) {
+            --$product->quantity;
+            $product->save();
+        }
         $this->render();
     }
 
     public function incrementQuantity($productId)
     {
         $product = Cart::find($productId);
-        if ($product->quantity != 1) {
-            --$product->quantity;
-            $product->save();
-        }
+        $product->quantity = $product->quantity + 1;
+        $product->save();
         $this->render();
     }
 }

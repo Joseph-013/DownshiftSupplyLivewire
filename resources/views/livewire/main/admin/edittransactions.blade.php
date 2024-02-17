@@ -115,7 +115,7 @@
                                 @foreach($transaction->details as $detail)
                                 @if($detail->products)
                                 @php
-                                    $subtotal = $detail->products->price * $detail->quantity;
+                                    $subtotal = number_format($detail->products->price * $detail->quantity, 2);
                                     $grandTotal += $subtotal;
                                 @endphp
                                 {{-- Single Unit of Product --}}
@@ -227,55 +227,63 @@
                 const productId = data[0];
                 const quantity = parseInt(data[1]);
 
-                // Check if a product with the same ID already exists in the list
-                const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
+                fetch(`/get-product-details/${productId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.success) {
+                            const product = data.product;
+                            const productName = product.name;
+                            const productPrice = product.price;
+                            const productImage = product.image;
+                            const subtotal = (parseFloat(product.price) * parseFloat(quantity)).toFixed(2);
+                            const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
+                            if (existingProductItem) {
+                                const quantityElement = existingProductItem.querySelector('.quantity');
+                                const currentQuantity = parseInt(quantityElement.textContent.trim());
+                                quantityElement.textContent = currentQuantity + quantity;
 
-                if (existingProductItem) {
-                    // If the product already exists, update its quantity
-                    const quantityElement = existingProductItem.querySelector('.quantity');
-                    const currentQuantity = parseInt(quantityElement.textContent.trim());
-                    quantityElement.textContent = currentQuantity + quantity; // Update quantity
-                } else {
-                    // If the product doesn't exist, add a new list item
-                    const productList = document.querySelector('#product-list');
-                    const newProductItem = document.createElement('li');
-                    newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
-                    newProductItem.setAttribute('data-product-id', productId);
+                                const subtotalElement = existingProductItem.querySelector('.subtotal');
+                                const currentSubtotal = parseFloat(subtotalElement.textContent.replace('₱ ', ''));
+                                subtotalElement.textContent = '₱ ' + (currentSubtotal + parseFloat(subtotal)).toFixed(2);
+                            } else {
+                                const productList = document.querySelector('#product-list');
+                                const newProductItem = document.createElement('li');
+                                newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
+                                newProductItem.setAttribute('data-product-id', productId);
 
-                    // Construct the inner HTML for the new product item
-    newProductItem.innerHTML = `
-        <input class="widenWhenSelectedEdit" hidden type="radio" id="productId${productId}" name="productList">
-        <label class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center" for="productId${productId}">
-            <ul class="flex flex-row w-full">
-                <li class="w-6/12 text-center text-xs flex items-center justify-center">
-                    <div class="flex items-center">
-                        <img src="{{ asset('storage/assets/') }}" class="w-24 h-20 ml-[-2rem] object-cover">
-                        <div class="ml-2">
-                            <div class="text-sm text-left mb-3">
-                                <span class="font-semibold">Item ID:</span> ${productId}
-                            </div>
-                            <div class="text-sm text-left">Product Name Here</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="w-2/12 text-center flex items-center justify-center text-sm">₱ Product Price Here</li>
-                <li class="w-2/12 text-center flex items-center justify-center text-sm quantity">${quantity}</li>
-                <li class="w-2/12 text-center flex items-center justify-center text-sm">₱ Subtotal Here</li>
-                <li class="w-1/12 text-center flex items-center justify-center text-sm">
-                    <button class="delete-button h-full w-10 flex items-center justify-center">
-                        <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                        </svg>
-                    </button>
-                </li>
-            </ul>
-        </label>
-    `;
-
-    // Append the new product item to the product list
-                    productList.appendChild(newProductItem);
-                }
-            });
+                                newProductItem.innerHTML = `
+                                    <input class="widenWhenSelectedEdit" hidden type="radio" id="productId${productId}" name="productList">
+                                    <label class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center" for="productId${productId}">
+                                    <ul class="flex flex-row w-full">
+                                        <li class="w-6/12 text-center text-xs flex items-center justify-center">
+                                        <div class="flex items-center">
+                                            <img src="{{ asset('storage/assets/') }}/${productImage}" class="w-24 h-20 ml-[-2rem] object-cover">
+                                            <div class="ml-2">
+                                                <div class="text-sm text-left mb-3">
+                                                    <span class="font-semibold">Item ID:</span> ${productId}
+                                                </div>
+                                                <div class="text-sm text-left">${productName}</div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱ ${productPrice}</li>
+                                        <li class="w-2/12 text-center flex items-center justify-center text-sm quantity">${quantity}</li>
+                                        <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱ ${subtotal}</li>
+                                        <li class="w-1/12 text-center flex items-center justify-center text-sm">
+                                        <button class="delete-button h-full w-10 flex items-center justify-center">
+                                            <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                            </svg>
+                                        </button>
+                                        </li>
+                                    </ul>
+                                    </label>
+                                `;
+                                productList.appendChild(newProductItem);
+                            }
+                        }
+                    })
+                });
         </script>
     </div>
 </x-app-layout>

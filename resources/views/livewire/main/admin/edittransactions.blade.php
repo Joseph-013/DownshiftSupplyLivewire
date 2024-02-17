@@ -119,7 +119,7 @@
                                     $grandTotal += $subtotal;
                                 @endphp
                                 {{-- Single Unit of Product --}}
-                                <li class="product-item w-full flex justify-center select-none px-2">
+                                <li data-product-id="{{ $detail->products->id }}" class="product-item w-full flex justify-center select-none px-2">
                                     {{-- Product Details --}}
                                     <input class="widenWhenSelectedEdit" hidden type="radio" id="productId{{ $detail->products->id }}"
                                         name="productList">
@@ -141,11 +141,11 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">₱
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
                                                 {{ $detail->products->price }}</li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm quantity">{{ $detail->quantity }}
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">₱
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱
                                                 {{ $subtotal }}</li>
                                             <li class="w-1/12 text-center flex items-center justify-center text-sm">
                                                 <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
@@ -226,26 +226,34 @@
             Livewire.on('addedItem', (data) => {
                 const productId = data[0];
                 const quantity = parseInt(data[1]);
+                const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
 
-                fetch(`/get-product-details/${productId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if(data.success) {
-                            const product = data.product;
-                            const productName = product.name;
-                            const productPrice = product.price;
-                            const productImage = product.image;
-                            const subtotal = (parseFloat(product.price) * parseFloat(quantity)).toFixed(2);
-                            const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
-                            if (existingProductItem) {
-                                const quantityElement = existingProductItem.querySelector('.quantity');
-                                const currentQuantity = parseInt(quantityElement.textContent.trim());
-                                quantityElement.textContent = currentQuantity + quantity;
+                if (existingProductItem) {
+                    const quantityElement = existingProductItem.querySelector('.quantity');
+                    const currentQuantity = parseInt(quantityElement.textContent.trim());
+                    quantityElement.textContent = currentQuantity + quantity;
 
-                                const subtotalElement = existingProductItem.querySelector('.subtotal');
-                                const currentSubtotal = parseFloat(subtotalElement.textContent.replace('₱ ', ''));
-                                subtotalElement.textContent = '₱ ' + (currentSubtotal + parseFloat(subtotal)).toFixed(2);
-                            } else {
+                    const priceElement = existingProductItem.querySelector('.price');
+                    const priceText = priceElement.textContent.trim();
+                    const priceValue = parseFloat(priceText.replace('₱', '').trim());
+                    const price = isNaN(priceValue) ? 0 : priceValue;
+
+                    const subtotalElement = existingProductItem.querySelector('.subtotal');
+                    const subtotalText = subtotalElement.textContent.trim();
+                    const currentSubtotal = parseFloat(subtotalText.replace('₱', '').trim())
+                    const newSubtotal = currentSubtotal + (price * quantity);
+                    subtotalElement.textContent = '₱ ' + newSubtotal.toFixed(2);
+                } else {
+                    fetch(`/get-product-details/${productId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if(data.success) {
+                                const product = data.product;
+                                const productName = product.name;
+                                const productPrice = product.price;
+                                const productImage = product.image;
+                                const subtotal = (parseFloat(product.price) * parseFloat(quantity)).toFixed(2);
+
                                 const productList = document.querySelector('#product-list');
                                 const newProductItem = document.createElement('li');
                                 newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
@@ -281,9 +289,9 @@
                                 `;
                                 productList.appendChild(newProductItem);
                             }
-                        }
-                    })
-                });
+                        });
+                }
+            });
         </script>
     </div>
 </x-app-layout>

@@ -143,7 +143,7 @@
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">₱
                                                 {{ $detail->products->price }}</li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">{{ $detail->quantity }}
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm quantity">{{ $detail->quantity }}
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">₱
                                                 {{ $subtotal }}</li>
@@ -225,19 +225,24 @@
 
             Livewire.on('addedItem', (data) => {
                 const productId = data[0];
-                const quantity = data[1];
-        
-                // Add the new transaction item to the transaction list
-                // var productList = document.querySelector('#product-list');
-                // var newProductItem = document.createElement('li');
-                // newProductItem.textContent = 'Product ID: ' + data[0] + ' - Quantity: ' + data[1];
-                // productList.appendChild(newProductItem);
+                const quantity = parseInt(data[1]);
 
-                const productList = document.querySelector('#product-list');
-    const newProductItem = document.createElement('li');
-    newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
+                // Check if a product with the same ID already exists in the list
+                const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
 
-    // Construct the inner HTML for the new product item
+                if (existingProductItem) {
+                    // If the product already exists, update its quantity
+                    const quantityElement = existingProductItem.querySelector('.quantity');
+                    const currentQuantity = parseInt(quantityElement.textContent.trim());
+                    quantityElement.textContent = currentQuantity + quantity; // Update quantity
+                } else {
+                    // If the product doesn't exist, add a new list item
+                    const productList = document.querySelector('#product-list');
+                    const newProductItem = document.createElement('li');
+                    newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
+                    newProductItem.setAttribute('data-product-id', productId);
+
+                    // Construct the inner HTML for the new product item
     newProductItem.innerHTML = `
         <input class="widenWhenSelectedEdit" hidden type="radio" id="productId${productId}" name="productList">
         <label class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center" for="productId${productId}">
@@ -254,7 +259,7 @@
                     </div>
                 </li>
                 <li class="w-2/12 text-center flex items-center justify-center text-sm">₱ Product Price Here</li>
-                <li class="w-2/12 text-center flex items-center justify-center text-sm">${quantity}</li>
+                <li class="w-2/12 text-center flex items-center justify-center text-sm quantity">${quantity}</li>
                 <li class="w-2/12 text-center flex items-center justify-center text-sm">₱ Subtotal Here</li>
                 <li class="w-1/12 text-center flex items-center justify-center text-sm">
                     <button class="delete-button h-full w-10 flex items-center justify-center">
@@ -268,7 +273,8 @@
     `;
 
     // Append the new product item to the product list
-    productList.appendChild(newProductItem);
+                    productList.appendChild(newProductItem);
+                }
             });
         </script>
     </div>

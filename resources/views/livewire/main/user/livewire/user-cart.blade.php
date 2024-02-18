@@ -49,7 +49,8 @@
 
                 <li class="w-2/12 text-center text-sm flex items-center ml-5">₱ 57, 000.00 </li>
                 <li class="w-1/12 text-center text-sm flex items-center">
-                    <button type="clear" class=" h-full w-10 flex items-center justify-center">
+                    <button wire:click="removeItem({{ $entry->id }})"
+                        class=" h-full w-10 flex items-center justify-center">
                         <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                             <path

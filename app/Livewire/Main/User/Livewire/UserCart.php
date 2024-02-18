@@ -41,4 +41,14 @@ class UserCart extends Component
         $product->save();
         $this->render();
     }
+
+    public function removeItem($productId)
+    {
+        $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
+        if ($product) {
+            $product->delete();
+        } else {
+        }
+        $this->render();
+    }
 }

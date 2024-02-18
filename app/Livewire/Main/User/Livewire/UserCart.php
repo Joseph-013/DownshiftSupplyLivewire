@@ -26,19 +26,22 @@ class UserCart extends Component
 
     public function decrementQuantity($productId)
     {
-        $product = Cart::find($productId);
-        if ($product->quantity != 1) {
-            --$product->quantity;
-            $product->save();
-        }
+        $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
+        if ($product)
+            if ($product->quantity >= 1) {
+                --$product->quantity;
+                $product->save();
+            }
         $this->render();
     }
 
     public function incrementQuantity($productId)
     {
-        $product = Cart::find($productId);
-        $product->quantity = $product->quantity + 1;
-        $product->save();
+        $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
+        if ($product) {
+            $product->quantity += 1;
+            $product->save();
+        }
         $this->render();
     }
 
@@ -47,7 +50,6 @@ class UserCart extends Component
         $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
         if ($product) {
             $product->delete();
-        } else {
         }
         $this->render();
     }

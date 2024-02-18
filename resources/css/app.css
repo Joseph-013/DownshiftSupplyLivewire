@@ -107,6 +107,15 @@ input[type="radio"]:focus {
     outline: none;
 }
 
+input[type="checkbox"]:checked{
+    background-color: rgb(77, 77, 77);
+    border-color: orange;
+}
+
+input[type="checkbox"]:checked{
+    color: rgb(93, 92, 91);
+}
+
 /* Edit Transactions */
 .widenWhenSelectedEdit:checked + label {
     width: 100%;

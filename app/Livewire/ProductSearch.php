@@ -9,6 +9,8 @@ class ProductSearch extends Component
 {
     public $search;
 
+    protected $listeners = ['itemAdded'];
+
     public function render()
     {
         $results = [];
@@ -19,8 +21,8 @@ class ProductSearch extends Component
         return view('livewire.product-search', compact('results'));
     }
 
-    public function selectProduct($name, $image)
+    public function itemAdded($productId, $quantity)
     {
-        $this->dispatch('productSelected', $name, $image);
+        $this->dispatch('addedItem', $productId, $quantity);
     }
 }

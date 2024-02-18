@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('product_id');
-            $table->integer('quantity')->unsigned();
-            $table->decimal('subtotal', 6, 2)->unsigned();
+            $table->integer('quantity')->unsigned()->default(1);
+            $table->decimal('subtotal', 6, 2)->unsigned()->nullable();
             $table->timestamps();
         });
     }

@@ -32,9 +32,13 @@
 
             {{-- Content --}}
             <div class="flex flex-1 w-full -mx-3">
+            
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
                     <div class="w-full h-full text-right flex">
+                        <form class="updateTransaction" method="POST" action="{{ route('update.transaction', ['id' => $transaction->id]) }}">
+                            @csrf
+                            @method('PUT')
                         <div class="w-full h-full flex flex-col">
                             <div class="w-full flex-row ">
                                 <ul class="flex flex-row w-full">
@@ -49,12 +53,12 @@
                                 <ul class="flex flex-row w-full">
                                     <li class="w-1/2 pr-2 text-left text-sm">
                                         <label class="w-full h-10 flex items-center font-semibold">First Name:</label>
-                                        <input class="w-full h-10 flex items-center" type="text" value="{{ $transaction->firstName }}">
+                                        <input name="firstName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->firstName }}">
                                     </li>
 
                                     <li class="w-1/2 pl-2 text-left text-sm">
                                         <label class="w-full h-10 flex items-center font-semibold">Last Name:</label>
-                                        <input class="w-full h-10 flex items-center" type="text" value="{{ $transaction->lastName }}">
+                                        <input name="lastName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->lastName }}">
                                     </li>
                                 </ul>
                             </div>
@@ -62,7 +66,7 @@
                                 <ul class="flex flex-row w-full">
                                     <li class="w-1/2 pr-2 text-left text-sm">
                                         <label class="w-full h-10 flex items-center font-semibold">Contact #:</label>
-                                        <input class="w-full h-10 flex items-center" type="text" value="{{ $transaction->contact }}">
+                                        <input name="contact" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->contact }}">
                                     </li>
                                 </ul>
                             </div>
@@ -104,24 +108,25 @@
                         <hr class="my-1">
                         {{-- Products List  --}}
                         <div class="w-full h-96 overflow-y-auto mb-3" id="edittransactions-container">
-                            <ul class=" w-full flex flex-col items-center">
+                            <ul class=" w-full flex flex-col items-center" id="product-list">
                                 @php
                                     $grandTotal = 0;
                                 @endphp
                                 @foreach($transaction->details as $detail)
                                 @if($detail->products)
                                 @php
-                                    $subtotal = $detail->products->price * $detail->quantity;
+                                    $subtotal = number_format($detail->products->price * $detail->quantity, 2);
                                     $grandTotal += $subtotal;
+                                    $grandTotal = number_format($grandTotal, 2);
                                 @endphp
                                 {{-- Single Unit of Product --}}
-                                <li class="w-full flex justify-center select-none px-2">
+                                <li data-product-id="{{ $detail->products->id }}" class="product-item w-full flex justify-center select-none px-2">
                                     {{-- Product Details --}}
-                                    <input class="widenWhenSelectedEdit" hidden type="radio" id="productId1"
-                                        name="productList">
+                                    <input hidden id="productId{{ $detail->products->id }}"
+                                        name="productList[]" value="{{ $detail->products->id }}" checked>
                                     <label
                                         class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
-                                        for="productId1">
+                                        for="productId{{ $detail->products->id }}">
                                         <ul class="flex flex-row w-full">
                                             <li class="w-6/12 text-center text-xs flex items-center justify-center">
                                                 <div class="flex items-center">
@@ -137,15 +142,15 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">₱
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
                                                 {{ $detail->products->price }}</li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">{{ $detail->quantity }}
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">
+                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}">
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">₱
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱
                                                 {{ $subtotal }}</li>
                                             <li class="w-1/12 text-center flex items-center justify-center text-sm">
-                                                <button type="clear"
-                                                    class=" h-full w-10 flex items-center justify-center">
+                                                <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
                                                     <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg"
                                                         width="16" height="16" fill="currentColor"
                                                         class="bi bi-x-circle-fill" viewBox="0 0 16 16">
@@ -164,11 +169,11 @@
                         <hr class="mb-2">
                         <div class="w-full text-sm text-right pr-7 mx-[-5rem] mb-5">
                             <span class="font-semibold">Total:
-                            </span>₱ {{ $grandTotal }}
+                            </span><p id="grand-total">₱ {{ $grandTotal }}</p>
                         </div>
                         <livewire:product-search />
+                        </form>
                     </div>
-                    {{-- Products --}}
                 </div>
             </div>
         </div>
@@ -196,6 +201,128 @@
                     quantityInput.value = 1;
                 } else {
                     quantityInput.value = currentValue + 1;
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                const deleteButton = event.target.closest('.delete-button');
+                if (deleteButton) {
+                    event.preventDefault();
+                    const listItem = deleteButton.closest('.product-item');
+                    if (listItem) {
+                        listItem.remove();
+                        updateTotal();
+                    }
+                }
+            });
+
+            function updateTotal() {
+                let grandTotal = 0;
+                const subtotalElements = document.querySelectorAll('.subtotal');
+                subtotalElements.forEach(subtotalElement => {
+                    const subtotalText = subtotalElement.textContent.trim();
+                    grandTotal += parseFloat(subtotalText.replace('₱', '').trim());
+                });
+                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toFixed(2);
+            }
+
+            Livewire.on('addedItem', (data) => {
+                const productId = data[0];
+                const quantity = parseInt(data[1]);
+                const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
+
+                if (existingProductItem) {
+                    const quantityElement = existingProductItem.querySelector('.quantity');
+                    const currentQuantity = parseInt(quantityElement.value);
+                    quantityElement.value = currentQuantity + quantity;
+
+                    const priceElement = existingProductItem.querySelector('.price');
+                    const priceText = priceElement.textContent.trim();
+                    const priceValue = parseFloat(priceText.replace('₱', '').trim());
+                    const price = isNaN(priceValue) ? 0 : priceValue;
+
+                    const subtotalElement = existingProductItem.querySelector('.subtotal');
+                    const subtotalText = subtotalElement.textContent.trim();
+                    const currentSubtotal = parseFloat(subtotalText.replace('₱', '').trim())
+                    const newSubtotal = currentSubtotal + (price * quantity);
+                    subtotalElement.textContent = '₱ ' + newSubtotal.toFixed(2);
+
+                    updateTotal();
+                } else {
+                    fetch(`/get-product-details/${productId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if(data.success) {
+                                const form = document.querySelector('.updateTransaction');
+                                const input = document.createElement('input');
+                                input.setAttribute('type', 'hidden');
+                                input.setAttribute('name', 'productList[]');
+                                input.setAttribute('value', `${productId}`);
+                                form.appendChild(input);
+
+                                const quantityInput = document.createElement('input');
+                                quantityInput.setAttribute('type', 'hidden');
+                                quantityInput.setAttribute('name', 'quantity[]');
+                                quantityInput.setAttribute('value', `${quantity}`);
+                                form.appendChild(quantityInput);
+
+                                const product = data.product;
+                                const productName = product.name;
+                                const productPrice = product.price;
+                                const productImage = product.image;
+                                const subtotal = (parseFloat(product.price) * parseFloat(quantity)).toFixed(2);
+
+                                const productList = document.querySelector('#product-list');
+                                const newProductItem = document.createElement('li');
+                                newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
+                                newProductItem.setAttribute('data-product-id', productId);
+
+                                newProductItem.innerHTML = `
+                                    {{-- Product Details --}}
+                                    <input hidden id="productId${productId}"
+                                        name="productList[]" value="${productId}" checked>
+                                    <label
+                                        class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
+                                        for="productId${productId}">
+                                        <ul class="flex flex-row w-full">
+                                            <li class="w-6/12 text-center text-xs flex items-center justify-center">
+                                                <div class="flex items-center">
+                                                    <!-- Wrapping content in a flex container -->
+                                                    <img src="{{ asset('storage/assets/') }}/${productImage}"
+                                                        class="w-24 h-20 ml-[-2rem] object-cover">
+                                                    <div class="ml-2">
+                                                        <!-- Adding margin to separate image and text -->
+                                                        <div class="text-sm text-left mb-3">
+                                                            <span class="font-semibold">Item ID:</span> ${productId}
+                                                        </div>
+                                                        <div class="text-sm text-left">${productName}</div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
+                                                ${productPrice}</li>
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">
+                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}">
+                                            </li>
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱
+                                                ${subtotal}</li>
+                                            <li class="w-1/12 text-center flex items-center justify-center text-sm">
+                                                <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
+                                                    <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg"
+                                                        width="16" height="16" fill="currentColor"
+                                                        class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </label>
+                                `;
+                                productList.appendChild(newProductItem);
+                                updateTotal();
+                            }
+                        });
                 }
             });
         </script>

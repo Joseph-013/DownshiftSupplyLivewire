@@ -59,10 +59,10 @@ class ProductDetails extends Component
                 if (file_exists($imagePath)) {
                     unlink($imagePath);
                 }
-                
+
                 $newImageName = time() . '.' . $this->newImage->extension();
                 $this->newImage->storeAs('public/assets/', $newImageName);
-                
+
                 $this->selectedProduct->image = $newImageName;
             }
             $this->selectedProduct->name = $this->newName;

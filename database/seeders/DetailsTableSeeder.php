@@ -31,9 +31,9 @@ class DetailsTableSeeder extends Seeder
             [
                 'transaction_id' => 1,
                 'product_id' => 3,
-                'quantity' => 5,
-                'subtotal' => 30000
-            ],
+                'quantity' => 3,
+                'subtotal' => 10000
+            ]
         ]);
     }
 }

@@ -10,17 +10,12 @@ class UserCart extends Component
 {
 
     public $cartEntries;
-    public $productDetails;
-
-    public function getProductDetails(): void
-    {
-    }
+    // public $productDetails;
 
     public function render()
     {
         $this->cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();
-        $this->getProductDetails();
-        $this->productDetails;
+        $this->dispatch('cartUpdate');
         return view('livewire.main.user.livewire.user-cart');
     }
 
@@ -28,7 +23,7 @@ class UserCart extends Component
     {
         $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
         if ($product)
-            if ($product->quantity >= 1) {
+            if ($product->quantity > 1) {
                 --$product->quantity;
                 $product->save();
             }

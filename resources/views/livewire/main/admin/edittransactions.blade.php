@@ -149,7 +149,7 @@
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
                                                 <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}">
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="{{ $subtotal }}">₱
                                                 {{ number_format($subtotal, 2) }}</li>
                                             <li class="w-1/12 text-center flex items-center justify-center text-sm">
                                                 <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
@@ -180,14 +180,11 @@
             </div>
         </div>
         <script>
-            // Get references to the elements
             const decrementButton = document.getElementById('decrement-button');
             const incrementButton = document.getElementById('increment-button');
             const quantityInput = document.getElementById('quantity-input');
 
-            // Add event listeners to the buttons
             decrementButton.addEventListener('click', () => {
-                // Decrease the value by 1 if it's greater than 0
                 let currentValue = parseInt(quantityInput.value);
                 if (!isNaN(currentValue) && currentValue > 0) {
                     quantityInput.value = currentValue - 1;
@@ -197,7 +194,6 @@
             });
 
             incrementButton.addEventListener('click', () => {
-                // Increase the value by 1, or set to 1 if it's not a number or less than 0
                 let currentValue = parseInt(quantityInput.value);
                 if (isNaN(currentValue) || currentValue < 0) {
                     quantityInput.value = 1;
@@ -214,17 +210,56 @@
                     if (listItem) {
                         listItem.remove();
                         updateTotal();
+                    }   
+                }
+            });
+
+            document.addEventListener('submit', (event) => {
+                const quantityInputs = document.querySelectorAll('.quantity');
+                    for (const quantityInput of quantityInputs) {
+                        const quantity = parseInt(quantityInput.value);
+                        if (isNaN(quantity) || quantity <= 0) {
+                        event.preventDefault();
                     }
                 }
             });
 
-            function updateTotal() {
-                let grandTotal = 0;
+            quantityInput.addEventListener('input', updateSubtotalAndTotal);
+            document.addEventListener('input', (event) => {
+                const quantityInput = event.target.closest('.quantity');
+                if (quantityInput) {
+                    updateSubtotalAndTotal();
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                const deleteButton = event.target.closest('.delete-button');
+                if (deleteButton) {
+                    event.preventDefault();
+                    const listItem = deleteButton.closest('.product-item');
+                    if (listItem) {
+                        listItem.remove();
+                        updateSubtotalAndTotal();
+                    }   
+                }
+            });
+
+            function updateSubtotalAndTotal() {
                 const subtotalElements = document.querySelectorAll('.subtotal');
                 subtotalElements.forEach(subtotalElement => {
-                    const subtotalText = subtotalElement.textContent.trim();
-                    grandTotal += parseFloat(subtotalText.replace('₱', '').trim());
+                    const listItem = subtotalElement.closest('.product-item');
+                    const quantity = parseInt(listItem.querySelector('.quantity').value);
+                    const price = parseFloat(listItem.querySelector('.price').textContent.trim().replace('₱', ''));
+                    const subtotal = price * quantity;
+                    subtotalElement.textContent = '₱ ' + subtotal.toFixed(2);
+                    subtotalElement.setAttribute('data-subtotal', subtotal.toFixed(2));
                 });
+
+                let grandTotal = 0;
+                subtotalElements.forEach(subtotalElement => {
+                    grandTotal += parseFloat(subtotalElement.getAttribute('data-subtotal'));
+                });
+
                 document.getElementById('grand-total').textContent = "₱ " + grandTotal.toFixed(2);
             }
 
@@ -237,6 +272,7 @@
                 if (existingProductItem) {
                     const quantityElement = existingProductItem.querySelector('.quantity');
                     const currentQuantity = parseInt(quantityElement.value);
+
                     quantityElement.value = currentQuantity + quantity;
 
                     const priceElement = existingProductItem.querySelector('.price');
@@ -247,10 +283,10 @@
                     const subtotalElement = existingProductItem.querySelector('.subtotal');
                     const subtotalText = subtotalElement.textContent.trim();
                     const currentSubtotal = parseFloat(subtotalText.replace('₱', '').trim())
-                    const newSubtotal = currentSubtotal + (price * quantity);
+                    const newSubtotal = price * (currentQuantity + quantity); // Update subtotal based on new quantity
                     subtotalElement.textContent = '₱ ' + newSubtotal.toFixed(2);
 
-                    updateTotal();
+                    updateSubtotalAndTotal();
                 } else {
                     fetch(`/get-product-details/${productId}`)
                         .then(response => response.json())
@@ -273,7 +309,7 @@
                                 const productName = product.name;
                                 const productPrice = parseFloat(product.price);
                                 const productImage = product.image;
-                                const subtotal = parseFloat((product.price * quantity).toFixed(2));
+                                const subtotal = parseFloat((product.price * quantity));
 
                                 const productList = document.querySelector('#product-list');
                                 const newProductItem = document.createElement('li');
@@ -303,12 +339,12 @@
                                                 </div>
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
-                                                ${productPrice}</li>
+                                                ${productPrice.toFixed(2)}</li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
                                                 <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}">
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱
-                                                ${subtotal}</li>
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="${subtotal}">₱
+                                                ${subtotal.toFixed(2)}</li>
                                             <li class="w-1/12 text-center flex items-center justify-center text-sm">
                                                 <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
                                                     <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +359,7 @@
                                     </label>
                                 `;
                                 productList.appendChild(newProductItem);
-                                updateTotal();
+                                updateSubtotalAndTotal();
                             }
                         });
                 }

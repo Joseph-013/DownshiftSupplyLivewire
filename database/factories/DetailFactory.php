@@ -14,8 +14,11 @@ class DetailFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    public $transId = 0;
     public function definition(): array
     {
+        ++$this->transId;
         return [
             // 'user_id' => fake()->randomNumber(2, false),
             // 'recipientName' => fake()->name(),
@@ -29,6 +32,10 @@ class DetailFactory extends Factory
             // 'grandTotal' => fake()->randomNumber(4, false),
             // 'trackingNumber' => fake()->randomNumber(3, false),
             // 'shippingFee' => fake()->randomNumber(3, false)
+
+            'transaction_id' => fake()->numberBetween(1, 50),
+            'product_id' => fake()->numberBetween(1, 50),
+            'quantity' => fake()->numberBetween(1, 5),
         ];
     }
 }

@@ -90,13 +90,6 @@ class CreateProduct extends Component
 
         //     Log::info('Blob URL:' . $endpointUrl);
 
-
-
-
-
-
-
-
         //     $this->reset(['name', 'price', 'stockquantity', 'criticallevel', 'image']);
 
         //     $this->dispatch('productCreated', $newProduct->id);
@@ -104,7 +97,7 @@ class CreateProduct extends Component
 
 
         if ($this->image && $this->name && $this->price && $this->stockquantity && $this->criticallevel) {
-            $imageName = time().'.'.$this->image->extension();
+            $imageName = time() . '.' . $this->image->extension();
             $this->image->storeAs('public/assets', $imageName);
 
             $newProduct = Product::create([
@@ -121,7 +114,8 @@ class CreateProduct extends Component
         }
     }
 
-    public function updatedImage() {
+    public function updatedImage()
+    {
         $this->validate([
             'image' => 'image|max:4096',
         ]);

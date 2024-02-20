@@ -17,10 +17,9 @@ class CartFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'user_id' => fake()->randomNumber(3, false),
-            // 'product_id' => fake()->randomNumber(2, false),
-            // 'quantity' => fake()->randomNumber(2, false),
-            // 'subtotal' => fake()->randomNumber(4, false)
+            'user_id' => $this->faker->numberBetween(2, 20),
+            'product_id' => $this->faker->numberBetween(1, 50),
+            'quantity' => $this->faker->numberBetween(1, 9), // Assuming quantity is a single digit
         ];
     }
 }

@@ -17,8 +17,8 @@ class FAQFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'question' => fake()->sentence(),
-            // 'answer' => fake()->sentence()
+            'question' => fake()->sentence(4),
+            'answer' => fake()->sentence(10),
         ];
     }
 }

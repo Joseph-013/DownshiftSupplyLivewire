@@ -115,18 +115,20 @@
                                 @foreach($transaction->details as $detail)
                                 @if($detail->products)
                                 @php
-                                    $subtotal = number_format($detail->products->price * $detail->quantity, 2);
+                                    $pricetofloat = floatval($detail->products->price);
+                                    $calcsubtotal = $detail->quantity * $pricetofloat;
+                                    $subtotal = (double)($calcsubtotal);
                                     $grandTotal += $subtotal;
-                                    $grandTotal = number_format($grandTotal, 2);
+                                    $detailProductId = (int)$detail->products->id;
                                 @endphp
                                 {{-- Single Unit of Product --}}
-                                <li data-product-id="{{ $detail->products->id }}" class="product-item w-full flex justify-center select-none px-2">
+                                <li data-product-id="{{ $detailProductId }}" class="product-item w-full flex justify-center select-none px-2">
                                     {{-- Product Details --}}
-                                    <input hidden id="productId{{ $detail->products->id }}"
-                                        name="productList[]" value="{{ $detail->products->id }}" checked>
+                                    <input hidden id="{{ $detailProductId }}"
+                                        name="productList[]" value="{{ $detailProductId }}" checked>
                                     <label
                                         class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
-                                        for="productId{{ $detail->products->id }}">
+                                        for="productId{{ $detailProductId }}">
                                         <ul class="flex flex-row w-full">
                                             <li class="w-6/12 text-center text-xs flex items-center justify-center">
                                                 <div class="flex items-center">
@@ -148,7 +150,7 @@
                                                 <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}">
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal">₱
-                                                {{ $subtotal }}</li>
+                                                {{ number_format($subtotal, 2) }}</li>
                                             <li class="w-1/12 text-center flex items-center justify-center text-sm">
                                                 <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
                                                     <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +171,7 @@
                         <hr class="mb-2">
                         <div class="w-full text-sm text-right pr-7 mx-[-5rem] mb-5">
                             <span class="font-semibold">Total:
-                            </span><p id="grand-total">₱ {{ $grandTotal }}</p>
+                            </span><p id="grand-total">₱ {{ number_format($grandTotal, 2) }}</p>
                         </div>
                         <livewire:product-search />
                         </form>
@@ -227,8 +229,9 @@
             }
 
             Livewire.on('addedItem', (data) => {
-                const productId = data[0];
+                const productId = parseInt(data[0]);
                 const quantity = parseInt(data[1]);
+                console.log(data[1]);
                 const existingProductItem = document.querySelector(`#product-list li[data-product-id="${productId}"]`);
 
                 if (existingProductItem) {
@@ -268,9 +271,9 @@
 
                                 const product = data.product;
                                 const productName = product.name;
-                                const productPrice = product.price;
+                                const productPrice = parseFloat(product.price);
                                 const productImage = product.image;
-                                const subtotal = (parseFloat(product.price) * parseFloat(quantity)).toFixed(2);
+                                const subtotal = parseFloat((product.price * quantity).toFixed(2));
 
                                 const productList = document.querySelector('#product-list');
                                 const newProductItem = document.createElement('li');

@@ -16,11 +16,37 @@ class TransactionFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            // 'order_id' => fake()->randomNumber(3, false),
-            // 'product_id' => fake()->randomNumber(3, false),
-            // 'quantity' => fake()->randomNumber(2, false),
-            // 'subtotal' => fake()->randomNumber(4, false)
-        ];
+        $purchaseType = $this->faker->randomElement(['Onsite', 'Online']);
+
+        // 'order_id' => fake()->randomNumber(3, false),
+        // 'product_id' => fake()->randomNumber(3, false),
+        // 'quantity' => fake()->randomNumber(2, false),
+        // 'subtotal' => fake()->randomNumber(4, false)
+
+        if ($purchaseType === 'Onsite') {
+            return [
+                'firstName' => fake()->firstName,
+                'lastName' => fake()->lastName,
+                'contact' => fake()->numberBetween(9000000000, 9999999999),
+                'purchaseType' => $purchaseType,
+            ];
+        } else if ($purchaseType === 'Online') {
+            return [
+                'firstName' => fake()->firstName,
+                'lastName' => fake()->lastName,
+                'contact' => fake()->numberBetween(900000000, 9999999999),
+                'purchaseType' => $purchaseType,
+                'user_id' => fake()->numberBetween(1, 20),
+                'preferredService' => fake()->randomElement(['Delivery', 'Pickup']),
+                'paymentOption' => fake()->sentence(1),
+                'proofOfPayment' => fake()->url(),
+                'status' => fake()->randomElement(['Complete', 'On Hold', 'Processing', 'In Transit', 'Ready for Pickup', 'Returned', 'Cancelled']),
+                'shippingAddress' => fake()->address(),
+                'courierUsed' => fake()->sentence(2),
+                'shippingFee' => fake()->randomNumber(4, false),
+                'trackingNumber' => fake()->regexify('[A-Za-z0-9]{10}'),
+                'grandTotal' => 0,
+            ];
+        }
     }
 }

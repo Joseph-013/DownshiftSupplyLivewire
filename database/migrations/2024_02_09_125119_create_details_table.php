@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('transaction_id');
             $table->foreignId('product_id');
             $table->integer('quantity');
-            $table->decimal('subtotal', 10, 2)->unsigned();
+            $table->decimal('subtotal', 10, 2)->unsigned()->nullable(); //for now nullable
             $table->timestamps();
         });
     }

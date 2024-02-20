@@ -38,16 +38,16 @@ return new class extends Migration
             $table->bigInteger('contact')->unsigned();
             $table->timestamp('purchaseDate')->default(now());
             $table->enum('purchaseType', ['Onsite', 'Online']);
-            $table->foreignId('user_id')->nullable();
-            $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable();
-            $table->string('paymentOption')->nullable();
-            $table->text('proofOfPayment')->nullable();
-            $table->enum('status', ['Complete', 'On Hold', 'Processing', 'In Transit', 'Ready for Pickup', 'Returned', 'Cancelled'])->nullable();
-            $table->string('shippingAddress')->nullable();
-            $table->string('courierUsed')->nullable();
-            $table->decimal('shippingFee', 6, 2)->unsigned()->nullable();
-            $table->string('trackingNumber')->nullable();
-            $table->decimal('grandTotal', 10, 2)->unsigned();
+            $table->foreignId('user_id')->nullable(); //nullable
+            $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable(); //nullable
+            $table->string('paymentOption')->nullable(); //nullable
+            $table->text('proofOfPayment')->nullable(); //nullable
+            $table->enum('status', ['Complete', 'On Hold', 'Processing', 'In Transit', 'Ready for Pickup', 'Returned', 'Cancelled'])->nullable(); //nullable
+            $table->string('shippingAddress')->nullable(); //nullable
+            $table->string('courierUsed')->nullable(); //nullable
+            $table->decimal('shippingFee', 6, 2)->unsigned()->nullable(); //nullable
+            $table->string('trackingNumber')->nullable(); //nullable
+            $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //for now nullable
             $table->timestamps();
         });
     }

@@ -38,7 +38,7 @@ return new class extends Migration
             $table->bigInteger('contact')->unsigned();
             $table->timestamp('purchaseDate')->default(now());
             $table->enum('purchaseType', ['Onsite', 'Online']);
-            $table->foreignId('user_id')->nullable(); //nullable
+            $table->foreignId('user_id'); //nullable
             $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable(); //nullable
             $table->string('paymentOption')->nullable(); //nullable
             $table->text('proofOfPayment')->nullable(); //nullable

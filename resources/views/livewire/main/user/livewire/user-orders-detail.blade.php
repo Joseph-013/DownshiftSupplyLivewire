@@ -1,0 +1,103 @@
+<div class="w-2/5 h-full px-3">
+    {{-- <form class="w-full h-full"> --}}
+    {{-- Left Main Container --}}
+    <div class="border-black border-1 w-full rounded-lg p-1">
+        <div class="w-full h-96 overflow-y-auto flex-row" id="questions-container">
+            <ul class="flex flex-row w-full mb-3">
+                <li class="w-2/4 text-left text-sm px-3">
+                    <div class="my-1 mt-2">
+                        <span class="font-medium">ID:&nbsp;</span>{{ $transactionData ? $transactionData->id : '--' }}
+                    </div>
+                    <div class="my-1">
+                        <span class="font-medium">Payment
+                            Option:&nbsp;</span><br>{{ $transactionData ? $transactionData->paymentOption : '--' }}
+                    </div>
+                    <div class="my-1">
+                        <span class="font-medium">Shipping
+                            Address:&nbsp;</span><br>{{ $transactionData ? $transactionData->shippingAddress : '--' }}
+                    </div>
+                </li>
+                <li class="w-2/4 text-left text-sm px-3">
+                    <div class="my-1 mt-2">
+                        <span class="font-medium">Date:&nbsp;</span>
+                        {{ $transactionData ? $transactionData->purchaseDate->format('Y-m-d') : '--' }}
+                    </div>
+                    <div class="my-1">
+                        <span class="font-medium">Preferred
+                            Service:&nbsp;</span><br>{{ $transactionData ? $transactionData->preferredService : '--' }}
+                    </div>
+                    <div class="my-1">
+                        <span class="font-medium">Courier
+                            Service:&nbsp;</span><br>{{ $transactionData ? $transactionData->courierUsed : '--' }}
+                    </div>
+                    <div class="my-1">
+                        <span class="font-medium">Tracking
+                            Number:&nbsp;</span><br>{{ $transactionData ? $transactionData->trackingNumber : '--' }}
+                    </div>
+                </li>
+            </ul>
+
+            <div class="w-full text-left text-sm px-3 font-semibold">
+                Particulars:
+            </div>
+
+            <div class="px-3">
+                <ul class="w-full flex flex-col items-center">
+                    {{-- List Header --}}
+                    <div class="w-full h-full flex flex-col">
+                        <div class="w-full flex-row px-5">
+                            <ul class="flex flex-row w-full mt-3">
+                                <li class="w-4/12 text-center text-xs font-semibold">Item</li>
+                                <li class="w-3/12 text-center text-xs font-semibold">Unit Price</li>
+                                <li class="w-2/12 text-center text-xs font-semibold">Quantity</li>
+                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal</li>
+                            </ul>
+                        </div>
+                        <hr class="my-1">
+
+
+                        {{-- Single unit of Product --}}
+
+                        @if ($orderList)
+                            @foreach ($orderList as $order)
+                                <div class="w-full flex-row px-5 my-2">
+                                    <ul class="flex flex-row w-full">
+                                        <li class="w-4/12 text-center text-xs flex items-center justify-center ">
+                                            <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
+                                                class="w-12 h-12 ml-[-2.5rem]">
+                                            BC Racing Coilovers
+                                        </li>
+                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱
+                                            28,500.00</li>
+                                        <li class="w-2/12 text-center text-xs items-center justify-center">2
+                                        </li>
+                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱
+                                            57,000.00</li>
+                                    </ul>
+                                </div>
+                            @endforeach
+                        @endif
+
+
+
+                        <div class="w-full flex-row px-5 my-2">
+                            <ul class="flex flex-row w-full">
+                                <li class="w-full text-right text-xs mr-5">
+                                    <span class="font-semibold mr-5">Shipping Fee: </span> ₱ 200.00
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </ul>
+            </div>
+
+        </div>
+        <hr class="my-1">
+        <div class="w-full text-right text-xs ml-[-5rem] my-2">
+            <span class="font-semibold mr-5">Total: </span> ₱ 101,000.00
+        </div>
+    </div>
+    {{-- </form> --}}
+
+</div>

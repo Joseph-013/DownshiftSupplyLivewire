@@ -12,6 +12,10 @@ class Transaction extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'purchaseDate' => 'datetime',
+    ];
+
     public function details()
     {
         return $this->hasMany(Detail::class);

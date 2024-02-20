@@ -29,6 +29,7 @@ class TransactionFactory extends Factory
                 'lastName' => fake()->lastName,
                 'contact' => fake()->numberBetween(9000000000, 9999999999),
                 'purchaseType' => $purchaseType,
+                'user_id' => fake()->numberBetween(2, 20),
             ];
         } else if ($purchaseType === 'Online') {
             return [
@@ -36,7 +37,7 @@ class TransactionFactory extends Factory
                 'lastName' => fake()->lastName,
                 'contact' => fake()->numberBetween(900000000, 9999999999),
                 'purchaseType' => $purchaseType,
-                'user_id' => fake()->numberBetween(1, 20),
+                'user_id' => fake()->numberBetween(2, 20),
                 'preferredService' => fake()->randomElement(['Delivery', 'Pickup']),
                 'paymentOption' => fake()->sentence(1),
                 'proofOfPayment' => fake()->url(),

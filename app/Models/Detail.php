@@ -12,7 +12,7 @@ class Detail extends Model
 
     protected $guarded = [];
 
-    public function products()
+    public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }

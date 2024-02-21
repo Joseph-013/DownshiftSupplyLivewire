@@ -4,8 +4,7 @@
         @foreach ($products as $product)
             <li class="px-2 text-left text-sm">
                 <div class="w-full h-5/6">
-                    <img src="{{ asset('storage/assets/' . $product->image) }}"
-                        class="w-full h-full rounded-lg border-gray-500 border-1 object-fit">
+                    <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}" class="w-full h-full rounded-lg border-gray-500 border-1 object-fit">
                 </div>
                 <div class="w-full h-10 flex items-center">
                     <ul class="flex flex-row w-full items-center">

@@ -133,8 +133,8 @@
                                             <li class="w-6/12 text-center text-xs flex items-center justify-center">
                                                 <div class="flex items-center">
                                                     <!-- Wrapping content in a flex container -->
-                                                    <img src="{{ asset('storage/assets/' . $detail->products->image) }}"
-                                                        class="w-24 h-20 ml-[-2rem] object-cover">
+                                                    <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-24 h-20 ml-[-2rem] object-cover">
+
                                                     <div class="ml-2">
                                                         <!-- Adding margin to separate image and text -->
                                                         <div class="text-sm text-left mb-3">
@@ -327,8 +327,7 @@
                                             <li class="w-6/12 text-center text-xs flex items-center justify-center">
                                                 <div class="flex items-center">
                                                     <!-- Wrapping content in a flex container -->
-                                                    <img src="{{ asset('storage/assets/') }}/${productImage}"
-                                                        class="w-24 h-20 ml-[-2rem] object-cover">
+                                                    <img src="${getImageUrl(productImage)}" class="w-24 h-20 ml-[-2rem] object-cover">
                                                     <div class="ml-2">
                                                         <!-- Adding margin to separate image and text -->
                                                         <div class="text-sm text-left mb-3">
@@ -364,6 +363,24 @@
                         });
                 }
             });
+
+            function isValidURL(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;  
+                }
+            }
+
+            function getImageUrl(image) {
+                const baseUrl = "{{ asset('storage/assets/') }}";
+                if (isValidURL(image)) {
+                    return image;
+                } else {
+                    return baseUrl + '/' + image;
+                }
+            }
         </script>
     </div>
 </x-app-layout>

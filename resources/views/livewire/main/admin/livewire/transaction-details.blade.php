@@ -38,8 +38,7 @@
                                 <ul class="flex flex-row w-full">
                                     <li
                                         class="w-2/12 text-center text-xs flex items-center justify-center ">
-                                        <img src="{{ asset('storage/assets/' . $detail->products->image) }}"
-                                                        class="w-12 h-12 ml-[-2.5rem]">
+                                        <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-12 h-12 ml-[-2.5rem]">
                                     </li>
                                     <li
                                         class="w-2/12 text-center text-xs items-center justify-center ">

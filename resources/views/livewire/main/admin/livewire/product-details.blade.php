@@ -3,7 +3,7 @@
         {{-- Top --}}
         <div class="columns-2">
             <div class="p-2">
-                <img src="{{ $newlyUploadedImage ? $newImage->temporaryUrl() : asset('storage/assets/' . $selectedProduct->image) }}" alt="{{ $selectedProduct->name }}">
+                <img src="{{ $newlyUploadedImage ? $newImage->temporaryUrl() : (filter_var($selectedProduct->image, FILTER_VALIDATE_URL) ? $selectedProduct->image : asset('storage/assets/' . $selectedProduct->image)) }}" alt="{{ $selectedProduct->name }}">
             </div>
             <div class="p-2 flex flex-col h-full justify-center">
                 <div class="text-sm h-min">

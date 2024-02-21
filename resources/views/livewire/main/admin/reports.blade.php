@@ -16,6 +16,7 @@
                 <div class="w-2/5 h-full px-3">
                     <div class="w-full h-full text-right flex">
                         <div class="w-full h-full flex flex-col">
+                            <form action="">
                             <div class="w-full flex-row px-5">
                                 <ul class="flex flex-row w-full">
                                     <li class="w-full text-left text-sm font-medium my-2 w-100">Start Date</li>
@@ -46,6 +47,8 @@
 
                                     </button>
                             </div>
+                            </form>
+                            
                             {{-- Products List  --}}
                         </div>
 

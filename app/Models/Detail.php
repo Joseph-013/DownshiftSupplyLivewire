@@ -12,8 +12,13 @@ class Detail extends Model
 
     protected $guarded = [];
 
-    public function product()
+    public function products()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function transactions()
+    {
+        return $this->belongsTo(Transaction::class, 'transaction_id');
     }
 }

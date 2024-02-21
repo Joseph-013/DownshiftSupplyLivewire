@@ -13,6 +13,13 @@ class TransactionsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 3 for test
+        DB::table('transactions')->insert([
+            [
+                'firstName' => "Justin",
+                'lastName' => "Justin",
+                'contact' => 11111,
+                'purchaseType' => "Onsite"
+            ],
+        ]);
     }
 }

@@ -23,6 +23,7 @@
                             </button>
                         </div>
                         <button
+                            type="button"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="svg-icon mr-2"
                                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"

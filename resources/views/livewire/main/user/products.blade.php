@@ -9,7 +9,6 @@
             </div>
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
 
-
                 <div class="flex-1">
                     <form class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
@@ -26,9 +25,25 @@
                             </button>
                         </div>
                         <button
-                        class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg class="svg-icon mr-2" style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M859.02 234.524l0.808-0.756 0.749-0.813c27.047-29.356 33.876-70.34 17.823-106.957-15.942-36.366-50.416-58.957-89.968-58.957H163.604c-38.83 0-73.043 22.012-89.29 57.444-16.361 35.683-10.632 76.301 14.949 106.004l0.97 1.126 280.311 266.85 2.032 312.074c0.107 16.502 13.517 29.805 29.995 29.805l0.2-0.001c16.568-0.107 29.912-13.626 29.804-30.194l-2.198-337.564-296.478-282.241c-9.526-11.758-11.426-26.933-5.044-40.851 6.446-14.059 19.437-22.452 34.75-22.452h624.828c15.6 0 28.69 8.616 35.017 23.047 6.31 14.391 3.924 29.831-6.354 41.497l-304.13 284.832 1.302 458.63c0.047 16.54 13.469 29.916 29.998 29.915h0.087c16.568-0.047 29.962-13.517 29.915-30.085L573.04 502.36l285.98-267.836z" fill="" /><path d="M657.265 595.287c0 16.498 13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.498 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997H687.262c-16.498 0-29.997 13.499-29.997 29.997z m273.894 138.882H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z m0 168.878H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z" fill="" /></svg>Filters</button>
+                            class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
+                                class="svg-icon mr-2"
+                                style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
+                                viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M859.02 234.524l0.808-0.756 0.749-0.813c27.047-29.356 33.876-70.34 17.823-106.957-15.942-36.366-50.416-58.957-89.968-58.957H163.604c-38.83 0-73.043 22.012-89.29 57.444-16.361 35.683-10.632 76.301 14.949 106.004l0.97 1.126 280.311 266.85 2.032 312.074c0.107 16.502 13.517 29.805 29.995 29.805l0.2-0.001c16.568-0.107 29.912-13.626 29.804-30.194l-2.198-337.564-296.478-282.241c-9.526-11.758-11.426-26.933-5.044-40.851 6.446-14.059 19.437-22.452 34.75-22.452h624.828c15.6 0 28.69 8.616 35.017 23.047 6.31 14.391 3.924 29.831-6.354 41.497l-304.13 284.832 1.302 458.63c0.047 16.54 13.469 29.916 29.998 29.915h0.087c16.568-0.047 29.962-13.517 29.915-30.085L573.04 502.36l285.98-267.836z"
+                                    fill="" />
+                                <path
+                                    d="M657.265 595.287c0 16.498 13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.498 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997H687.262c-16.498 0-29.997 13.499-29.997 29.997z m273.894 138.882H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z m0 168.878H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z"
+                                    fill="" />
+                            </svg>Filters</button>
                         <button
-                            class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg class="feather feather-search" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>Search</button>
+                            class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
+                                class="feather feather-search" fill="none" height="18" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                width="24" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" x2="16.65" y1="21" y2="16.65" />
+                            </svg>Search</button>
                     </form>
                 </div>
             </div>
@@ -40,230 +55,14 @@
                     <div class="w-full h-full text-right flex">
                         <div class="w-full h-full flex flex-col">
                             <livewire:main.user.livewire.user-products />
-
-                            {{--
-                            <ul class="flex flex-row w-full">
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <ul class="flex flex-row w-full mt-5">
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="w-3/12 px-2 text-left text-sm">
-                                    <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                        class="w-30 h-30 rounded-lg border-gray-500 border-1">
-                                    <div class="w-full h-10 flex items-center">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-3/4 px-2 text-left text-sm">
-                                                <div class="text-left text-sm mt-4">
-                                                    BC Racing V1 Series Coilovers for EG/EK
-                                                </div>
-                                                <div class="mt-2 text-left text-sm mb-[-1rem]">
-                                                    ₱ 28,500.00
-                                                </div>
-                                            </li>
-                                            <li class="w-1/4 text-left text-sm mt-4 flex justify-center">
-                                                <svg class="svg-icon mt-3"
-                                                    style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
-                                                    viewBox="0 0 1024 1024" version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416 416-186.2 416-416S741.8 96 512 96z m181 448H544v149c0 17.6-14.4 32-32 32-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6V544h-149c-8.8 0-16.8-3.6-22.6-9.4-5.8-5.8-9.4-13.8-9.4-22.6 0-17.6 14.4-32 32-32H480v-149c0-17.6 14.4-32 32-32s32 14.4 32 32V480h149c17.6 0 32 14.4 32 32s-14.4 32-32 32z" />
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul> --}}
-
-
-
-
                         </div>
                     </div>
                 </div>
 
             </div>
+            <div class="w-full text-center">test</div>
+
         </div>
+
     </div>
 </x-app-layout>

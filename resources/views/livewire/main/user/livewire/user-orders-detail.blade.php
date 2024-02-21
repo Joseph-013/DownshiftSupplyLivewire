@@ -48,9 +48,9 @@
                         <div class="w-full flex-row px-5">
                             <ul class="flex flex-row w-full mt-3">
                                 <li class="w-4/12 text-center text-xs font-semibold">Item</li>
-                                <li class="w-3/12 text-center text-xs font-semibold">Unit Price</li>
+                                <li class="w-3/12 text-center text-xs font-semibold">Unit Price&nbsp;(₱)</li>
                                 <li class="w-2/12 text-center text-xs font-semibold">Quantity</li>
-                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal</li>
+                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal&nbsp;(₱)</li>
                             </ul>
                         </div>
                         <hr class="my-1">
@@ -63,27 +63,29 @@
                                 <div class="w-full flex-row px-5 my-2">
                                     <ul class="flex flex-row w-full">
                                         <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                            <img src="{{ asset('assets/BC Racing M1 Series.png') }}"
-                                                class="w-12 h-12 ml-[-2.5rem]">
-                                            BC Racing Coilovers
+                                            <img src="{{ $order->product->image }}"
+                                                class="w-12 h-12 ml-[-2.5rem] object-cover">
+                                            {{ $order->product->name }}
                                         </li>
-                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                            28,500.00</li>
-                                        <li class="w-2/12 text-center text-xs items-center justify-center">2
+                                        <li class="w-3/12 text-center text-xs items-center justify-center">
+                                            {{ number_format($order->product->price, 2) }}</li>
+                                        <li class="w-2/12 text-center text-xs items-center justify-center">
+                                            {{ $order->quantity }}
                                         </li>
-                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                            57,000.00</li>
+                                        <li class="w-3/12 text-center text-xs items-center justify-center">
+                                            {{ $order->quantity * $order->product->price }}</li>
                                     </ul>
                                 </div>
                             @endforeach
                         @endif
 
 
-
                         <div class="w-full flex-row px-5 my-2">
                             <ul class="flex flex-row w-full">
                                 <li class="w-full text-right text-xs mr-5">
-                                    <span class="font-semibold mr-5">Shipping Fee: </span> ₱ 200.00
+                                    <span class="font-semibold mr-5">Shipping
+                                        Fee:&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}</span>
+                                    ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
                                 </li>
                             </ul>
                         </div>
@@ -95,7 +97,8 @@
         </div>
         <hr class="my-1">
         <div class="w-full text-right text-xs ml-[-5rem] my-2">
-            <span class="font-semibold mr-5">Total: </span> ₱ 101,000.00
+            <span class="font-semibold mr-5">Total: </span>
+            ₱&nbsp;{{ $transactionData ? $transactionData->grandTotal : '--' }}
         </div>
     </div>
     {{-- </form> --}}

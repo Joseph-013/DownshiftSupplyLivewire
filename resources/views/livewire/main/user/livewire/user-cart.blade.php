@@ -48,7 +48,7 @@
                 </li>
 
                 <li class="w-2/12 text-center text-sm flex items-center ml-5">
-                    ₱&nbsp;{{ number_format($entry->product->price, 2) * $entry->quantity }}</li>
+                    ₱&nbsp;{{ number_format($entry->product->price * $entry->quantity, 2) }}</li>
                 <li class="w-1/12 text-center text-sm flex items-center">
                     <button wire:click="removeItem({{ $entry->product->id }})"
                         class=" h-full w-10 flex items-center justify-center">

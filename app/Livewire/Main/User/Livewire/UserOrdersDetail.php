@@ -20,10 +20,7 @@ class UserOrdersDetail extends Component
         $transaction = Transaction::find($transactionId);
         if ($transaction && $transaction->user_id == Auth::id()) {
             $this->transactionData = $transaction;
-
             $this->orderList = Detail::where('transaction_id', $transactionId)->with('product')->get();
-            // dump(is_iterable($this->orderList));
-            dump($this->orderList[1]);
         } else {
             dump('Unauthorized Access');
         }

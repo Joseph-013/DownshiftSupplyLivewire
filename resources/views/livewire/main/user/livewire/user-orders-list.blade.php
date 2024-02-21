@@ -5,7 +5,7 @@
                 <li class="w-2/12 text-center text-sm">ID</li>
                 <li class="w-2/12 text-center text-sm">Date</li>
                 <li class="w-2/12 text-center text-sm">Mode</li>
-                <li class="w-2/12 text-center text-sm">Price</li>
+                <li class="w-2/12 text-center text-sm">Status</li>
                 <li class="w-2/12 text-center text-sm">Total&nbsp;(₱)</li>
             </ul>
         </div>
@@ -31,7 +31,7 @@
                                         {{ $transaction->purchaseDate->format('Y-m-d') }}
                                     </li>
                                     <li class="w-3/12 text-center text-sm">
-                                        {{ $transaction->firstName }}&nbsp;{{ $transaction->lastName }}</li>
+                                        {{ $transaction->preferredService }}
                                     <li class="w-2/12 text-center text-sm">{{ $transaction->status }}</li>
                                     <li class="w-2/12 text-center text-sm">
                                         {{ number_format($transaction->grandTotal, 2) }}

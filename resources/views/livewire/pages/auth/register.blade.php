@@ -39,6 +39,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         $this->redirect(RouteServiceProvider::HOME, navigate: true); //check redirect to login
 
+        //add visual indicator registering button in progress
         $this->registering = false;
     }
 }; ?>

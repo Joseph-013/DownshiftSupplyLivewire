@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +18,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         $purchaseType = $this->faker->randomElement(['Onsite', 'Online']);
+        $grandTotal = 0;
 
         // 'order_id' => fake()->randomNumber(3, false),
         // 'product_id' => fake()->randomNumber(3, false),
@@ -32,6 +34,8 @@ class TransactionFactory extends Factory
                 'user_id' => fake()->numberBetween(2, 20),
             ];
         } else if ($purchaseType === 'Online') {
+            $products = Product::inRandomOrder()->limit(3)->get();
+            $totalPrice = $products->sum('price');
             return [
                 'firstName' => fake()->firstName,
                 'lastName' => fake()->lastName,
@@ -46,7 +50,7 @@ class TransactionFactory extends Factory
                 'courierUsed' => fake()->sentence(2),
                 'shippingFee' => fake()->randomNumber(4, false),
                 'trackingNumber' => fake()->regexify('[A-Za-z0-9]{10}'),
-                'grandTotal' => 0,
+                'grandTotal' => $totalPrice,
             ];
         }
     }

@@ -22,41 +22,8 @@
                                     Find your answers here
                                 </li>
                                 <li class="w-3/4 h-full px-3 overflow-y-auto border" id="faqs-container">
-                                    <div class="grid grid-cols-2 gap-4 text-xs mt-2 px-2">
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-medium">Question 1</span> <br>
-                                            <span class="font-light">Answer</span>
-                                        </div>
-                                    </div>
 
+                                    <livewire:main.user.livewire.user-faqs-qna />
 
                                 </li>
                             </ul>
@@ -71,52 +38,11 @@
                                 </li>
                             </ul>
                             <!-- EMAIL -->
-                            <ul class="flex flex-row w-full my-2">
-                                <li class="w-1/4 text-left text-sm ">
-                                    <span class="font-medium mt-1">Do you have further questions?</span> <br>
-                                    Send email for additional inquiries <br><br><br><br>
-                                    <span class="text-xs">
-                                        Emails will be sent to the customer
-                                        service. <br>Expect a reply in 2-3 business days. We deeply appreciate your patience.
-                                        Thank you.
-                                    </span>
-                                </li>
-                                <li class="w-3/4 h-full px-3 overflow-y-auto border p-2" id="faqs-email-container">
-                                    <form>
-                                        <div class="mb-1">
-                                            <input type="text" name="name" placeholder="Name" class="w-full px-3 py-2 border rounded-md text-xs">
-                                        </div>
-                                        <div class="mb-1">
-                                            <input type="email" name="email" placeholder="Email" class="w-full px-3 py-2 border rounded-md text-xs">
-                                        </div>
-                                        <div>
-                                            <textarea name="inquiry" placeholder="Your inquiry" class="w-full px-3 py-2 border rounded-md resize-none text-xs" rows="4"></textarea>
-                                        </div>
-                                        <div class="w-full mt-1 flex justify-end ">
-                                            <button type="reset" class="h-8 w-35 px-20  flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
-                                                Send Inquiry
-                                            </button>
-
-                                        </div>
-
-                                    </form>
-                                </li>
-
-                            </ul>
-
+                            <livewire:main.user.livewire.user-faqs-email />
 
                         </div>
-
-
-
                     </div>
-
                 </div>
-
-
-
-
             </div>
-
         </div>
 </x-app-layout>

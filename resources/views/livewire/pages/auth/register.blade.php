@@ -15,7 +15,6 @@ new #[Layout('layouts.guest')] class extends Component {
     public string $fullname = '';
     public string $password = '';
     public string $password_confirmation = '';
-    public bool $registering = false;
 
     /**
      * Handle an incoming registration request.
@@ -24,23 +23,19 @@ new #[Layout('layouts.guest')] class extends Component {
     {
         $validated = $this->validate([
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'fullname' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'confirmed', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\w\W]{8,}$/'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
 
-        $this->registering = true;
-
         event(new Registered(($user = User::create($validated))));
 
         Auth::login($user); // do not login user
 
-        $this->redirect(RouteServiceProvider::HOME, navigate: true); //check redirect to login
-
-        //add visual indicator registering button in progress
-        $this->registering = false;
+        // $this->redirect(RouteServiceProvider::HOME, navigate: true); //check redirect to login
+        $this->redirect(route('login'), navigate: true);
     }
 }; ?>
 
@@ -113,7 +108,17 @@ new #[Layout('layouts.guest')] class extends Component {
 
                         </div>
                         {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
-                        <x-auth-button class="sm-40 md:w-60" type="submit">SIGN UP</x-auth-button>
+                        <div class="w-full flex flex-row justify-center items-center">
+                            <x-auth-button class="sm-40 md:w-60" type="submit">
+                                SIGN UP
+                                <img wire:loading wire:target="register" src="{{ asset('assets/loading.gif') }}"
+                                    alt="please wait..." class="h-5 w-5 ml-2" />
+                            </x-auth-button>
+                            <div class="ml-4">
+
+                            </div>
+                        </div>
+
                         <a href="{{ route('login') }}"
                             class="no-underline tracking-wider text-white font-montserrat hover:underline">Already
                             signed up?&nbsp;<span class="underline font-semibold">Log in</span></a>
@@ -204,14 +209,16 @@ new #[Layout('layouts.guest')] class extends Component {
 
                     <div class="my-4 text-sm">
                         <span style="color: #666; ">Data Usage and Privacy:<br>
-                            <div class="pl-3 my-2">No user information will be shared with the Google Maps API and Email
+                            <div class="pl-3 my-2">No user information will be shared with the Google Maps API and
+                                Email
                                 API providers.</div>
                         </span>
                     </div>
 
                     <div class="my-4 text-sm">
                         <span style="color: #666; ">Hyperlinking to our Content:<br>
-                            <div class="pl-3 my-2">Approved organizations may hyperlink to our Website as follows:</div>
+                            <div class="pl-3 my-2">Approved organizations may hyperlink to our Website as follows:
+                            </div>
                             <div class="pl-6 my-2">
                                 By use of our corporate name; or <br>
                                 By use of the uniform resource locator being linked to; or <br>

@@ -20,6 +20,14 @@ class ProductController extends Controller
         return view('livewire.main.admin.inventory', ['products' => $products]);
     }
 
+    public function searchProducts(Request $request)
+    {
+        $search = $request->input('search');
+        $products = Product::where('name', 'like', '%' . $search . '%')->get();
+        dd($products);
+        // return view('livewire.main.user.products', ['products' => $products]);
+    }
+
     public function getProductDetails($productId)
     {
         $product = Product::find($productId);

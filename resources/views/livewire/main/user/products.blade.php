@@ -10,9 +10,10 @@
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
 
                 <div class="flex-1">
-                    <form class="flex flex-row">
+                    <form action="{{ route('user.products.search') }}" method="GET" class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
                             <input
+                                name="search"
                                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
                                 type="text" />
                             <button type="clear"
@@ -37,6 +38,7 @@
                                     fill="" />
                             </svg>Filters</button>
                         <button
+                            type="submit"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="feather feather-search" fill="none" height="18" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -65,4 +67,5 @@
         </div>
 
     </div>
+    @livewireScripts
 </x-app-layout>

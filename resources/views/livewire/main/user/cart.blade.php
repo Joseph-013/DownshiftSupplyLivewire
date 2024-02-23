@@ -26,9 +26,7 @@
 
                         {{-- Order List  --}}
                         <div class="w-full h-full px-3 overflow-y-auto" id="cart-container">
-
                             <livewire:main.user.livewire.user-cart />
-
                         </div>
                         <hr class="my-3">
                         <div class="w-full text-sm-right">
@@ -48,11 +46,10 @@
                         </div>
 
                         <div class="w-full mt-3 flex justify-end px-5">
-                            <button type="reset"
+                            <a href="{{ route('user.checkout') }}"
                                 class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                                 Check out
-
-                            </button>
+                            </a>
 
                         </div>
                         <div class="w-full mt-3 flex justify-end px-5 text-sm">

@@ -21,44 +21,6 @@ use Illuminate\Http\Request;
 
 Route::redirect('/', 'login');
 
-// Route::view('dashboard', 'dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
-
-// Route::view('/admin/inventory', 'livewire/main/admin/inventory')
-//     ->middleware(['auth', 'verified'])
-//     ->name('admin.inventory');
-
-// Route::view('/admin/salestransactions', 'livewire/main/admin/salestransactions')
-
-//, 'isadmin'
-
-// Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('admin.dashboard');
-// Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
-
-
-// Route::middleware(['auth', 'verified'])
-//     ->prefix('admin')
-//     ->name('admin.')
-//     ->group(function() {
-//         // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
-//         Route::view('/inventory', 'livewire/main/admin/inventory')->name('inventory');
-//         Route::view('/salestransactions', 'livewire/main/admin/salestransactions')->name('salestransactions');
-//         Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
-//         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
-//         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
-//     });
-
-// // Route::middleware([])
-
-// Route::middleware(['auth', 'verified'])->group(function() {
-//         // Route::view('/', 'livewire/main/admin/inventory')->name('inventory');
-//         Route::view('/products', 'livewire/main/user/products')->name('products');
-//         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
-//         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');
-//         Route::view('/cart', 'livewire/main/user/cart')->name('cart');
-//     });
-
 // Admin routes with middleware protection
 Route::middleware(['auth', 'verified', 'checkadmin'])
     ->prefix('admin')
@@ -78,14 +40,14 @@ Route::middleware(['auth', 'verified'])
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        Route::view('/products', 'livewire/main/user/products')->name('products'); //Guests are allowed to browse products so disable this (for now).
+        Route::view('/products', 'livewire/main/user/products')->name('products');
         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');
         Route::view('/cart', 'livewire/main/user/cart')->name('cart');
         Route::view('/checkout', 'livewire/main/user/checkout')->name('checkout');
-});
+    });
 
-// These pages/actions do not require middleware
+// These pages/actions do not require middleware (guest)
 Route::view('/products', 'livewire/main/user/products')->name('guest.products');
 Route::view('/faqs', 'livewire/main/user/faqs')->name('guest.faqs');
 
@@ -116,4 +78,4 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

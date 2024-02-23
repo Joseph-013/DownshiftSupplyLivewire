@@ -13,113 +13,7 @@
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
                 <div class="w-3/5 h-full px-3">
-                    <form class="w-full h-full">
-                        {{-- Left Main Container --}}
-                        <div class=" p-1">
-                            <div class="w-full h-96 overflow-y-auto flex-row" id="questions-container">
-                                <div class="w-full text-left text-sm px-3 font-semibold">
-                                    Particulars
-                                </div>
-
-                                <div class="px-3">
-                                    <ul class="w-full flex flex-col items-center">
-                                        {{-- Single Unit of Product --}}
-                                        <div class="w-full h-full flex flex-col">
-                                            <div class="w-full flex-row px-5">
-                                                <ul class="flex flex-row w-full mt-3">
-                                                    <li class="w-4/12 text-center text-xs font-semibold">Item</li>
-                                                    <li class="w-3/12 text-center text-xs font-semibold">Unit Price</li>
-                                                    <li class="w-2/12 text-center text-xs font-semibold">Quantity</li>
-                                                    <li class="w-3/12 text-center text-xs font-semibold">Subtotal</li>
-                                                </ul>
-                                            </div>
-                                            <hr class="my-1">
-
-                                            <!-- Single Unit of Product -->
-                                            <div class="w-full flex-row  my-1 select-none flex justify-center">
-                                                <input class="widenWhenSelectedEdit" hidden type="radio" id="productId1" name="productList">
-                                                <label class="w-full py-2 my-1 px-3 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId1">
-                                                    <ul class="flex flex-row w-full flex justify-center items-center">
-                                                        <li class="w-4/12 text-center text-xs flex items-center justify-center">
-                                                            <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12">
-                                                            BC Racing Coilovers
-                                                        </li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                                        <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                                    </ul>
-                                                </label>
-                                            </div>
-
-
-                                            <!-- Single Unit of Product -->
-                                            <div class="w-full flex-row  my-1 select-none flex justify-center">
-                                                <input class="widenWhenSelectedEdit" hidden type="radio" id="productId2" name="productList">
-                                                <label class="w-full py-2 my-1 px-3 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId2">
-                                                    <ul class="flex flex-row w-full flex justify-center items-center">
-                                                        <li class="w-4/12 text-center text-xs flex items-center justify-center">
-                                                            <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12">
-                                                            BC Racing Coilovers
-                                                        </li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                                        <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                                    </ul>
-                                                </label>
-                                            </div>
-
-                                            <!-- Single Unit of Product -->
-                                            <div class="w-full flex-row  my-1 select-none flex justify-center">
-                                                <input class="widenWhenSelectedEdit" hidden type="radio" id="productId3" name="productList">
-                                                <label class="w-full py-2 my-1 px-3 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId3">
-                                                    <ul class="flex flex-row w-full flex justify-center items-center">
-                                                        <li class="w-4/12 text-center text-xs flex items-center justify-center">
-                                                            <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12">
-                                                            BC Racing Coilovers
-                                                        </li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                                        <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                                    </ul>
-                                                </label>
-                                            </div>
-
-                                            <!-- Single Unit of Product -->
-                                            <div class="w-full flex-row  my-1 select-none flex justify-center">
-                                                <input class="widenWhenSelectedEdit" hidden type="radio" id="productId4" name="productList">
-                                                <label class="w-full py-2 my-1 px-3 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId4">
-                                                    <ul class="flex flex-row w-full flex justify-center items-center">
-                                                        <li class="w-4/12 text-center text-xs flex items-center justify-center">
-                                                            <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12">
-                                                            BC Racing Coilovers
-                                                        </li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                                        <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                                    </ul>
-                                                </label>
-                                            </div>
-
-                                            <div class="w-full flex-row px-5 my-2">
-                                                <ul class="flex flex-row w-full">
-                                                    <li class="w-full text-right text-xs mr-5">
-                                                        <span class="font-semibold mr-5">Shipping Fee: </span> ₱ 200.00
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </ul>
-                                </div>
-
-                            </div>
-                            <hr class="my-1">
-                            <div class="w-full text-right text-xs ml-[-5rem] my-2">
-                                <span class="font-semibold mr-5">Total: </span> ₱ 101,000.00
-                            </div>
-                        </div>
-                    </form>
-
+                    <livewire:main.user.livewire.user-checkout-list />
                 </div>
 
 
@@ -160,11 +54,17 @@
                                     </li>
                                 </ul>
                                 <div class="flex flex-row w-full mb-3 gap-2 px-3">
-                                    <label for="pickup" class="w-1/2 rounded-md border border-gray-300 p-2 mr-4 flex items-center">
-                                        <input type="radio" id="pickup" name="delivery_option" value="pickup" class="mr-2">
-                                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 442 442" xml:space="preserve">
+                                    <label for="pickup"
+                                        class="w-1/2 rounded-md border border-gray-300 p-2 mr-4 flex items-center">
+                                        <input type="radio" id="pickup" name="delivery_option" value="pickup"
+                                            class="mr-2">
+                                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 442 442"
+                                            xml:space="preserve">
                                             <g>
-                                                <path d="M412.08,115.326c-0.006-0.322-0.027-0.643-0.064-0.961c-0.011-0.1-0.02-0.201-0.035-0.3
+                                                <path
+                                                    d="M412.08,115.326c-0.006-0.322-0.027-0.643-0.064-0.961c-0.011-0.1-0.02-0.201-0.035-0.3
                                                     c-0.057-0.388-0.131-0.773-0.232-1.151c-0.013-0.05-0.032-0.097-0.046-0.146c-0.094-0.33-0.206-0.654-0.333-0.973
                                                     c-0.041-0.102-0.085-0.203-0.129-0.304c-0.126-0.289-0.266-0.571-0.42-0.848c-0.039-0.069-0.073-0.141-0.113-0.209
                                                     c-0.203-0.346-0.426-0.682-0.672-1.004c-0.019-0.025-0.042-0.049-0.061-0.074c-0.222-0.285-0.463-0.558-0.718-0.82
@@ -193,28 +93,48 @@
                                         <span class="ml-2 font-medium">Pickup</span>
                                     </label>
 
-                                    <label for="delivery" class="w-1/2 rounded-md border border-gray-300 p-2 flex items-center">
-                                        <input type="radio" id="delivery" name="delivery_option" value="delivery" class="mr-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25" height="25" viewBox="0 0 256 256" xml:space="preserve">
+                                    <label for="delivery"
+                                        class="w-1/2 rounded-md border border-gray-300 p-2 flex items-center">
+                                        <input type="radio" id="delivery" name="delivery_option" value="delivery"
+                                            class="mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25"
+                                            height="25" viewBox="0 0 256 256" xml:space="preserve">
 
                                             <defs>
                                             </defs>
-                                            <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                                                <path d="M 89.034 43.825 L 74.452 27.423 c -0.725 -0.816 -1.767 -1.284 -2.859 -1.284 H 58.256 v -0.448 c 0 -3.723 -3.029 -6.752 -6.751 -6.752 H 6.752 C 3.029 18.94 0 21.969 0 25.692 v 35.098 c 0 2.219 1.805 4.024 4.023 4.024 h 10.374 c 0.827 3.573 4.029 6.247 7.85 6.247 s 7.023 -2.674 7.85 -6.247 h 25.193 h 2.967 h 10.701 c 0.827 3.573 4.029 6.247 7.85 6.247 s 7.023 -2.674 7.85 -6.247 h 1.519 c 2.109 0 3.825 -1.715 3.825 -3.825 V 46.367 C 90 45.43 89.657 44.527 89.034 43.825 z M 85.213 43.993 H 67.936 c -0.336 0 -0.609 -0.274 -0.609 -0.61 v -7.785 c 0 -0.336 0.273 -0.609 0.609 -0.609 h 9.272 L 85.213 43.993 z M 6.752 21.907 h 44.753 c 2.086 0 3.784 1.698 3.784 3.785 v 0.448 v 22.322 H 2.967 v -22.77 C 2.967 23.605 4.665 21.907 6.752 21.907 z M 22.246 68.093 c -2.81 0 -5.097 -2.286 -5.097 -5.097 s 2.287 -5.097 5.097 -5.097 s 5.097 2.286 5.097 5.097 S 25.057 68.093 22.246 68.093 z M 30.218 61.846 c -0.561 -3.902 -3.917 -6.913 -7.972 -6.913 s -7.411 3.011 -7.972 6.913 H 4.023 c -0.582 0 -1.056 -0.474 -1.056 -1.057 v -9.361 h 52.322 v 10.417 H 30.218 z M 76.807 68.093 c -2.811 0 -5.097 -2.286 -5.097 -5.097 s 2.286 -5.097 5.097 -5.097 s 5.097 2.286 5.097 5.097 S 79.617 68.093 76.807 68.093 z M 86.175 61.846 h -1.397 c -0.561 -3.902 -3.917 -6.913 -7.972 -6.913 s -7.411 3.011 -7.972 6.913 H 58.256 v -32.74 h 13.337 c 0.244 0 0.478 0.105 0.641 0.288 l 2.335 2.627 h -6.634 c -1.972 0 -3.576 1.604 -3.576 3.576 v 7.785 c 0 1.972 1.604 3.577 3.576 3.577 h 19.097 v 14.029 C 87.033 61.462 86.649 61.846 86.175 61.846 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                            <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                                transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                                <path
+                                                    d="M 89.034 43.825 L 74.452 27.423 c -0.725 -0.816 -1.767 -1.284 -2.859 -1.284 H 58.256 v -0.448 c 0 -3.723 -3.029 -6.752 -6.751 -6.752 H 6.752 C 3.029 18.94 0 21.969 0 25.692 v 35.098 c 0 2.219 1.805 4.024 4.023 4.024 h 10.374 c 0.827 3.573 4.029 6.247 7.85 6.247 s 7.023 -2.674 7.85 -6.247 h 25.193 h 2.967 h 10.701 c 0.827 3.573 4.029 6.247 7.85 6.247 s 7.023 -2.674 7.85 -6.247 h 1.519 c 2.109 0 3.825 -1.715 3.825 -3.825 V 46.367 C 90 45.43 89.657 44.527 89.034 43.825 z M 85.213 43.993 H 67.936 c -0.336 0 -0.609 -0.274 -0.609 -0.61 v -7.785 c 0 -0.336 0.273 -0.609 0.609 -0.609 h 9.272 L 85.213 43.993 z M 6.752 21.907 h 44.753 c 2.086 0 3.784 1.698 3.784 3.785 v 0.448 v 22.322 H 2.967 v -22.77 C 2.967 23.605 4.665 21.907 6.752 21.907 z M 22.246 68.093 c -2.81 0 -5.097 -2.286 -5.097 -5.097 s 2.287 -5.097 5.097 -5.097 s 5.097 2.286 5.097 5.097 S 25.057 68.093 22.246 68.093 z M 30.218 61.846 c -0.561 -3.902 -3.917 -6.913 -7.972 -6.913 s -7.411 3.011 -7.972 6.913 H 4.023 c -0.582 0 -1.056 -0.474 -1.056 -1.057 v -9.361 h 52.322 v 10.417 H 30.218 z M 76.807 68.093 c -2.811 0 -5.097 -2.286 -5.097 -5.097 s 2.286 -5.097 5.097 -5.097 s 5.097 2.286 5.097 5.097 S 79.617 68.093 76.807 68.093 z M 86.175 61.846 h -1.397 c -0.561 -3.902 -3.917 -6.913 -7.972 -6.913 s -7.411 3.011 -7.972 6.913 H 58.256 v -32.74 h 13.337 c 0.244 0 0.478 0.105 0.641 0.288 l 2.335 2.627 h -6.634 c -1.972 0 -3.576 1.604 -3.576 3.576 v 7.785 c 0 1.972 1.604 3.577 3.576 3.577 h 19.097 v 14.029 C 87.033 61.462 86.649 61.846 86.175 61.846 z"
+                                                    style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                                    transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
                                             </g>
                                         </svg>
                                         <span class="ml-2 font-medium">Delivery</span>
                                     </label>
 
-                                    <div id="infoMessage" class="hidden absolute bg-white border border-gray-300 p-3 text-justify rounded shadow mt-[-4rem] mr-20 w-90">
-                                        Please expect delivery within 7 days. If you have any questions or concerns, please contact the courier or email us for more details.
+                                    <div id="infoMessage"
+                                        class="hidden absolute bg-white border border-gray-300 p-3 text-justify rounded shadow mt-[-4rem] mr-20 w-90">
+                                        For delivery, the courier will collect shipping fees from the recipient upon
+                                        arrival at the
+                                        delivery location.
+                                        <br />
+                                        Please expect delivery within 7 days at most.
+                                        <br />
+                                        For any questions or concerns, please contact the courier or email us for more
+                                        details.
                                     </div>
 
                                     <!-- Info button with provided icon -->
                                     <button id="infoButton" class="rounded-full p-2">
-                                        <svg class="svg-icon" style="width: 3em; height: 3em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M512 179.2a332.8 332.8 0 1 1 0 665.6 332.8 332.8 0 0 1 0-665.6z m0 51.2a281.6 281.6 0 1 0 0 563.2 281.6 281.6 0 0 0 0-563.2z" />
-                                            <path d="M512.768 339.968a38.7072 38.7072 0 1 1 0 77.3632 38.7072 38.7072 0 0 1 0-77.3632zM546.4576 678.6048h-27.2384c-14.2848 0-29.0304-12.3904-29.0304-23.7056V498.0224h-9.728a25.8048 25.8048 0 1 1 0-51.6096s31.488-0.1024 32.3072 0c13.1072 0.9728 22.5792 6.656 22.5792 17.3568v163.2768h11.1104a25.8048 25.8048 0 1 1 0 51.5584z" />
+                                        <svg class="svg-icon"
+                                            style="width: 3em; height: 3em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                                            viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M512 179.2a332.8 332.8 0 1 1 0 665.6 332.8 332.8 0 0 1 0-665.6z m0 51.2a281.6 281.6 0 1 0 0 563.2 281.6 281.6 0 0 0 0-563.2z" />
+                                            <path
+                                                d="M512.768 339.968a38.7072 38.7072 0 1 1 0 77.3632 38.7072 38.7072 0 0 1 0-77.3632zM546.4576 678.6048h-27.2384c-14.2848 0-29.0304-12.3904-29.0304-23.7056V498.0224h-9.728a25.8048 25.8048 0 1 1 0-51.6096s31.488-0.1024 32.3072 0c13.1072 0.9728 22.5792 6.656 22.5792 17.3568v163.2768h11.1104a25.8048 25.8048 0 1 1 0 51.5584z" />
                                         </svg>
                                     </button>
                                 </div>
@@ -255,7 +175,8 @@
                                         MAP HERE
                                     </div>
                                     <div class="my-2">
-                                        <input class="w-full h-10 text-xs font-light" type="text" placeholder="Address">
+                                        <input class="w-full h-10 text-xs font-light" type="text"
+                                            placeholder="Address">
                                     </div>
                                 </div>
 
@@ -299,7 +220,8 @@
                                     <li class="w-3/4 text-left">
                                         <div class="my-1 flex items-center">
                                             <!-- Modified file input -->
-                                            <label for="fileUpload" class="w-full h-10 text-xs bg-gray-200 rounded-lg px-4 flex items-center justify-center cursor-pointer">
+                                            <label for="fileUpload"
+                                                class="w-full h-10 text-xs bg-gray-200 rounded-lg px-4 flex items-center justify-center cursor-pointer">
                                                 <input type="file" id="fileUpload" class="hidden">
                                                 <ul class="flex flex-row w-full items-center gap-10">
                                                     <li class="w-3/4">Upload Image</li>
@@ -334,7 +256,8 @@
                                 </ul>
 
                                 <div class="w-full mt-3 flex justify-end px-5 ml-20">
-                                    <button type="reset" class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing mb-5">
+                                    <button type="reset"
+                                        class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing mb-5">
                                         Complete Transaction
 
                                     </button>

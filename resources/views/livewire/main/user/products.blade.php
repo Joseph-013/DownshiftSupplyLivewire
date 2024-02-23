@@ -56,7 +56,7 @@
                 <div class="w-full h-full px-3 overflow-y-auto" id="questions-container">
                     <div class="w-full h-full text-right flex">
                         <div class="w-full h-full flex flex-col">
-                            <livewire:main.user.livewire.user-products />
+                            <livewire:main.user.livewire.user-products :products="$products" />
                         </div>
                     </div>
                 </div>

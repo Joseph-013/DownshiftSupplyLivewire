@@ -78,7 +78,7 @@ Route::middleware(['auth', 'verified'])
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        Route::view('/products', 'livewire/main/user/products')->name('products'); //Guests are allowed to browse products so disable this (for now).
+        Route::get('/products', [ProductController::class, 'indexUser'])->name('products'); //Guests are allowed to browse products so disable this (for now).
         Route::get('/products/search', [ProductController::class, 'searchProducts'])->name('products.search');
         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');

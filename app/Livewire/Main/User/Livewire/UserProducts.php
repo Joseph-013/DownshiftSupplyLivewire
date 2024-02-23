@@ -34,7 +34,6 @@ class UserProducts extends Component
 
     public function render()
     {
-        $this->products = Product::all();
         return view('livewire.main.user.livewire.user-products');
     }
 }

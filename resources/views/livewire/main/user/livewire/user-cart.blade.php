@@ -7,7 +7,7 @@
             {{-- Order Details --}}
             <ul class="flex flex-row w-full">
                 <li class="w-6/14 flex items-center text-sm">
-                    <img src="{{ $entry->product->image }}" class="w-25 border-2 border-gray rounded mr-2">
+                    <img src="{{ $entry->product->image }}" class="w-25 border-2 border-gray rounded mr-2 object-cover">
                     <div class="container">
                         <div class="fixed-width-container ml-[-3.5rem]">
                             <span class="flex-grow text-left ">{{ $entry->product->name }}</span>

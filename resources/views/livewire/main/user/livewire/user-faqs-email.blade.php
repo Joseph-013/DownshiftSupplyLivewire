@@ -14,32 +14,22 @@
             <div class="mb-1">
                 <input type="text" required name="name" wire:model="name" placeholder="Name"
                     class="w-full px-3 py-2 border rounded-md text-xs">
-                @error('name')
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <x-input-error :messages="$errors->get('name')" class="mt-2 w-fit" />
             </div>
             <div class="mb-1">
                 <input type="email" required name="email" wire:model="email" placeholder="Email"
                     class="w-full px-3 py-2 border rounded-md text-xs">
-                @error('email')
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <x-input-error :messages="$errors->get('email')" class="mt-2 w-fit" />
             </div>
             <div>
                 <textarea name="inquiry" required wire:model="inquiry" placeholder="Your inquiry"
                     class="w-full px-3 py-2 border rounded-md resize-none text-xs" rows="4"></textarea>
-                @error('inquiry')
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <x-input-error :messages="$errors->get('inquiry')" class="mt-2 w-fit" />
             </div>
-            <div class="w-full mt-1 flex justify-end ">
-
-                {{-- <div class="alert alert-success">
-                    {{ session('test') }}
-                </div> --}}
-
+            <div class="w-full mt-1 flex flex-row justify-end ">
+                <div>{{ session('sendStatus') }}</div>
                 <button type="submit"
-                    class="h-8 w-35 px-20  flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+                    class="h-8 w-35 px-20 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                     Send Inquiry
                 </button>
 

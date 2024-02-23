@@ -10,10 +10,10 @@
 ## NOTE/S TO ALL COLLABORATORS: 
 - Gawa po branch bago eddit code. Wag po galawin yung main ng basta basta.
 - Etong repository po installed with breeze-livewire
+- Email testing API: mailtrap.io
 
 ## Links
 - Email: downshiftsupply.store@gmail.com
-- Pass: Downshift!1242024
 
 Client Name
 - Christian Carlo Cataring Capuno

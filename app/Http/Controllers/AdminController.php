@@ -88,4 +88,39 @@ class AdminController extends Controller
     
         return redirect()->back();
     }
+
+    public function createTransaction(Request $request) 
+    {
+        $validatedData = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'contact' => 'required|string|max:20',
+            'productList' => 'array',
+        ]);
+
+        $transaction = new Transaction();
+        $transaction->firstName = $validatedData['firstName'];
+        $transaction->lastName = $validatedData['lastName'];
+        $transaction->contact = $validatedData['contact'];
+        $transaction->save();
+
+        $productList = $request->input('productList', []);
+        if (!empty($productList)) {
+            foreach ($validatedData['productList'] as $index => $productId) {
+                $quantity = $request->input('quantity')[$index];
+                $product = Product::findOrFail($productId);
+                $price = $product->price;
+                $subtotal = $quantity * $price;
+
+                $detail = new Detail();
+                $detail->transaction_id = $transaction->id;
+                $detail->product_id = $productId;
+                $detail->quantity = $quantity;
+                $detail->subtotal = $subtotal;
+                $detail->save();
+            }
+        }
+
+        return redirect()->back();
+    }
 }

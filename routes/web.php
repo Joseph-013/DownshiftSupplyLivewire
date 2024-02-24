@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
         Route::get('/inventory/search', [ProductController::class, 'search'])->name('inventory.search');
         Route::get('/onsitetransactions', [OnsiteTransactionController::class, 'index'])->name('onsitetransactions');
         Route::get('/onsitetransactions/search', [OnsiteTransactionController::class, 'search'])->name('onsitetransactions.search');
+        Route::view('/createtransactions', 'livewire/main/admin/createtransactions')->name('createtransactions');
         Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
@@ -60,6 +61,10 @@ Route::get('admin/edittransactions/{transactionId}', [AdminController::class, 'e
 Route::put('admin/update-transaction/{id}', [AdminController::class, 'updateTransaction'])
     ->middleware(['auth', 'verified', 'checkadmin'])
     ->name('update.transaction');
+
+Route::put('admin/create-transaction', [AdminController::class, 'createTransaction'])
+    ->middleware(['auth', 'verified', 'checkadmin'])
+    ->name('create.transaction');
 
 Route::get('/get-product-details/{productId}', [ProductController::class, 'getProductDetails']);
 

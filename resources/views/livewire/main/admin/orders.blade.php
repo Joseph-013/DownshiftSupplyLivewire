@@ -83,9 +83,7 @@
                                     <div class="text-left text-xs font-semibold px-2">
                                         Address
                                     </div>
-                                    <div>
-                                        <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="9" placeholder="Papalitan ng maps"></textarea>
-                                    </div>
+                                        <div id="map" class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"></div>
                                     <div>
                                         <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 text-xs" rows="3" placeholder="Address"></textarea>
                                     </div>
@@ -124,137 +122,6 @@
                                             <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
                                         </ul>
                                     </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Single Unit of Product -->
-                                    <div class="w-full flex-row px-5 my-2">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                                <img src="{{ asset('assets/BC Racing M1 Series.png') }}" class="w-12 h-12 ml-[-2.5rem]">
-                                                BC Racing Coilovers
-                                            </li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 28,500.00</li>
-                                            <li class="w-2/12 text-center text-xs items-center justify-center">2</li>
-                                            <li class="w-3/12 text-center text-xs items-center justify-center">₱ 57,000.00</li>
-                                        </ul>
-                                    </div>
-
                                 </div>
 
                             </ul>
@@ -375,141 +242,6 @@
                             </label>
                         </li>
 
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId5" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId5">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId6" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId6">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId7" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId7">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId8" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId8">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId9" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId9">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId10" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId10">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId11" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId11">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId12" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId12">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
-                        {{-- Single Unit of Product --}}
-                        <li class="w-full flex justify-center select-none px-2">
-                            {{-- Product Details --}}
-                            <input class="widenWhenSelected" hidden type="radio" id="productId13" name="productList">
-                            <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId13">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-xs">ID</li>
-                                    <li class="w-2/12 text-center text-xs">Date</li>
-                                    <li class="w-3/12 text-center text-xs">Customer</li>
-                                    <li class="w-2/12 text-center text-xs">Status</li>
-                                    <li class="w-3/12 text-center text-xs">Total</li>
-                                </ul>
-                            </label>
-                        </li>
-
                         </ul>
                     </div>
                 </div>
@@ -520,5 +252,8 @@
         </div>
 
     </div>
+    <script>
+
+    </script>
     </div>
 </x-app-layout>

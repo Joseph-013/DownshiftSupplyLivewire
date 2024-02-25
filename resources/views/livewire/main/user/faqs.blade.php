@@ -33,9 +33,9 @@
                                     <span class="font-medium mt-1">Where can you find us?</span> <br>
                                     Be directed using this map
                                 </li>
-                                <li class="w-3/4 h-full px-3 border" id="faqs-container">
-                                    <!-- MAP API HERE -->
-                                </li>
+                                <div class="w-3/4 h-full px-3 border" id="faqs-container">
+                                    <div class="w-full h-full px-3 border" id="map"></div>
+                                </div>
                             </ul>
                             <!-- EMAIL -->
                             <livewire:main.user.livewire.user-faqs-email />
@@ -45,4 +45,20 @@
                 </div>
             </div>
         </div>
+        <script>
+            window.onload = function() {
+                initMap();
+            };
+        
+            function initMap() {
+                // The location of the map (example coordinates)
+                var mapCenter = { lat: 14.645180093180294, lng: 121.1151444089714 };
+                // The map, centered at the location
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 14, center: mapCenter }
+                );
+                // The marker, positioned at the location
+                var marker = new google.maps.AdvancedMarkerElement({ position: mapCenter, map: map });
+            }
+        </script>
 </x-app-layout>

@@ -7,10 +7,10 @@
             {{-- Order Details --}}
             <ul class="flex flex-row w-full">
                 <li class="w-6/14 flex items-center text-sm">
-                    <img src="{{ $entry->product->image }}" class="w-25 border-2 border-gray rounded mr-2 object-cover">
+                    <img src="{{ $entry->product->image }}" class="w-20 h-20 border-2 border-gray rounded mr-2 object-cover">
                     <div class="container">
-                        <div class="fixed-width-container ml-[-3.5rem]">
-                            <span class="flex-grow text-left ">{{ $entry->product->name }}</span>
+                        <div class="fixed-width-container">
+                            <span class="flex-grow text-left justify-content-start">{{ $entry->product->name }}</span>
                         </div>
                         <div class="hover-text">
                             <span class="full-text">{{ $entry->product->name }}</span>
@@ -18,9 +18,9 @@
                     </div>
                 </li>
 
-                <li class="w-3/12 text-center text-sm flex items-center mx-2  ">
+                <li class="w-3/12 text-center text-sm flex items-center ml-40 pl-20">
                     ₱&nbsp;{{ number_format($entry->product->price, 2) }}</li>
-                <li class="w-3/12 text-center text-sm flex items-center mx-2  ">
+                <li class="w-3/12 text-center text-sm flex items-center ml-20  ">
                     <div class="relative flex items-center max-w-[6rem]">
                         <button wire:click="decrementQuantity({{ $entry->product->id }})" type="button"
                             id="decrement-button" data-input-counter-decrement="quantity-input"

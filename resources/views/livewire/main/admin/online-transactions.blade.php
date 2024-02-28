@@ -5,7 +5,7 @@
 
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
                 <h1 class="me-10 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
-                    Orders
+                    Online Transactions
                 </h1>
                 <div class="flex-1">
                     <form class="flex flex-row">

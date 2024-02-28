@@ -25,8 +25,6 @@ class OnlineTransactionList extends Component
 
     public function transactionUpdated()
     {
-        $this->selectedTransactionId = null;
-        $this->transactions = Transaction::all();
         $this->render();
     }
 }

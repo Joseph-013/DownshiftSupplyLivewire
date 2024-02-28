@@ -9,7 +9,7 @@
     </x-nav-link>
 </div>
 <div class="hidden space-x-8 sm:-my-px sm:ms-3 lg:ms-8 md:flex">
-    <x-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
+    <x-nav-link :href="route('admin.onlinetransactions')" :active="request()->routeIs('admin.onlinetransactions')" wire:navigate>
         Online<br />Transactions
     </x-nav-link>
 </div>

@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Transaction;
 use Livewire\Component;
 
-class TransactionDetails extends Component
+class OnsiteTransactionDetails extends Component
 {
     public $selectedTransaction;
     public $newDate;
@@ -31,6 +31,6 @@ class TransactionDetails extends Component
 
     public function render()
     {
-        return view('livewire.main.admin.livewire.transaction-details');
+        return view('livewire.main.admin.livewire.onsite-transaction-details');
     }
 }

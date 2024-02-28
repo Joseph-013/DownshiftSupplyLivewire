@@ -31,7 +31,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
         Route::get('/onsitetransactions', [OnsiteTransactionController::class, 'index'])->name('onsitetransactions');
         Route::get('/onsitetransactions/search', [OnsiteTransactionController::class, 'search'])->name('onsitetransactions.search');
         Route::view('/createtransactions', 'livewire/main/admin/createtransactions')->name('createtransactions');
-        Route::view('/orders', 'livewire/main/admin/orders')->name('orders');
+        Route::view('/onlinetransactions', 'livewire/main/admin/online-transactions')->name('onlinetransactions');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
     });

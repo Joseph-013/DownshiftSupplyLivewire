@@ -44,7 +44,7 @@
                             </div>
                             <hr class="my-1">
                             {{-- Products List  --}}
-                            <livewire:transaction-details />
+                            <livewire:onsite-transaction-details />
                         </div>
 
                         {{-- Products --}}
@@ -64,7 +64,7 @@
                         </div>
                         <hr class="my-1">
                         {{-- Products List  --}}
-                        <livewire:transaction-list :transactions="$transactions" />
+                        <livewire:onsite-transaction-list :transactions="$transactions" />
                         <div class="w-full mt-5 flex justify-center">
                             <button onclick="window.location='{{ route('admin.createtransactions') }}'"
                                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">

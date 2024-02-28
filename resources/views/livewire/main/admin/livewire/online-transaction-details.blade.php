@@ -38,15 +38,15 @@
                 </div>
                 <div class="text-left text-xs my-2 flex items-center">
                     <span class="font-semibold mr-2">Courier Service:</span>
-                    <input type="text" class="border-b border-gray-300 text-xs" placeholder="Enter Courier Service" value="{{ $selectedTransaction->courierUsed }}">
+                    <input wire:model="courierUsed" type="text" class="border-b border-gray-300 text-xs" placeholder="Enter Courier Service" value="{{ $selectedTransaction->courierUsed }}">
                 </div>
                 <div class="text-left text-xs my-2 flex items-center">
                     <span class="font-semibold mr-2">Shipping Fee:</span>
-                    <input type="number" class="border-b border-gray-300 text-xs" placeholder="Enter Shipping Fee" value="{{ $selectedTransaction->shippingFee }}">
+                    <input wire:model="shippingFee" type="number" class="border-b border-gray-300 text-xs" placeholder="Enter Shipping Fee" value="{{ $selectedTransaction->shippingFee }}">
                 </div>
                 <div class="text-left text-xs my-2 flex items-center">
                     <span class="font-semibold mr-2">Tracking #:</span>
-                    <input type="text" class="border-b border-gray-300 text-xs" placeholder="Enter Tracking Number" value="{{ $selectedTransaction->trackingNumber }}">
+                    <input wire:model="trackingNumber" type="text" class="border-b border-gray-300 text-xs" placeholder="Enter Tracking Number" value="{{ $selectedTransaction->trackingNumber }}">
                 </div>
             </div>
             <div class="w-2/5 text-left text-xs px-2 mx-1">
@@ -57,7 +57,7 @@
                     <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="9" placeholder="Papalitan ng maps"></textarea>
                 </div>
                 <div>
-                    <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 text-xs" rows="3" placeholder="Address">{{ $selectedTransaction->shippingAddress }}</textarea>
+                    <textarea wire:model="shippingAddress" class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 text-xs" rows="3" placeholder="Address">{{ $selectedTransaction->shippingAddress }}</textarea>
                 </div>
             </div>
             <div class="w-2/5 text-left text-xs px-2 mx-1">
@@ -112,25 +112,22 @@
     <div class="w-full text-xs text-right pr-1 flex items-center">
         <div class="w-1/2 flex ml-20">
             <span class="font-semibold text-xs flex items-center">Status: </span>
-            <select class="ml-2 border rounded-md text-sm">
-                <option value="option1">Complete</option>
-                <option value="option2">In Transit</option>
-                <option value="option3">Ready for Pickup</option>
-                <option value="option4">Processing</option>
-                <option value="option5">On Hold</option>
-                <option value="option6">Drop</option>
+            <select wire:model="status" class="ml-2 border rounded-md text-sm">
+                @foreach ($statusOptions as $option)
+                    <option value="{{ $option }}">{{ $option }}</option>
+                @endforeach
             </select>
         </div>
 
 
         <div class="w-2/2 flex ml-20">
             <span class="font-semibold">Total: </span>
-            <span>₱ 101,000.00</span>
+            <span>₱ {{ $grandTotal }}</span>
         </div>
     </div>
 
     <div class="w-full mt-4 flex justify-end">
-        <button type="reset" class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+        <button wire:click="updateTransaction" class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
             <span class="flex pl-3 mr-[-1.5em]">Update</span>
             <svg class="svg-icon ml-2" style="width: 4.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <path d="M730.584615 78.769231v267.815384c0 19.692308-15.753846 37.415385-37.415384 37.415385H273.723077c-19.692308 0-37.415385-15.753846-37.415385-37.415385V78.769231H157.538462C114.215385 78.769231 78.769231 114.215385 78.769231 157.538462v708.923076c0 43.323077 35.446154 78.769231 78.769231 78.769231h708.923076c43.323077 0 78.769231-35.446154 78.769231-78.769231V220.553846L803.446154 78.769231h-72.861539z m137.846154 750.276923c0 19.692308-15.753846 37.415385-37.415384 37.415384H194.953846c-19.692308 0-37.415385-15.753846-37.415384-37.415384V500.184615c0-19.692308 15.753846-37.415385 37.415384-37.415384h636.061539c19.692308 0 37.415385 15.753846 37.415384 37.415384v328.861539zM488.369231 267.815385c0 19.692308 15.753846 37.415385 37.415384 37.415384h90.584616c19.692308 0 37.415385-15.753846 37.415384-37.415384V78.769231h-163.446153l-1.969231 189.046154z" />

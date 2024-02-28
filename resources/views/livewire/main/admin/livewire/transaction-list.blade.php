@@ -1,6 +1,7 @@
 <div class="w-full h-96 overflow-y-auto mb-5" id="transactions-container">
     <ul class=" w-full flex flex-col items-center">
         @foreach ($transactions as $transaction)
+        @if($transaction->purchaseType === "Onsite")
         {{-- Single Unit of Product --}}
         <li wire:click="selectTransaction({{ $transaction->id }})" class="w-full flex justify-center select-none px-2">
             {{-- Product Details --}}
@@ -17,6 +18,7 @@
                 </ul>
             </label>
         </li>
+        @endif
         @endforeach
     </ul>
 </div>

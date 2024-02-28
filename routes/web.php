@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OnlineTransactionController;
 use App\Http\Controllers\OnsiteTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -31,7 +32,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
         Route::get('/onsitetransactions', [OnsiteTransactionController::class, 'index'])->name('onsitetransactions');
         Route::get('/onsitetransactions/search', [OnsiteTransactionController::class, 'search'])->name('onsitetransactions.search');
         Route::view('/createtransactions', 'livewire/main/admin/createtransactions')->name('createtransactions');
-        Route::view('/onlinetransactions', 'livewire/main/admin/online-transactions')->name('onlinetransactions');
+        Route::get('/onlinetransactions', [OnlineTransactionController::class, 'index'])->name('onlinetransactions');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
     });

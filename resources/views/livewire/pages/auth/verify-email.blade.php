@@ -14,11 +14,7 @@ new #[Layout('layouts.guest')] class extends Component {
     public function sendVerification(): void
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            $this->redirect(
-                // logout then
-                session('url.intended', RouteServiceProvider::HOME), //redirect to login
-                navigate: true,
-            );
+            $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
 
             return;
         }

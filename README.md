@@ -73,6 +73,7 @@ Installing node on project directory:
 
 - Others
     - Email content.
+    - Deleting account deletes other relevant rows
 
 
 **Hide as soon as possible:

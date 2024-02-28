@@ -10,7 +10,7 @@
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
 
                 <div class="flex-1">
-                    <form action="{{ route('user.products.search') }}" method="GET" class="flex flex-row">
+                    <form action="{{ auth()->check() ? route('user.products.search') : route('guest.products.search') }}" method="GET" class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
                             <input
                                 name="search"

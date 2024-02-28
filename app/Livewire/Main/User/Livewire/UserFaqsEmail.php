@@ -17,6 +17,9 @@ class UserFaqsEmail extends Component
 
     public function send()
     {
+        if (!auth()->check()) {
+            return redirect()->route('user.faqs');
+        }
         $go = $this->validate([
             'name' => ['required', 'string', 'max:40', 'min:3'],
             'email' => ['required', 'string', 'max:255', 'email'],

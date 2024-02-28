@@ -50,7 +50,7 @@ Route::middleware(['auth', 'verified'])
     });
 
 // These pages/actions do not require middleware (guest)
-Route::view('/products', 'livewire/main/user/products')->name('guest.products');
+Route::get('/products', [ProductController::class, 'indexUser'])->name('guest.products');
 Route::view('/faqs', 'livewire/main/user/faqs')->name('guest.faqs');
 
 // Route::view('admin/edittransactions/{transactionid}', 'livewire/main/admin/edittransactions')->middleware(['auth', 'verified', 'checkadmin'])->name('edittransactions');

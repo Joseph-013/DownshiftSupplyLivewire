@@ -64,8 +64,8 @@
                 <div class="text-left text-xs font-semibold px-2">
                     Proof of Payment
                 </div>
-                <div>
-                    <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="12"></textarea>
+                <div id="imageDiv" class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" style="height: 32vh;" onclick="showOverlay()">
+                    <img id="image" src="{{ filter_var($selectedTransaction->proofOfPayment, FILTER_VALIDATE_URL) ? $selectedTransaction->proofOfPayment : asset('storage/assets/' . $selectedTransaction->proofOfPayment) }}">
                 </div>
             </div>
 
@@ -138,4 +138,40 @@
         </button>
     </div>
     @endif
+    <script>
+    function showOverlay() {
+        var imageUrl = document.getElementById('image').src;
+
+        var overlay = document.createElement('div');
+        overlay.id = 'overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        overlay.style.zIndex = '9999';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.onclick = hideOverlay;
+
+        var overlayImage = document.createElement('img');
+        overlayImage.id = 'overlayImage';
+        overlayImage.src = imageUrl;
+        overlayImage.style.maxWidth = '80%';
+        overlayImage.style.maxHeight = '80%';
+
+        overlay.appendChild(overlayImage);
+
+        document.body.appendChild(overlay);
+    }
+
+    function hideOverlay() {
+        var overlay = document.getElementById('overlay');
+        if (overlay) {
+            overlay.parentNode.removeChild(overlay);
+        }
+    }
+    </script>
 </div>

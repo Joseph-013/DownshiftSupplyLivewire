@@ -1,4 +1,4 @@
-<div class="h-96 ">
+<div class="h-96">
     @if($selectedTransaction)
     <div class="w-full h-96 overflow-y-auto" id="transactions-container">
         <div class=" flex flex-1 w-full">

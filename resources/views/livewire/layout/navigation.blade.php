@@ -34,7 +34,7 @@ new class extends Component {
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Navigation Links (My stupid code lmao) -->
                 @if (auth()->check())
                     <!-- Content for authenticated users -->
                     @auth

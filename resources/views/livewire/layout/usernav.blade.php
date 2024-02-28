@@ -10,7 +10,7 @@
         </x-nav-link>
     </div>
     <div class="hidden space-x-8 sm:-my-px sm:ms-5 lg:ms-8 md:flex">
-        <x-nav-link :href="route('user.faqs')" :active="request()->routeIs('user.faqs')" wire:navigate>
+        <x-nav-link :href="auth()->check() ? route('user.faqs') : route('guest.faqs')" :active="request()->routeIs('user.faqs')" wire:navigate>
             FAQs
         </x-nav-link>
     </div>

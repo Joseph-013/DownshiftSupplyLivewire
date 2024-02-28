@@ -15,7 +15,7 @@ class UserProducts extends Component
     public function addToCart($productId)
     {
         if (!auth()->check()) {
-            redirect('/');
+            return redirect()->route('user.products');
         }
         $userId = Auth::id();
         $productSelected = Product::findOrFail($productId);

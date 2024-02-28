@@ -38,7 +38,22 @@
                                 </li>
                             </ul>
                             <!-- EMAIL -->
-                            <livewire:main.user.livewire.user-faqs-email />
+                            
+                            <div class="overlay-container">
+    <!-- Livewire component section with overlay -->
+    <livewire:main.user.livewire.user-faqs-email />
+
+    <!-- Overlay for the livewire component -->
+    <div class="overlay">
+        <div class="center-content">
+            <p>Please login to use this feature</p>
+            <button type="submit"
+                    class="h-8 w-35 px-20 mt-3 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+                    Go to Login
+                </button>
+        </div>
+    </div>
+</div>
 
                         </div>
                     </div>

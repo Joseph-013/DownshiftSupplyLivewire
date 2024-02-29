@@ -4,25 +4,27 @@ namespace App\Livewire;
 
 use App\Models\FAQ;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class FaqList extends Component
 {
     public $selectedFaqId;
 
-    protected $listeners = ['faqDeleted', 'faqCreated'];
+    // protected $listeners = ['faqDeleted', 'faqCreated'];
 
     public function render()
     {
         $faqs = FAQ::all();
         return view('livewire.main.admin.livewire.faq-list', compact('faqs'));
-    }   
+    }
 
-    public function faqDeleted($faqId)
+    #[On('faqDeleted')]
+    public function faqDeleted()
     {
-        FAQ::find($faqId)->delete();
         $this->render();
     }
 
+    #[On('faqCreated')]
     public function faqCreated()
     {
         $this->render();

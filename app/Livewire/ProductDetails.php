@@ -2,8 +2,9 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Product;
+use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class ProductDetails extends Component
@@ -18,7 +19,7 @@ class ProductDetails extends Component
     public $newImage;
     public $newlyUploadedImage;
 
-    protected $listeners = ['productSelected'];
+    // protected $listeners = ['productSelected'];
 
     public function mount()
     {
@@ -26,6 +27,7 @@ class ProductDetails extends Component
         $this->newlyUploadedImage = false;
     }
 
+    #[On('productSelected')]
     public function productSelected($productId)
     {
         $this->selectedProduct = Product::find($productId);

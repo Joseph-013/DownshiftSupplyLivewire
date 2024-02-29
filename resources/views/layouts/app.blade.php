@@ -22,6 +22,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9bEl5wGZ3rTxi_4clyA4l1-724wpNmY4&callback=initMap" async defer></script>
 </head>
 
 <body class="font-montserrat antialiased">

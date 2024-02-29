@@ -44,6 +44,12 @@ class FaqDetails extends Component
         }
     }
 
+    // #[On('hopFaqListRender')]
+    // public function hopFaqListRender()
+    // {
+    //     $this->dispatch('faqCreated')->to(FaqList::class);
+    // }
+
     public function render()
     {
         return view('livewire.main.admin.livewire.faq-details');

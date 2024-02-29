@@ -16,26 +16,26 @@
                     <div class="w-full h-full flex flex-col">
                         <div class="w-full flex-row">
                             <!-- QUESTIONS AND ANSWERS -->
-                            <ul class="flex flex-row w-full my-1">
-                                <li class="w-1/4 text-left text-sm ">
+                            <ul class="flex flex-col md:flex-row w-full my-1">
+                                <li class="w-full md:w-1/4 text-left text-sm ">
                                     <span class="font-medium mt-1">Have some questions?</span> <br>
                                     Find your answers here
                                 </li>
-                                <li class="w-3/4 h-full px-3 overflow-y-auto border" id="faqs-container">
+                                <li class="w-full md:w-3/4 h-full px-3 overflow-y-auto border" id="faqs-container">
 
                                     <livewire:main.user.livewire.user-faqs-qna />
 
                                 </li>
                             </ul>
                             <!-- MAP -->
-                            <ul class="flex flex-row w-full my-2">
-                                <li class="w-1/4 text-left text-sm ">
+                            <ul class="flex flex-col md:flex-row w-full my-2">
+                                <li class="w-full md:w-1/4 text-left text-sm">
                                     <span class="font-medium mt-1">Where can you find us?</span> <br>
                                     Be directed using this map
                                 </li>
-                                <li class="w-3/4 h-full px-3 border" id="faqs-container">
-                                    <!-- MAP API HERE -->
-                                </li>
+                                <div class="w-3/4 h-full px-3 border" id="faqs-container">
+                                    <div class="w-full h-full px-3 border" id="map"></div>
+                                </div>
                             </ul>
 
                             <!-- EMAIL -->
@@ -63,4 +63,29 @@
                 </div>
             </div>
         </div>
+        <script>
+            window.onload = function() {
+                initMap();
+            };
+
+            function initMap() {
+                // The location of the map (example coordinates)
+                var mapCenter = {
+                    lat: 14.645180093180294,
+                    lng: 121.1151444089714
+                };
+                // The map, centered at the location
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 14,
+                        center: mapCenter
+                    }
+                );
+                // The marker, positioned at the location
+                var marker = new google.maps.AdvancedMarkerElement({
+                    position: mapCenter,
+                    map: map
+                });
+            }
+        </script>
 </x-app-layout>

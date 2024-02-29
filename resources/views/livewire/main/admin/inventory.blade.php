@@ -22,8 +22,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <button
-                            type="button"
+                        <button type="button"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="svg-icon mr-2"
                                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
@@ -35,8 +34,7 @@
                                     d="M657.265 595.287c0 16.498 13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.498 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997H687.262c-16.498 0-29.997 13.499-29.997 29.997z m273.894 138.882H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z m0 168.878H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z"
                                     fill="" />
                             </svg>Filters</button>
-                        <button 
-                            type="submit"
+                        <button type="submit"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="feather feather-search" fill="none" height="18" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -52,7 +50,7 @@
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
-                    <form class="w-full h-full" enctype="multipart/form-data">
+                    <form wire:submit.prevent class="w-full h-full" enctype="multipart/form-data">
                         {{-- Left Main Container --}}
                         <livewire:product-details />
                     </form>

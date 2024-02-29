@@ -14,7 +14,7 @@ class CreateFaq extends Component
         'question' => 'required|string',
         'answer' => 'required|string',
     ];
-    
+
     public function render()
     {
         return view('livewire.main.admin.livewire.create-faq');
@@ -22,14 +22,14 @@ class CreateFaq extends Component
 
     public function createFaq()
     {
-        if($this->question && $this->answer) {
+        if ($this->question && $this->answer) {
             $newFaq = FAQ::create([
                 'question' => $this->question,
                 'answer' => $this->answer,
             ]);
             $this->question = null;
             $this->answer = null;
-            $this->dispatch('faqCreated', $newFaq->id);
+            $this->dispatch('faqCreated');
         }
     }
 }

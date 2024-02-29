@@ -13,10 +13,10 @@
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
-                    <form class="w-full h-full">
+                    <div class="w-full h-full"> {{-- Not part of a livewire component. --}}
                         {{-- Left Main Container --}}
                         <livewire:faq-details />
-                    </form>
+                    </div>
 
                 </div>
                 {{-- Right Panel border-2 border-black --}}

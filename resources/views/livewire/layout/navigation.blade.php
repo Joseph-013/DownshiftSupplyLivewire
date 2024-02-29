@@ -55,7 +55,7 @@ new class extends Component {
             <!-- Settings Dropdown -->
             <div class="h-full flex items-center">
 
-                @if (auth()->check() && auth()->user()->usertype === 'user')
+                @if (!auth()->check() || auth()->user()->usertype === 'user')
                     <a href="{{ route('user.cart') }}" class="h-8 w-8">
                         <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
                     </a>

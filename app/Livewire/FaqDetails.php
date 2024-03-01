@@ -27,7 +27,7 @@ class FaqDetails extends Component
         if ($this->selectedFaq) {
             $this->selectedFaq->delete();
             $this->selectedFaq = null;
-            session()->flash('success-message', 'FAQ entry deleted successfully.');
+            // session()->flash('success-message', 'FAQ entry deleted successfully.');
             // $this->dispatch('faqDeleted');
             $this->selectedFaq = null;
             $this->dispatch('renderFaqList');
@@ -41,7 +41,7 @@ class FaqDetails extends Component
             $this->selectedFaq->question = $this->newQuestion;
             $this->selectedFaq->answer = $this->newAnswer;
             $this->selectedFaq->save();
-            session()->flash('success-message', 'FAQ entry updated successfully.');
+            // session()->flash('success-message', 'FAQ entry updated successfully.');
             $this->selectedFaq = null;
             $this->dispatch('renderFaqList');
             $this->render();

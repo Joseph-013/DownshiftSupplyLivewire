@@ -7,8 +7,8 @@ use Livewire\Component;
 
 class CreateFaq extends Component
 {
-    public $question;
-    public $answer;
+    public $question = null;
+    public $answer = null;
 
     protected $rules = [
         'question' => 'required|string',
@@ -31,7 +31,7 @@ class CreateFaq extends Component
             ]);
             $this->question = null;
             $this->answer = null;
-            session()->flash('success-message', 'FAQ entry created successfully.');
+            // session()->flash('success-message', 'FAQ entry created successfully.');
             $this->dispatch('renderFaqList');
             $this->dispatch('renderFaqDetails');
         }

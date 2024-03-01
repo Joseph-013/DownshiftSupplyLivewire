@@ -79,7 +79,7 @@
                 });
                 const marker = new AdvancedMarkerElement({
                     map,
-                    position: {lat: 14.645180093180294, lng: 121.1151444089714},
+                    position: {lat: 14.629639825768203, lng: 121.0009090238659},
                     title: "Downshift Supply"
                 });
                 marker.addListener("click", () => {

@@ -50,10 +50,10 @@
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
-                    <form wire:submit.prevent class="w-full h-full" enctype="multipart/form-data">
+                    <div class="w-full h-full">
                         {{-- Left Main Container --}}
                         <livewire:product-details />
-                    </form>
+                    </div>
                 </div>
                 {{-- Right Panel border-2 border-black --}}
                 <div class="w-3/5 h-full px-3 text-right flex">
@@ -68,7 +68,7 @@
                         <hr class="my-1">
 
                         {{-- Products List  --}}
-                        <livewire:product-list :products="$products" />
+                        <livewire:product-list />
                     </div>
                     {{-- Products --}}
                 </div>

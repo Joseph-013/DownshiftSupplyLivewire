@@ -1,4 +1,4 @@
-<div>
+<form wire:submit.prevent="createProduct">
     <div class="columns-2">
         <div class="p-2">
             @if ($image)
@@ -39,7 +39,7 @@
             <input wire:model="criticallevel" class="w-1/4 h-10 flex items-center" type="number">
         </div>
         <div class="w-full mt-3 flex justify-center">
-            <button wire:click="createProduct" type="submit"
+            <button type="submit"
                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
                 Create Item
                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -52,4 +52,4 @@
             </button>
         </div>
     </div>
-</div>
+</form>

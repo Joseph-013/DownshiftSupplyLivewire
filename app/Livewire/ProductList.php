@@ -15,13 +15,14 @@ class ProductList extends Component
 
     public function render()
     {
+        $this->products = Product::all();
         return view('livewire.main.admin.livewire.product-list');
     }
 
     #[On('productDeleted')]
-    public function productDeleted($productId)
+    public function productDeleted()
     {
-        Product::find($productId)->delete();
+        // Product::find($productId)->delete();
         $this->render();
     }
 

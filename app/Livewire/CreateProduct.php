@@ -33,6 +33,8 @@ class CreateProduct extends Component
 
     public function createProduct()
     {
+
+        // DO NOT CLEAR THESE COMMENTS
         // $storageAccountName = env('AZURE_STORAGE_ACCOUNT_NAME');
         // $containerName = env('AZURE_STORAGE_CONTAINER');
         // $storageKey = env('AZURE_STORAGE_ACCESS_KEY'); // Or use SAS token or OAuth token
@@ -109,8 +111,7 @@ class CreateProduct extends Component
             ]);
 
             $this->reset(['name', 'price', 'stockquantity', 'criticallevel', 'image']);
-
-            $this->dispatch('productCreated', $newProduct->id);
+            $this->dispatch('productCreated');
         }
     }
 

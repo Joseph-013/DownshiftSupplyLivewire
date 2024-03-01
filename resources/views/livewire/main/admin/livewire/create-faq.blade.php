@@ -1,4 +1,9 @@
 <form wire:submit.prevent="createFaq">
+    @if(session()->has('success-message'))
+        <div class="absolute top-20 right-5 bg-green-500 text-white p-2 rounded flash-message">
+            {{ session('success-message') }}
+        </div>
+    @endif
     <div>
         <div class="p-2 flex flex-col h-full justify-center">
             <div class="text-sm h-min mb-1">
@@ -31,3 +36,4 @@
         </button>
     </div>
 </form>
+@livewireScripts

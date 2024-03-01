@@ -23,12 +23,13 @@ class CreateFaq extends Component
     public function createFaq()
     {
         if ($this->question && $this->answer) {
-            $newFaq = FAQ::create([
+            FAQ::create([
                 'question' => $this->question,
                 'answer' => $this->answer,
             ]);
             $this->question = null;
             $this->answer = null;
+            session()->flash('success-message', 'FAQ entry created successfully.');
             $this->dispatch('faqCreated');
         }
     }

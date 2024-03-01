@@ -43,12 +43,7 @@ class FaqDetails extends Component
         }
     }
 
-    // #[On('hopFaqListRender')]
-    // public function hopFaqListRender()
-    // {
-    //     $this->dispatch('faqCreated')->to(FaqList::class);
-    // }
-
+    #[On('faqDeleted', 'faqCreated')]
     public function render()
     {
         if (!$this->selectedFaq) {

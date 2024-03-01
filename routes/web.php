@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
         Route::get('/onsitetransactions/search', [OnsiteTransactionController::class, 'search'])->name('onsitetransactions.search');
         Route::view('/createtransactions', 'livewire/main/admin/createtransactions')->name('createtransactions');
         Route::get('/onlinetransactions', [OnlineTransactionController::class, 'index'])->name('onlinetransactions');
+        Route::get('/onlinetransactions/search', [OnlineTransactionController::class, 'search'])->name('onlinetransactions.search');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
         Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
     });

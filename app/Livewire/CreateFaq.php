@@ -15,14 +15,10 @@ class CreateFaq extends Component
         'answer' => 'required|string',
     ];
 
-    public function mount()
-    {
-        $this->question = null;
-        $this->answer = null;
-    }
-
     public function render()
     {
+        $this->question = "";
+        $this->answer = "";
         return view('livewire.main.admin.livewire.create-faq');
     }
 
@@ -36,7 +32,8 @@ class CreateFaq extends Component
             $this->question = null;
             $this->answer = null;
             session()->flash('success-message', 'FAQ entry created successfully.');
-            $this->dispatch('faqCreated');
+            $this->dispatch('renderFaqList');
+            $this->dispatch('renderFaqDetails');
         }
     }
 

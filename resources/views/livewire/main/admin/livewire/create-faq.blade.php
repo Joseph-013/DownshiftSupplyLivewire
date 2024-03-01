@@ -1,6 +1,7 @@
 <form wire:submit.prevent="createFaq">
-    @if(session()->has('success-message'))
-        <div wire:poll.3s="hideSuccessMessage" class="absolute top-20 right-5 bg-green-500 text-white p-2 rounded flash-message">
+    @if (session()->has('success-message'))
+        <div wire:poll.3s="hideSuccessMessage"
+            class="absolute top-20 right-5 bg-green-500 text-white p-2 rounded flash-message">
             {{ session('success-message') }}
         </div>
     @endif
@@ -36,4 +37,4 @@
         </button>
     </div>
 </form>
-@livewireScripts
+{{-- @livewireScripts --}}

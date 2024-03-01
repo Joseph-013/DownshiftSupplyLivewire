@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component {
+new #[Layout('layouts.guest')] class extends Component
+{
     /**
      * Send an email verification notification to the user.
      */
@@ -51,34 +52,29 @@ new #[Layout('layouts.guest')] class extends Component {
                 <div class="bg-orange-400 flex-1 py-7">
                     <form class="p-4 w-full h-full flex flex-col items-center justify-between">
                         <div class="flex flex-col items-center">
-                            <h1
-                                class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
+                            <h1 class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
                                 Downshift Supply
                             </h1>
                             <h3 class="font-montserrat text-white default-shadow text-lg">
                                 Welcome! Let&#39;s get started!
                             </h3>
                             <div>
-                                <div
-                                    class="mt-20 text-sm text-white font-medium font-montserrat px-4 mx-5 text-justify">
+                                <div class="mt-20 text-sm text-white font-medium font-montserrat px-4 mx-5 text-justify">
                                     {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
                                 </div>
 
                                 @if (session('status') == 'verification-link-sent')
-                                    <div
-                                        class="mt-5 text-sm text-white font-medium font-montserrat px-4 mx-5 text-justify">
-                                        {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-                                    </div>
+                                <div class="mt-5 text-sm text-white font-medium font-montserrat px-4 mx-5 text-justify">
+                                    {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+                                </div>
                                 @endif
 
-                                <div class="mt-4 flex items-center justify-between  ml-8">
-                                    <button wire:click="sendVerification"
-                                        class=" h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-white ml-3 border-1 border-black text-black text-xs font-semibold text-spacing mb-5">
+                                <div class="mt-12 flex items-center justify-between  ml-8 ">
+                                    <button wire:click="sendVerification" class=" h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-white ml-3 border-1 border-black text-black text-xs font-semibold text-spacing mb-5">
                                         {{ __('RESEND VERIFICATION EMAIL') }}
                                     </button>
 
-                                    <button wire:click="logout" type="submit"
-                                        class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-red-500 ml-3 border-1 border-black text-white text-xs font-semibold text-spacing mb-5">
+                                    <button wire:click="logout" type="submit" class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-red-500 ml-3 border-1 border-black text-white text-xs font-semibold text-spacing mb-5">
                                         {{ __('LOG OUT') }}
                                     </button>
                                 </div>
@@ -93,6 +89,39 @@ new #[Layout('layouts.guest')] class extends Component {
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="block sm:hidden">
+            <div class="font-montserrat text-orange-400 text-4xl default-shadow mb-4 text-center mt-14">
+                Downshift Supply
+            </div>
+            <div class="font-montserrat text-gray-700 text-lg default-shadow mb-4 text-center mt-5">
+                Welcome! Let's get started.
+            </div>
+            <div>
+                                <div class="mt-20 text-sm font-medium font-montserrat px-4 mx-5 text-justify">
+                                    {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+                                </div>
+
+                                @if (session('status') == 'verification-link-sent')
+                                <div class="mt-5 text-sm font-medium font-montserrat px-4 mx-5 text-justify">
+                                    {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+                                </div>
+                                @endif
+
+                                <div class="mt-10 flex items-center justify-between  ml-8">
+                                    <button wire:click="sendVerification" class=" h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-gray-500 ml-3 border-1 border-black text-black text-xs font-semibold text-spacing mb-5">
+                                        {{ __('RESEND VERIFICATION EMAIL') }}
+                                    </button>
+
+                                    <button wire:click="logout" type="submit" class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-red-500 ml-3 border-1 border-black text-white text-xs font-semibold text-spacing mb-5">
+                                        {{ __('LOG OUT') }}
+                                    </button>
+                                </div>
+
+                                <div class="my-4 flex items-center justify-between ml-7 ">
+
+                                </div>
+                            </div>
         </div>
     </div>
 </div>

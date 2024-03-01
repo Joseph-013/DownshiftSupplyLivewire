@@ -66,12 +66,11 @@ new #[Layout('layouts.guest')] class extends Component
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
                         <div class="text-center w-2/5 text-white mt-[-6rem] text-sm">
-                        Enter your email address associated with your account and we’ll send you a link to reset your password.
+                            Enter your email address associated with your account and we’ll send you a link to reset your password.
                         </div>
                         {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
                         <x-auth-button class="sm-40 md:w-60">CONTINUE</x-auth-button>
-                        <a href="{{ route('register') }}"
-                            class="no-underline tracking-wider text-white font-montserrat hover:underline">Not
+                        <a href="{{ route('register') }}" class="no-underline tracking-wider text-white font-montserrat hover:underline">Not
                             signed up
                             yet?&nbsp;<span class="underline font-semibold">Sign
                                 up</span></a>
@@ -79,6 +78,32 @@ new #[Layout('layouts.guest')] class extends Component
                 </div>
 
             </div>
+        </div>
+        <div class="block sm:hidden">
+            <div class="font-montserrat text-orange-400 text-4xl default-shadow mb-4 text-center mt-14">
+                Downshift Supply
+            </div>
+            <div class="font-montserrat text-gray-700 text-lg default-shadow mb-4 text-center mt-5">
+                Welcome! Let's get started.
+            </div>
+            <form wire:submit="sendPasswordResetLink">
+                <div class="w-full flex flex-col items-center mt-20 px-10">
+                    {{-- Email --}}
+                    <input required wire:model="email" name="email" class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2 w-full h-14" type="email" placeholder="E-mail" autocomplete="email" autofocus>
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            <div class="text-center text-sm px-10">
+                    Enter your email address associated with your account and we’ll send you a link to reset your password.
+                </div>
+                {{-- <button class="font-montserrat bg-orange-500" type="button">LOG IN</button> --}}
+                <button class="sm-40 md:w-60 w-full text-white bg-orange-400 h-14 w-35 rounded text-2xl text-spacing font-bold mt-20">CONTINUE</button>
+                        <a href="{{ route('register') }}"
+                            class="no-underline tracking-wider font-montserrat hover:underline font-medium text-gray-700 flex justify-center mt-28">Not
+                            signed up
+                            yet?&nbsp;<span class="underline ">Sign
+                                up</span></a>
+                </div>
+                
+            </form>
         </div>
     </div>
 </div>

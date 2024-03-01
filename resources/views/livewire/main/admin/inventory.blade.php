@@ -76,5 +76,5 @@
 
         </div>
     </div>
-    @livewireScripts
+    {{-- @livewireScripts --}}
 </x-app-layout>

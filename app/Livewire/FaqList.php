@@ -8,11 +8,12 @@ use Livewire\Attributes\On;
 
 class FaqList extends Component
 {
-    public $selectedFaqId;
+    public $selectedFaqId = null;
 
     #[On('renderFaqList')]
     public function render()
     {
+        $this->selectedFaqId = null;
         $faqs = FAQ::all();
         return view('livewire.main.admin.livewire.faq-list', compact('faqs'));
     }

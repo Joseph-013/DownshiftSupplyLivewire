@@ -68,7 +68,7 @@
                 const { Map } = await google.maps.importLibrary("maps");
                 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
                 const map = new Map(document.getElementById("map"), {
-                    center: {lat: 14.645180093180294, lng: 121.1151444089714},
+                    center: {lat: 14.629639825768203, lng: 121.0009090238659},
                     zoom: 14,
                     mapId: "c1568d819b26135",
                 });

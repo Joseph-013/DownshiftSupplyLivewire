@@ -4,25 +4,22 @@ namespace App\Livewire;
 
 use App\Models\FAQ;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class FaqDetails extends Component
 {
-    public $selectedFaq;
-    public $newQuestion;
-    public $newAnswer;
+    public $selectedFaq = null;
+    public $newQuestion = null;
+    public $newAnswer = null;
 
-    protected $listeners = ['faqSelected'];
-
-    public function mount()
-    {
-        $this->selectedFaq = null;
-    }
-
+    #[On('faqSelected')]
     public function faqSelected($faqId)
     {
         $this->selectedFaq = FAQ::find($faqId);
-        $this->newQuestion = $this->selectedFaq->question;
-        $this->newAnswer = $this->selectedFaq->answer;
+        if ($this->selectedFaq) {
+            $this->newQuestion = $this->selectedFaq->question;
+            $this->newAnswer = $this->selectedFaq->answer;
+        }
     }
 
     public function deleteFaq()
@@ -30,6 +27,7 @@ class FaqDetails extends Component
         if ($this->selectedFaq) {
             $this->selectedFaq->delete();
             $this->selectedFaq = null;
+            session()->flash('success-message', 'FAQ entry deleted successfully.');
             $this->dispatch('faqDeleted');
         }
     }
@@ -40,6 +38,7 @@ class FaqDetails extends Component
             $this->selectedFaq->question = $this->newQuestion;
             $this->selectedFaq->answer = $this->newAnswer;
             $this->selectedFaq->save();
+            session()->flash('success-message', 'FAQ entry updated successfully.');
             $this->dispatch('faqCreated');
         }
     }
@@ -52,6 +51,15 @@ class FaqDetails extends Component
 
     public function render()
     {
+        if (!$this->selectedFaq) {
+            $this->newQuestion = null;
+            $this->newAnswer = null;
+        }
         return view('livewire.main.admin.livewire.faq-details');
+    }
+
+    public function hideSuccessMessage()
+    {
+        session()->forget('success-message');
     }
 }

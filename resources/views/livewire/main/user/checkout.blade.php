@@ -148,11 +148,10 @@
 
                                 <div class="w-full text-left px-3 font-semibold">
                                     Delivery Address:
-                                    <div class="h-20 bg-gray-100 justify-center flex items-center">
-                                        MAP HERE
-                                    </div>
                                     <div class="my-2">
-                                        <input class="w-full h-10 text-xs font-light" type="text" placeholder="Address">
+                                        <input id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;">
+                                    </div>
+                                    <div id="map" class="h-48 bg-gray-100 justify-center flex items-center mb-3">
                                     </div>
                                 </div>
 
@@ -252,4 +251,85 @@
 
     </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('autocomplete');
+            var map = null;
+            var marker = null;
+
+            async function initMap() {
+                const { Map } = await google.maps.importLibrary("maps");
+                const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+                map = new Map(document.getElementById("map"), {
+                    center: {lat: 14.645180093180294, lng: 121.1151444089714},
+                    zoom: 16,
+                    mapId: "c1568d819b26135",
+                });
+
+                // Create a marker initially at the center of the map
+                marker = new google.maps.Marker({
+                    position: map.getCenter(),
+                    map: map,
+                    draggable: true
+                });
+
+                // Update the input box with the address pointed by the marker
+                updateAddress(marker.getPosition());
+
+                // Update marker position when map is dragged
+                map.addListener('drag', function() {
+                    marker.setPosition(map.getCenter());
+                    updateAddress(marker.getPosition());
+                });
+
+                // Update marker position when map is zoomed
+                map.addListener('zoom_changed', function() {
+                    marker.setPosition(map.getCenter());
+                    updateAddress(marker.getPosition());
+                });
+
+                // Update marker position when marker is dragged
+                marker.addListener('dragend', function() {
+                    map.panTo(marker.getPosition());
+                    updateAddress(marker.getPosition());
+                });
+            }
+
+            initMap();
+
+            searchInput.addEventListener('input', function() {
+                var autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                    types: ['geocode'],
+                    componentRestrictions: {country: 'ph'}
+                });
+
+                autocomplete.addListener('place_changed', function() {
+                    var place = autocomplete.getPlace();
+                    if (!place.geometry) {
+                        console.error("No location selected");
+                        return;
+                    }
+                    var lat = place.geometry.location.lat();
+                    var lng = place.geometry.location.lng();
+                    map.setCenter({ lat: lat, lng: lng });
+                    marker.setPosition({ lat: lat, lng: lng });
+                    updateAddress(marker.getPosition());
+                });
+            });
+
+            // Function to update the input box with the address pointed by the marker
+            function updateAddress(latLng) {
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'location': latLng }, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            searchInput.value = results[0].formatted_address;
+                        } else {
+                            console.error('No results found');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </x-app-layout>

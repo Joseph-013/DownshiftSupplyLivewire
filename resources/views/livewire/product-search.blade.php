@@ -1,11 +1,11 @@
-<div class="w-full flex-row px-5 ml-[-.5rem]">
+<div class="w-full flex-row px-5 ml-[-.5rem] relative">
     <ul class="flex flex-row w-full rounded border border-gray-500 px-1 py-2">
         <li class="w-5/12 text-center text-xs flex items-center justify-center ">
             <div class="flex items-center"> <!-- Wrapping content in a flex container -->
                 <div class=""> <!-- Adding margin to separate image and text -->
                     <label class="w-full h-10 flex items-center font-semibold">Item ID/Name:</label>
                     <input wire:model.live="search" class="w-4/6 h-10 flex items-center text-xs" type="text" id="searchInput">
-                    <ul id="searchResults" class="list-group absolute z-10">
+                    <ul id="searchResults" class="list-group absolute z-10" style="bottom: calc(50%);">
                         @foreach($results as $result)
                         <li class="list-group-item w-28" onclick="fillInputAndHide('{{ $result->id }}', '{{ $result->name }}', '{{ $result->image }}')">{{ $result->name }}</li>
                         @endforeach
@@ -101,4 +101,12 @@
             });
         }
     }
+
+    document.getElementById('searchInput').addEventListener('keydown', function(event) {
+        // Check if the pressed key is Enter (key code 13)
+        if (event.keyCode === 13) {
+            // Prevent the default behavior (form submission)
+            event.preventDefault();
+        }
+    });
 </script>

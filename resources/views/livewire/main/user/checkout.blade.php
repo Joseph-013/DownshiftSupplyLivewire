@@ -276,22 +276,30 @@
                 // Update the input box with the address pointed by the marker
                 updateAddress(marker.getPosition());
 
-                // Update marker position when map is dragged
+                let debounceTimer;
+
                 map.addListener('drag', function() {
-                    marker.setPosition(map.getCenter());
-                    updateAddress(marker.getPosition());
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function() {
+                        marker.setPosition(map.getCenter());
+                        updateAddress(marker.getPosition());
+                    }, 200); // Adjust the debounce delay as needed
                 });
 
-                // Update marker position when map is zoomed
                 map.addListener('zoom_changed', function() {
-                    marker.setPosition(map.getCenter());
-                    updateAddress(marker.getPosition());
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function() {
+                        marker.setPosition(map.getCenter());
+                        updateAddress(marker.getPosition());
+                    }, 200); // Adjust the debounce delay as needed
                 });
 
-                // Update marker position when marker is dragged
                 marker.addListener('dragend', function() {
-                    map.panTo(marker.getPosition());
-                    updateAddress(marker.getPosition());
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function() {
+                        map.panTo(marker.getPosition());
+                        updateAddress(marker.getPosition());
+                    }, 200); // Adjust the debounce delay as needed
                 });
             }
 

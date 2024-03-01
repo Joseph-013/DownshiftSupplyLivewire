@@ -58,8 +58,6 @@ class OnlineTransactionDetails extends Component
             'shippingAddress' => $this->shippingAddress,
             'status' => $this->status,
         ]);
-
-        $this->selectedTransaction = null;
         $this->dispatch('transactionUpdated');
     }
 

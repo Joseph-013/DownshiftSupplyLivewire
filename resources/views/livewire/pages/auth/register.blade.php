@@ -126,6 +126,72 @@ new #[Layout('layouts.guest')] class extends Component {
                 </div>
             </div>
         </div>
+        <div class="font-montserrat text-orange-400 text-4xl default-shadow mb-4 text-center mt-14">
+            Downshift Supply
+        </div>
+        <div class="font-montserrat text-gray-700 text-lg default-shadow mb-4 text-center mt-5">
+                Welcome! Let's get started.
+        </div>
+        <form wire:submit="register">
+        <div class="w-full flex flex-col items-center">
+                            {{-- Email --}}
+                            <input required wire:model="email" name="email"
+                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2 w-full mt-8"
+                                type="email" placeholder="E-mail" autocomplete="email" autofocus>
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+                            {{-- Name --}}
+                            <input required wire:model="username" name="username"
+                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3 w-full"
+                                type="text" placeholder="Username">
+                            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+
+                            {{-- Name --}}
+                            <input required wire:model="fullname" name="fullname"
+                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3 w-full"
+                                type="text" placeholder="Full Name">
+                            <x-input-error :messages="$errors->get('fullname')" class="mt-2" />
+
+                            {{-- New Pass --}}
+                            <input required wire:model="password" name="password"
+                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3 w-full"
+                                type="password" placeholder="Password" autocomplete="new-password">
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <div class=" text-sm mt-1 font-montserrat italic text-gray-600 ">
+                                Requirements:
+                                <br />
+                                • Must be a minimum of 8 characters
+                                <br />
+                                • Must include at least 1 number
+                                <br />
+                                • Must include at least 1 special character
+                                <br />
+                                • Must include at least 1 capital letter
+                            </div>
+
+                            {{-- Confirm New Pass --}}
+                            <input required wire:model="password_confirmation" name="password_confirmation"
+                                class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-4 mb-3 w-full"
+                                type="password" placeholder="Confirm Password">
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
+                        </div>
+                        {{-- <button class="font-montserrat" type="button">LOG IN</button> --}}
+                        <div class="w-full flex flex-row justify-center items-center">
+                            <button class="sm-40 md:w-60 w-full text-white bg-orange-400 h-14 w-35 rounded text-2xl text-spacing font-bold mt-10" type="submit">
+                                SIGN UP
+                                <img wire:loading wire:target="register" src="{{ asset('assets/loading.gif') }}"
+                                    alt="please wait..." class="h-5 w-5 ml-2" />
+                            </button>
+                            <div class="ml-4">
+
+                            </div>
+                        </div>
+
+                        <a href="{{ route('login') }}"
+                            class="no-underline tracking-wider font-montserrat hover:underline font-medium text-gray-700 flex justify-center mt-16">Already
+                            signed up?&nbsp;<span class="underline font-semibold">Log in</span></a>
+        </form>
     </div>
     <!-- Modal -->
     <div id="myModal" class="modal">

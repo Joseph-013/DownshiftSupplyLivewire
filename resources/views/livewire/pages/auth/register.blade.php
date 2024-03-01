@@ -126,6 +126,7 @@ new #[Layout('layouts.guest')] class extends Component {
                 </div>
             </div>
         </div>
+        <div class="sm:hidden">
         <div class="font-montserrat text-orange-400 text-4xl default-shadow mb-4 text-center mt-14">
             Downshift Supply
         </div>
@@ -192,6 +193,8 @@ new #[Layout('layouts.guest')] class extends Component {
                             class="no-underline tracking-wider font-montserrat hover:underline font-medium text-gray-700 flex justify-center mt-16">Already
                             signed up?&nbsp;<span class="underline font-semibold">Log in</span></a>
         </form>
+        </div>
+        
     </div>
     <!-- Modal -->
     <div id="myModal" class="modal">

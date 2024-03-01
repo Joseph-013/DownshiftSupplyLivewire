@@ -106,7 +106,7 @@ new #[Layout('layouts.guest')] class extends Component {
                 </div>
             </div>
         </div>
-        <div>
+        <div class="block sm:hidden">
             <div class="font-montserrat text-orange-400 text-4xl default-shadow mb-4 text-center mt-14">
                 Downshift Supply
             </div>

@@ -77,3 +77,11 @@
         <livewire:create-product />
     @endif
 </div>
+
+<script>
+    document.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    });
+</script>

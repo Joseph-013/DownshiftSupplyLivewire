@@ -208,27 +208,9 @@
                                     </li>
                                 </ul>
 
-                                <ul class="flex flex-row w-full mb-3 items-center">
-                                    <li class="w-3/4 text-left pl-3">
-                                        <div class="my-1 mt-2">
-                                            <span class="font-medium">Order Subtotal :</span>
-                                        </div>
-                                    </li>
-                                    <li class="w-1/4 text-right">
-                                        <div class="my-1 flex text-right">
-                                            ₱ 101,000.00
-                                        </div>
-                                    </li>
-                                </ul>
-
                                 <hr class="my-2">
 
-                                <ul class="flex flex-row w-full mb-3 items-center pr-4 font-medium ">
-                                    <li class="w-1/3"></li>
-                                    <li class="w-2/3 mt-2">
-                                        Grand Total: <span class="mx-3">₱ 101,200.00</span>
-                                    </li>
-                                </ul>
+                                <livewire:main.user.livewire.user-checkout-total />
 
                                 <div class="w-auto mt-3 flex px-5 ml-20 flex-row gap-10">
                                     <div class="w-2/5"></div> <!-- Added 'justify-end' class -->

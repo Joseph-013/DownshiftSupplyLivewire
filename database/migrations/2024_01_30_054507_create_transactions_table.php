@@ -33,11 +33,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->bigInteger('contact')->unsigned();
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable()->nullable();
+            $table->bigInteger('contact')->unsigned()->nullable();
             $table->timestamp('purchaseDate')->default(now());
-            $table->enum('purchaseType', ['Onsite', 'Online']);
+            $table->enum('purchaseType', ['Onsite', 'Online'])->nullable();
             $table->foreignId('user_id')->nullable(); //nullable
             $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable(); //nullable
             $table->string('paymentOption')->nullable(); //nullable

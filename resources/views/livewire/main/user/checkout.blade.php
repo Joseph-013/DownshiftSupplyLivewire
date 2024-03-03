@@ -19,7 +19,8 @@
 
                 {{-- Right Panel border-2 border-black --}}
                 <div class="w-2/5 h-full px-3 text-right flex text-xs ">
-                    <form>
+                    <form action="{{ route('user.checkout.submit') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         {{-- Left Main Container --}}
                         <div class="text-left font-semibold text-sm">
                             Details
@@ -35,11 +36,11 @@
                                     <li class="w-3/4 text-left pr-3">
                                         <div class="my-1 flex items-center">
                                             <span class="font-medium mr-2">First:</span>
-                                            <input class="w-full h-10 text-xs" type="text" placeholder="First Name">
+                                            <input name="firstName" class="w-full h-10 text-xs" type="text" placeholder="First Name" required>
                                         </div>
                                         <div class="my-1 flex items-center">
                                             <span class="font-medium mr-2">Last:</span>
-                                            <input class="w-full h-10 text-xs" type="text" placeholder="Last Name">
+                                            <input name="lastName" class="w-full h-10 text-xs" type="text" placeholder="Last Name" required>
                                         </div>
                                     </li>
                                 </ul>
@@ -50,12 +51,12 @@
                                         </div>
                                     </li>
                                     <li class="w-3/4 text-left">
-                                        <input class="w-full h-10 text-xs" type="text" placeholder="Contact Number">
+                                        <input name="contact" class="w-full h-10 text-xs" type="text" placeholder="Contact Number" maxlength="11" required>
                                     </li>
                                 </ul>
                                 <div class="flex flex-row w-full mb-3 gap-2 px-3">
                                     <label for="pickup" class="w-1/2 rounded-md border border-gray-300 p-2 mr-4 flex items-center">
-                                        <input type="radio" id="pickup" name="delivery_option" value="pickup" class="mr-2">
+                                        <input name="preferredService" type="radio" id="pickup" name="delivery_option" value="Pickup" class="mr-2" required>
                                         <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 442 442" xml:space="preserve">
                                             <g>
                                                 <path d="M412.08,115.326c-0.006-0.322-0.027-0.643-0.064-0.961c-0.011-0.1-0.02-0.201-0.035-0.3
@@ -88,7 +89,7 @@
                                     </label>
 
                                     <label for="delivery" class="w-1/2 rounded-md border border-gray-300 p-2 flex items-center">
-                                        <input type="radio" id="delivery" name="delivery_option" value="delivery" class="mr-2">
+                                        <input name="preferredService" type="radio" id="delivery" name="delivery_option" value="Delivery" class="mr-2" required>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25" height="25" viewBox="0 0 256 256" xml:space="preserve">
 
                                             <defs>
@@ -149,13 +150,13 @@
                                 <div class="w-full text-left px-3 font-semibold">
                                     Delivery Address:
                                     <div class="my-2">
-                                        <input id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;">
+                                        <input name="shippingAddress" id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;" required>
                                     </div>
                                     <div id="map" class="h-48 bg-gray-100 justify-center flex items-center mb-3">
                                     </div>
                                 </div>
 
-                                <ul class="flex flex-row w-full mb-3 items-center pr-4">
+                                {{-- <ul class="flex flex-row w-full mb-3 items-center pr-4">
                                     <li class="w-2/4 text-left pl-3">
                                         <div class="my-1 mt-2">
                                             <span class="font-medium">Email :</span>
@@ -166,7 +167,7 @@
                                             <input class="w-full h-10 text-xs" type="text" placeholder="Email">
                                         </div>
                                     </li>
-                                </ul>
+                                </ul> --}}
 
                                 <ul class="flex flex-row w-full mb-3 items-center pr-4">
                                     <li class="w-2/4 text-left pl-3">
@@ -176,10 +177,10 @@
                                     </li>
                                     <li class="w-3/4 text-left">
                                         <div class="my-1 flex items-center ">
-                                            <select class="w-full h-10 text-xs bg-gray-200 rounded-lg border-none">
-                                                <option value="credit_card">Credit Card</option>
-                                                <option value="paypal">PayPal</option>
-                                                <option value="bank_transfer">Bank Transfer</option>
+                                            <select name="paymentOption" class="w-full h-10 text-xs bg-gray-200 rounded-lg border-none" required>
+                                                <option value="Credit Card">Credit Card</option>
+                                                <option value="Paypal">PayPal</option>
+                                                <option value="Bank Transfer">Bank Transfer</option>
                                                 <!-- Add more options as needed -->
                                             </select>
                                         </div>
@@ -196,7 +197,7 @@
                                         <div class="my-1 flex items-center">
                                             <!-- Modified file input -->
                                             <label for="fileUpload" class="w-full h-10 text-xs bg-gray-200 rounded-lg px-4 flex items-center justify-center cursor-pointer">
-                                                <input type="file" id="fileUpload" class="hidden">
+                                                <input name="proofOfPayment" type="file" id="fileUpload" class="hidden" accept=".jpg, .jpeg, .png" required>
                                                 <ul class="flex flex-row w-full items-center gap-10">
                                                     <li class="w-3/4">Upload Image</li>
                                                     <li class="w-1/4 font-medium text-lg text-right">+</li>
@@ -232,7 +233,7 @@
                                 <div class="w-auto mt-3 flex px-5 ml-20 flex-row gap-10">
                                     <div class="w-2/5"></div> <!-- Added 'justify-end' class -->
                                     <div class="w-3/5 flex justify-end ml-20">
-                                        <button type="reset" class="h-10 w-20 mr-[-1rem] px-20 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing mb-3">
+                                        <button type="submit" class="h-10 w-20 mr-[-1rem] px-20 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing mb-3">
                                             Complete Transaction
                                         </button>
                                     </div>

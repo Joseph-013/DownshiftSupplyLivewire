@@ -3,7 +3,7 @@
     <table class="border w-full mt-2 text-xs font-light">
         <thead class="border">
             <tr class="border">
-                <th class="border-b-4 border-black p-2 w-1/12">Transaction Id</th>
+                <th class="border-b-4 border-black p-2 w-1/12">Trans. Id</th>
                 <th class="border-b-4 border-black p-2 w-4/12">Customer Name</th>
                 <th class="border-b-4 border-black p-2 w-2/12">Type</th>
                 <th class="border-b-4 border-black p-2 w-2/12">Grand Total</th>

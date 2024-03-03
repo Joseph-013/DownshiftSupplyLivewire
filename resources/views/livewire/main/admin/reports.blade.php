@@ -9,13 +9,13 @@
             {{-- Content --}}
             <div class="flex flex-col md:flex-row flex-1 w-full -mx-3 my-3">
                 {{-- Left Panel --}}
-                <div class="w-full md:w-2/5 px-3">
+                <div class="w-full md:w-4/12 px-3">
                     <div class="w-full h-full text-right flex justify-center">
                         <livewire:main.admin.livewire.report-setup />
                     </div>
                 </div>
                 {{-- Right Panel border-2 border-black --}}
-                <div class="w-full md:w-3/5 h-full text-right flex">
+                <div class="w-full md:w-8/12 h-full text-right flex">
                     <div class="w-full h-full">
                         <div class="w-full flex-row px-1 my-2">
                             <livewire:main.admin.livewire.report-table />

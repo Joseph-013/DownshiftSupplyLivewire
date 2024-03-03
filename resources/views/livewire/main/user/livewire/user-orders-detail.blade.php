@@ -63,17 +63,17 @@
                                 <div class="w-full flex-row px-5 my-2">
                                     <ul class="flex flex-row w-full">
                                         <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                            <img src="{{ $order->product->image }}"
+                                            <img src="{{ $order->products->image }}"
                                                 class="w-12 h-12 ml-[-2.5rem] object-cover">
-                                            {{ $order->product->name }}
+                                            {{ $order->products->name }}
                                         </li>
                                         <li class="w-3/12 text-center text-xs items-center justify-center">
-                                            {{ number_format($order->product->price, 2) }}</li>
+                                            {{ number_format($order->products->price, 2) }}</li>
                                         <li class="w-2/12 text-center text-xs items-center justify-center">
                                             {{ $order->quantity }}
                                         </li>
                                         <li class="w-3/12 text-center text-xs items-center justify-center">
-                                            {{ $order->quantity * $order->product->price }}</li>
+                                            {{ $order->quantity * $order->products->price }}</li>
                                     </ul>
                                 </div>
                             @endforeach

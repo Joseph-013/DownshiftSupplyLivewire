@@ -134,7 +134,7 @@ input[type="checkbox"]:checked{
     height: 100%; /* Full height */
     overflow: hidden; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    
+
 }
 
 @media (max-width: 768px) {
@@ -174,7 +174,7 @@ input[type="checkbox"]:checked{
 
 .tabcontent.active {
     display: block;
-    
+
 }
 
 /* Buttons */
@@ -197,7 +197,7 @@ input[type="checkbox"]:checked{
 
 .buttons button:hover {
     background-color: #fd831f;
-    
+
 }
 
 .buttons button.decline {
@@ -239,3 +239,31 @@ input[type="checkbox"]:checked{
     border-radius: 8px;
 }
 
+#alertDiv {
+    display: none;
+}
+
+.notificationTemp {
+    position: absolute;
+    z-index: +1;
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 1rem;
+    /* border: 1px solid #dfdfdf; */
+    background-color: white; /* Initial background color */
+}
+
+.timer {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%; /* Initially fills the .notif div */
+    background-color: #fd831f; /* Background color of the timer */
+    animation: unfill 1.5s linear forwards;
+}
+
+@keyframes unfill {
+    0% { width: 0; } /* Start with full width */
+    100% { width: 100%; } /* End with zero width */
+}

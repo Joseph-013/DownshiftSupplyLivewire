@@ -19,7 +19,7 @@
                         </li>
                         <li class="w-1/4 text-left text-sm flex justify-center">
                             <button wire:click="addToCart({{ $product->id }})">
-                                <svg class="svg-icon mt-3 w-full h-full"
+                                <svg class="svg-icon mt-3 w-full h-full hover:brightness-90"
                                     style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
                                     viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                     <path

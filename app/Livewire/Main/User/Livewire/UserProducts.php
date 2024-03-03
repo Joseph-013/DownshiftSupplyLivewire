@@ -30,6 +30,7 @@ class UserProducts extends Component
                 // 'subtotal' => $productSelected->price,
             ]);
             // dump("Userid $result->user_id has added productid $result->product_id to cart");
+            $this->dispatch('alertCartAdd');
         } else {
             // dump("$productId already exists in cart");
         }

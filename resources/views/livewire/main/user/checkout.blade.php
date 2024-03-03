@@ -198,11 +198,25 @@
                                             <!-- Modified file input -->
                                             <label for="fileUpload" class="w-full h-10 text-xs bg-gray-200 rounded-lg px-4 flex items-center justify-center cursor-pointer">
                                                 <input name="proofOfPayment" type="file" id="fileUpload" class="hidden" accept=".jpg, .jpeg, .png" required>
-                                                <ul class="flex flex-row w-full items-center gap-10">
+                                                <ul id="uploadLabel" class="flex flex-row w-full items-center gap-10">
                                                     <li class="w-3/4">Upload Image</li>
                                                     <li class="w-1/4 font-medium text-lg text-right">+</li>
                                                 </ul>
                                             </label>
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+                                                    const fileInput = document.getElementById('fileUpload');
+                                                    const uploadLabel = document.getElementById('uploadLabel');
+                                            
+                                                    fileInput.addEventListener('change', function() {
+                                                        if (fileInput.files.length > 0) {
+                                                            uploadLabel.querySelector('li').textContent = fileInput.files[0].name;
+                                                        } else {
+                                                            uploadLabel.querySelector('li').textContent = 'Upload Image';
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                             <!-- End of modified file input -->
                                         </div>
                                     </li>

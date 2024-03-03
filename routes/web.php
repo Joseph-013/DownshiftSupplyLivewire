@@ -48,7 +48,12 @@ Route::middleware(['auth', 'verified'])
         Route::get('/products/search', [ProductController::class, 'searchProducts'])->name('products.search');
         Route::view('/orders', 'livewire/main/user/orders')->name('orders');
         Route::view('/faqs', 'livewire/main/user/faqs')->name('faqs');
-        Route::view('/cart', 'livewire/main/user/cart')->name('cart');
+        Route::get('/cart', function () {
+            $user = auth()->user();
+            $cartNotEmpty = $user->carts->isNotEmpty();
+
+            return view('livewire.main.user.cart', compact('cartNotEmpty'));
+        })->name('cart');
         Route::view('/checkout', 'livewire/main/user/checkout')->name('checkout');
         Route::post('/checkout', [CheckoutController::class, 'submit'])->name('checkout.submit');
     });

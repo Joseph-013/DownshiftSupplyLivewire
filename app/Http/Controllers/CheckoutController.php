@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Detail;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,20 +15,6 @@ class CheckoutController extends Controller
 
     public function submit(Request $request)
     {
-        // dd($request->input('firstName'), $request->input('lastName'),
-        // $request->input('contact'), $request->input('preferredService'), 
-        // $request->input('paymentOption'), $request->input('proofOfPayment'),
-        // $request->input('shippingAddress'));
-        // $validatedData = $request->validate([
-        //     'firstName' => 'required|string|max:255',
-        //     'lastName' => 'required|string|max:255',
-        //     'contact' => 'required|string|max:11',
-        //     'preferredService' => 'required|in:Pickup,Delivery',
-        //     'paymentOption' => 'required|string|max:255',
-        //     'proofOfPayment' => 'required|file|mimes:jpg,png|max:4096',
-        //     'shippingAddress' => 'required|string|max:255',
-        // ]);
-
         $proofOfPayment = $request->file('proofOfPayment');
         $proofFileName = time() . 'Proof.' . $proofOfPayment->extension();
         $proofOfPayment->storeAs('public/assets', $proofFileName);
@@ -46,5 +34,22 @@ class CheckoutController extends Controller
         $transaction->proofOfPayment = $proofFileName;
         
         $transaction->save();
+
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        $grandTotal = 0;
+        foreach ($cartItems as $item) {
+            $detail = new Detail();
+            $detail->transaction_id = $transaction->id;
+            $detail->product_id = $item->product_id;
+            $detail->quantity = $item->quantity;
+            $detail->subtotal = $item->product->price * $item->quantity;
+            $detail->save();
+            $grandTotal += $detail->subtotal;
+        }
+
+        $transaction->grandTotal = $grandTotal;
+        $transaction->save();
+
+        Cart::where('user_id', Auth::id())->delete();
     }
 }

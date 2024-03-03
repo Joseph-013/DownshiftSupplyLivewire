@@ -7,11 +7,17 @@ use App\Models\Detail;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CheckoutController extends Controller
 {
     use WithFileUploads;
+
+    public function index()
+    {
+        return view('livewire.main.user.checkout');
+    }
 
     public function submit(Request $request)
     {
@@ -51,5 +57,7 @@ class CheckoutController extends Controller
         $transaction->save();
 
         Cart::where('user_id', Auth::id())->delete();
+
+        return Redirect::route('user.products');
     }
 }

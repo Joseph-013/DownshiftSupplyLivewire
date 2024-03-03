@@ -51,7 +51,7 @@
                                         </div>
                                     </li>
                                     <li class="w-3/4 text-left">
-                                        <input name="contact" class="w-full h-10 text-xs" type="text" placeholder="Contact Number" maxlength="11" required>
+                                        <input name="contact" class="w-full h-10 text-xs" type="number" placeholder="Contact Number" maxlength="11" required>
                                     </li>
                                 </ul>
                                 <div class="flex flex-row w-full mb-3 gap-2 px-3">
@@ -212,14 +212,7 @@
 
                                 <livewire:main.user.livewire.user-checkout-total />
 
-                                <div class="w-auto mt-3 flex px-5 ml-20 flex-row gap-10">
-                                    <div class="w-2/5"></div> <!-- Added 'justify-end' class -->
-                                    <div class="w-3/5 flex justify-end ml-20">
-                                        <button type="submit" class="h-10 w-20 mr-[-1rem] px-20 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing mb-3">
-                                            Complete Transaction
-                                        </button>
-                                    </div>
-                                </div>
+                                <livewire:main.user.livewire.complete-transaction />
 
 
 

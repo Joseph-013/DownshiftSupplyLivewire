@@ -51,7 +51,10 @@
                                         </div>
                                     </li>
                                     <li class="w-3/4 text-left">
-                                        <input name="contact" class="w-full h-10 text-xs" type="number" placeholder="Contact Number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" required>
+                                        <input name="contact" class="w-full h-10 text-xs" type="text" placeholder="Contact Number" 
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);" 
+                                            maxlength="11" pattern="[0-9]*" 
+                                            title="Please enter only positive integers with a maximum length of 11 characters" required>
                                     </li>
                                 </ul>
                                 <div class="flex flex-row w-full mb-3 gap-2 px-3">

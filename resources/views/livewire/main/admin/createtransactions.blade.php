@@ -30,12 +30,12 @@
                                 <ul class="flex flex-row w-full">
                                     <li class="w-1/2 pr-2 text-left text-sm">
                                         <label class="w-full h-10 flex items-center font-semibold">First Name:</label>
-                                        <input name="firstName" class="w-full h-10 flex items-center" type="text">
+                                        <input name="firstName" class="w-full h-10 flex items-center" type="text" required>
                                     </li>
 
                                     <li class="w-1/2 pl-2 text-left text-sm">
                                         <label class="w-full h-10 flex items-center font-semibold">Last Name:</label>
-                                        <input name="lastName" class="w-full h-10 flex items-center" type="text">
+                                        <input name="lastName" class="w-full h-10 flex items-center" type="text" required>
                                     </li>
                                 </ul>
                             </div>
@@ -43,7 +43,10 @@
                                 <ul class="flex flex-row w-full">
                                     <li class="w-1/2 pr-2 text-left text-sm">
                                         <label class="w-full h-10 flex items-center font-semibold">Contact #:</label>
-                                        <input name="contact" class="w-full h-10 flex items-center" type="text">
+                                        <input name="contact" class="w-full h-10 text-xs" type="text" placeholder="Contact Number" 
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);" 
+                                            maxlength="11" pattern="[0-9]*" 
+                                            title="Please enter only positive integers with a maximum length of 11 characters" required>
                                     </li>
                                 </ul>
                             </div>

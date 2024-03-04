@@ -123,8 +123,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
-                                                {{ $detail->products->price }}</li>
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱ {{ number_format($detail->products->price, 2) }}</li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
                                                 <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}">
                                             </li>
@@ -228,9 +227,11 @@
                 subtotalElements.forEach(subtotalElement => {
                     const listItem = subtotalElement.closest('.product-item');
                     const quantity = parseInt(listItem.querySelector('.quantity').value);
-                    const price = parseFloat(listItem.querySelector('.price').textContent.trim().replace('₱', ''));
+                    const priceText = listItem.querySelector('.price').textContent.trim().replace('₱', '').replace(/,/g, '').trim();
+                    const priceValue = parseFloat(priceText);
+                    const price = isNaN(priceValue) ? 0 : priceValue;
                     const subtotal = price * quantity;
-                    subtotalElement.textContent = '₱ ' + subtotal.toFixed(2);
+                    subtotalElement.textContent = '₱ ' + subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                     subtotalElement.setAttribute('data-subtotal', subtotal.toFixed(2));
                 });
 
@@ -239,8 +240,10 @@
                     grandTotal += parseFloat(subtotalElement.getAttribute('data-subtotal'));
                 });
 
-                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toFixed(2);
+                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
+
+
 
             Livewire.on('addedItem', (data) => {
                 const productId = parseInt(data[0]);
@@ -251,12 +254,12 @@
                     const quantityElement = existingProductItem.querySelector('.quantity');
                     const currentQuantity = parseInt(quantityElement.value);
 
-                    quantityElement.value = currentQuantity + quantity;
+                    quantityElement.value = currentQuantity + quantity; 
 
                     const priceElement = existingProductItem.querySelector('.price');
                     const priceText = priceElement.textContent.trim();
-                    const priceValue = parseFloat(priceText.replace('₱', '').trim());
-                    const price = isNaN(priceValue) ? 0 : priceValue;
+                    const priceValue = parseFloat(priceText.replace('₱', '').replace(/,/g, '').trim());
+                    const price = isNaN(priceValue) ? 0 : priceValue;   
 
                     const subtotalElement = existingProductItem.querySelector('.subtotal');
                     const subtotalText = subtotalElement.textContent.trim();
@@ -316,7 +319,8 @@
                                                 </div>
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
-                                                ${productPrice.toFixed(2)}</li>
+                                                ${productPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                            </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
                                                 <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}">
                                             </li>

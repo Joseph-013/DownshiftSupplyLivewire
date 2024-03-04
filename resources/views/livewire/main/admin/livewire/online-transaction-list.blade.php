@@ -52,7 +52,7 @@
                             @break
                         @endswitch
                     </li>
-                    <li class="w-3/12 text-center text-xs">{{ $transaction->grandTotal }}</li>
+                    <li class="w-3/12 text-center text-xs">{{ number_format($transaction->grandTotal, 2) }}</li>
                 </ul>
             </label>
         </li>

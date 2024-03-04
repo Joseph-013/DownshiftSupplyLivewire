@@ -51,7 +51,7 @@
                                         </div>
                                     </li>
                                     <li class="w-3/4 text-left">
-                                        <input name="contact" class="w-full h-10 text-xs" type="number" placeholder="Contact Number" maxlength="11" required>
+                                        <input name="contact" class="w-full h-10 text-xs" type="number" placeholder="Contact Number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" required>
                                     </li>
                                 </ul>
                                 <div class="flex flex-row w-full mb-3 gap-2 px-3">

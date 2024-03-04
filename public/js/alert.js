@@ -4,6 +4,9 @@ document.addEventListener('livewire:init', () => {
     Livewire.on('alertCartAdd', (event) => {
         revealAlert("Added to Cart");
     });
+    Livewire.on('alertCartExists', (event) => {
+        revealAlert("Product already exists in your cart");
+    });
 });
 
 function revealAlert(message) {

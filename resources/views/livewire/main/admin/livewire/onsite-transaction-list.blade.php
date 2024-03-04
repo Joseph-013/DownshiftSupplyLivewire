@@ -13,7 +13,7 @@
                     <li class="w-3/12 text-center text-sm">{{ $transaction->id }}</li>
                     <li class="w-3/12 text-center text-sm">{{ $transaction->purchaseDate }}</li>
                     <li class="w-3/12 text-center text-sm">{{ $transaction->firstName }}  {{ $transaction->lastName}}</li>
-                    <li class="w-3/12 text-center text-sm">{{ $transaction->grandTotal }}</li>
+                    <li class="w-3/12 text-center text-sm">₱ {{ number_format($transaction->grandTotal, 2) }}</li>
                 </ul>
             </label>
         </li>

@@ -6,6 +6,7 @@ use App\Models\Detail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -86,6 +87,13 @@ class AdminController extends Controller
                     }
                 }
             }
+
+            $total = Detail::where('transaction_id', $transaction->id)
+                ->join('products', 'details.product_id', '=', 'products.id')
+                ->whereIn('details.product_id', $productList)
+                ->sum(DB::raw('quantity * price'));
+
+            $transaction->update(['grandTotal' => $total]);
         }
     
         return redirect()->back();

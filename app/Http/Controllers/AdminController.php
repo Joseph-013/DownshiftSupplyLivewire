@@ -61,27 +61,29 @@ class AdminController extends Controller
                 ->delete();
         
             foreach ($validatedData['productList'] as $index => $productId) {
-                $detail = Detail::where('transaction_id', $transaction->id)
-                                ->where('product_id', $productId)
-                                ->first();
+                if (isset($request->input('quantity')[$index])) {
+                    $quantity = $request->input('quantity')[$index];
             
-                $quantity = $request->input('quantity')[$index];
-    
-                $product = Product::findOrFail($productId);
-                $price = $product->price;
-    
-                $subtotal = $quantity * $price;
-                        
-                if ($detail) {
-                    $detail->update(['quantity' => $quantity]);
-                    $detail->update(['subtotal' => $subtotal]);
-                } else {
-                    Detail::create([
-                        'transaction_id' => $transaction->id,
-                        'product_id' => $productId,
-                        'quantity' => $quantity,
-                        'subtotal' => $subtotal
-                    ]);
+                    $detail = Detail::where('transaction_id', $transaction->id)
+                        ->where('product_id', $productId)
+                        ->first();
+            
+                    $product = Product::findOrFail($productId);
+                    $price = $product->price;
+            
+                    $subtotal = $quantity * $price;
+            
+                    if ($detail) {
+                        $detail->update(['quantity' => $quantity]);
+                        $detail->update(['subtotal' => $subtotal]);
+                    } else {
+                        Detail::create([
+                            'transaction_id' => $transaction->id,
+                            'product_id' => $productId,
+                            'quantity' => $quantity,
+                            'subtotal' => $subtotal
+                        ]);
+                    }
                 }
             }
         }

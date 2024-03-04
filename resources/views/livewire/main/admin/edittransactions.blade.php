@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="w-full mt-5 flex justify-center">
-                                <button type="submit"
+                                <button type="submit" id="save-changes-button"
                                     class="h-10 w-60  items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
                                     Save Changes
                                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -125,7 +125,7 @@
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱ {{ number_format($detail->products->price, 2) }}</li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
-                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}">
+                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}" data-product-id="{{ $detail->products->id }}">
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="{{ $subtotal }}">₱
                                                 {{ number_format($subtotal, 2) }}</li>
@@ -180,18 +180,6 @@
                 }
             });
 
-            document.addEventListener('click', (event) => {
-                const deleteButton = event.target.closest('.delete-button');
-                if (deleteButton) {
-                    event.preventDefault();
-                    const listItem = deleteButton.closest('.product-item');
-                    if (listItem) {
-                        listItem.remove();
-                        updateTotal();
-                    }   
-                }
-            });
-
             document.addEventListener('submit', (event) => {
                 const quantityInputs = document.querySelectorAll('.quantity');
                     for (const quantityInput of quantityInputs) {
@@ -208,6 +196,10 @@
                 if (quantityInput) {
                     updateSubtotalAndTotal();
                 }
+                const listItem = quantityInput.closest('.product-item');
+                const productId = listItem.getAttribute('data-product-id');
+                const hiddenQuantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                hiddenQuantityInput.setAttribute('value', `${quantityInput.value}`);
             });
 
             document.addEventListener('click', (event) => {
@@ -217,8 +209,21 @@
                     const listItem = deleteButton.closest('.product-item');
                     if (listItem) {
                         listItem.remove();
-                        updateSubtotalAndTotal();
-                    }   
+                        const productId = listItem.getAttribute('data-product-id');
+                        const hiddenProductInput = document.querySelector(`input[name="productList[]"][value="${productId}"]`);
+                        const hiddenQuantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                        if (hiddenProductInput) {
+                            hiddenProductInput.remove();
+                        }
+                        if (hiddenQuantityInput) {
+                            hiddenQuantityInput.remove();
+                        }
+                        const quantityInputs = document.querySelectorAll(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                        quantityInputs.forEach((input, index) => {
+                            input.setAttribute('name', `quantity[${index}]`);
+                        });
+                    }
+                updateSubtotalAndTotal();
                 }
             });
 
@@ -254,7 +259,10 @@
                     const quantityElement = existingProductItem.querySelector('.quantity');
                     const currentQuantity = parseInt(quantityElement.value);
 
-                    quantityElement.value = currentQuantity + quantity; 
+                    quantityElement.value = currentQuantity + quantity;
+                    
+                    const quantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                    quantityInput.setAttribute('value', `${currentQuantity + quantity}`);
 
                     const priceElement = existingProductItem.querySelector('.price');
                     const priceText = priceElement.textContent.trim();
@@ -284,6 +292,7 @@
                                 quantityInput.setAttribute('type', 'hidden');
                                 quantityInput.setAttribute('name', 'quantity[]');
                                 quantityInput.setAttribute('value', `${quantity}`);
+                                quantityInput.setAttribute('data-product-id', `${productId}`);
                                 form.appendChild(quantityInput);
 
                                 const product = data.product;
@@ -299,7 +308,7 @@
 
                                 newProductItem.innerHTML = `
                                     {{-- Product Details --}}
-                                    <input hidden id="productId${productId}"
+                                    <input hidden id="${productId}"
                                         name="productList[]" value="${productId}" checked>
                                     <label
                                         class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
@@ -322,7 +331,7 @@
                                                 ${productPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
-                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}">
+                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}" data-product-id="${productId}">
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="${subtotal}">₱
                                                 ${subtotal.toFixed(2)}</li>

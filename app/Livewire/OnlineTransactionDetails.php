@@ -39,6 +39,7 @@ class OnlineTransactionDetails extends Component
         $this->trackingNumber = $this->selectedTransaction->trackingNumber;
         $this->shippingAddress = $this->selectedTransaction->shippingAddress;
         $this->status = $this->selectedTransaction->status;
+        $this->dispatch('loadMap');
     }
 
     public function updateTransaction()

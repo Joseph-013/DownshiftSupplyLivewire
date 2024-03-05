@@ -53,9 +53,10 @@
                 <div class="text-left text-xs font-semibold px-2">
                     Address
                 </div>
-                <div>
+                {{-- <div>
                     <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="9" placeholder="Papalitan ng maps"></textarea>
-                </div>
+                </div> --}}
+                <div id="map" class="w-full h-75 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"></div>
                 <div>
                     <textarea wire:model="shippingAddress" class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 text-xs" rows="3" placeholder="Address">{{ $selectedTransaction->shippingAddress }}</textarea>
                 </div>
@@ -64,7 +65,7 @@
                 <div class="text-left text-xs font-semibold px-2">
                     Proof of Payment
                 </div>
-                <div id="imageDiv" class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" style="height: 32vh;" onclick="showOverlay()">
+                <div id="imageDiv" class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" style="height: 40vh;" onclick="showOverlay()">
                     <img id="image" src="{{ filter_var($selectedTransaction->proofOfPayment, FILTER_VALIDATE_URL) ? $selectedTransaction->proofOfPayment : asset('storage/assets/' . $selectedTransaction->proofOfPayment) }}">
                 </div>
             </div>
@@ -135,7 +136,9 @@
         </button>
     </div>
     @endif
-    <script>
+</div>
+@livewireScripts
+<script>
     function showOverlay() {
         var imageUrl = document.getElementById('image').src;
 
@@ -170,5 +173,24 @@
             overlay.parentNode.removeChild(overlay);
         }
     }
-    </script>
-</div>
+
+    Livewire.on('loadMap', () => {
+        initMap();
+    });
+
+    let map;
+
+    async function initMap() {
+        const { Map } = await google.maps.importLibrary("maps");
+
+        map = new Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+            disableDefaultUI: true, // Disables the default UI components
+        mapTypeControl: true, // Enables the map type control
+        mapTypeControlOptions: {
+            mapTypeIds: ["roadmap", "satellite"], // Enables only roadmap and satellite views
+        },
+        });
+    }
+</script>

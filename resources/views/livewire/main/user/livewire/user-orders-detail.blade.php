@@ -41,58 +41,51 @@
                 Particulars:
             </div>
 
+            <hr class="my-1">
+
             <div class="px-3">
-                <ul class="w-full flex flex-col items-center">
-                    {{-- List Header --}}
-                    <div class="w-full h-full flex flex-col">
-                        <div class="w-full flex-row px-5">
-                            <ul class="flex flex-row w-full mt-3 items-center">
-                                <li class="w-4/12 text-center text-xs font-semibold">Item</li>
-                                <li class="w-3/12 text-center text-xs font-semibold">Unit Price&nbsp;(₱)</li>
-                                <li class="w-2/12 text-center text-xs font-semibold">Quantity</li>
-                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal<br />(₱)</li>
-                            </ul>
-                        </div>
-                        <hr class="my-1">
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="w-4/12 text-center text-xs font-semibold">Item</th>
+                <th class="w-3/12 text-center text-xs font-semibold">Unit Price (₱)</th>
+                <th class="w-2/12 text-center text-xs font-semibold">Quantity</th>
+                <th class="w-3/12 text-center text-xs font-semibold">Subtotal (₱)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($orderList)
+                @foreach ($orderList as $order)
+                    <tr>
+                        <td class="w-4/12 text-center text-xs flex items-center justify-center">
+                            <img src="{{ $order->products->image }}" class="w-12 h-12 ml-[-2.5rem] object-cover">
+                            {{ $order->products->name }}
+                        </td>
+                        <td class="w-3/12 text-center text-xs items-center justify-center">
+                            {{ number_format($order->products->price, 2) }}
+                        </td>
+                        <td class="w-2/12 text-center text-xs items-center justify-center">
+                            {{ $order->quantity }}
+                        </td>
+                        <td class="w-3/12 text-center text-xs items-center justify-center">
+                            {{ $order->quantity * $order->products->price }}
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            <tr>
+                <td colspan="3" class="text-right text-xs">
+                    <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
+                    {{ $transactionData ? $transactionData->shippingFee : '--' }}
+                </td>
+                <td class="text-center text-xs">
+                    ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-
-                        {{-- Single unit of Product --}}
-
-                        @if ($orderList)
-                            @foreach ($orderList as $order)
-                                <div class="w-full flex-row px-5 my-2">
-                                    <ul class="flex flex-row w-full">
-                                        <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                            <img src="{{ $order->products->image }}"
-                                                class="w-12 h-12 ml-[-2.5rem] object-cover">
-                                            {{ $order->products->name }}
-                                        </li>
-                                        <li class="w-3/12 text-center text-xs items-center justify-center">
-                                            {{ number_format($order->products->price, 2) }}</li>
-                                        <li class="w-2/12 text-center text-xs items-center justify-center">
-                                            {{ $order->quantity }}
-                                        </li>
-                                        <li class="w-3/12 text-center text-xs items-center justify-center">
-                                            {{ $order->quantity * $order->products->price }}</li>
-                                    </ul>
-                                </div>
-                            @endforeach
-                        @endif
-
-
-                        <div class="w-full flex-row px-5 my-2">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-full text-right text-xs mr-5">
-                                    <span class="font-semibold mr-5">Shipping
-                                        Fee:&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}</span>
-                                    ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </ul>
-            </div>
 
         </div>
         <hr class="my-1">

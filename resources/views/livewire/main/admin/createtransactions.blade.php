@@ -127,18 +127,6 @@
                 }
             });
 
-            document.addEventListener('click', (event) => {
-                const deleteButton = event.target.closest('.delete-button');
-                if (deleteButton) {
-                    event.preventDefault();
-                    const listItem = deleteButton.closest('.product-item');
-                    if (listItem) {
-                        listItem.remove();
-                        updateTotal();
-                    }   
-                }
-            });
-
             document.addEventListener('submit', (event) => {
                 const quantityInputs = document.querySelectorAll('.quantity');
                     for (const quantityInput of quantityInputs) {
@@ -155,6 +143,10 @@
                 if (quantityInput) {
                     updateSubtotalAndTotal();
                 }
+                const listItem = quantityInput.closest('.product-item');
+                const productId = listItem.getAttribute('data-product-id');
+                const hiddenQuantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                hiddenQuantityInput.setAttribute('value', `${quantityInput.value}`);
             });
 
             document.addEventListener('click', (event) => {
@@ -164,8 +156,21 @@
                     const listItem = deleteButton.closest('.product-item');
                     if (listItem) {
                         listItem.remove();
-                        updateSubtotalAndTotal();
-                    }   
+                        const productId = listItem.getAttribute('data-product-id');
+                        const hiddenProductInput = document.querySelector(`input[name="productList[]"][value="${productId}"]`);
+                        const hiddenQuantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                        if (hiddenProductInput) {
+                            hiddenProductInput.remove();
+                        }
+                        if (hiddenQuantityInput) {
+                            hiddenQuantityInput.remove();
+                        }
+                        const quantityInputs = document.querySelectorAll(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                        quantityInputs.forEach((input, index) => {
+                            input.setAttribute('name', `quantity[${index}]`);
+                        });
+                    }
+                updateSubtotalAndTotal();
                 }
             });
 
@@ -174,9 +179,11 @@
                 subtotalElements.forEach(subtotalElement => {
                     const listItem = subtotalElement.closest('.product-item');
                     const quantity = parseInt(listItem.querySelector('.quantity').value);
-                    const price = parseFloat(listItem.querySelector('.price').textContent.trim().replace('₱', ''));
+                    const priceText = listItem.querySelector('.price').textContent.trim().replace('₱', '').replace(/,/g, '').trim();
+                    const priceValue = parseFloat(priceText);
+                    const price = isNaN(priceValue) ? 0 : priceValue;
                     const subtotal = price * quantity;
-                    subtotalElement.textContent = '₱ ' + subtotal.toFixed(2);
+                    subtotalElement.textContent = '₱ ' + subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                     subtotalElement.setAttribute('data-subtotal', subtotal.toFixed(2));
                 });
 
@@ -185,8 +192,10 @@
                     grandTotal += parseFloat(subtotalElement.getAttribute('data-subtotal'));
                 });
 
-                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toFixed(2);
+                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
+
+
 
             Livewire.on('addedItem', (data) => {
                 const productId = parseInt(data[0]);
@@ -198,16 +207,19 @@
                     const currentQuantity = parseInt(quantityElement.value);
 
                     quantityElement.value = currentQuantity + quantity;
+                    
+                    const quantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                    quantityInput.setAttribute('value', `${currentQuantity + quantity}`);
 
                     const priceElement = existingProductItem.querySelector('.price');
                     const priceText = priceElement.textContent.trim();
-                    const priceValue = parseFloat(priceText.replace('₱', '').trim());
-                    const price = isNaN(priceValue) ? 0 : priceValue;
+                    const priceValue = parseFloat(priceText.replace('₱', '').replace(/,/g, '').trim());
+                    const price = isNaN(priceValue) ? 0 : priceValue;   
 
                     const subtotalElement = existingProductItem.querySelector('.subtotal');
                     const subtotalText = subtotalElement.textContent.trim();
                     const currentSubtotal = parseFloat(subtotalText.replace('₱', '').trim())
-                    const newSubtotal = price * (currentQuantity + quantity);
+                    const newSubtotal = price * (currentQuantity + quantity); // Update subtotal based on new quantity
                     subtotalElement.textContent = '₱ ' + newSubtotal.toFixed(2);
 
                     updateSubtotalAndTotal();
@@ -227,6 +239,7 @@
                                 quantityInput.setAttribute('type', 'hidden');
                                 quantityInput.setAttribute('name', 'quantity[]');
                                 quantityInput.setAttribute('value', `${quantity}`);
+                                quantityInput.setAttribute('data-product-id', `${productId}`);
                                 form.appendChild(quantityInput);
 
                                 const product = data.product;
@@ -242,7 +255,7 @@
 
                                 newProductItem.innerHTML = `
                                     {{-- Product Details --}}
-                                    <input hidden id="productId${productId}"
+                                    <input hidden id="${productId}"
                                         name="productList[]" value="${productId}" checked>
                                     <label
                                         class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
@@ -262,9 +275,10 @@
                                                 </div>
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱
-                                                ${productPrice.toFixed(2)}</li>
+                                                ${productPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                            </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
-                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}">
+                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="${quantity}" data-product-id="${productId}">
                                             </li>
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="${subtotal}">₱
                                                 ${subtotal.toFixed(2)}</li>

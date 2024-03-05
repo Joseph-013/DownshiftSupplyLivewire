@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -19,6 +21,7 @@ class TransactionFactory extends Factory
     {
         $purchaseType = $this->faker->randomElement(['Onsite', 'Online']);
         $grandTotal = 0;
+        $createdAt = Carbon::createFromTimestamp(rand(Carbon::create(2020, 1, 1)->timestamp, Carbon::create(2024, 12, 31)->timestamp));
 
         // 'order_id' => fake()->randomNumber(3, false),
         // 'product_id' => fake()->randomNumber(3, false),
@@ -27,6 +30,8 @@ class TransactionFactory extends Factory
 
         if ($purchaseType === 'Onsite') {
             return [
+                'created_at' => $createdAt,
+                'updated_at' => $createdAt, // Ensure both created_at and updated_at have the same timestamp
                 'firstName' => fake()->firstName,
                 'lastName' => fake()->lastName,
                 'contact' => fake()->numberBetween(9000000000, 9999999999),
@@ -37,6 +42,8 @@ class TransactionFactory extends Factory
             $products = Product::inRandomOrder()->limit(3)->get();
             $totalPrice = $products->sum('price');
             return [
+                'created_at' => $createdAt,
+                'updated_at' => $createdAt, // Ensure both created_at and updated_at have the same timestamp
                 'firstName' => fake()->firstName,
                 'lastName' => fake()->lastName,
                 'contact' => fake()->numberBetween(900000000, 9999999999),

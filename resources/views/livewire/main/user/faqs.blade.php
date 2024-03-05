@@ -1,7 +1,7 @@
 <x-app-layout>
     {{-- Showing User ORDERS page. --}}
     <div class="w-screen h-full">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col h-full">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col h-full">
 
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
                 <h1 class="me-10 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
@@ -10,7 +10,7 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full mx-3">
+            <div class="flex flex-1 w-full mx-0 md:mx-3">
                 {{-- Right Panel border-2 border-black --}}
                 <div class="w-full h-full text-right flex">
                     <div class="w-full h-full flex flex-col">
@@ -33,7 +33,7 @@
                                     <span class="font-medium mt-1">Where can you find us?</span> <br>
                                     Be directed using this map
                                 </li>
-                                <div class="w-3/4 h-full px-3 border" id="faqs-maps-container">
+                                <div class="w-full md:w-3/4 h-full px-3 border" id="faqs-container">
                                     <div class="w-full h-full px-3 border" id="map"></div>
                                 </div>
                             </ul>
@@ -63,12 +63,13 @@
                 </div>
             </div>
         </div>
-        <script>
+        <script type="text/javascript" src="{{ URL::asset('js/faqMaps.js') }}"></script>
+        {{-- <script>
             async function initMap() {
                 const { Map } = await google.maps.importLibrary("maps");
                 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
                 const map = new Map(document.getElementById("map"), {
-                    center: {lat: 14.645180093180294, lng: 121.1151444089714},
+                    center: {lat: 14.629639825768203, lng: 121.0009090238659},
                     zoom: 14,
                     mapId: "c1568d819b26135",
                 });
@@ -79,7 +80,7 @@
                 });
                 const marker = new AdvancedMarkerElement({
                     map,
-                    position: {lat: 14.645180093180294, lng: 121.1151444089714},
+                    position: {lat: 14.629639825768203, lng: 121.0009090238659},
                     title: "Downshift Supply"
                 });
                 marker.addListener("click", () => {
@@ -91,5 +92,5 @@
             }
 
             initMap();
-        </script>
+        </script> --}}
 </x-app-layout>

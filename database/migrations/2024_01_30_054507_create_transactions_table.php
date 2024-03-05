@@ -33,16 +33,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->bigInteger('contact')->unsigned();
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable()->nullable();
+            $table->bigInteger('contact')->unsigned()->nullable();
             $table->timestamp('purchaseDate')->default(now());
-            $table->enum('purchaseType', ['Onsite', 'Online']);
+            $table->enum('purchaseType', ['Onsite', 'Online'])->nullable();
             $table->foreignId('user_id')->nullable(); //nullable
             $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable(); //nullable
             $table->string('paymentOption')->nullable(); //nullable
             $table->text('proofOfPayment')->nullable(); //nullable
-            $table->enum('status', ['Complete', 'On Hold', 'Processing', 'In Transit', 'Ready for Pickup', 'Returned', 'Cancelled'])->nullable(); //nullable
+            $table->enum('status', ['Processing', 'On Hold', 'Cancelled', 'Returned', 'In Transit', 'Ready for Pickup', 'Complete'])->nullable(); //nullable
             $table->string('shippingAddress')->nullable(); //nullable
             $table->string('courierUsed')->nullable(); //nullable
             $table->decimal('shippingFee', 6, 2)->unsigned()->nullable(); //nullable

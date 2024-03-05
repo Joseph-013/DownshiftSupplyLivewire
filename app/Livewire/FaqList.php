@@ -8,26 +8,14 @@ use Livewire\Attributes\On;
 
 class FaqList extends Component
 {
-    public $selectedFaqId;
+    public $selectedFaqId = null;
 
-    // protected $listeners = ['faqDeleted', 'faqCreated'];
-
+    #[On('renderFaqList')]
     public function render()
     {
+        $this->selectedFaqId = null;
         $faqs = FAQ::all();
         return view('livewire.main.admin.livewire.faq-list', compact('faqs'));
-    }
-
-    #[On('faqDeleted')]
-    public function faqDeleted()
-    {
-        $this->render();
-    }
-
-    #[On('faqCreated')]
-    public function faqCreated()
-    {
-        $this->render();
     }
 
     public function selectFaq($faqId)

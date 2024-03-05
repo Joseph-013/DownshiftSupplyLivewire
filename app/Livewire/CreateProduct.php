@@ -97,6 +97,11 @@ class CreateProduct extends Component
         //     $this->dispatch('productCreated', $newProduct->id);
         // }
 
+        //     public $name;
+        // public $price;
+        // public $stockquantity;
+        // public $criticallevel;
+        // public $image;
 
         if ($this->image && $this->name && $this->price && $this->stockquantity && $this->criticallevel) {
             $imageName = time() . '.' . $this->image->extension();
@@ -109,9 +114,15 @@ class CreateProduct extends Component
                 'criticallevel' => $this->criticallevel,
                 'image' => $imageName,
             ]);
-
+            $this->name = null;
+            $this->price = null;
+            $this->stockquantity = null;
+            $this->criticallevel = null;
+            $this->image = null;
             $this->reset(['name', 'price', 'stockquantity', 'criticallevel', 'image']);
+            $this->render();
             $this->dispatch('productCreated');
+            $this->dispatch('clearProductDetails');
         }
     }
 

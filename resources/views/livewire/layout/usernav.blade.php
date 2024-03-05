@@ -1,4 +1,5 @@
-<div class="flex justify-end ml-20 gap-10 pl-20"> <!-- Adjusted alignment -->
+{{-- <div class="flex justify-end ml-10 md:ml-20 lg:ml-40 gap-10"> <!-- Adjusted alignment --> --}}
+<div class="flex justify-end gap-10"> <!-- Adjusted alignment -->
     <div class="hidden space-x-8 sm:-my-px sm:ms-5 lg:ms-8 md:flex">
         <x-nav-link :href="auth()->check() ? route('user.products') : route('guest.products')" :active="request()->routeIs('user.products')" wire:navigate>
             Products

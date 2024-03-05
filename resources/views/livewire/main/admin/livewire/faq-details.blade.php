@@ -2,8 +2,9 @@
     {{-- Top --}}
     @if ($selectedFaq)
         <form wire:submit.prevent class="w-full h-full">
-            @if(session()->has('success-message'))
-                <div wire:poll.3s="hideSuccessMessage" class="absolute top-20 right-5 bg-green-500 text-white p-2 rounded flash-message">
+            @if (session()->has('success-message'))
+                <div wire:poll.3s="hideSuccessMessage"
+                    class="absolute top-20 right-5 bg-green-500 text-white p-2 rounded flash-message">
                     {{ session('success-message') }}
                 </div>
             @endif
@@ -38,7 +39,7 @@
                     </button>
                     <button wire:click="updateFaq"
                         class="h-10 flex-1 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
-                        Save
+                        Update
                         <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
                             <path d="M11 2H9v3h2z" />
@@ -53,4 +54,4 @@
         <livewire:create-faq />
     @endif
 </div>
-@livewireScripts
+{{-- @livewireScripts --}}

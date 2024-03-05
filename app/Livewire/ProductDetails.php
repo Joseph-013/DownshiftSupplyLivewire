@@ -74,11 +74,19 @@ class ProductDetails extends Component
             $this->selectedProduct->save();
             $this->dispatch('productCreated');
         }
+        $this->clearProductDetails();
     }
 
     public function updatedNewImage()
     {
         $this->newlyUploadedImage = true;
+    }
+
+    #[On('clearProductDetails')]
+    public function clearProductDetails()
+    {
+        $this->selectedProduct = null;
+        $this->render();
     }
 
     public function render()

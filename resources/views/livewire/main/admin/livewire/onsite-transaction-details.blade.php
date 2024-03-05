@@ -44,12 +44,12 @@
                                         class="w-2/12 text-center text-xs items-center justify-center ">
                                         {{ $detail->products->name }}
                                     </li>
-                                    <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                        {{ $detail->products->price }}</li>
+                                    <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ number_format($detail->products->price, 2) }}</li>
+
                                     <li class="w-2/12 text-center text-xs items-center justify-center">
                                         {{ $detail->quantity }}</li>
-                                    <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                        {{ $subtotal }}</li>
+                                    <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ number_format($subtotal, 2) }}</li>
+
                                 </ul>
                             </div>
                             @endif
@@ -60,7 +60,7 @@
             </div>
             <hr class="mt-5 mb-2">
             <div class="w-full text-xs text-right pr-5 mx-[-3rem]"><span class="font-semibold">Total:
-                </span>₱ {{ $grandTotal }} 
+                </span>₱ {{ number_format($grandTotal, 2) }}
             </div>
             <div class="w-full mt-4 flex justify-end">
                                 <a href="{{ route('edittransactions', ['transactionId' => $selectedTransaction->id]) }}"

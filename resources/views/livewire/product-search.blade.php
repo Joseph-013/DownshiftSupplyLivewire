@@ -99,6 +99,10 @@
                 productId: productId, 
                 quantity: quantity
             });
+            document.getElementById('searchInput').value = '';
+            document.getElementById('displayName').textContent = '';
+            document.getElementById('displayImage').src = '';
+            selectedProductId = null;
         }
     }
 

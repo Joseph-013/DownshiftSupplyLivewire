@@ -98,9 +98,9 @@
                                     <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-12 h-12 ml-[-2.5rem]">
                                     {{ $detail->products->name }}
                                 </li>
-                                <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ $detail->products->price }}</li>
+                                <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ number_format($detail->products->price, 2) }}</li>
                                 <li class="w-2/12 text-center text-xs items-center justify-center">{{ $detail->quantity }}</li>
-                                <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ $subtotal }}</li>
+                                <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ number_format($subtotal, 2) }}</li>
                             </ul>
                         </div>
                     @endif
@@ -122,7 +122,7 @@
 
         <div class="w-2/2 flex ml-20">
             <span class="font-semibold">Total: </span>
-            <span>₱ {{ $grandTotal }}</span>
+            <span>&nbsp;₱ {{ number_format($grandTotal, 2) }}</span>
         </div>
     </div>
 

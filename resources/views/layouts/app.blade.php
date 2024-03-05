@@ -23,13 +23,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9bEl5wGZ3rTxi_4clyA4l1-724wpNmY4=&loading=async&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9bEl5wGZ3rTxi_4clyA4l1-724wpNmY4&loading=async&libraries=places&callback=initMap">
     </script>
 </head>
 
 <body class="font-montserrat antialiased">
     {{-- <div class="min-h-screen bg-gray-100"> --}}
     <div class="flex flex-col h-screen">
+        <div id="alertDiv"
+            class="notificationTemp default-shadow rounded-lg text-center font-bold animate-slide-out px-4 pt-1 pb-3 border">
+            <div class="timer w-full h-1 mt-1"></div>
+            <div class="mt-1 font-normal" id="alertMessageDiv">
+            </div>
+        </div>
+        <script type="text/javascript" src="{{ URL::asset('js/alert.js') }}"></script>
+
         <livewire:layout.navigation />
 
         <!-- Page Content -->
@@ -42,7 +50,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    @livewireScripts
+    {{-- @livewireScripts --}}
+
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use App\Models\Detail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -61,29 +62,38 @@ class AdminController extends Controller
                 ->delete();
         
             foreach ($validatedData['productList'] as $index => $productId) {
-                $detail = Detail::where('transaction_id', $transaction->id)
-                                ->where('product_id', $productId)
-                                ->first();
+                if (isset($request->input('quantity')[$index])) {
+                    $quantity = $request->input('quantity')[$index];
             
-                $quantity = $request->input('quantity')[$index];
-    
-                $product = Product::findOrFail($productId);
-                $price = $product->price;
-    
-                $subtotal = $quantity * $price;
-                        
-                if ($detail) {
-                    $detail->update(['quantity' => $quantity]);
-                    $detail->update(['subtotal' => $subtotal]);
-                } else {
-                    Detail::create([
-                        'transaction_id' => $transaction->id,
-                        'product_id' => $productId,
-                        'quantity' => $quantity,
-                        'subtotal' => $subtotal
-                    ]);
+                    $detail = Detail::where('transaction_id', $transaction->id)
+                        ->where('product_id', $productId)
+                        ->first();
+            
+                    $product = Product::findOrFail($productId);
+                    $price = $product->price;
+            
+                    $subtotal = $quantity * $price;
+            
+                    if ($detail) {
+                        $detail->update(['quantity' => $quantity]);
+                        $detail->update(['subtotal' => $subtotal]);
+                    } else {
+                        Detail::create([
+                            'transaction_id' => $transaction->id,
+                            'product_id' => $productId,
+                            'quantity' => $quantity,
+                            'subtotal' => $subtotal
+                        ]);
+                    }
                 }
             }
+
+            $total = Detail::where('transaction_id', $transaction->id)
+                ->join('products', 'details.product_id', '=', 'products.id')
+                ->whereIn('details.product_id', $productList)
+                ->sum(DB::raw('quantity * price'));
+
+            $transaction->update(['grandTotal' => $total]);
         }
     
         return redirect()->back();
@@ -102,15 +112,20 @@ class AdminController extends Controller
         $transaction->firstName = $validatedData['firstName'];
         $transaction->lastName = $validatedData['lastName'];
         $transaction->contact = $validatedData['contact'];
+        $transaction->purchaseType = "Onsite";
         $transaction->save();
 
         $productList = $request->input('productList', []);
+        $grandTotal = 0;
+
         if (!empty($productList)) {
             foreach ($validatedData['productList'] as $index => $productId) {
                 $quantity = $request->input('quantity')[$index];
                 $product = Product::findOrFail($productId);
                 $price = $product->price;
                 $subtotal = $quantity * $price;
+                
+                $grandTotal += $subtotal;
 
                 $detail = new Detail();
                 $detail->transaction_id = $transaction->id;
@@ -120,6 +135,8 @@ class AdminController extends Controller
                 $detail->save();
             }
         }
+        $transaction->grandTotal = $grandTotal;
+        $transaction->save();
 
         return redirect()->back();
     }

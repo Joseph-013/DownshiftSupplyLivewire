@@ -66,7 +66,6 @@
                             </ul>
                         </div>
                         <hr class="my-1">
-
                         {{-- Products List  --}}
                         <livewire:product-list />
                     </div>
@@ -76,5 +75,5 @@
 
         </div>
     </div>
-    @livewireScripts
+    {{-- @livewireScripts --}}
 </x-app-layout>

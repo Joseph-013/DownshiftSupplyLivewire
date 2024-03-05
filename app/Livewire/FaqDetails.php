@@ -27,8 +27,11 @@ class FaqDetails extends Component
         if ($this->selectedFaq) {
             $this->selectedFaq->delete();
             $this->selectedFaq = null;
-            session()->flash('success-message', 'FAQ entry deleted successfully.');
-            $this->dispatch('faqDeleted');
+            // session()->flash('success-message', 'FAQ entry deleted successfully.');
+            // $this->dispatch('faqDeleted');
+            $this->selectedFaq = null;
+            $this->dispatch('renderFaqList');
+            $this->render();
         }
     }
 
@@ -38,17 +41,14 @@ class FaqDetails extends Component
             $this->selectedFaq->question = $this->newQuestion;
             $this->selectedFaq->answer = $this->newAnswer;
             $this->selectedFaq->save();
-            session()->flash('success-message', 'FAQ entry updated successfully.');
-            $this->dispatch('faqCreated');
+            // session()->flash('success-message', 'FAQ entry updated successfully.');
+            $this->selectedFaq = null;
+            $this->dispatch('renderFaqList');
+            $this->render();
         }
     }
 
-    // #[On('hopFaqListRender')]
-    // public function hopFaqListRender()
-    // {
-    //     $this->dispatch('faqCreated')->to(FaqList::class);
-    // }
-
+    #[On('renderFaqDetails')]
     public function render()
     {
         if (!$this->selectedFaq) {

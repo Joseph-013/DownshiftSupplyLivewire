@@ -44,10 +44,6 @@ class OnlineTransactionDetails extends Component
     public function updateTransaction()
     {
         $this->validate([
-            'courierUsed' => 'required',
-            'shippingFee' => 'required|numeric',
-            'trackingNumber' => 'required',
-            'shippingAddress' => 'required',
             'status' => 'required',
         ]);
 

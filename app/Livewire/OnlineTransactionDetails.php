@@ -16,7 +16,7 @@ class OnlineTransactionDetails extends Component
     public $status;
     public $statusOptions;
 
-    protected $listeners = ['transactionSelected'];
+    protected $listeners = ['transactionSelected', 'updateShippingAddress'];
 
     public function mount()
     {
@@ -39,7 +39,7 @@ class OnlineTransactionDetails extends Component
         $this->trackingNumber = $this->selectedTransaction->trackingNumber;
         $this->shippingAddress = $this->selectedTransaction->shippingAddress;
         $this->status = $this->selectedTransaction->status;
-        $this->dispatch('loadMap');
+        $this->dispatch('loadMap', $this->shippingAddress);
     }
 
     public function updateTransaction()
@@ -56,10 +56,17 @@ class OnlineTransactionDetails extends Component
             'status' => $this->status,
         ]);
         $this->dispatch('transactionUpdated');
+        $this->dispatch('loadMap', $this->shippingAddress);
     }
 
     public function render()
     {
         return view('livewire.main.admin.livewire.online-transaction-details');
+    }
+
+    public function updateShippingAddress($address)
+    {
+        $this->shippingAddress = $address;
+        $this->dispatch('loadMap', $this->shippingAddress);
     }
 }

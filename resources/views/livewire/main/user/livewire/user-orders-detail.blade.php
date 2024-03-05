@@ -46,11 +46,11 @@
                     {{-- List Header --}}
                     <div class="w-full h-full flex flex-col">
                         <div class="w-full flex-row px-5">
-                            <ul class="flex flex-row w-full mt-3">
+                            <ul class="flex flex-row w-full mt-3 items-center">
                                 <li class="w-4/12 text-center text-xs font-semibold">Item</li>
                                 <li class="w-3/12 text-center text-xs font-semibold">Unit Price&nbsp;(₱)</li>
                                 <li class="w-2/12 text-center text-xs font-semibold">Quantity</li>
-                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal&nbsp;(₱)</li>
+                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal<br />(₱)</li>
                             </ul>
                         </div>
                         <hr class="my-1">

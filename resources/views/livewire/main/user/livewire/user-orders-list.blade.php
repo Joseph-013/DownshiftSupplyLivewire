@@ -18,7 +18,7 @@
 
                 @if ($transactionList)
                     @foreach ($transactionList as $transaction)
-                        <li class="w-full flex justify-center select-none px-2">
+                        <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none px-2">
                             {{-- transaction Details --}}
                             <input class="widenWhenSelected" hidden type="radio" id="productId{{ $transaction->id }}"
                                 name="productList">
@@ -44,9 +44,6 @@
 
 
             </ul>
-
         </div>
-
     </div>
-    {{-- Products --}}
 </div>

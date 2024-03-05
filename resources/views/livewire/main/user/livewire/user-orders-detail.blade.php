@@ -73,7 +73,7 @@
                                             {{ $order->quantity }}
                                         </li>
                                         <li class="w-3/12 text-center text-xs items-center justify-center">
-                                            {{ $order->quantity * $order->products->price }}</li>
+                                            {{ number_format($order->quantity * $order->products->price, 2) }}</li>
                                     </ul>
                                 </div>
                             @endforeach
@@ -84,7 +84,7 @@
                             <ul class="flex flex-row w-full">
                                 <li class="w-full text-right text-xs mr-5">
                                     <span class="font-semibold mr-5">Shipping
-                                        Fee:&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}</span>
+                                        Fee:</span>
                                     ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
                                 </li>
                             </ul>
@@ -98,7 +98,7 @@
         <hr class="my-1">
         <div class="w-full text-right text-xs ml-[-5rem] my-2">
             <span class="font-semibold mr-5">Total: </span>
-            ₱&nbsp;{{ $transactionData ? $transactionData->grandTotal : '--' }}
+            ₱&nbsp;{{ $transactionData ? number_format($transactionData->grandTotal, 2) : '--' }}
         </div>
     </div>
     {{-- </form> --}}

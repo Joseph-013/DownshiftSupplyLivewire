@@ -33,7 +33,7 @@
                                     <span class="font-medium mt-1">Where can you find us?</span> <br>
                                     Be directed using this map
                                 </li>
-                                <div class="w-3/4 h-full px-3 border" id="faqs-container">
+                                <div class="w-3/4 h-full px-3 border" id="faqs-maps-container">
                                     <div class="w-full h-full px-3 border" id="map"></div>
                                 </div>
                             </ul>

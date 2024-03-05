@@ -45,10 +45,14 @@
 }
 
 #faqs-container{
-    height: 10rem !important;
+    height: 9rem !important;
 }
 #faqs-email-container{
     height: 14rem !important;
+}
+
+#faqs-maps-container{
+    height: 12rem !important;
 }
 
 #terms-container{

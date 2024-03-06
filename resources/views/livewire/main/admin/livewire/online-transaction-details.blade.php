@@ -58,7 +58,7 @@
                 </div> --}}
                 <div id="map" class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"></div>
                 <div>
-                    <input id="autocomplete" type="text" wire:model="shippingAddress" class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
+                    <input id="autocomplete" type="text" wire:model.defer="shippingAddress" class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
                 </div>
             </div>
             <div class="w-2/5 text-left text-xs px-2 mx-1">
@@ -176,12 +176,12 @@
 
     let map;
     let marker;
+    let geocoder;
 
     Livewire.on('loadMap', (shippingAddress) => {
         initMap(shippingAddress);
     });
 
-    // instantiate map
     async function initMap(shippingAddress) {
         const { Map } = await google.maps.importLibrary("maps");
 
@@ -192,15 +192,15 @@
             fullscreenControl: true,
         });
 
-        //geocoder for address
-        const geocoder = new google.maps.Geocoder();
+        geocoder = new google.maps.Geocoder();
+
         const autocompleteOptions = {
             types: ['geocode'],
             componentRestrictions: { country: 'PH' } 
         };
+        const autocompleteInput = document.getElementById('autocomplete');
         const autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), autocompleteOptions);
 
-        // autopcomplete on change
         autocomplete.addListener('place_changed', function() {
             const place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -212,36 +212,34 @@
                 marker.setMap(null);
             }
 
-            //set center of map
             map.setCenter(place.geometry.location);
 
-            //set marker
             marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
             });
-            //set value of wire:model="shippingAddress"
+
             Livewire.dispatch('updateShippingAddress', [place.formatted_address]);
+            geocodeAddress(place.formatted_address);
         });
 
-        //geocode address to coordinates
-        geocoder.geocode({ 'address': shippingAddress[0] }, function(results, status) {
-            //success
+        geocodeAddress(shippingAddress[0]);
+    }
+
+    function geocodeAddress(address) {
+        geocoder.geocode({ 'address': address }, function(results, status) {
             if (status === 'OK') {
                 map.setCenter(results[0].geometry.location);
                 marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
-            //fail
+                $(".pac-container").remove();
             } else {
-                map.setCenter({lat: 14.645180093180294, lng: 121.1151444089714});
-                marker = new google.maps.Marker({
-                    map: map,
-                    position: {lat: 14.645180093180294, lng: 121.1151444089714}
-                });
+                console.error('Geocode was not successful for the following reason: ' + status);
             }
         }).catch(console.error);
     }
+
 
 </script>

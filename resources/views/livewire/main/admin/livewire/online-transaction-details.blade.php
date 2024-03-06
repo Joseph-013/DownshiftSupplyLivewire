@@ -157,60 +157,22 @@
         @endif
     </div>
     @livewireScripts
-
     <script>
-        function showOverlay() {
-            var imageUrl = document.getElementById('image').src;
-
-            var overlay = document.createElement('div');
-            overlay.id = 'overlay';
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-            overlay.style.zIndex = '9999';
-            overlay.style.display = 'flex';
-            overlay.style.justifyContent = 'center';
-            overlay.style.alignItems = 'center';
-            overlay.onclick = hideOverlay;
-
-            var overlayImage = document.createElement('img');
-            overlayImage.id = 'overlayImage';
-            overlayImage.src = imageUrl;
-            overlayImage.style.maxWidth = '80%';
-            overlayImage.style.maxHeight = '80%';
-
-            overlay.appendChild(overlayImage);
-
-            document.body.appendChild(overlay);
-        }
-
-        function hideOverlay() {
-            var overlay = document.getElementById('overlay');
-            if (overlay) {
-                overlay.parentNode.removeChild(overlay);
-            }
-        }
-
-        function updateTransactionWithCurrentAddress(transactionId) {
-            var address = document.getElementById('autocomplete' + transactionId).value;
-            @this.set('shippingAddress', address);
-            @this.call('updateTransaction');
-        }
-
-        
         let map;
+        let data;
         let marker;
         let geocoder;
 
         Livewire.on('loadMap', (data) => {
+            console.log('loadMap event triggered:', data);
             initMap(data);
-            console.log(data);
         });
 
         async function initMap(data) {
+            if (!Array.isArray(data) || data.length < 2) {
+                return; 
+            }
+
             const shippingAddress = data[0];
             const transactionId = data[1];
 
@@ -259,5 +221,45 @@
                 }
             }).catch(console.error);
         }
+        
+        function showOverlay() {
+            var imageUrl = document.getElementById('image').src;
 
+            var overlay = document.createElement('div');
+            overlay.id = 'overlay';
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            overlay.style.zIndex = '9999';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.onclick = hideOverlay;
+
+            var overlayImage = document.createElement('img');
+            overlayImage.id = 'overlayImage';
+            overlayImage.src = imageUrl;
+            overlayImage.style.maxWidth = '80%';
+            overlayImage.style.maxHeight = '80%';
+
+            overlay.appendChild(overlayImage);
+
+            document.body.appendChild(overlay);
+        }
+
+        function hideOverlay() {
+            var overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.parentNode.removeChild(overlay);
+            }
+        }
+
+        function updateTransactionWithCurrentAddress(transactionId) {
+            var address = document.getElementById('autocomplete' + transactionId).value;
+            @this.set('shippingAddress', address);
+            @this.call('updateTransaction');
+        }
     </script>

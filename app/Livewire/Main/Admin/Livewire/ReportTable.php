@@ -18,30 +18,30 @@ class ReportTable extends Component
         // $date = '01/01/2020'; // Delete this on deployment
         switch ($format) {
             case 'daily':
-                $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
+                $this->transactions = Transaction::whereBetween('purchaseDate', [$date, Carbon::now()])->orderBy('purchaseDate')->get();
                 break;
             case 'weekly':
-                $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
+                $this->transactions = Transaction::whereBetween('purchaseDate', [$date, Carbon::now()])->orderBy('purchaseDate')->get();
                 foreach ($this->transactions as $transaction) {
-                    $transaction->identifier = $transaction->created_at->format('l');
+                    $transaction->identifier = $transaction->purchaseDate->format('l');
                 }
                 break;
             case 'monthly':
-                $this->transactions = Transaction::whereBetween('created_at', [
+                $this->transactions = Transaction::whereBetween('purchaseDate', [
                     Carbon::parse($date)->startOfMonth(),
                     Carbon::now()
                 ])->orderBy('created_at')->get();
                 foreach ($this->transactions as $transaction) {
-                    $transaction->identifier = $transaction->created_at->format('F');
+                    $transaction->identifier = $transaction->purchaseDate->format('F');
                 }
                 break;
             case 'annual':
-                $this->transactions = Transaction::whereBetween('created_at', [
+                $this->transactions = Transaction::whereBetween('purchaseDate', [
                     Carbon::parse($date)->startOfYear(),
                     Carbon::now()
                 ])->orderBy('created_at')->get();
                 foreach ($this->transactions as $transaction) {
-                    $transaction->identifier = $transaction->created_at->format('Y');
+                    $transaction->identifier = $transaction->purchaseDate->format('Y');
                 }
                 break;
         }

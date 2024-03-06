@@ -164,7 +164,6 @@
         let geocoder;
 
         Livewire.on('loadMap', (data) => {
-            console.log('loadMap event triggered:', data);
             initMap(data);
         });
 
@@ -186,8 +185,6 @@
             });
 
             geocoder = new google.maps.Geocoder();
-
-            geocodeAddress(shippingAddress);
             
             const searchInput = document.querySelector(`#autocomplete${transactionId}`);
             var autocomplete = new google.maps.places.Autocomplete(searchInput, {
@@ -205,6 +202,7 @@
                     map: map,
                     position: place.geometry.location
                 });
+                geocodeAddress(shippingAddress);
             });
         }
 

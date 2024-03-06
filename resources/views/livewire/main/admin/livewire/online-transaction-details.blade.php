@@ -60,26 +60,11 @@
                         {{-- <div>
                     <textarea class="w-full h-50 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" rows="9" placeholder="Papalitan ng maps"></textarea>
                 </div> --}}
-<<<<<<< Updated upstream
-                <div id="map" class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"></div>
-                <div>
-                    <input id="autocomplete" type="text" wire:model.defer="shippingAddress" class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
-                </div>
-            </div>
-            <div class="w-2/5 text-left text-xs px-2 mx-1">
-                <div class="text-left text-xs font-semibold px-2">
-                    Proof of Payment
-                </div>
-                <div id="imageDiv" class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" style="height: 40vh;" onclick="showOverlay()">
-                    <img id="image" src="{{ filter_var($selectedTransaction->proofOfPayment, FILTER_VALIDATE_URL) ? $selectedTransaction->proofOfPayment : asset('storage/assets/' . $selectedTransaction->proofOfPayment) }}" class="max-w-full max-h-full object-contain">
-                </div>
-            </div>
-=======
                         <div id="map"
                             class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500">
                         </div>
                         <div>
-                            <input id="autocomplete" type="text" wire:model="shippingAddress"
+                            <input id="autocomplete{{ $selectedTransaction->id }}" type="text" wire:model.defer="shippingAddress"
                                 class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
                         </div>
                     </div>
@@ -95,7 +80,6 @@
                                 class="max-w-full max-h-full object-contain">
                         </div>
                     </div>
->>>>>>> Stashed changes
 
                 </div>
                 <ul class="w-full flex flex-col items-center">
@@ -159,7 +143,7 @@
             </div>
 
             <div class="w-full mt-4 flex justify-end">
-                <button id="updateButton" wire:click="updateTransaction"
+                <button id="updateButton" onclick="updateTransactionWithCurrentAddress({{ $selectedTransaction->id }})"
                     class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                     <span class="flex pl-3 mr-[-1.5em]">Update</span>
                     <svg class="svg-icon ml-2"
@@ -192,174 +176,88 @@
             overlay.style.alignItems = 'center';
             overlay.onclick = hideOverlay;
 
-<<<<<<< Updated upstream
-    <div class="w-full mt-4 flex justify-end">
-        <button id="updateButton" onclick="updateTransactionWithCurrentAddress()" class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
-            <span class="flex pl-3 mr-[-1.5em]">Update</span>
-            <svg class="svg-icon ml-2" style="width: 4.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <path d="M730.584615 78.769231v267.815384c0 19.692308-15.753846 37.415385-37.415384 37.415385H273.723077c-19.692308 0-37.415385-15.753846-37.415385-37.415385V78.769231H157.538462C114.215385 78.769231 78.769231 114.215385 78.769231 157.538462v708.923076c0 43.323077 35.446154 78.769231 78.769231 78.769231h708.923076c43.323077 0 78.769231-35.446154 78.769231-78.769231V220.553846L803.446154 78.769231h-72.861539z m137.846154 750.276923c0 19.692308-15.753846 37.415385-37.415384 37.415384H194.953846c-19.692308 0-37.415385-15.753846-37.415384-37.415384V500.184615c0-19.692308 15.753846-37.415385 37.415384-37.415384h636.061539c19.692308 0 37.415385 15.753846 37.415384 37.415384v328.861539zM488.369231 267.815385c0 19.692308 15.753846 37.415385 37.415384 37.415384h90.584616c19.692308 0 37.415385-15.753846 37.415384-37.415384V78.769231h-163.446153l-1.969231 189.046154z" />
-            </svg>
-        </button>
-    </div>
-    @endif
-</div>
-@livewireScripts
-<script>
-    function showOverlay() {
-        var imageUrl = document.getElementById('image').src;
-=======
             var overlayImage = document.createElement('img');
             overlayImage.id = 'overlayImage';
             overlayImage.src = imageUrl;
             overlayImage.style.maxWidth = '80%';
             overlayImage.style.maxHeight = '80%';
->>>>>>> Stashed changes
 
             overlay.appendChild(overlayImage);
 
             document.body.appendChild(overlay);
         }
 
-<<<<<<< Updated upstream
-    function updateTransactionWithCurrentAddress() {
-        var address = document.getElementById('autocomplete').value;
-        console.log(address);
-        @this.set('shippingAddress', address);
-        @this.call('updateTransaction');
-    }
-
-    let map;
-    let marker;
-    let geocoder;
-=======
         function hideOverlay() {
             var overlay = document.getElementById('overlay');
             if (overlay) {
                 overlay.parentNode.removeChild(overlay);
             }
         }
->>>>>>> Stashed changes
 
-        let map;
-
-        Livewire.on('loadMap', (shippingAddress) => {
-            initMap(shippingAddress);
-        });
-
-<<<<<<< Updated upstream
-        geocoder = new google.maps.Geocoder();
-
-        const autocompleteOptions = {
-            types: ['geocode'],
-            componentRestrictions: { country: 'PH' } 
-        };
-        const autocompleteInput = document.getElementById('autocomplete');
-        const autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), autocompleteOptions);
-
-        autocomplete.addListener('place_changed', function() {
-            const place = autocomplete.getPlace();
-            if (!place.geometry) {
-                console.error("Place details not found for the input: '" + place.name + "'");
-                return;
-            }
-
-            if (marker) {
-                marker.setMap(null);
-            }
-
-            map.setCenter(place.geometry.location);
-
-            marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location
-            });
-            // Livewire.dispatch('updateShippingAddress', [place.formatted_address]);
-        });
-
-        geocodeAddress(shippingAddress[0]);
-    }
-
-    function geocodeAddress(address) {
-        geocoder.geocode({ 'address': address }, function(results, status) {
-            if (status === 'OK') {
-                map.setCenter(results[0].geometry.location);
-                marker = new google.maps.Marker({
-=======
-        async function initMap(shippingAddress) {
-            const {
-                Map
-            } = await google.maps.importLibrary("maps");
-
-            map = new Map(document.getElementById("map"), {
-                zoom: 16,
-                disableDefaultUI: true,
-                mapTypeControl: false,
-                fullscreenControl: true,
-            });
-
-            const geocoder = new google.maps.Geocoder();
-            const autocompleteOptions = {
-                types: ['geocode'],
-                componentRestrictions: {
-                    country: 'PH'
-                }
-            };
-            const autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),
-                autocompleteOptions);
-
-            autocomplete.addListener('place_changed', function() {
-                const place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    console.error("Place details not found for the input: '" + place.name + "'");
-                    return;
-                }
-
-                map.marker && map.marker.setMap(null);
-
-                map.setCenter(place.geometry.location);
-
-                map.marker = new google.maps.Marker({
->>>>>>> Stashed changes
-                    map: map,
-                    position: place.geometry.location
-                });
-<<<<<<< Updated upstream
-                $(".pac-container").remove();
-            } else {
-                console.error('Geocode was not successful for the following reason: ' + status);
-            }
-        }).catch(console.error);
-    }
-
-
-</script>
-=======
-                Livewire.dispatch('updateShippingAddress', [place.formatted_address]);
-            });
-
-            geocoder.geocode({
-                'address': shippingAddress[0]
-            }, function(results, status) {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    map.setCenter({
-                        lat: 14.645180093180294,
-                        lng: 121.1151444089714
-                    });
-                    new google.maps.Marker({
-                        map: map,
-                        position: {
-                            lat: 14.645180093180294,
-                            lng: 121.1151444089714
-                        }
-                    });
-                }
-            }).catch(console.error);
+        function updateTransactionWithCurrentAddress(transactionId) {
+            var address = document.getElementById('autocomplete' + transactionId).value;
+            console.log(address);
+            @this.set('shippingAddress', address);
+            @this.call('updateTransaction');
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let map;
+            let marker;
+            let geocoder;
+
+            Livewire.on('loadMap', (data) => {
+                initMap(data);
+            });
+
+            async function initMap(data) {
+                const shippingAddress = data[0];
+                const transactionId = data[1];
+
+                const { Map } = await google.maps.importLibrary("maps");
+
+                map = new Map(document.getElementById("map"), {
+                    zoom: 16,
+                    disableDefaultUI: true,
+                    mapTypeControl: false,
+                    fullscreenControl: true,
+                });
+
+                geocoder = new google.maps.Geocoder();
+
+                geocodeAddress(shippingAddress);
+            
+                const searchInput = document.querySelector(`#autocomplete${transactionId}`);
+                var autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                    types: ['geocode'],
+                    componentRestrictions: { country: 'ph' }
+                });
+                autocomplete.addListener('place_changed', function() {
+                    var place = autocomplete.getPlace();
+                    
+                    map.marker && map.marker.setMap(null);
+
+                    map.setCenter(place.geometry.location);
+
+                    map.marker = new google.maps.Marker({
+                        map: map,
+                        position: place.geometry.location
+                    });
+                });
+            }
+
+            function geocodeAddress(address) {
+                geocoder.geocode({ 'address': address }, function(results, status) {
+                    if (status === 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        console.error('Geocode was not successful for the following reason: ' + status);
+                    }
+                }).catch(console.error);
+            }
+        });
     </script>
->>>>>>> Stashed changes

@@ -39,7 +39,7 @@ class OnlineTransactionDetails extends Component
         $this->trackingNumber = $this->selectedTransaction->trackingNumber;
         $this->shippingAddress = $this->selectedTransaction->shippingAddress;
         $this->status = $this->selectedTransaction->status;
-        $this->dispatch('loadMap', $this->shippingAddress);
+        $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
     }
 
     public function updateTransaction()
@@ -56,7 +56,7 @@ class OnlineTransactionDetails extends Component
             'status' => $this->status,
         ]);
         $this->dispatch('transactionUpdated');
-        $this->dispatch('loadMap', $this->shippingAddress);
+        $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
     }
 
     public function render()

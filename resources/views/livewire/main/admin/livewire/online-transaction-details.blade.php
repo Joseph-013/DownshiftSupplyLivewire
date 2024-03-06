@@ -128,7 +128,7 @@
     </div>
 
     <div class="w-full mt-4 flex justify-end">
-        <button id="updateButton" wire:click="updateTransaction" class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+        <button id="updateButton" onclick="updateTransactionWithCurrentAddress()" class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
             <span class="flex pl-3 mr-[-1.5em]">Update</span>
             <svg class="svg-icon ml-2" style="width: 4.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <path d="M730.584615 78.769231v267.815384c0 19.692308-15.753846 37.415385-37.415384 37.415385H273.723077c-19.692308 0-37.415385-15.753846-37.415385-37.415385V78.769231H157.538462C114.215385 78.769231 78.769231 114.215385 78.769231 157.538462v708.923076c0 43.323077 35.446154 78.769231 78.769231 78.769231h708.923076c43.323077 0 78.769231-35.446154 78.769231-78.769231V220.553846L803.446154 78.769231h-72.861539z m137.846154 750.276923c0 19.692308-15.753846 37.415385-37.415384 37.415384H194.953846c-19.692308 0-37.415385-15.753846-37.415384-37.415384V500.184615c0-19.692308 15.753846-37.415385 37.415384-37.415384h636.061539c19.692308 0 37.415385 15.753846 37.415384 37.415384v328.861539zM488.369231 267.815385c0 19.692308 15.753846 37.415385 37.415384 37.415384h90.584616c19.692308 0 37.415385-15.753846 37.415384-37.415384V78.769231h-163.446153l-1.969231 189.046154z" />
@@ -172,6 +172,13 @@
         if (overlay) {
             overlay.parentNode.removeChild(overlay);
         }
+    }
+
+    function updateTransactionWithCurrentAddress() {
+        var address = document.getElementById('autocomplete').value;
+        console.log(address);
+        @this.set('shippingAddress', address);
+        @this.call('updateTransaction');
     }
 
     let map;
@@ -218,9 +225,7 @@
                 map: map,
                 position: place.geometry.location
             });
-
-            Livewire.dispatch('updateShippingAddress', [place.formatted_address]);
-            geocodeAddress(place.formatted_address);
+            // Livewire.dispatch('updateShippingAddress', [place.formatted_address]);
         });
 
         geocodeAddress(shippingAddress[0]);

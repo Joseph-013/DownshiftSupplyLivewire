@@ -175,11 +175,13 @@
     }
 
     let map;
+    let marker;
 
     Livewire.on('loadMap', (shippingAddress) => {
         initMap(shippingAddress);
     });
 
+    // instantiate map
     async function initMap(shippingAddress) {
         const { Map } = await google.maps.importLibrary("maps");
 
@@ -190,6 +192,7 @@
             fullscreenControl: true,
         });
 
+        //geocoder for address
         const geocoder = new google.maps.Geocoder();
         const autocompleteOptions = {
             types: ['geocode'],
@@ -197,6 +200,7 @@
         };
         const autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), autocompleteOptions);
 
+        // autopcomplete on change
         autocomplete.addListener('place_changed', function() {
             const place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -204,31 +208,40 @@
                 return;
             }
 
-            map.marker && map.marker.setMap(null);
+            if (marker) {
+                marker.setMap(null);
+            }
 
+            //set center of map
             map.setCenter(place.geometry.location);
 
-            map.marker = new google.maps.Marker({
+            //set marker
+            marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
             });
+            //set value of wire:model="shippingAddress"
             Livewire.dispatch('updateShippingAddress', [place.formatted_address]);
         });
 
+        //geocode address to coordinates
         geocoder.geocode({ 'address': shippingAddress[0] }, function(results, status) {
+            //success
             if (status === 'OK') {
                 map.setCenter(results[0].geometry.location);
-                new google.maps.Marker({
+                marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
+            //fail
             } else {
                 map.setCenter({lat: 14.645180093180294, lng: 121.1151444089714});
-                new google.maps.Marker({
+                marker = new google.maps.Marker({
                     map: map,
                     position: {lat: 14.645180093180294, lng: 121.1151444089714}
                 });
             }
         }).catch(console.error);
     }
+
 </script>

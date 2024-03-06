@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class OnlineTransactionDetails extends Component
@@ -15,8 +16,6 @@ class OnlineTransactionDetails extends Component
     public $shippingAddress;
     public $status;
     public $statusOptions;
-
-    protected $listeners = ['transactionSelected', 'updateShippingAddress'];
 
     public function mount()
     {
@@ -31,6 +30,7 @@ class OnlineTransactionDetails extends Component
         return explode(',', str_replace("'", '', $matches[1]));
     }
 
+    #[On('transactionSelected')]
     public function transactionSelected($transactionId)
     {
         $this->selectedTransaction = Transaction::with('details')->find($transactionId);
@@ -64,9 +64,10 @@ class OnlineTransactionDetails extends Component
         return view('livewire.main.admin.livewire.online-transaction-details');
     }
 
-    public function updateShippingAddress($address)
+    #[On('updateShippingAddress')]
+    public function updateShippingAddress($value)
     {
-        $this->shippingAddress = $address;
+        $this->shippingAddress = $value;
         $this->dispatch('loadMap', $this->shippingAddress);
     }
 }

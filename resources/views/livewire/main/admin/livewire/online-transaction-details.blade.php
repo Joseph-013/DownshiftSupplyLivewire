@@ -64,7 +64,7 @@
                             class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500">
                         </div>
                         <div>
-                            <input id="autocomplete" type="text" wire:model.defer="shippingAddress"
+                            <input id="autocomplete{{ $selectedTransaction->id }}" type="text" wire:model.defer="shippingAddress"
                                 class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
             </div>
 
             <div class="w-full mt-4 flex justify-end">
-                <button id="updateButton" onclick="updateTransactionWithCurrentAddress()"
+                <button id="updateButton" onclick="updateTransactionWithCurrentAddress({{ $selectedTransaction->id }})"
                     class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                     <span class="flex pl-3 mr-[-1.5em]">Update</span>
                     <svg class="svg-icon ml-2"
@@ -194,75 +194,70 @@
             }
         }
 
-        function updateTransactionWithCurrentAddress() {
-            var address = document.getElementById('autocomplete').value;
+        function updateTransactionWithCurrentAddress(transactionId) {
+            var address = document.getElementById('autocomplete' + transactionId).value;
             console.log(address);
             @this.set('shippingAddress', address);
             @this.call('updateTransaction');
         }
 
-        let map;
-        let marker;
-        let geocoder;
+        document.addEventListener("DOMContentLoaded", function() {
+            let map;
+            let marker;
+            let geocoder;
 
-        Livewire.on('loadMap', (shippingAddress) => {
-            initMap(shippingAddress);
-        });
-
-        async function initMap(shippingAddress) {
-            const {
-                Map
-            } = await google.maps.importLibrary("maps");
-
-            map = new Map(document.getElementById("map"), {
-                zoom: 16,
-                disableDefaultUI: true,
-                mapTypeControl: false,
-                fullscreenControl: true,
+            Livewire.on('loadMap', (data) => {
+                initMap(data);
             });
 
-            geocoder = new google.maps.Geocoder();
-            
-            const autocompleteOptions = {
-                types: ['geocode'],
-                componentRestrictions: {
-                    country: 'PH'
-                }
-            };
-            const autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),
-                autocompleteOptions);
+            async function initMap(data) {
+                const shippingAddress = data[0];
+                const transactionId = data[1];
 
-            autocomplete.addListener('place_changed', function() {
-                const place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    console.error("Place details not found for the input: '" + place.name + "'");
-                    return;
-                }
+                const { Map } = await google.maps.importLibrary("maps");
 
-                map.marker && map.marker.setMap(null);
-
-                map.setCenter(place.geometry.location);
-
-                map.marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location
+                map = new Map(document.getElementById("map"), {
+                    zoom: 16,
+                    disableDefaultUI: true,
+                    mapTypeControl: false,
+                    fullscreenControl: true,
                 });
-            });
 
-            geocodeAddress(shippingAddress[0]);
-        }
+                geocoder = new google.maps.Geocoder();
 
-        function geocodeAddress(address) {
-            geocoder.geocode({ 'address': address }, function(results, status) {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    marker = new google.maps.Marker({
+                geocodeAddress(shippingAddress);
+            
+                const searchInput = document.querySelector(`#autocomplete${transactionId}`);
+                var autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                    types: ['geocode'],
+                    componentRestrictions: { country: 'ph' }
+                });
+                autocomplete.addListener('place_changed', function() {
+                    var place = autocomplete.getPlace();
+                    
+                    map.marker && map.marker.setMap(null);
+
+                    map.setCenter(place.geometry.location);
+
+                    map.marker = new google.maps.Marker({
                         map: map,
-                        position: results[0].geometry.location
+                        position: place.geometry.location
                     });
-                } else {
-                    console.error('Geocode was not successful for the following reason: ' + status);
-                }
-            }).catch(console.error);
-        }
+                });
+            }
+
+            function geocodeAddress(address) {
+                geocoder.geocode({ 'address': address }, function(results, status) {
+                    if (status === 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        console.error('Geocode was not successful for the following reason: ' + status);
+                    }
+                }).catch(console.error);
+            }
+        });
     </script>

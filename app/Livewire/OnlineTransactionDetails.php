@@ -19,7 +19,6 @@ class OnlineTransactionDetails extends Component
 
     public function mount()
     {
-        $this->selectedTransaction = null;
         $this->statusOptions = $this->getEnumValues('transactions', 'status');
     }
 
@@ -62,12 +61,5 @@ class OnlineTransactionDetails extends Component
     public function render()
     {
         return view('livewire.main.admin.livewire.online-transaction-details');
-    }
-
-    #[On('updateShippingAddress')]
-    public function updateShippingAddress($value)
-    {
-        $this->shippingAddress = $value;
-        $this->dispatch('loadMap', $this->shippingAddress);
     }
 }

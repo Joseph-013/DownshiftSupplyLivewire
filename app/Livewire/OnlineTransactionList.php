@@ -10,8 +10,6 @@ class OnlineTransactionList extends Component
     public $selectedTransactionId;
     public $transactions;
 
-    protected $listeners = ['transactionUpdated'];
-
     public function render()
     {
         return view('livewire.main.admin.livewire.online-transaction-list');
@@ -21,10 +19,5 @@ class OnlineTransactionList extends Component
     {
         $this->selectedTransactionId = $transactionId;
         $this->dispatch('transactionSelected', $transactionId);
-    }
-
-    public function transactionUpdated()
-    {
-        $this->render();
     }
 }

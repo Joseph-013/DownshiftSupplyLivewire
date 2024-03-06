@@ -64,7 +64,7 @@
                             class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500">
                         </div>
                         <div>
-                            <input id="autocomplete{{ $selectedTransaction->id }}" type="text" wire:model.defer="shippingAddress"
+                            <input id="autocomplete{{ $selectedTransaction->id }}" type="text" wire:model.="shippingAddress"
                                 class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
                         </div>
                     </div>
@@ -196,68 +196,68 @@
 
         function updateTransactionWithCurrentAddress(transactionId) {
             var address = document.getElementById('autocomplete' + transactionId).value;
-            console.log(address);
             @this.set('shippingAddress', address);
             @this.call('updateTransaction');
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            let map;
-            let marker;
-            let geocoder;
+        
+        let map;
+        let marker;
+        let geocoder;
 
-            Livewire.on('loadMap', (data) => {
-                initMap(data);
+        Livewire.on('loadMap', (data) => {
+            initMap(data);
+            console.log(data);
+        });
+
+        async function initMap(data) {
+            const shippingAddress = data[0];
+            const transactionId = data[1];
+
+            const { Map } = await google.maps.importLibrary("maps");
+
+            map = new Map(document.getElementById("map"), {
+                zoom: 16,
+                disableDefaultUI: true,
+                mapTypeControl: false,
+                fullscreenControl: true,
             });
 
-            async function initMap(data) {
-                const shippingAddress = data[0];
-                const transactionId = data[1];
+            geocoder = new google.maps.Geocoder();
 
-                const { Map } = await google.maps.importLibrary("maps");
-
-                map = new Map(document.getElementById("map"), {
-                    zoom: 16,
-                    disableDefaultUI: true,
-                    mapTypeControl: false,
-                    fullscreenControl: true,
-                });
-
-                geocoder = new google.maps.Geocoder();
-
-                geocodeAddress(shippingAddress);
+            geocodeAddress(shippingAddress);
             
-                const searchInput = document.querySelector(`#autocomplete${transactionId}`);
-                var autocomplete = new google.maps.places.Autocomplete(searchInput, {
-                    types: ['geocode'],
-                    componentRestrictions: { country: 'ph' }
-                });
-                autocomplete.addListener('place_changed', function() {
-                    var place = autocomplete.getPlace();
+            const searchInput = document.querySelector(`#autocomplete${transactionId}`);
+            var autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                types: ['geocode'],
+                componentRestrictions: { country: 'ph' }
+            });
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
                     
-                    map.marker && map.marker.setMap(null);
+                map.marker && map.marker.setMap(null);
 
-                    map.setCenter(place.geometry.location);
+                map.setCenter(place.geometry.location);
 
-                    map.marker = new google.maps.Marker({
-                        map: map,
-                        position: place.geometry.location
-                    });
+                map.marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location
                 });
-            }
+            });
+        }
 
-            function geocodeAddress(address) {
-                geocoder.geocode({ 'address': address }, function(results, status) {
-                    if (status === 'OK') {
-                        map.setCenter(results[0].geometry.location);
-                        marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                    } else {
-                        console.error('Geocode was not successful for the following reason: ' + status);
-                    }
-                }).catch(console.error);
-            }
-        });
+        function geocodeAddress(address) {
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    console.error('Geocode was not successful for the following reason: ' + status);
+                }
+            }).catch(console.error);
+        }
+
     </script>

@@ -15,7 +15,7 @@ class ReportTable extends Component
     #[On('renderReportTable')]
     public function renderReportTable($date, $format)
     {
-        $date = '01/01/2020'; // Delete this on deployment
+        // $date = '01/01/2020'; // Delete this on deployment
         switch ($format) {
             case 'daily':
                 $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();

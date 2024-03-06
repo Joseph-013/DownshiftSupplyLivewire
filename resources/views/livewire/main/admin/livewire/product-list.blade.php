@@ -3,7 +3,8 @@
         @if ($products)
             @foreach ($products as $product)
                 {{-- Single Unit of Product --}}
-                <li wire:click="selectProduct({{ $product->id }})" class="w-full flex justify-center select-none px-2">
+                <li wire:key="{{ $product->id }}" wire:click="selectProduct({{ $product->id }})"
+                    class="w-full flex justify-center select-none px-2">
                     {{-- Product Details --}}
                     <input class="widenWhenSelected" hidden type="radio" id="productId{{ $product->id }}"
                         name="productList">

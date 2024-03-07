@@ -63,9 +63,13 @@
                                 <div class="w-full flex-row px-5 my-2">
                                     <ul class="flex flex-row w-full">
                                     <li class="w-4/12 text-left text-xs flex items-center justify-center ">
-    <img src="{{ $order->products->image }}" class="w-12 h-12 ml-[-2.5rem] object-cover rounded">
-    <span class="ml-2">{{ $order->products->name }}</span>
-</li>
+                                            @if(filter_var($order->products->image, FILTER_VALIDATE_URL))
+                                                <img src="{{ $order->products->image }}" class="w-12 h-12 ml-[-2.5rem] object-cover rounded">
+                                            @else
+                                                <img src="{{ asset('storage/assets/' . $order->products->image) }}" class="w-12 h-12 ml-[-2.5rem] object-cover rounded">
+                                            @endif
+                                        <span class="ml-2">{{ $order->products->name }}</span>
+                                    </li>
 
                                         <li class="w-3/12 text-center text-xs items-center justify-center">
                                             {{ number_format($order->products->price, 2) }}</li>

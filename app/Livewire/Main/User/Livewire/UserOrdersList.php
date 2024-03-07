@@ -17,6 +17,7 @@ class UserOrdersList extends Component
     public function showDetails($transactionId)
     {
         $this->dispatch('showDetails', transactionId: $transactionId)->to(UserOrdersDetail::class);
+        $this->dispatch('alertNotif', 'Order selected');
         // dump("Order $orderId shown");
     }
 }

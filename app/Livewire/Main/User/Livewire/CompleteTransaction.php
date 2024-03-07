@@ -10,9 +10,4 @@ class CompleteTransaction extends Component
     {
         return view('livewire.main.user.livewire.complete-transaction');
     }
-
-    public function dispatchAlert()
-    {
-        $this->dispatch('alertCompleteTransaction');
-    }
 }

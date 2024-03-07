@@ -14,7 +14,7 @@
                 <ul class="w-full flex flex-col items-center">
                     {{-- Single Unit of Product --}}
                     <div class="w-full h-full flex flex-col">
-                        <div class="w-full flex-row px-5">
+                        <div class="w-full flex-row ">
                             <ul class="flex flex-row w-full mt-3">
                                 <li class="w-2/12 text-center text-xs font-semibold"></li>
                                 <li class="w-2/12 text-center text-xs font-semibold">Item</li>
@@ -34,14 +34,14 @@
                                 $subtotal = $detail->products->price * $detail->quantity;
                                 $grandTotal += $subtotal;
                             @endphp
-                            <div class="w-full flex-row px-5 my-2">
+                            <div class="w-full flex-row my-2">
                                 <ul class="flex flex-row w-full">
                                     <li
-                                        class="w-2/12 text-center text-xs flex items-center justify-center ">
-                                        <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-12 h-12 ml-[-2.5rem]">
+                                        class="w-3/12 text-left text-xs flex items-center justify-center ">
+                                        <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-12 h-12 ml-[-2.5rem] rounded">
                                     </li>
                                     <li
-                                        class="w-2/12 text-center text-xs items-center justify-center ">
+                                        class="w-2/12 ml-[-2.5rem] text-left text-xs items-center justify-start ">
                                         {{ $detail->products->name }}
                                     </li>
                                     <li class="w-3/12 text-center text-xs items-center justify-center">₱ {{ number_format($detail->products->price, 2) }}</li>

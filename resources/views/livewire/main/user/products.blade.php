@@ -62,7 +62,6 @@
                 </div>
 
             </div>
-            <div class="w-full text-center">Test</div>
 
         </div>
 

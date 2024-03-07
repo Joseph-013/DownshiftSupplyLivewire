@@ -62,11 +62,11 @@
                             @foreach ($orderList as $order)
                                 <div class="w-full flex-row px-5 my-2">
                                     <ul class="flex flex-row w-full">
-                                        <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                            <img src="{{ $order->products->image }}"
-                                                class="w-12 h-12 ml-[-2.5rem] object-cover">
-                                            {{ $order->products->name }}
-                                        </li>
+                                    <li class="w-4/12 text-left text-xs flex items-center justify-center ">
+    <img src="{{ $order->products->image }}" class="w-12 h-12 ml-[-2.5rem] object-cover rounded">
+    <span class="ml-2">{{ $order->products->name }}</span>
+</li>
+
                                         <li class="w-3/12 text-center text-xs items-center justify-center">
                                             {{ number_format($order->products->price, 2) }}</li>
                                         <li class="w-2/12 text-center text-xs items-center justify-center">

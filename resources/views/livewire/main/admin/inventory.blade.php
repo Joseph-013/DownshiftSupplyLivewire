@@ -61,8 +61,8 @@
                         <div class="w-full flex-row">
                             <ul class="flex flex-row w-full">
                                 <li class="w-7/12 text-center text-sm">Item Name</li>
-                                <li class="w-2/12 text-center text-sm">Remaining</li>
-                                <li class="w-3/12 text-center text-sm">Price</li>
+                                <li class="w-2/12 text-left text-sm">Remaining</li>
+                                <li class="w-3/12 text-left text-sm">Price</li>
                             </ul>
                         </div>
                         <hr class="my-1">

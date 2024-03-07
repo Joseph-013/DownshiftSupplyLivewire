@@ -105,20 +105,21 @@
                                     $grandTotal += $subtotal;
                                 @endphp
                                 <div class="w-full flex-row px-5 my-2">
-                                    <ul class="flex flex-row w-full">
-                                        <li class="w-4/12 text-center text-xs flex items-center justify-center ">
-                                            <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
-                                                class="w-12 h-12 ml-[-2.5rem]">
-                                            {{ $detail->products->name }}
-                                        </li>
-                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                            {{ number_format($detail->products->price, 2) }}</li>
-                                        <li class="w-2/12 text-center text-xs items-center justify-center">
-                                            {{ $detail->quantity }}</li>
-                                        <li class="w-3/12 text-center text-xs items-center justify-center">₱
-                                            {{ number_format($subtotal, 2) }}</li>
-                                    </ul>
-                                </div>
+    <ul class="flex flex-row w-full">
+        <li class="w-4/12 text-xs flex items-center justify-center ">
+            <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                class="w-12 h-12 mr-2 object-cover rounded">
+            <span class="text-left">{{ $detail->products->name }}</span>
+        </li>
+        <li class="w-3/12 text-center text-xs items-center justify-center">₱
+            {{ number_format($detail->products->price, 2) }}</li>
+        <li class="w-2/12 text-center text-xs items-center justify-center">
+            {{ $detail->quantity }}</li>
+        <li class="w-3/12 text-center text-xs items-center justify-center">₱
+            {{ number_format($subtotal, 2) }}</li>
+    </ul>
+</div>
+
                             @endif
                         @endforeach
                     </div>

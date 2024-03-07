@@ -31,7 +31,7 @@ class FaqDetails extends Component
             // $this->dispatch('faqDeleted');
             $this->selectedFaq = null;
             $this->dispatch('renderFaqList');
-            $this->render();
+            $this->dispatch('alertNotif', 'FAQ entry deleted');
         }
     }
 
@@ -44,7 +44,7 @@ class FaqDetails extends Component
             // session()->flash('success-message', 'FAQ entry updated successfully.');
             $this->selectedFaq = null;
             $this->dispatch('renderFaqList');
-            $this->render();
+            $this->dispatch('alertNotif', 'FAQ entry updated');
         }
     }
 

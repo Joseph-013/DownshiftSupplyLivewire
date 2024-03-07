@@ -22,5 +22,6 @@ class FaqList extends Component
     {
         $this->selectedFaqId = $faqId;
         $this->dispatch('faqSelected', $faqId);
+        $this->dispatch('alertNotif', 'FAQ entry selected');
     }
 }

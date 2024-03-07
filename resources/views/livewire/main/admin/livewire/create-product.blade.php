@@ -2,7 +2,7 @@
     <div class="columns-2">
         <div class="p-2">
             @if ($image)
-                <img src="{{ $image->temporaryUrl() }}" alt="Preview">
+                <img src="{{ $image->temporaryUrl() }}" alt="Preview" style="max-height: 200px;">
             @else
                 <img src="https://via.placeholder.com/640x480.png/000000?text=No+Image+Available"
                     alt="No Image Available">
@@ -19,24 +19,24 @@
         <div class="text-sm h-min mt-2">
             <label for="productImage" class="block text-sm font-medium text-gray-700">Upload Image (JPG or PNG
                 only)</label>
-            <input type="file" wire:model="image" id="productImage" accept=".jpg, .jpeg, .png">
+            <input type="file" wire:model="image" id="productImage" accept=".jpg, .jpeg, .png" required>
             @error('image')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
         </div>
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Name:</label>
-            <input wire:model="name" class="w-3/4 h-10 flex items-center" type="text" value="">
+            <input wire:model="name" class="w-3/4 h-10 flex items-center" type="text" value="" required>
         </div>
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Price:</label>
-            <input wire:model="price" class="w-3/4 h-10 flex items-center" type="number" value="">
+            <input wire:model="price" class="w-3/4 h-10 flex items-center" type="number" value="" required>
         </div>
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Remaining:</label>
-            <input wire:model="stockquantity" class="w-1/4 h-10 flex items-center" type="number" value="">
+            <input wire:model="stockquantity" class="w-1/4 h-10 flex items-center" type="number" value="" required>
             <label class="w-1/4 h-10 flex items-center justify-center">Crit. Level:</label>
-            <input wire:model="criticallevel" class="w-1/4 h-10 flex items-center" type="number">
+            <input wire:model="criticallevel" class="w-1/4 h-10 flex items-center" type="number" required>
         </div>
         <div class="w-full mt-3 flex justify-center">
             <button type="submit"

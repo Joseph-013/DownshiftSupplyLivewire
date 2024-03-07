@@ -74,7 +74,7 @@
             </div>
         </form>
     @else
-        <livewire:create-product />
+        <livewire:main.admin.livewire.create-product />
     @endif
 </div>
 

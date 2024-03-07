@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Main\Admin\Livewire;
 
 use GuzzleHttp\Client;
 use App\Models\Product;

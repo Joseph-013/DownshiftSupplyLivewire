@@ -21,7 +21,7 @@
                                     <span class="font-medium mt-1">Have some questions?</span> <br>
                                     Find your answers here
                                 </li>
-                                <li class="w-full md:w-3/4 h-full px-3 overflow-y-auto border" id="faqs-container">
+                                <li class="w-full md:w-3/4 h-full px-3 overflow-y-auto border" id="faqs-qa-container">
 
                                     <livewire:main.user.livewire.user-faqs-qna />
 
@@ -33,7 +33,7 @@
                                     <span class="font-medium mt-1">Where can you find us?</span> <br>
                                     Be directed using this map
                                 </li>
-                                <div class="w-full md:w-3/4 h-full px-3 border" id="faqs-container">
+                                <div class="w-full md:w-3/4 h-full px-3 border" id="faqs-map-container">
                                     <div class="w-full h-full px-3 border" id="map"></div>
                                 </div>
                             </ul>

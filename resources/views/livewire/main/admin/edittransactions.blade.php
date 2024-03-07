@@ -11,58 +11,55 @@
 
             {{-- Content --}}
             <div class="flex flex-1 w-full -mx-3">
-            
+
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
                     <div class="w-full h-full text-right flex">
                         <form class="updateTransaction" method="POST" action="{{ route('update.transaction', ['id' => $transaction->id]) }}">
                             @csrf
                             @method('PUT')
-                        <div class="w-full h-full flex flex-col">
-                            <div class="w-full flex-row ">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-full text-left text-sm font-semibold ">Overview</li>
-                                </ul>
-                            </div>
-                            <hr class="my-1">
-                            <div class="w-full text-sm text-left"><span class="font-semibold">Order ID:
-                                </span>{{ $transaction->id }}
-                            </div>
-                            <div class="w-full flex-row mt-4">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-1/2 pr-2 text-left text-sm">
-                                        <label class="w-full h-10 flex items-center font-semibold">First Name:</label>
-                                        <input name="firstName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->firstName }}">
-                                    </li>
+                            <div class="w-full h-full flex flex-col">
+                                <div class="w-full flex-row ">
+                                    <ul class="flex flex-row w-full">
+                                        <li class="w-full text-left text-sm font-semibold ">Overview</li>
+                                    </ul>
+                                </div>
+                                <hr class="my-1">
+                                <div class="w-full text-sm text-left"><span class="font-semibold">Order ID:
+                                    </span>{{ $transaction->id }}
+                                </div>
+                                <div class="w-full flex-row mt-4">
+                                    <ul class="flex flex-row w-full">
+                                        <li class="w-1/2 pr-2 text-left text-sm">
+                                            <label class="w-full h-10 flex items-center font-semibold">First Name:</label>
+                                            <input name="firstName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->firstName }}">
+                                        </li>
 
-                                    <li class="w-1/2 pl-2 text-left text-sm">
-                                        <label class="w-full h-10 flex items-center font-semibold">Last Name:</label>
-                                        <input name="lastName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->lastName }}">
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="w-full flex-row mt-3">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-1/2 pr-2 text-left text-sm">
-                                        <label class="w-full h-10 flex items-center font-semibold">Contact #:</label>
-                                        <input name="contact" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->contact }}">
-                                    </li>
-                                </ul>
-                            </div>
+                                        <li class="w-1/2 pl-2 text-left text-sm">
+                                            <label class="w-full h-10 flex items-center font-semibold">Last Name:</label>
+                                            <input name="lastName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->lastName }}">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="w-full flex-row mt-3">
+                                    <ul class="flex flex-row w-full">
+                                        <li class="w-1/2 pr-2 text-left text-sm">
+                                            <label class="w-full h-10 flex items-center font-semibold">Contact #:</label>
+                                            <input name="contact" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->contact }}">
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <div class="w-full mt-5 flex justify-center">
-                                <button type="submit" id="save-changes-button"
-                                    class="h-10 w-60  items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
-                                    Save Changes
-                                    <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                        fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
-                                        <path d="M11 2H9v3h2z" />
-                                        <path
-                                            d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
-                                    </svg>
-                                </button>
+                                <div class="w-full mt-5 flex justify-center">
+                                    <button type="submit" id="save-changes-button" class="h-10 w-60  items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
+                                        Save Changes
+                                        <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
+                                            <path d="M11 2H9v3h2z" />
+                                            <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
 
@@ -89,37 +86,39 @@
                         <div class="w-full h-96 overflow-y-auto mb-3" id="edittransactions-container">
                             <ul class=" w-full flex flex-col items-center" id="product-list">
                                 @php
-                                    $grandTotal = 0;
+                                $grandTotal = 0;
                                 @endphp
                                 @foreach($transaction->details as $detail)
                                 @if($detail->products)
                                 @php
-                                    $pricetofloat = floatval($detail->products->price);
-                                    $calcsubtotal = $detail->quantity * $pricetofloat;
-                                    $subtotal = (double)($calcsubtotal);
-                                    $grandTotal += $subtotal;
-                                    $detailProductId = (int)$detail->products->id;
+                                $pricetofloat = floatval($detail->products->price);
+                                $calcsubtotal = $detail->quantity * $pricetofloat;
+                                $subtotal = (double)($calcsubtotal);
+                                $grandTotal += $subtotal;
+                                $detailProductId = (int)$detail->products->id;
                                 @endphp
                                 {{-- Single Unit of Product --}}
                                 <li data-product-id="{{ $detailProductId }}" class="product-item w-full flex justify-center select-none px-2">
                                     {{-- Product Details --}}
-                                    <input hidden id="{{ $detailProductId }}"
-                                        name="productList[]" value="{{ $detailProductId }}" checked>
-                                    <label
-                                        class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
-                                        for="productId{{ $detailProductId }}">
-                                        <ul class="flex flex-row w-full">
-                                            <li class="w-6/12 text-center text-xs flex items-center justify-center">
+                                    <input hidden id="{{ $detailProductId }}" name="productList[]" value="{{ $detailProductId }}" checked>
+                                    <label class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center" for="productId{{ $detailProductId }}">
+                                        <ul class="flex flex-row w-full items-center"> <!-- Added items-center to align vertically -->
+                                            <li class="w-6/12 text-left text-xs flex items-left justify-left">
+                                                <!-- Wrapping content in a flex container -->
                                                 <div class="flex items-center">
-                                                    <!-- Wrapping content in a flex container -->
-                                                    <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-24 h-20 ml-[-2rem] object-cover">
-
+                                                    <div class="ml-2 w-24 h-20 flex-shrink-0">
+                                                        <!-- Adding margin to separate image and text -->
+                                                        <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-full h-full object-cover">
+                                                    </div>
                                                     <div class="ml-2">
                                                         <!-- Adding margin to separate image and text -->
-                                                        <div class="text-sm text-left mb-3">
+                                                        <div class="text-sm text-left mb-1">
                                                             <span class="font-semibold">Item ID:</span> {{ $detail->products->id }}
                                                         </div>
-                                                        <div class="text-sm text-left">{{ $detail->products->name }}</div>
+                                                        <!-- Product Name -->
+                                                        <div class="text-sm text-left">
+                                                            {{ substr($detail->products->name, 0, 18) }}{{ strlen($detail->products->name) > 18  ? '...' : '' }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </li>
@@ -127,21 +126,19 @@
                                             <li class="w-2/12 text-center flex items-center justify-center text-sm">
                                                 <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}" data-product-id="{{ $detail->products->id }}">
                                             </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="{{ $subtotal }}">₱
-                                                {{ number_format($subtotal, 2) }}</li>
+                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="{{ $subtotal }}">₱ {{ number_format($subtotal, 2) }}</li>
                                             <li class="w-1/12 text-center flex items-center justify-center text-sm">
                                                 <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
-                                                    <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg"
-                                                        width="16" height="16" fill="currentColor"
-                                                        class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                                                    <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
                                                     </svg>
                                                 </button>
                                             </li>
                                         </ul>
                                     </label>
                                 </li>
+
+
                                 @endif
                                 @endforeach
                             </ul>
@@ -149,7 +146,8 @@
                         <hr class="mb-2">
                         <div class="w-full text-sm text-right pr-7 mx-[-5rem] mb-5">
                             <span class="font-semibold">Total:
-                            </span><p id="grand-total">₱ {{ number_format($grandTotal, 2) }}</p>
+                            </span>
+                            <p id="grand-total">₱ {{ number_format($grandTotal, 2) }}</p>
                         </div>
                         <livewire:product-search />
                         </form>
@@ -182,9 +180,9 @@
 
             document.addEventListener('submit', (event) => {
                 const quantityInputs = document.querySelectorAll('.quantity');
-                    for (const quantityInput of quantityInputs) {
-                        const quantity = parseInt(quantityInput.value);
-                        if (isNaN(quantity) || quantity <= 0) {
+                for (const quantityInput of quantityInputs) {
+                    const quantity = parseInt(quantityInput.value);
+                    if (isNaN(quantity) || quantity <= 0) {
                         event.preventDefault();
                     }
                 }
@@ -223,7 +221,7 @@
                             input.setAttribute('name', `quantity[${index}]`);
                         });
                     }
-                updateSubtotalAndTotal();
+                    updateSubtotalAndTotal();
                 }
             });
 
@@ -236,7 +234,10 @@
                     const priceValue = parseFloat(priceText);
                     const price = isNaN(priceValue) ? 0 : priceValue;
                     const subtotal = price * quantity;
-                    subtotalElement.textContent = '₱ ' + subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    subtotalElement.textContent = '₱ ' + subtotal.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
                     subtotalElement.setAttribute('data-subtotal', subtotal.toFixed(2));
                 });
 
@@ -245,7 +246,10 @@
                     grandTotal += parseFloat(subtotalElement.getAttribute('data-subtotal'));
                 });
 
-                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById('grand-total').textContent = "₱ " + grandTotal.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
             }
 
 
@@ -260,14 +264,14 @@
                     const currentQuantity = parseInt(quantityElement.value);
 
                     quantityElement.value = currentQuantity + quantity;
-                    
+
                     const quantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
                     quantityInput.setAttribute('value', `${currentQuantity + quantity}`);
 
                     const priceElement = existingProductItem.querySelector('.price');
                     const priceText = priceElement.textContent.trim();
                     const priceValue = parseFloat(priceText.replace('₱', '').replace(/,/g, '').trim());
-                    const price = isNaN(priceValue) ? 0 : priceValue;   
+                    const price = isNaN(priceValue) ? 0 : priceValue;
 
                     const subtotalElement = existingProductItem.querySelector('.subtotal');
                     const subtotalText = subtotalElement.textContent.trim();
@@ -280,7 +284,7 @@
                     fetch(`/get-product-details/${productId}`)
                         .then(response => response.json())
                         .then(data => {
-                            if(data.success) {
+                            if (data.success) {
                                 const form = document.querySelector('.updateTransaction');
                                 const input = document.createElement('input');
                                 input.setAttribute('type', 'hidden');
@@ -360,7 +364,7 @@
                     new URL(string);
                     return true;
                 } catch (_) {
-                    return false;  
+                    return false;
                 }
             }
 

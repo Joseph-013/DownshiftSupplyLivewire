@@ -47,8 +47,17 @@
 #faqs-container{
     height: 10rem !important;
 }
+
+#faqs-qa-container{
+    height: 13rem !important;
+}
+
 #faqs-email-container{
     height: 14rem !important;
+}
+
+#faqs-map-container{
+    height: 26rem !important;
 }
 
 #terms-container{

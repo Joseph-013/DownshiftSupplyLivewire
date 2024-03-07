@@ -19,5 +19,6 @@ class OnlineTransactionList extends Component
     {
         $this->selectedTransactionId = $transactionId;
         $this->dispatch('transactionSelected', $transactionId);
+        $this->dispatch('alertNotif', 'Transaction selected');
     }
 }

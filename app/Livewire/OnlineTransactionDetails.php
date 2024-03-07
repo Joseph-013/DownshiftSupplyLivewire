@@ -55,6 +55,7 @@ class OnlineTransactionDetails extends Component
             'status' => $this->status,
         ]);
         $this->dispatch('transactionUpdated');
+        $this->dispatch('alertNotif', 'Transaction successfully updated');
         $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
     }
 

@@ -95,8 +95,6 @@ class AdminController extends Controller
 
             $transaction->update(['grandTotal' => $total]);
         }
-    
-        return redirect()->back();
     }
 
     public function createTransaction(Request $request) 
@@ -108,6 +106,8 @@ class AdminController extends Controller
             'productList' => 'array',
         ]);
 
+        $grandTotal = 0;
+
         $transaction = new Transaction();
         $transaction->firstName = $validatedData['firstName'];
         $transaction->lastName = $validatedData['lastName'];
@@ -116,28 +116,23 @@ class AdminController extends Controller
         $transaction->save();
 
         $productList = $request->input('productList', []);
-        $grandTotal = 0;
-
-        if (!empty($productList)) {
-            foreach ($validatedData['productList'] as $index => $productId) {
-                $quantity = $request->input('quantity')[$index];
-                $product = Product::findOrFail($productId);
-                $price = $product->price;
-                $subtotal = $quantity * $price;
+        foreach ($validatedData['productList'] as $index => $productId) {
+            $quantity = $request->input('quantity')[$index];
+            $product = Product::findOrFail($productId);
+            $price = $product->price;
+            $subtotal = $quantity * $price;
                 
-                $grandTotal += $subtotal;
+            $grandTotal += $subtotal;
 
-                $detail = new Detail();
-                $detail->transaction_id = $transaction->id;
-                $detail->product_id = $productId;
-                $detail->quantity = $quantity;
-                $detail->subtotal = $subtotal;
-                $detail->save();
-            }
+            $detail = new Detail();
+            $detail->transaction_id = $transaction->id;
+            $detail->product_id = $productId;
+            $detail->quantity = $quantity;
+            $detail->subtotal = $subtotal;
+            $detail->save();
         }
         $transaction->grandTotal = $grandTotal;
         $transaction->save();
-
-        return redirect()->back();
+        return redirect()->route('admin.onsitetransactions');
     }
 }

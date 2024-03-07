@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Main\User\Livewire;
 
+use App\Models\Detail;
 use Livewire\Component;
 use App\Models\Transaction;
 use Livewire\Attributes\On;
@@ -25,6 +26,7 @@ class UserOrdersList extends Component
 
 
     public $selectedOrder;
+    public $orderList;
     // public $isCompact = false;
 
     public function render()
@@ -49,8 +51,9 @@ class UserOrdersList extends Component
         if ($transaction && $transaction->user_id == Auth::id()) {
             if ($this->windowWidth >= 1024)
                 $this->dispatch('showDetails', transactionId: $transactionId);
-            // else
-            //     $this->hydrate();
+            else {
+                $this->orderList = Detail::where('transaction_id', $transactionId)->with('products')->get();
+            }
             $this->selectedOrder = $transactionId;
         } else {
             abort(403, "Unauthorized/Illegal Access.");

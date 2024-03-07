@@ -25,7 +25,21 @@
 
                                 @if ($transaction->id == $selectedOrder && $windowWidth < 1024)
                                     <div class="w-full">
-                                        {{ $selectedOrder }}
+                                        {{ $transaction->id }}
+                                        {{ $transaction->paymentOption }}
+                                        {{ $transaction->shippingAddress }}
+                                        {{ $transaction->purchaseDate->format('Y-m-d') }}
+                                        {{ $transaction->preferredService }}
+                                        {{ $transaction->shippingAddress }}
+                                        {{ $transaction->courierUsed }}
+                                        {{ $transaction->trackingNumber }}
+                                        @foreach ($orderList as $order)
+                                            {{ $order->products->name }}
+                                            {{ number_format($order->products->price, 2) }}
+                                            {{ $order->quantity }}
+                                            {{ $order->quantity * $order->products->price }}
+                                        @endforeach
+                                        {{-- style here --}}
                                     </div>
                                 @endif
 

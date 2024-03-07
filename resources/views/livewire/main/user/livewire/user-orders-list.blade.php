@@ -24,8 +24,8 @@
                             {{-- <button @click="open = ! open" class="w-full h-full"> --}}
 
                             @if ($transaction->id == $selectedOrder && $windowWidth < 1024)
-                                <div class="w-full">
-                                    {{ $transaction->id }}
+                                <div class="w-full rounded-full">
+                                    {{-- {{ $transaction->id }}
                                     {{ $transaction->paymentOption }}
                                     {{ $transaction->shippingAddress }}
                                     {{ $transaction->purchaseDate->format('Y-m-d') }}
@@ -33,34 +33,39 @@
                                     {{ $transaction->shippingAddress }}
                                     {{ $transaction->courierUsed }}
                                     {{ $transaction->trackingNumber }}
-                                    @foreach ($orderList as $order)
-                                        {{ $order->products->name }}
-                                        {{ number_format($order->products->price, 2) }}
-                                        {{ $order->quantity }}
-                                        {{ $order->quantity * $order->products->price }}
-                                    @endforeach
-                                    {{-- style here --}}
+                                    @if ($orderList)
+                                        @foreach ($orderList as $order)
+                                            {{ 'next item' }}
+                                            {{ $order->products->name }}
+                                            {{ number_format($order->products->price, 2) }}
+                                            {{ $order->quantity }}
+                                            {{ $order->quantity * $order->products->price }}
+                                        @endforeach
+                                    @endif --}}
+                                    {{ 'test' }}
                                 </div>
+                            @else
+                                <input class="widenWhenSelected" hidden type="radio"
+                                    id="productId{{ $transaction->id }}" name="productList">
+                                <label wire:click="showDetails({{ $transaction->id }})"
+                                    class="{{ $windowWidth >= 1024 ? 'w-11/12' : 'w-full' }}  py-2 my-1 rounded-full btransaction-2 btransaction-gray shadow-sm text-sm items-center"
+                                    {{-- for="productId{{ $transaction->id }}" :class="{ 'flex': open, 'hidden': !open }"> --}} for="productId{{ $transaction->id }}">
+                                    <ul class="flex flex-row w-full">
+                                        <li class="w-2/12 text-center text-sm">{{ $transaction->id }}</li>
+                                        <li class="w-2/12 text-center text-sm">
+                                            {{ $transaction->purchaseDate->format('Y-m-d') }}
+                                        </li>
+                                        <li class="w-3/12 text-center text-sm">
+                                            {{ $transaction->preferredService }}
+                                        <li class="w-2/12 text-center text-sm">{{ $transaction->status }}</li>
+                                        <li class="w-2/12 text-center text-sm">
+                                            {{ number_format($transaction->grandTotal, 2) }}
+                                        </li>
+                                    </ul>
+                                </label>
                             @endif
 
-                            <input class="widenWhenSelected" hidden type="radio" id="productId{{ $transaction->id }}"
-                                name="productList">
-                            <label wire:click="showDetails({{ $transaction->id }})"
-                                class="w-11/12 py-2 my-1 rounded-full btransaction-2 btransaction-gray shadow-sm text-sm items-center"
-                                {{-- for="productId{{ $transaction->id }}" :class="{ 'flex': open, 'hidden': !open }"> --}} for="productId{{ $transaction->id }}">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-sm">{{ $transaction->id }}</li>
-                                    <li class="w-2/12 text-center text-sm">
-                                        {{ $transaction->purchaseDate->format('Y-m-d') }}
-                                    </li>
-                                    <li class="w-3/12 text-center text-sm">
-                                        {{ $transaction->preferredService }}
-                                    <li class="w-2/12 text-center text-sm">{{ $transaction->status }}</li>
-                                    <li class="w-2/12 text-center text-sm">
-                                        {{ number_format($transaction->grandTotal, 2) }}
-                                    </li>
-                                </ul>
-                            </label>
+
                             {{-- </button> --}}
 
                         </li>
@@ -76,6 +81,8 @@
 @script
     <script>
         let resizeTimer;
+
+        // $wire.on('showDetails')
 
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);

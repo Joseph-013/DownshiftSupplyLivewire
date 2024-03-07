@@ -10,13 +10,8 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3">
-                {{-- Left Panel --}}
-                {{-- <livewire:main.user.livewire.user-products /> --}}
-                <livewire:main.user.livewire.user-orders-detail />
-                {{-- Right Panel border-2 border-black --}}
-                <livewire:main.user.livewire.user-orders-list />
-            </div>
+
+            <livewire:main.user.livewire.user-orders-main />
 
         </div>
     </div>

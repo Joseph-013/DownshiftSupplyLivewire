@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Main\User\Livewire;
 
-use App\Models\Transaction;
 use App\Models\Detail;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Transaction;
 use Livewire\Attributes\On;
+use PHPUnit\Event\Tracer\Tracer;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class UserOrdersDetail extends Component
 {
@@ -22,7 +24,7 @@ class UserOrdersDetail extends Component
             $this->transactionData = $transaction;
             $this->orderList = Detail::where('transaction_id', $transactionId)->with('products')->get();
         } else {
-            dump('Unauthorized Access');
+            abort(403, "Unauthorized/Illegal Access.");
         }
     }
 

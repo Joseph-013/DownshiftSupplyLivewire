@@ -43,48 +43,49 @@
             <hr class="my-1">
 
             <div class="px-3">
-                <table class="w-full">
-                    <thead>
-                        <tr>
-                            <th class="w-4/12 text-center text-xs font-semibold">Item</th>
-                            <th class="w-3/12 text-center text-xs font-semibold">Unit Price (₱)</th>
-                            <th class="w-2/12 text-center text-xs font-semibold">Quantity</th>
-                            <th class="w-3/12 text-center text-xs font-semibold">Subtotal (₱)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($orderList)
-                            @foreach ($orderList as $order)
-                                <tr>
-                                    <td class="w-4/12 text-center text-xs flex items-center justify-center">
-                                        <img src="{{ $order->products->image }}"
-                                            class="w-12 h-12 ml-[-2.5rem] object-cover">
-                                        {{ $order->products->name }}
-                                    </td>
-                                    <td class="w-3/12 text-center text-xs items-center justify-center">
-                                        {{ number_format($order->products->price, 2) }}
-                                    </td>
-                                    <td class="w-2/12 text-center text-xs items-center justify-center">
-                                        {{ $order->quantity }}
-                                    </td>
-                                    <td class="w-3/12 text-center text-xs items-center justify-center">
-                                        {{ $order->quantity * $order->products->price }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        <tr>
-                            <td colspan="3" class="text-right text-xs">
-                                <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
-                                {{ $transactionData ? $transactionData->shippingFee : '--' }}
-                            </td>
-                            <td class="text-center text-xs">
-                                ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="w-4/12 text-center text-xs font-semibold">Item</th>
+                <th class="w-3/12 text-center text-xs font-semibold">Unit Price (₱)</th>
+                <th class="w-2/12 text-center text-xs font-semibold">Quantity</th>
+                <th class="w-3/12 text-center text-xs font-semibold">Subtotal (₱)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($orderList)
+                @foreach ($orderList as $order)
+                    <tr>
+                        <td class="w-4/12 text-center text-xs flex items-center justify-center">
+                            <img src="{{ $order->products->image }}" class="w-12 h-12 ml-[-2.5rem] object-cover">
+                            {{ $order->products->name }}
+                        </td>
+                        <td class="w-3/12 text-center text-xs items-center justify-center">
+                            {{ number_format($order->products->price, 2) }}
+                        </td>
+                        <td class="w-2/12 text-center text-xs items-center justify-center">
+                            {{ $order->quantity }}
+                        </td>
+                        <td class="w-3/12 text-center text-xs items-center justify-center">
+                            {{ $order->quantity * $order->products->price }}
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            <tr>
+                <td colspan="3" class="text-right text-xs">
+                    <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
+                    {{ $transactionData ? $transactionData->shippingFee : '--' }}
+                </td>
+                <td class="text-center text-xs">
+                    ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
         </div>
         <hr class="my-1">
         <div class="w-full text-right text-xs ml-[-5rem] my-2">

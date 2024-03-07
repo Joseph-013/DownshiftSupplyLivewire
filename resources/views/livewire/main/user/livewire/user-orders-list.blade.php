@@ -25,7 +25,6 @@
 
                             @if ($transaction->id == $selectedOrder && $windowWidth < 1024)
                                 <div class="w-full rounded-full">
-                                    {{-- GAYAHIN LANG LAYOUT NG users-order-detail PERO MAS MALIIT --}}
                                     {{-- {{ $transaction->id }}
                                     {{ $transaction->paymentOption }}
                                     {{ $transaction->shippingAddress }}

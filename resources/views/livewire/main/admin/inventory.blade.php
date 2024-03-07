@@ -47,7 +47,31 @@
             </div>
 
             {{-- Content --}}
-            <livewire:main.admin.livewire.inventory-main />
+            <div class="flex flex-1 w-full -mx-3">
+                {{-- Left Panel --}}
+                <div class="w-2/5 h-full px-3">
+                    <div class="w-full h-full">
+                        {{-- Left Main Container --}}
+                        <livewire:product-details />
+                    </div>
+                </div>
+                {{-- Right Panel border-2 border-black --}}
+                <div class="w-3/5 h-full px-3 text-right flex">
+                    <div class="w-full h-full px-4 flex flex-col">
+                        <div class="w-full flex-row">
+                            <ul class="flex flex-row w-full">
+                                <li class="w-7/12 text-center text-sm">Item Name</li>
+                                <li class="w-2/12 text-center text-sm">Remaining</li>
+                                <li class="w-3/12 text-center text-sm">Price</li>
+                            </ul>
+                        </div>
+                        <hr class="my-1">
+                        {{-- Products List  --}}
+                        <livewire:product-list />
+                    </div>
+                    {{-- Products --}}
+                </div>
+            </div>
 
         </div>
     </div>

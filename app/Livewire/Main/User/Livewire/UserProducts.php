@@ -37,7 +37,6 @@ class UserProducts extends Component
 
     public function render()
     {
-        $this->products = Product::inRandomOrder()->get();
         return view('livewire.main.user.livewire.user-products');
     }
 }

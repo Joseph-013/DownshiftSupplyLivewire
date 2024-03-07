@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function indexUser()
     {
         // $products = Product::paginate(10);
-        $products = Product::all();
+        $products = Product::inRandomOrder()->get();
         return view('livewire.main.user.products', ['products' => $products]);
     }
 
@@ -36,7 +36,7 @@ class ProductController extends Controller
     {
         $search = $request->input('search');
         // $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10)->get();
-        $products = Product::where('name', 'like', '%' . $search . '%')->get();
+        $products = Product::where('name', 'like', '%' . $search . '%')->inRandomOrder()->get();
         return view('livewire.main.user.products', ['products' => $products]);
     }
 

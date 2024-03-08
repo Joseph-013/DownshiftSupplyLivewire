@@ -11,6 +11,8 @@ class FaqDetails extends Component
     public $selectedFaq = null;
     public $newQuestion = null;
     public $newAnswer = null;
+    public $confirmDelete = false;
+    public $confirmUpdate = false;
 
     #[On('faqSelected')]
     public function faqSelected($faqId)
@@ -22,14 +24,18 @@ class FaqDetails extends Component
         }
     }
 
+    public function deleteConfirm()
+    {
+        $this->confirmDelete = true;
+    }
+
     public function deleteFaq()
     {
         if ($this->selectedFaq) {
             $this->selectedFaq->delete();
             $this->selectedFaq = null;
-            // session()->flash('success-message', 'FAQ entry deleted successfully.');
-            // $this->dispatch('faqDeleted');
             $this->selectedFaq = null;
+            $this->confirmDelete = false;
             $this->dispatch('renderFaqList');
             $this->dispatch('alertNotif', 'FAQ entry deleted');
         }
@@ -41,11 +47,16 @@ class FaqDetails extends Component
             $this->selectedFaq->question = $this->newQuestion;
             $this->selectedFaq->answer = $this->newAnswer;
             $this->selectedFaq->save();
-            // session()->flash('success-message', 'FAQ entry updated successfully.');
             $this->selectedFaq = null;
+            $this->confirmUpdate = false;
             $this->dispatch('renderFaqList');
             $this->dispatch('alertNotif', 'FAQ entry updated');
         }
+    }
+
+    public function updateConfirm()
+    {
+        $this->confirmUpdate = true;
     }
 
     #[On('renderFaqDetails')]

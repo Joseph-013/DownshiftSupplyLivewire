@@ -11,7 +11,9 @@
                     <div class="container">
                         <div class="fixed-width-container text-left px-0">
                             <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
-                            <div class="remaining-text text-left text-red-500 italic text-xs">{{ $entry->product->stockquantity }} remaining left</div>
+                            <div class="remaining-text text-left text-red-500 italic text-xs">
+                                {{ $entry->product->stockquantity <= $entry->product->criticallevel ? $entry->product->stockquantity . ' left' : '' }}
+                            </div>
 
                         </div>
                         <div class="hover-text">
@@ -69,53 +71,3 @@
     @endforeach
 
 </ul>
-
-<script>
-    /*
-    // Get references to the elements
-    const decrementButton = document.getElementById('decrement-button');
-    const incrementButton = document.getElementById('increment-button');
-    const quantityInput = document.getElementById('quantity-input');
-
-    // Add event listeners to the buttons
-    decrementButton.addEventListener('click', () => {
-        // Decrease the value by 1 if it's greater than 0
-        let currentValue = parseInt(quantityInput.value);
-        if (!isNaN(currentValue) && currentValue > 0) {
-            quantityInput.value = currentValue - 1;
-        } else {
-            quantityInput.value = 0;
-        }
-    });
-
-    incrementButton.addEventListener('click', () => {
-        // Increase the value by 1, or set to 1 if it's not a number or less than 0
-        let currentValue = parseInt(quantityInput.value);
-        if (isNaN(currentValue) || currentValue < 0) {
-            quantityInput.value = 1;
-        } else {
-            quantityInput.value = currentValue + 1;
-        }
-    });
-    // */
-    // document.addEventListener('livewire:load', function () {
-    //     console.log("Test");
-    //     Livewire.on('btnRender', () => {
-    //         console.log("Test")
-    //         const quantityInputs = document.querySelectorAll('[id^="quantity-input-"]');
-    //         quantityInputs.forEach(input => {
-    //             const productId = input.id.split('-')[2]; // Extract the product ID from the input ID
-    //             const stockQuantity = parseInt(input.dataset.stockQuantity);
-    //             const currentQuantity = parseInt(input.value);
-
-    //             // Find the checkout button
-    //             const checkoutButton = document.getElementById('checkoutButton');
-
-    //             // Enable or disable the checkout button based on the stock quantity
-    //             if (checkoutButton) {
-    //                 checkoutButton.disabled = isNaN(stockQuantity) || isNaN(currentQuantity) || currentQuantity > stockQuantity;
-    //             }
-    //         });
-    //     });
-    // });
-</script>

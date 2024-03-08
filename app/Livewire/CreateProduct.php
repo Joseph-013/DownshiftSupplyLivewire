@@ -21,7 +21,7 @@ class CreateProduct extends Component
     public $image;
 
     protected $rules = [
-        'name' => 'required|string',
+        'name' => 'required|string|unique:product',
         'price' => 'required|numeric',
         'stockquantity' => 'required|numeric',
         'criticallevel' => 'required|numeric',
@@ -33,6 +33,14 @@ class CreateProduct extends Component
 
     public function createProduct()
     {
+
+        $this->validate([
+            'name' => ['required', 'string', 'unique:' . Product::class],
+            'price' => ['required', 'numeric'],
+            'stockquantity' => ['required', 'numeric'],
+            'criticallevel' => ['required', 'numeric'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:4096'],
+        ]);
 
         // DO NOT CLEAR THESE COMMENTS
         // $storageAccountName = env('AZURE_STORAGE_ACCOUNT_NAME');

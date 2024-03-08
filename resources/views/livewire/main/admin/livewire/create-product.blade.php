@@ -28,13 +28,15 @@
             <label class="w-1/4 h-10 flex items-center">Name:</label>
             <input wire:model="name" class="w-3/4 h-10 flex items-center" type="text" value="" required>
         </div>
+        <x-input-error :messages="$errors->get('name')" class="text-center" />
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Price:</label>
             <input wire:model="price" class="w-3/4 h-10 flex items-center" type="number" value="" required>
         </div>
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Remaining:</label>
-            <input wire:model="stockquantity" class="w-1/4 h-10 flex items-center" type="number" value="" required>
+            <input wire:model="stockquantity" class="w-1/4 h-10 flex items-center" type="number" value=""
+                required>
             <label class="w-1/4 h-10 flex items-center justify-center">Crit. Level:</label>
             <input wire:model="criticallevel" class="w-1/4 h-10 flex items-center" type="number" required>
         </div>

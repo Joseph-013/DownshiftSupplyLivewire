@@ -13,24 +13,44 @@ class OnsiteTransactionDetails extends Component
     public $newFirstname;
     public $newLastname;
     public $newGrandtotal;
+    public $details;
+    public $contact;
+    public $transactions;
 
     protected $listeners = ['transactionSelected'];
 
     public function mount($transId)
     {
-        if ($transId != 0)
-            $this->selectedTransaction = $transId;
-        else
+        if ($transId != 0) {
+            $transaction = Transaction::with('details')->find($transId);
+            if ($transaction) {
+                $this->selectedTransaction = $transaction->id;
+                $this->details = $transaction->details;
+                $this->newDate = $transaction->purchaseDate;
+                $this->contact = $transaction->contact;
+                $this->newFirstname = $transaction->firstName;
+                $this->newLastname = $transaction->lastName;
+                $this->newGrandtotal = $transaction->grandTotal;
+            } else {
+                $this->selectedTransaction = null;
+            }
+        } else {
             $this->selectedTransaction = null;
+        }
     }
 
     public function transactionSelected($transactionId)
     {
-        $this->selectedTransaction = Transaction::with('details')->find($transactionId);
-        $this->newDate = $this->selectedTransaction->purchaseDate;
-        $this->newFirstname = $this->selectedTransaction->firstName;
-        $this->newLastname = $this->selectedTransaction->lastName;
-        $this->newGrandtotal = $this->selectedTransaction->grandTotal;
+        $this->transactions = Transaction::with('details')->find($transactionId);
+        if ($this->transactions) {
+            $this->selectedTransaction = $transactionId;
+            $this->details = $this->transactions->details;
+            $this->newDate = $this->transactions->purchaseDate;
+            $this->contact = $this->transactions->contact;
+            $this->newFirstname = $this->transactions->firstName;
+            $this->newLastname = $this->transactions->lastName;
+            $this->newGrandtotal = $this->transactions->grandTotal;
+        }
     }
 
     public function render()

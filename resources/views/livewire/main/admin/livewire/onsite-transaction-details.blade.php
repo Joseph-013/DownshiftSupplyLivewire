@@ -3,13 +3,13 @@
         <div class="w-full h-96 overflow-y-auto" id="transactions-container">
             <div class=" flex flex-1 w-full">
                 <div class="w-2/4 h-full text-left text-sm my-1"><span class="font-semibold">Transaction
-                        ID:</span> {{ $selectedTransaction->id }}</div>
+                        ID:</span> {{ $selectedTransaction }}</div>
             </div>
             <div class="flex flex-1 w-full">
                 <div class="w-2/4 h-full text-left text-sm my-1"><span class="font-semibold">Name:</span>
-                    {{ $selectedTransaction->firstName }} {{ $selectedTransaction->lastName }}</div>
+                    {{ $newFirstname }} {{ $newLastname }}</div>
                 <div class="w-2/4 h-full text-left text-sm my-1"><span class="font-semibold">Contact
-                        #:</span> {{ $selectedTransaction->contact }}</div>
+                        #:</span> {{ $contact }}</div>
             </div>
             <ul class="w-full flex flex-col items-center">
                 {{-- Single Unit of Product --}}
@@ -25,10 +25,11 @@
                     </div>
                     <hr class="my-1">
                     <!-- Single Unit of Product -->
+                    @if ($details)
                     @php
-                        $grandTotal = 0;
+                        $grandTotal = 0.0;
                     @endphp
-                    @foreach ($selectedTransaction->details as $detail)
+                    @foreach ($details as $detail)
                         @if ($detail->products)
                             @php
                                 $subtotal = $detail->products->price * $detail->quantity;
@@ -54,7 +55,11 @@
                                 </ul>
                             </div>
                         @endif
-                    @endforeach
+                        <!-- Your existing code to display details -->
+                        @endforeach
+                    @else
+                        <p>No details available for this transaction.</p>
+                    @endif
                 </div>
 
             </ul>
@@ -64,7 +69,7 @@
             </span>₱ {{ number_format($grandTotal, 2) }}
         </div>
         <div class="w-full mt-4 flex justify-end">
-            <a href="{{ route('edittransactions', ['transactionId' => $selectedTransaction->id]) }}"
+            <a href="{{ route('edittransactions', ['transactionId' => $selectedTransaction]) }}"
                 class="h-9 px-6 flex flex-row items-center justify-center rounded-lg bg-gray-500 ml-3 border-1 border-black text-black text-sm font-semibold text-spacing">
                 Update&nbsp;Transaction
                 <svg class="svg-icon ml-2"

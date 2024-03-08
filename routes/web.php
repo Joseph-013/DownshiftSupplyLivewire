@@ -6,6 +6,7 @@ use App\Http\Controllers\OnlineTransactionController;
 use App\Http\Controllers\OnsiteTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -51,7 +52,6 @@ Route::middleware(['auth', 'verified'])
         Route::get('/cart', function () {
             $user = auth()->user();
             $cartNotEmpty = $user->carts->isNotEmpty();
-
             return view('livewire.main.user.cart', compact('cartNotEmpty'));
         })->name('cart');
         Route::view('/checkout', 'livewire/main/user/checkout')->name('checkout');

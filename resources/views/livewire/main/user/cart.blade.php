@@ -71,7 +71,7 @@
                                 {{-- <a href="{{ route('user.checkout') }}" --}}
                                 <livewire:main.user.livewire.user-cart-checkout-button />
                             @else
-                                <button disabled
+                                <button disabled id="checkoutButton"
                                     class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-gray-300 ml-3 border-1 border-gray-400 text-gray-600 text-sm font-semibold text-spacing cursor-not-allowed">
                                     Check out
                                 </button>
@@ -89,5 +89,33 @@
             </div>
 
         </div>
+        @livewireScripts
+        <script>
+            Livewire.on('cartCheck', (isEmpty) => {
+                const empty = isEmpty[0];
+                console.log(empty);
+                const checkoutButton = document.getElementById('checkoutButton');
+                if (checkoutButton) {
+                    checkoutButton.disabled = isEmpty;
+                    if (empty) {
+                        checkoutButton.removeAttribute('href');
+                        checkoutButton.disabled = true;
+                        checkoutButton.classList.remove('bg-orange-500');
+                        checkoutButton.classList.remove('border-black');
+                        checkoutButton.classList.add('border-gray-400')
+                        checkoutButton.classList.add('bg-gray-300');
+                        checkoutButton.classList.add('text-gray-600');
+                        checkoutButton.classList.add('cursor-not-allowed');
+                    } else {
+                        checkoutButton.classList.remove('border-gray-400')
+                        checkoutButton.classList.remove('bg-gray-300');
+                        checkoutButton.classList.remove('text-gray-600');
+                        checkoutButton.classList.remove('cursor-not-allowed');
+                        checkoutButton.classList.add('bg-orange-500');
+                        checkoutButton.classList.add('border-black');
+                    }
+                }
+            });
+        </script>
     </div>
 </x-app-layout>

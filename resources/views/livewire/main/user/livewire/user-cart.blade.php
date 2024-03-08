@@ -11,7 +11,9 @@
                     <div class="container">
                         <div class="fixed-width-container text-left px-0">
                             <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
-                            <div class="remaining-text text-left text-red-500 italic text-xs">XX remaining left</div>
+                            <div class="remaining-text text-left text-red-500 italic text-xs">
+                                {{ $entry->product->stockquantity <= $entry->product->criticallevel ? $entry->product->stockquantity . ' left' : '' }}
+                            </div>
 
                         </div>
                         <div class="hover-text">
@@ -34,10 +36,10 @@
                                     stroke-width="2" d="M1 1h16" />
                             </svg>
                         </button>
-                        <input type="text" id="quantity-input" data-input-counter
+                        <input type="text" id="quantity-input-{{ $entry->product->id }}" data-input-counter data-stock-quantity="{{ $entry->product->stockquantity }}"
                             aria-describedby="helper-text-explanation"
                             class="bg-white border-gray-300 h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value='{{ $entry->quantity }}' required>
+                            value='{{ $entry->quantity }}' required disabled>
                         <button wire:click="incrementQuantity({{ $entry->product->id }})" type="button"
                             id="increment-button" data-input-counter-increment="quantity-input"
                             class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -69,33 +71,3 @@
     @endforeach
 
 </ul>
-
-<script>
-    /*
-    // Get references to the elements
-    const decrementButton = document.getElementById('decrement-button');
-    const incrementButton = document.getElementById('increment-button');
-    const quantityInput = document.getElementById('quantity-input');
-
-    // Add event listeners to the buttons
-    decrementButton.addEventListener('click', () => {
-        // Decrease the value by 1 if it's greater than 0
-        let currentValue = parseInt(quantityInput.value);
-        if (!isNaN(currentValue) && currentValue > 0) {
-            quantityInput.value = currentValue - 1;
-        } else {
-            quantityInput.value = 0;
-        }
-    });
-
-    incrementButton.addEventListener('click', () => {
-        // Increase the value by 1, or set to 1 if it's not a number or less than 0
-        let currentValue = parseInt(quantityInput.value);
-        if (isNaN(currentValue) || currentValue < 0) {
-            quantityInput.value = 1;
-        } else {
-            quantityInput.value = currentValue + 1;
-        }
-    });
-    */
-</script>

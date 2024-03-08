@@ -36,6 +36,11 @@ Installing node on project directory:
 1. npm install
 2. npm run dev
 
+Creating fresh database
+
+1. php artisan migrate:fresh --seed
+
+
 ## Project Progress
 
 - Login

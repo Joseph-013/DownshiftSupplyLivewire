@@ -3,10 +3,13 @@
         @foreach ($transactions as $transaction)
             @if ($transaction->purchaseType === 'Onsite')
                 {{-- Single Unit of Product --}}
-                @if ($selectedTransactionId && $transaction->id == $selectedTransactionId)
-                    <livewire:onsite-transaction-details wire:key="{{ $transaction->id }}"
-                        transId="{{ $transaction->id }}" />
-                @endif
+                <div class="block lg:hidden">
+                    @if ($selectedTransactionId && $transaction->id == $selectedTransactionId)
+                        <livewire:onsite-transaction-details transId="{{ $transaction->id }}"
+                            wire:key="{{ $transaction->id }}" />
+                    @endif
+                </div>
+
                 <li wire:key="{{ $transaction->id }}" wire:click="selectTransaction({{ $transaction->id }})"
                     class="w-full flex justify-center select-none px-2">
                     {{-- Product Details --}}

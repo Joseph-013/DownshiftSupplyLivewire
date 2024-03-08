@@ -66,13 +66,16 @@
             </div>
             <div class="flex w-full py-2">
                 <label class="w-1/4 h-10 flex items-center">Price:</label>
-                <input wire:model="newPrice" class="w-3/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->price }}">
+                <input wire:model="newPrice" class="w-3/4 h-10 flex items-center" type="text" value="{{ $selectedProduct->price }}"
+                    oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').replace(/^(\d*\.\d{2}).*$/, '$1');">
             </div>
             <div class="flex w-full py-2">
                 <label class="w-1/4 h-10 flex items-center">Remaining:</label>
-                <input wire:model="newStockquantity" class="w-1/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->stockquantity }}">
+                <input wire:model="newStockquantity" class="w-1/4 h-10 flex items-center" type="text" value="{{ $selectedProduct->stockquantity }}"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]*">
                 <label class="w-1/4 h-10 flex items-center justify-center">Crit. Level:</label>
-                <input wire:model="newCriticallevel" class="w-1/4 h-10 flex items-center" type="number" value="{{ $selectedProduct->criticallevel }}">
+                <input wire:model="newCriticallevel" class="w-1/4 h-10 flex items-center" type="text" value="{{ $selectedProduct->criticallevel }}"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]*">
             </div>
             <div class="flex w-full py-2 mt-4 relative">
     <button wire:click="deleteConfirm" type="submit" @if($confirmDelete || $confirmUpdate) disabled @endif class="h-10 flex-1 items-center justify-center rounded-lg bg-red-600 mr-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">

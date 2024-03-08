@@ -31,14 +31,16 @@
         <x-input-error :messages="$errors->get('name')" class="text-center" />
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Price:</label>
-            <input wire:model="price" class="w-3/4 h-10 flex items-center" type="number" value="" required>
+            <input wire:model="price" class="w-3/4 h-10 flex items-center" type="text" value="" required
+            oninput="this.value = this.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').replace(/^(\d*\.\d{2}).*$/, '$1');">
         </div>
         <div class="flex w-full py-2">
             <label class="w-1/4 h-10 flex items-center">Remaining:</label>
-            <input wire:model="stockquantity" class="w-1/4 h-10 flex items-center" type="number" value=""
-                required>
+            <input wire:model="stockquantity" class="w-1/4 h-10 flex items-center" type="text" value=""
+                required oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]*">
             <label class="w-1/4 h-10 flex items-center justify-center">Crit. Level:</label>
-            <input wire:model="criticallevel" class="w-1/4 h-10 flex items-center" type="number" required>
+            <input wire:model="criticallevel" class="w-1/4 h-10 flex items-center" type="text" required
+            oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]*">
         </div>
         <div class="w-full mt-3 flex justify-center">
             <button type="submit"

@@ -37,6 +37,8 @@
             </div>
         </div>
         <script type="text/javascript" src="{{ URL::asset('js/alert.js') }}"></script>
+        
+        <!-- notif if received -->
 
         <livewire:layout.navigation />
 

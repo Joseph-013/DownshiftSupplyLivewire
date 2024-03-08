@@ -14,5 +14,5 @@ function revealAlert(message) {
     alertDiv.style.display = "block";
     setTimeout(() => {
         alertDiv.style.display = "none";
-    }, 1500);
+    }, 1750);
 }

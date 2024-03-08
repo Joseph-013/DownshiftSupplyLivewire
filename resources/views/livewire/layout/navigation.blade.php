@@ -135,7 +135,8 @@ new class extends Component {
                 @endauth
             @else
                 <!-- Content for guests -->
-                @include('livewire.layout.usernav')
+                @include('livewire.layout.usernavresponsive')
+
             @endif
         </div>
 

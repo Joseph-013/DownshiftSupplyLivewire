@@ -11,7 +11,7 @@
                     <div class="container">
                         <div class="fixed-width-container text-left px-0">
                             <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
-                            
+
 
                         </div>
                         <div class="hover-text">
@@ -23,39 +23,40 @@
 
                 <li class="w-3/12 text-center text-sm flex items-center ml-[-2rem]">
                     ₱&nbsp;{{ number_format($entry->product->price, 2) }}</li>
-                    <li class="w-3/12 text-center text-sm flex items-center relative">
-    <div class="relative flex flex-col items-center max-w-[6rem]">
-        <div class="flex h-full w-full">
-        <button wire:click="decrementQuantity({{ $entry->product->id }})" type="button"
-            id="decrement-button" data-input-counter-decrement="quantity-input"
-            class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-            <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" d="M1 1h16" />
-            </svg>
-        </button>
-        <input type="text" id="quantity-input-{{ $entry->product->id }}" data-input-counter data-stock-quantity="{{ $entry->product->stockquantity }}"
-            aria-describedby="helper-text-explanation"
-            class="bg-white border-gray-300 h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            value='{{ $entry->quantity }}' required disabled>
-        <button wire:click="incrementQuantity({{ $entry->product->id }})" type="button"
-            id="increment-button" data-input-counter-increment="quantity-input"
-            class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-            <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" d="M9 1v16M1 9h16" />
-            </svg>
-        </button>
-        </div>
-        <div class="remaining-text text-left text-red-500 italic text-xs mt-1">
-            {{ $entry->product->stockquantity <= $entry->product->criticallevel ? $entry->product->stockquantity . ' item/s left' : '' }}
-        </div>
-    </div>
-</li>
+                <li class="w-3/12 text-center text-sm flex items-center relative">
+                    <div class="relative flex flex-col items-center max-w-[6rem]">
+                        <div class="flex h-full w-full">
+                            <button wire:click="decrementQuantity({{ $entry->product->id }})" type="button"
+                                id="decrement-button" data-input-counter-decrement="quantity-input"
+                                class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M1 1h16" />
+                                </svg>
+                            </button>
+                            <input type="text" id="quantity-input-{{ $entry->product->id }}" data-input-counter
+                                data-stock-quantity="{{ $entry->product->stockquantity }}"
+                                aria-describedby="helper-text-explanation"
+                                class="bg-white border-gray-300 h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                value='{{ $entry->quantity }}' required disabled>
+                            <button wire:click="incrementQuantity({{ $entry->product->id }})" type="button"
+                                id="increment-button" data-input-counter-increment="quantity-input"
+                                class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M9 1v16M1 9h16" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="remaining-text text-left text-red-500 italic text-xs mt-1">
+                            {{ $entry->product->stockquantity <= $entry->product->criticallevel || $entry->quantity >= $entry->product->stockquantity ? $entry->product->stockquantity . ' item/s left' : '' }}
+                        </div>
+                    </div>
+                </li>
 
-                
+
 
                 <li class="w-2/12 text-center text-sm flex items-center ml-5">
                     ₱&nbsp;{{ number_format($entry->product->price * $entry->quantity, 2) }}</li>

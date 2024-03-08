@@ -46,6 +46,7 @@ new #[Layout('layouts.guest')] class extends Component {
     {
         if ($value == false) {
             $this->accepted = false;
+            // $this->dispatch('alertNotif', 'Declined');
             return redirect()->route('login');
         } else {
             $this->accepted = true;

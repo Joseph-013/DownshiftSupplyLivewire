@@ -10,6 +10,8 @@ class UserCart extends Component
 {
 
     public $cartEntries;
+    public $emptyCart;
+    public $hasExceeded;
     // public $productDetails;
 
     public function render()
@@ -27,7 +29,6 @@ class UserCart extends Component
                 --$product->quantity;
                 $product->save();
             }
-        $this->render();
     }
 
     public function incrementQuantity($productId)
@@ -37,7 +38,6 @@ class UserCart extends Component
             $product->quantity += 1;
             $product->save();
         }
-        $this->render();
     }
 
     public function removeItem($productId)
@@ -45,7 +45,21 @@ class UserCart extends Component
         $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
         if ($product) {
             $product->delete();
+            $this->cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();
+            $this->checkCart();
         }
-        $this->render();
+    }
+
+    public function checkCart()
+    {
+        if($this->cartEntries->isNotEmpty())
+        {
+            $this->emptyCart = false;
+        }
+        else
+        {
+            $this->emptyCart = true;
+        }
+        $this->dispatch('cartCheck', $this->emptyCart);
     }
 }

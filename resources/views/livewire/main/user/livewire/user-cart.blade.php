@@ -11,7 +11,7 @@
                     <div class="container">
     <div class="fixed-width-container">
         <span class="flex-grow text-left justify-content-start">{{ $entry->product->name }}</span>
-        <div class="remaining-text text-left text-red-500 italic text-xs">XX remaining left</div>
+        <div class="remaining-text text-left text-red-500 italic text-xs">{{ $entry->product->stockquantity }} remaining left</div>
 
     </div>
     <div class="hover-text">
@@ -34,10 +34,10 @@
                                     stroke-width="2" d="M1 1h16" />
                             </svg>
                         </button>
-                        <input type="text" id="quantity-input" data-input-counter
+                        <input type="text" id="quantity-input-{{ $entry->product->id }}" data-input-counter data-stock-quantity="{{ $entry->product->stockquantity }}"
                             aria-describedby="helper-text-explanation"
                             class="bg-white border-gray-300 h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value='{{ $entry->quantity }}' required>
+                            value='{{ $entry->quantity }}' required disabled>
                         <button wire:click="incrementQuantity({{ $entry->product->id }})" type="button"
                             id="increment-button" data-input-counter-increment="quantity-input"
                             class="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -97,5 +97,25 @@
             quantityInput.value = currentValue + 1;
         }
     });
-    */
+    // */
+    // document.addEventListener('livewire:load', function () {
+    //     console.log("Test");
+    //     Livewire.on('btnRender', () => {
+    //         console.log("Test")
+    //         const quantityInputs = document.querySelectorAll('[id^="quantity-input-"]');
+    //         quantityInputs.forEach(input => {
+    //             const productId = input.id.split('-')[2]; // Extract the product ID from the input ID
+    //             const stockQuantity = parseInt(input.dataset.stockQuantity);
+    //             const currentQuantity = parseInt(input.value);
+
+    //             // Find the checkout button
+    //             const checkoutButton = document.getElementById('checkoutButton');
+
+    //             // Enable or disable the checkout button based on the stock quantity
+    //             if (checkoutButton) {
+    //                 checkoutButton.disabled = isNaN(stockQuantity) || isNaN(currentQuantity) || currentQuantity > stockQuantity;
+    //             }
+    //         });
+    //     });
+    // });
 </script>

@@ -1,5 +1,5 @@
 <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-16 w-full">
-    <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <!-- <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h2 class="text-xl font-semibold mb-4 text-center">Have you received order XXXXXXXXloveu yet?</h2>
             <p class="text-sm text-gray-600 mb-4 text-center">Once you choose yes, the order is set to complete. This is an irreversible action.</p>
@@ -10,7 +10,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
     @if ($products)
     @foreach ($products as $product)
     <li class="px-2 text-left text-sm relative">

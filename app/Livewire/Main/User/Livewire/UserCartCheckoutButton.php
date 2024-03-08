@@ -20,6 +20,8 @@ class UserCartCheckoutButton extends Component
                 }
             }
         }
+
+        return redirect()->route('user.checkout');
     }
 
     public function render()

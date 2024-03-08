@@ -268,7 +268,7 @@ input[type="checkbox"]:checked{
     bottom: 0;
     width: 100%; /* Initially fills the .notif div */
     background-color: #fd831f; /* Background color of the timer */
-    animation: unfill 1.5s linear forwards;
+    animation: unfill 1.75s linear forwards;
 }
 
 @keyframes unfill {

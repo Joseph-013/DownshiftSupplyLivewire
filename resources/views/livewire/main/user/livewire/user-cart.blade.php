@@ -11,7 +11,6 @@
                 <div class="container">
                     <div class="fixed-width-container text-left px-0">
                     <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
-
                         <div class="remaining-text text-left text-red-500 italic text-xs">XX remaining left</div>
 
                     </div>

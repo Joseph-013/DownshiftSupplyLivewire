@@ -1,7 +1,5 @@
 <ul class=" w-full flex flex-col items-center">
 
-
-
     @foreach ($cartEntries as $entry)
         <li class="w-full flex justify-center select-none px-2 my-3 mt-4" wire:key="{{ $entry->id }}">
             {{-- Order Details --}}

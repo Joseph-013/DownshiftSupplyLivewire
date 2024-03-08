@@ -21,6 +21,18 @@ class UserCart extends Component
         return view('livewire.main.user.livewire.user-cart');
     }
 
+    public function changeQuantity($productId, $productQuantity)
+    {
+        // dd("$productId & $productQuantity");
+        $productQuantity = (int) $productQuantity;
+        $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
+        if ($productQuantity <= 0) {
+            $productQuantity = 1;
+        }
+        $product->quantity = $productQuantity;
+        $product->save();
+    }
+
     public function decrementQuantity($productId)
     {
         $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
@@ -52,12 +64,9 @@ class UserCart extends Component
 
     public function checkCart()
     {
-        if($this->cartEntries->isNotEmpty())
-        {
+        if ($this->cartEntries->isNotEmpty()) {
             $this->emptyCart = false;
-        }
-        else
-        {
+        } else {
             $this->emptyCart = true;
         }
         $this->dispatch('cartCheck', $this->emptyCart);

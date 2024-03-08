@@ -6,10 +6,12 @@ use App\Http\Controllers\OnlineTransactionController;
 use App\Http\Controllers\OnsiteTransactionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,15 @@ Route::middleware(['auth', 'verified'])
             $cartNotEmpty = $user->carts->isNotEmpty();
             return view('livewire.main.user.cart', compact('cartNotEmpty'));
         })->name('cart');
-        Route::view('/checkout', 'livewire/main/user/checkout')->name('checkout');
+        Route::get('/checkout', function () {
+            $cartEntries = Cart::where('user_id', Auth::id())->get();
+            foreach ($cartEntries as $cartEntry) {
+                if ($cartEntry->quantity > $cartEntry->product->stockquantity) {
+                    return redirect()->route('user.cart')->with('error', 'Some items exceed available stocks.');
+                }
+            }
+            return view('livewire.main.user.checkout');
+        })->name('checkout');
         Route::post('/checkout', [CheckoutController::class, 'submit'])->name('checkout.submit');
     });
 

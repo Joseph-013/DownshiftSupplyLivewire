@@ -3,15 +3,15 @@
 
 
     @foreach ($cartEntries as $entry)
-    <li class="w-full flex justify-center select-none px-2 my-3 mt-4">
-        {{-- Order Details --}}
-        <ul class="flex flex-row w-full">
-            <li class="w-6/12 flex items-center text-sm text-left">
-                <img src="{{ $entry->product->image }}" class="w-20 h-20 border-2 border-gray rounded object-cover">
-                <div class="container">
-                    <div class="fixed-width-container text-left px-0">
-                    <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
-                        <div class="remaining-text text-left text-red-500 italic text-xs">XX remaining left</div>
+        <li class="w-full flex justify-center select-none px-2 my-3 mt-4">
+            {{-- Order Details --}}
+            <ul class="flex flex-row w-full">
+                <li class="w-6/12 flex items-center text-sm text-left">
+                    <img src="{{ $entry->product->image }}" class="w-20 h-20 border-2 border-gray rounded object-cover">
+                    <div class="container">
+                        <div class="fixed-width-container text-left px-0">
+                            <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
+                            <div class="remaining-text text-left text-red-500 italic text-xs">XX remaining left</div>
 
                         </div>
                         <div class="hover-text">

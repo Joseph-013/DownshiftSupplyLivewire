@@ -7,17 +7,20 @@
             {{-- Order Details --}}
             <ul class="flex flex-row w-full">
                 <li class="w-6/14 flex items-center text-sm">
-                    <img src="{{ $entry->product->image }}" class="w-20 h-20 border-2 border-gray rounded mr-2 object-cover">
+                    <img src="{{ $entry->product->image }}"
+                        class="w-20 h-20 border-2 border-gray rounded mr-2 object-cover">
                     <div class="container">
-    <div class="fixed-width-container">
-        <span class="flex-grow text-left justify-content-start">{{ $entry->product->name }}</span>
-        <div class="remaining-text text-left text-red-500 italic text-xs">XX remaining left</div>
+                        <div class="fixed-width-container">
+                            <span class="flex-grow text-left justify-content-start">{{ $entry->product->name }}</span>
+                            <div class="remaining-text text-left text-red-500 italic text-xs">
+                                {{ $entry->product->stockquantity <= $entry->product->criticallevel ? $entry->product->stockquantity . ' left' : '' }}
+                            </div>
 
-    </div>
-    <div class="hover-text">
-        <span class="full-text">{{ $entry->product->name }}</span>
-    </div>
-</div>
+                        </div>
+                        <div class="hover-text">
+                            <span class="full-text">{{ $entry->product->name }}</span>
+                        </div>
+                    </div>
 
                 </li>
 

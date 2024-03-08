@@ -25,53 +25,51 @@
                         <hr class="my-1">
 
                         {{-- Order List  --}}
-                        @if($cartNotEmpty)
-                        <div class="w-full h-full px-3 overflow-y-auto" id="cart-container">
-                            <livewire:main.user.livewire.user-cart />
-                        </div>
-                        <hr class="my-3">
-                        <div class="w-full text-sm-right">
-                            <livewire:main.user.livewire.user-cart-total />
-                        </div>
-                        <div class="w-full text-sm-right">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-4/5"></li>
-                                <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
+                        @if ($cartNotEmpty)
+                            <div class="w-full h-full px-3 overflow-y-auto" id="cart-container">
+                                <livewire:main.user.livewire.user-cart />
+                            </div>
+                            <hr class="my-3">
+                            <div class="w-full text-sm-right">
+                                <livewire:main.user.livewire.user-cart-total />
+                            </div>
+                            <div class="w-full text-sm-right">
+                                <ul class="flex flex-row w-full">
+                                    <li class="w-4/5"></li>
+                                    <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
 
-                                </li>
-                                <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
-                                    <hr class="my-2">
-                                </li>
-                            </ul>
-                        </div>
+                                    </li>
+                                    <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
+                                        <hr class="my-2">
+                                    </li>
+                                </ul>
+                            </div>
                         @else
-                        <div class="w-full h-full px-3 overflow-y-auto" id="cart-container">
-                            <br />
-                            <div class="w-full text-center text-gray-600">Your cart is empty</div>
-                        </div>
-                        <hr class="my-3">
-                        <div class="w-full text-sm-right">
-                            <livewire:main.user.livewire.user-cart-total />
-                        </div>
-                        <div class="w-full text-sm-right">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-4/5"></li>
-                                <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
+                            <div class="w-full h-full px-3 overflow-y-auto" id="cart-container">
+                                <br />
+                                <div class="w-full text-center text-gray-600">Your cart is empty</div>
+                            </div>
+                            <hr class="my-3">
+                            <div class="w-full text-sm-right">
+                                <livewire:main.user.livewire.user-cart-total />
+                            </div>
+                            <div class="w-full text-sm-right">
+                                <ul class="flex flex-row w-full">
+                                    <li class="w-4/5"></li>
+                                    <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
 
-                                </li>
-                                <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
-                                    <hr class="my-2">
-                                </li>
-                            </ul>
-                        </div>
+                                    </li>
+                                    <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
+                                        <hr class="my-2">
+                                    </li>
+                                </ul>
+                            </div>
                         @endif
 
                         <div class="w-full mt-3 flex justify-end px-5">
-                            @if($cartNotEmpty)
-                                <a href="{{ route('user.checkout') }}"
-                                    class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
-                                    Check out
-                                </a>
+                            @if ($cartNotEmpty)
+                                {{-- <a href="{{ route('user.checkout') }}" --}}
+                                <livewire:main.user.livewire.user-cart-checkout-button />
                             @else
                                 <button disabled
                                     class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-gray-300 ml-3 border-1 border-gray-400 text-gray-600 text-sm font-semibold text-spacing cursor-not-allowed">
@@ -79,7 +77,7 @@
                                 </button>
                             @endif
                         </div>
-                        
+
                         <div class="w-full mt-3 flex justify-end px-5 text-sm">
                             Additional fees may be added upon checkout.
 

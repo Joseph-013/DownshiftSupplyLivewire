@@ -36,7 +36,7 @@
                         echo "
                                 </td>
                                 <td class='border p-2'>$transaction->grandTotal</td>
-                                <td class='border p-2'>$transaction->purchaseDate</td>
+                                <td class='border p-2'>$transaction->created_at</td>
                             </tr>
                         ";
                     }

@@ -69,33 +69,3 @@
     @endforeach
 
 </ul>
-
-<script>
-    /*
-    // Get references to the elements
-    const decrementButton = document.getElementById('decrement-button');
-    const incrementButton = document.getElementById('increment-button');
-    const quantityInput = document.getElementById('quantity-input');
-
-    // Add event listeners to the buttons
-    decrementButton.addEventListener('click', () => {
-        // Decrease the value by 1 if it's greater than 0
-        let currentValue = parseInt(quantityInput.value);
-        if (!isNaN(currentValue) && currentValue > 0) {
-            quantityInput.value = currentValue - 1;
-        } else {
-            quantityInput.value = 0;
-        }
-    });
-
-    incrementButton.addEventListener('click', () => {
-        // Increase the value by 1, or set to 1 if it's not a number or less than 0
-        let currentValue = parseInt(quantityInput.value);
-        if (isNaN(currentValue) || currentValue < 0) {
-            quantityInput.value = 1;
-        } else {
-            quantityInput.value = currentValue + 1;
-        }
-    });
-    */
-</script>

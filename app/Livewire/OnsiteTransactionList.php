@@ -10,14 +10,14 @@ class OnsiteTransactionList extends Component
     public $selectedTransactionId;
     public $transactions;
 
-    public function render()
-    {
-        return view('livewire.main.admin.livewire.onsite-transaction-list');
-    }
-
     public function selectTransaction($transactionId)
     {
         $this->selectedTransactionId = $transactionId;
         $this->dispatch('transactionSelected', $transactionId);
+    }
+
+    public function render()
+    {
+        return view('livewire.main.admin.livewire.onsite-transaction-list');
     }
 }

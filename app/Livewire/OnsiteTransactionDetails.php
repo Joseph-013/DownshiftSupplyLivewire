@@ -8,6 +8,7 @@ use Livewire\Component;
 class OnsiteTransactionDetails extends Component
 {
     public $selectedTransaction;
+    public $selfTransId;
     public $newDate;
     public $newFirstname;
     public $newLastname;
@@ -15,9 +16,12 @@ class OnsiteTransactionDetails extends Component
 
     protected $listeners = ['transactionSelected'];
 
-    public function mount()
+    public function mount($transId)
     {
-        $this->selectedTransaction = null;
+        if ($transId != 0)
+            $this->selectedTransaction = $transId;
+        else
+            $this->selectedTransaction = null;
     }
 
     public function transactionSelected($transactionId)

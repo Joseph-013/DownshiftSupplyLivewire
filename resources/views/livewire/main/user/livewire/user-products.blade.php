@@ -1,18 +1,19 @@
-<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-16 w-full">
+<ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-16 w-full">
     @if ($products)
         @foreach ($products as $product)
             <li class="px-2 text-left text-sm relative">
                 <div class="w-full h-5/6 relative">
                     <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}"
                         class="w-full h-full rounded-lg border-gray-500 border-1 object-fit">
-                    @if($product->stockquantity <= 0)
+                    @if ($product->stockquantity <= 0)
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <div class="bg-black bg-opacity-50 text-white text-lg font-bold py-2 px-4 rounded-lg max-w-full absolute inset-0 flex justify-center items-center">
+                            <div
+                                class="bg-black bg-opacity-50 text-white text-lg font-bold py-2 px-4 rounded-lg max-w-full absolute inset-0 flex justify-center items-center">
                                 Out of Stock
                             </div>
                         </div>
                     @endif
-                    
+
                 </div>
                 <div class="w-full h-10 flex items-center">
                     <ul class="flex flex-row w-full items-center">
@@ -25,7 +26,7 @@
                             </div>
                         </li>
                         <li class="w-1/4 text-left text-sm flex justify-center">
-                            @if($product->stockquantity > 0)
+                            @if ($product->stockquantity > 0)
                                 <button wire:click="addToCart({{ $product->id }})">
                                     <svg class="svg-icon mt-3 w-full h-full hover:brightness-90"
                                         style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"

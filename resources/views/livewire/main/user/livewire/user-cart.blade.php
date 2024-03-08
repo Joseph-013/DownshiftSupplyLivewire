@@ -6,24 +6,24 @@
         <li class="w-full flex justify-center select-none px-2 my-3 mt-4">
             {{-- Order Details --}}
             <ul class="flex flex-row w-full">
-                <li class="w-6/14 flex items-center text-sm">
-                    <img src="{{ $entry->product->image }}" class="w-20 h-20 border-2 border-gray rounded mr-2 object-cover">
+                <li class="w-6/12 flex items-center text-sm text-left">
+                    <img src="{{ $entry->product->image }}" class="w-20 h-20 border-2 border-gray rounded object-cover">
                     <div class="container">
-    <div class="fixed-width-container">
-        <span class="flex-grow text-left justify-content-start">{{ $entry->product->name }}</span>
-        <div class="remaining-text text-left text-red-500 italic text-xs">{{ $entry->product->stockquantity }} remaining left</div>
+                        <div class="fixed-width-container text-left px-0">
+                            <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>
+                            <div class="remaining-text text-left text-red-500 italic text-xs">{{ $entry->product->stockquantity }} remaining left</div>
 
-    </div>
-    <div class="hover-text">
-        <span class="full-text">{{ $entry->product->name }}</span>
-    </div>
-</div>
+                        </div>
+                        <div class="hover-text">
+                            <span class="full-text">{{ $entry->product->name }}</span>
+                        </div>
+                    </div>
 
                 </li>
 
-                <li class="w-3/12 text-center text-sm flex items-center ml-40 pl-20">
+                <li class="w-3/12 text-center text-sm flex items-center ml-[-2rem]">
                     ₱&nbsp;{{ number_format($entry->product->price, 2) }}</li>
-                <li class="w-3/12 text-center text-sm flex items-center ml-20  ">
+                <li class="w-3/12 text-center text-sm flex items-center">
                     <div class="relative flex items-center max-w-[6rem]">
                         <button wire:click="decrementQuantity({{ $entry->product->id }})" type="button"
                             id="decrement-button" data-input-counter-decrement="quantity-input"

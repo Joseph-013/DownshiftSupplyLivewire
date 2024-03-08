@@ -16,6 +16,7 @@ class OnlineTransactionDetails extends Component
     public $shippingAddress;
     public $status;
     public $statusOptions;
+    public $wasComplete;
 
     public function mount()
     {
@@ -38,6 +39,7 @@ class OnlineTransactionDetails extends Component
         $this->trackingNumber = $this->selectedTransaction->trackingNumber;
         $this->shippingAddress = $this->selectedTransaction->shippingAddress;
         $this->status = $this->selectedTransaction->status;
+        $this->wasComplete = $this->selectedTransaction->wasComplete;
         $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
     }
 
@@ -54,6 +56,19 @@ class OnlineTransactionDetails extends Component
             'shippingAddress' => $this->shippingAddress,
             'status' => $this->status,
         ]);
+
+        $details = $this->selectedTransaction->details;
+        if($this->status === "Complete" && !$this->wasComplete) {
+            foreach ($details as $detail) {
+                $product = $detail->products;
+                $product->stockquantity = $product->stockquantity - $detail->quantity;
+                $this->selectedTransaction->update([
+                    'wasComplete' => true
+                ]);
+                $product->save();
+            }
+        }
+
         $this->dispatch('transactionUpdated');
         $this->dispatch('alertNotif', 'Transaction successfully updated');
         $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);

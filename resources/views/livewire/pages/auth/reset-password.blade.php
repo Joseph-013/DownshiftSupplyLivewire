@@ -190,6 +190,8 @@ new #[Layout('layouts.guest')] class extends Component {
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button class="w-full text-center justify-center py-2 h-10 font-montserrat">
                         {{ __('Reset Password') }}
+                        <img wire:loading wire:target="resetPassword" src="{{ asset('assets/loading.gif') }}"
+                            alt="please wait..." class="h-5 w-5 ml-2" />
                     </x-primary-button>
                 </div>
             </form>

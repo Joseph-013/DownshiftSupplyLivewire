@@ -51,7 +51,6 @@ new class extends Component {
             @endif
             <!-- Navigation Links (My stupid code lmao) -->
 
-
             <!-- Settings Dropdown -->
             <div class="h-full flex items-center">
 
@@ -67,7 +66,6 @@ new class extends Component {
                     @endif
 
                 </div>
-
 
                 <div class="hidden md:flex sm:items-center">
                     <x-dropdown align="right" width="48">
@@ -88,7 +86,6 @@ new class extends Component {
                                 <x-dropdown-link :href="route('profile')" wire:navigate>
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
-
                             @endauth
 
                             <!-- Authentication -->

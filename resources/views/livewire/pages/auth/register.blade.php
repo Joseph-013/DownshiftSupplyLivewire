@@ -46,8 +46,8 @@ new #[Layout('layouts.guest')] class extends Component {
     {
         if ($value == false) {
             $this->accepted = false;
-            // $this->dispatch('alertNotif', 'Declined');
-            return redirect()->route('login');
+            Session::flash('tncDecline', 'Terms & Conditions and/or Data Privacy declined.');
+            $this->redirectRoute('login', navigate: true);
         } else {
             $this->accepted = true;
         }

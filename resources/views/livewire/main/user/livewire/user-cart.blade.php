@@ -14,11 +14,11 @@
                             <span class="full-text">{{ $entry->product->name }}</span>
                         </div>
                     </div>
-
                 </li>
 
                 <li class="w-3/12 text-center text-sm flex items-center ml-[-2rem]">
-                    ₱&nbsp;{{ number_format($entry->product->price, 2) }}</li>
+                    ₱&nbsp;{{ number_format($entry->product->price, 2) }}
+                </li>
                 <li class="w-3/12 text-center text-sm flex items-center relative">
                     <div class="relative flex flex-col items-center max-w-[6rem]">
                         <div class="flex h-full w-full">

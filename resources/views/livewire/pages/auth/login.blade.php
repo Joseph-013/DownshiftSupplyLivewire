@@ -70,7 +70,10 @@ new #[Layout('layouts.guest')] class extends Component {
                                 Welcome! Let&#39;s get started!
                             </h3>
                         </div>
-                        <x-auth-session-status class="mb-4" :status="session('status')" />
+                        <x-auth-session-status class="mb-4 bg-white p-1 px-2 rounded-md text-green-500"
+                            :status="session('status')" />
+                        <x-auth-session-status class="mb-4 bg-red-500 p-1 px-2 rounded-md text-white"
+                            :status="session('tncDecline')" />
                         <div class="w-full flex flex-col items-center">
                             <input wire:model="form.email" name="email" required
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2"

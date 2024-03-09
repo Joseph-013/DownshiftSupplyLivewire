@@ -5,10 +5,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OnlineTransactionController;
 use App\Http\Controllers\OnsiteTransactionController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
 /*

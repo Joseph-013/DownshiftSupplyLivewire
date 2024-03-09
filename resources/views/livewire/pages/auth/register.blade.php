@@ -176,13 +176,13 @@ new #[Layout('layouts.guest')] class extends Component {
                     <div class=" text-sm mt-1 font-montserrat italic text-gray-600 ">
                         Requirements:
                         <br />
-                        • Must be a minimum of 8 characters
+                        &nbsp;&nbsp;• Must be a minimum of 8 characters
                         <br />
-                        • Must include at least 1 number
+                        &nbsp;&nbsp;• Must include at least 1 number
                         <br />
-                        • Must include at least 1 special character
+                        &nbsp;&nbsp;• Must include at least 1 special character
                         <br />
-                        • Must include at least 1 capital letter
+                        &nbsp;&nbsp;• Must include at least 1 capital letter
                     </div>
 
                     {{-- Confirm New Pass --}}

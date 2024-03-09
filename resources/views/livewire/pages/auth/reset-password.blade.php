@@ -10,8 +10,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
-{
+new #[Layout('layouts.guest')] class extends Component {
     #[Locked]
     public string $token = '';
     public string $email = '';
@@ -36,23 +35,23 @@ new #[Layout('layouts.guest')] class extends Component
         $this->validate([
             'token' => ['required'],
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            // 'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'string', 'confirmed', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\w\W]{8,}$/'],
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
-        $status = Password::reset(
-            $this->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user) {
-                $user->forceFill([
+        $status = Password::reset($this->only('email', 'password', 'password_confirmation', 'token'), function ($user) {
+            $user
+                ->forceFill([
                     'password' => Hash::make($this->password),
                     'remember_token' => Str::random(60),
-                ])->save();
+                ])
+                ->save();
 
-                event(new PasswordReset($user));
-            }
-        );
+            event(new PasswordReset($user));
+        });
 
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
@@ -85,8 +84,9 @@ new #[Layout('layouts.guest')] class extends Component
                 {{-- Right Panel --}}
                 <div class="bg-orange-400 flex-1 py-7">
                     <div class="p-4 w-full h-full flex flex-col items-center justify-between">
-                        <div class="flex flex-col items-center mt-8">
-                            <h1 class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
+                        <div class="flex flex-col items-center mt-4 font-montserrat">
+                            <h1
+                                class="font-montserrat italic text-white font-black text-4xl default-shadow mb-4 text-center">
                                 Downshift Supply
                             </h1>
                             <h3 class="font-montserrat text-white default-shadow text-lg">
@@ -94,37 +94,58 @@ new #[Layout('layouts.guest')] class extends Component
                             </h3>
 
                             <div class="flex flex-col mt-16">
-                            <form wire:submit="resetPassword" class="w-full">
-                                <!-- Email Address -->
-                                <div class="mt-4 w-full">
-                                    <x-input-label for="email" :value="__('Email')" class="font-semibold sm-40 md:w-80" />
-                                    <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                </div>
+                                <form wire:submit="resetPassword" class="w-full">
+                                    <!-- Email Address -->
+                                    <div class="mt-4 w-full">
+                                        <x-input-label for="email" :value="__('Email')"
+                                            class="font-semibold sm-40 md:w-80" />
+                                        <x-text-input wire:model="email" id="email" class="block mt-1 w-full"
+                                            type="email" name="email" required autofocus autocomplete="username" />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
 
-                                <!-- Password -->
-                                <div class="mt-4 w-full">
-                                    <x-input-label for="password" :value="__('Password')" class="block font-semibold" />
-                                    <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" placeholder="Password" />
-                                    <x-input-error :messages="$errors->get('password')" class="block mt-2 w-full ml-[-0.045rem]" />
-                                </div>
+                                    <!-- Password -->
+                                    <div class="mt-4 w-full">
+                                        <x-input-label for="password" :value="__('Password')" class="block font-semibold" />
+                                        <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
+                                            type="password" name="password" required autocomplete="new-password"
+                                            placeholder="Password" />
+                                        <x-input-error :messages="$errors->get('password')"
+                                            class="block mt-2 w-full ml-[-0.045rem] text-center" />
+                                    </div>
 
-                                <!-- Confirm Password -->
-                                <div class="mt-4 w-full">
-                                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="block w-full" />
-                                    <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" />
-                                    <x-input-error :messages="$errors->get('password_confirmation')" class="block mt-2 w-full ml-[-0.045rem]" />
-                                </div>
+                                    <div class=" text-sm mt-1 font-montserrat italic text-white ">
+                                        Requirements:
+                                        <br />
+                                        &nbsp;&nbsp;• Must be a minimum of 8 characters
+                                        <br />
+                                        &nbsp;&nbsp;• Must include at least 1 number
+                                        <br />
+                                        &nbsp;&nbsp;• Must include at least 1 special character
+                                        <br />
+                                        &nbsp;&nbsp;• Must include at least 1 capital letter
+                                    </div>
 
-                                <div class="flex items-center justify-end mt-4">
-                                    <x-primary-button class="w-full text-center justify-center py-2 h-10 font-montserrat">
-                                        {{ __('Reset Password') }}
-                                    </x-primary-button>
-                                </div>
-                            </form>
+                                    <!-- Confirm Password -->
+                                    <div class="mt-4 w-full">
+                                        <x-input-label for="password_confirmation" :value="__('Confirm Password')"
+                                            class="block w-full" />
+                                        <x-text-input wire:model="password_confirmation" id="password_confirmation"
+                                            class="block mt-1 w-full" type="password" name="password_confirmation"
+                                            required autocomplete="new-password" placeholder="Confirm Password" />
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="block mt-2 w-full ml-[-0.045rem]" />
+                                    </div>
+
+                                    <div class="flex items-center justify-end mt-4">
+                                        <x-primary-button
+                                            class="w-full text-center justify-center py-2 h-10 font-montserrat">
+                                            {{ __('Reset Password') }}
+                                        </x-primary-button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        </div>
-                        
+
 
 
                     </div>
@@ -141,14 +162,16 @@ new #[Layout('layouts.guest')] class extends Component
             <form wire:submit="resetPassword">
                 <div class="mt-20">
                     <x-input-label for="email" :value="__('Email')" class="font-semibold sm-40 md:w-80 " />
-                    <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
+                    <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email"
+                        name="email" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4 w-full">
                     <x-input-label for="password" :value="__('Password')" class="block font-semibold" />
-                    <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" placeholder="Password" />
+                    <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password"
+                        name="password" required autocomplete="new-password" placeholder="Password" />
                     <x-input-error :messages="$errors->get('password')" class="block mt-2 w-full ml-[-0.045rem]" />
                 </div>
 
@@ -156,7 +179,9 @@ new #[Layout('layouts.guest')] class extends Component
                 <div class="mt-4 w-full">
                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="block w-full" />
 
-                    <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" />
+                    <x-text-input wire:model="password_confirmation" id="password_confirmation"
+                        class="block mt-1 w-full" type="password" name="password_confirmation" required
+                        autocomplete="new-password" placeholder="Confirm Password" />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" class="block mt-2 w-full ml-[-0.045rem]" />
                 </div>

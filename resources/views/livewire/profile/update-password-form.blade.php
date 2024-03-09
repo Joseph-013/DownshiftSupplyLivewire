@@ -48,7 +48,7 @@ new class extends Component {
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
+            {{ __('Ensure your account password meets the requirements stated below to stay secure.') }}
         </p>
     </header>
 
@@ -57,14 +57,14 @@ new class extends Component {
             <x-input-label for="update_password_current_password" :value="__('Current Password')" />
             <x-text-input wire:model="current_password" id="update_password_current_password" name="current_password"
                 type="password" class="mt-1 block w-full" autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('current_password')" class="mt-2 text-center" />
         </div>
 
         <div>
             <x-input-label for="update_password_password" :value="__('New Password')" />
             <x-text-input wire:model="password" id="update_password_password" name="password" type="password"
                 class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password')" class="mt-2 text-center" />
         </div>
         <div class=" text-sm mt-1 font-montserrat italic text-gray-600 ">
             Requirements:
@@ -81,7 +81,7 @@ new class extends Component {
             <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
             <x-text-input wire:model="password_confirmation" id="update_password_password_confirmation"
                 name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-center" />
         </div>
 
         <div class="flex items-center gap-4">

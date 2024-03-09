@@ -4,12 +4,14 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Transaction;
+use Livewire\Attributes\On;
 
 class OnlineTransactionList extends Component
 {
     public $selectedTransactionId;
     public $transactions;
 
+    #[On('transactionUpdated')]
     public function render()
     {
         return view('livewire.main.admin.livewire.online-transaction-list');

@@ -8,10 +8,10 @@
                     Onsite Transactions
                 </h1>
                 <div class="flex-1">
-                    <form action="{{ route('admin.onsitetransactions.search') }}" method="GET" class="flex flex-row">
+                    <form id="searchForm" action="{{ route('admin.onsitetransactions.search') }}" method="GET" class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
                             <input
-                                name="search"
+                                name="search" id="searchInput"
                                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
                                 type="text" />
                             <button type="clear"
@@ -88,4 +88,11 @@
 
         </div>
     </div>
+    <script>
+        document.getElementById("searchInput").addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                document.getElementById("searchForm").submit();
+            }
+        });
+    </script>
 </x-app-layout>

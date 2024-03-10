@@ -37,7 +37,6 @@ class TransactionFactory extends Factory
                 'contact' => fake()->numberBetween(9000000000, 9999999999),
                 'purchaseType' => $purchaseType,
                 'user_id' => fake()->numberBetween(2, 20),
-                'wasComplete' => false
             ];
         } else if ($purchaseType === 'Online') {
             $products = Product::inRandomOrder()->limit(3)->get();
@@ -59,7 +58,6 @@ class TransactionFactory extends Factory
                 'shippingFee' => fake()->randomNumber(4, false),
                 'trackingNumber' => fake()->regexify('[A-Za-z0-9]{10}'),
                 'grandTotal' => $totalPrice,
-                'wasComplete' => false
             ];
         }
     }

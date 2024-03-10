@@ -24,6 +24,10 @@ class ReportTable extends Component
                 }
                 break;
             case 'weekly':
+                $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
+                foreach ($this->transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('F');
+                }
                 break;
 
             case 'monthly':

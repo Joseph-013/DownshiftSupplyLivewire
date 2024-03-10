@@ -75,15 +75,28 @@ class AdminController extends Controller
                     $subtotal = $quantity * $price;
             
                     if ($detail) {
+                        $previousQuantity = $detail->quantity;
                         $detail->update(['quantity' => $quantity]);
                         $detail->update(['subtotal' => $subtotal]);
+                        if($detail->quantity < $previousQuantity)
+                        {
+                            $product->stockquantity = $product->stockquantity + ($previousQuantity - $detail->quantity);
+                            $product->save();
+                        }
+                        elseif($detail->quantity > $previousQuantity)
+                        {
+                            $product->stockquantity = $product->stockquantity - ($detail->quantity - $previousQuantity);
+                            $product->save();
+                        }
                     } else {
-                        Detail::create([
+                        $createdDetail = Detail::create([
                             'transaction_id' => $transaction->id,
                             'product_id' => $productId,
                             'quantity' => $quantity,
                             'subtotal' => $subtotal
                         ]);
+                        $product->stockquantity = $product->stockquantity - $createdDetail->quantity;
+                        $product->save();
                     }
                 }
             }
@@ -130,6 +143,9 @@ class AdminController extends Controller
             $detail->quantity = $quantity;
             $detail->subtotal = $subtotal;
             $detail->save();
+
+            $product->stockquantity = $product->stockquantity - $detail->quantity;
+            $product->save();
         }
         $transaction->grandTotal = $grandTotal;
         $transaction->save();

@@ -13,36 +13,105 @@
         <tbody>
 
             @if ($transactions)
-                @php
-                    $identifierSwitch = '';
-                    foreach ($transactions as $transaction) {
-                        if ($transaction->identifier !== $identifierSwitch) {
-                            $identifierSwitch = $transaction->identifier;
-                            echo "
-                                <tr class='border-b-2 border-black mt-3'>
-                                    <td class='border p-2 text-center font-semibold italic' colspan='5'>
-                                        $identifierSwitch
-                                    </td>
-                                </tr>
-                                ";
-                        }
-                        echo "
-                            <tr class='border font-light'>
-                                <td class='border p-2'>$transaction->id</td>
-                                <td class='border p-2'>$transaction->firstName&nbsp;$transaction->lastName</td>
-                                <td class='border p-2'>
-                                    ";
-                        echo $transaction->preferredService ? $transaction->preferredService : '(Onsite Purchase)';
-                        echo "
-                                </td>
-                                <td class='border p-2'>$transaction->grandTotal</td>
-                                <td class='border p-2'>" .
-                            \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i:s A') .
-                            "</td>
-                            </tr>
+                @if ($format !== 'weekly')
+                    @php
+                        $identifierSwitch = '';
+                        foreach ($transactions as $transaction) {
+                            if ($transaction->identifier !== $identifierSwitch) {
+                                $identifierSwitch = $transaction->identifier;
+                                echo "
+                        <tr class='border-b-2 border-black mt-3'>
+                            <td class='border p-2 text-center font-semibold italic' colspan='5'>
+                                $identifierSwitch
+                            </td>
+                        </tr>
                         ";
-                    }
-                @endphp
+                            }
+                            echo "
+                        <tr class='border font-light'>
+                            <td class='border p-2'>$transaction->id</td>
+                            <td class='border p-2'>$transaction->firstName&nbsp;$transaction->lastName</td>
+                            <td class='border p-2'>
+                                ";
+                            echo $transaction->preferredService ? $transaction->preferredService : '(Onsite Purchase)';
+                            echo "
+                        </td>
+                        <td class='border p-2'>$transaction->grandTotal</td>
+                        <td class='border p-2'>" .
+                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i:s A') .
+                                "</td>
+                        </tr>";
+                        }
+                    @endphp
+                @else
+                    @php
+                        $identifierSwitch = '';
+                        $day;
+                        $weekSwitch = 0;
+                        $weekNum = 1;
+                        foreach ($transactions as $transaction) {
+                            $day = (int) $transaction->created_at->format('d');
+                            if ($transaction->identifier !== $identifierSwitch) {
+                                $identifierSwitch = $transaction->identifier;
+                            }
+                            switch ($day) {
+                                case $day <= 7:
+                                    $weekNum = 1;
+                                    break;
+                                case $day <= 14:
+                                    $weekNum = 2;
+                                    break;
+                                case $day <= 21:
+                                    $weekNum = 3;
+                                    break;
+                                case $day <= 31:
+                                    $weekNum = 4;
+                                    break;
+                            }
+
+                            if ($weekNum != $weekSwitch) {
+                                $weekSwitch = $weekNum;
+                                $weekDefinition;
+                                switch ($weekSwitch) {
+                                    case 1:
+                                        $weekDefinition = 'Days 1-7';
+                                        break;
+                                    case 2:
+                                        $weekDefinition = 'Days 8-14';
+                                        break;
+                                    case 3:
+                                        $weekDefinition = 'Days 15-21';
+                                        break;
+                                    case 4:
+                                        $weekDefinition = 'Days 22-Last';
+                                        break;
+                                }
+                                echo "
+                                    <tr class='border-b-2 border-black mt-3'>
+                                        <td class='border p-2 text-center font-semibold italic' colspan='5'>
+                                            $identifierSwitch&nbsp;Week&nbsp;$weekNum&nbsp;($weekDefinition)
+                                        </td>
+                                    </tr>
+                                    ";
+                            }
+                            echo "
+                                <tr class='border font-light'>
+                                    <td class='border p-2'>$transaction->id</td>
+                                    <td class='border p-2'>$transaction->firstName&nbsp;$transaction->lastName</td>
+                                    <td class='border p-2'>
+                                        ";
+                            echo $transaction->preferredService ? $transaction->preferredService : '(Onsite Purchase)';
+                            echo "
+                                    </td>
+                                    <td class='border p-2'>$transaction->grandTotal</td>
+                                    <td class='border p-2'>" .
+                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i:s A') .
+                                "</td>
+                                </tr>";
+                        }
+                    @endphp
+                @endif
+
             @endif
 
 

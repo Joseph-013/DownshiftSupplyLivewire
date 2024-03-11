@@ -29,30 +29,19 @@ class ReportTable extends Component
                     $transaction->identifier = $transaction->created_at->format('F');
                 }
                 break;
-
             case 'monthly':
-                // $this->transactions = Transaction::whereBetween('created_at', [
-                //     Carbon::parse($date)->startOfMonth(),
-                //     Carbon::now()
-                // ])->orderBy('created_at')->get();
                 $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
-
                 foreach ($this->transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('F Y');
                 }
                 break;
             case 'annual':
-                // $this->transactions = Transaction::whereBetween('created_at', [
-                //     Carbon::parse($date)->startOfYear(),
-                //     Carbon::now()
-                // ])->orderBy('created_at')->get();
                 $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
                 foreach ($this->transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('Y');
                 }
                 break;
         }
-        // dd($this->transactions);
         $this->format = $format;
     }
 

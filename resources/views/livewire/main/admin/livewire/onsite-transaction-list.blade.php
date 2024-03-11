@@ -1,23 +1,28 @@
 <div class="w-full h-96 overflow-y-auto mb-5" id="transactions-container">
     <ul class=" w-full flex flex-col items-center">
         @foreach ($transactions as $transaction)
-        @if($transaction->purchaseType === "Onsite")
-        {{-- Single Unit of Product --}}
-        <li wire:click="selectTransaction({{ $transaction->id }})" class="w-full flex justify-center select-none px-2">
-            {{-- Product Details --}}
-            <input class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}" name="productList">
-            <label
-                    class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
-                    for="transactionId{{ $transaction->id }}">
-                <ul class="flex flex-row w-full">
-                    <li class="w-3/12 text-center text-sm">{{ $transaction->id }}</li>
-                    <li class="w-3/12 text-center text-sm">{{ $transaction->purchaseDate }}</li>
-                    <li class="w-3/12 text-center text-sm">{{ $transaction->firstName }}  {{ $transaction->lastName}}</li>
-                    <li class="w-3/12 text-center text-sm">₱ {{ number_format($transaction->grandTotal, 2) }}</li>
-                </ul>
-            </label>
-        </li>
-        @endif
+            @if ($transaction->purchaseType === 'Onsite')
+                {{-- Single Unit of Product --}}
+                <li wire:click="selectTransaction({{ $transaction->id }})"
+                    class="w-full flex justify-center select-none px-2">
+                    {{-- Product Details --}}
+                    <input class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
+                        name="productList">
+                    <label
+                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                        for="transactionId{{ $transaction->id }}">
+                        <ul class="flex flex-row w-full">
+                            <li class="w-3/12 text-center text-sm">{{ $transaction->id }}</li>
+                            <li class="w-3/12 text-center text-sm">
+                                {{ \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y') }}</li>
+                            <li class="w-3/12 text-center text-sm">{{ $transaction->firstName }}
+                                {{ $transaction->lastName }}</li>
+                            <li class="w-3/12 text-center text-sm">₱ {{ number_format($transaction->grandTotal, 2) }}
+                            </li>
+                        </ul>
+                    </label>
+                </li>
+            @endif
         @endforeach
     </ul>
 </div>

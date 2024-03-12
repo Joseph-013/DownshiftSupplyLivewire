@@ -1,6 +1,6 @@
-<div class="hidden lg:w-2/5 h-full px-3">
+<div class="hidden lg:block w-2/5 h-full px-3">
     {{-- Left Main Container --}}
-    <div class="border-black border-1 w-full rounded-lg p-1 hidden lg:block">
+    <div class="border-black border-1 w-full rounded-lg p-1">
         <div class="w-full h-96 overflow-y-auto flex-row" id="questions-container">
             <ul class="flex flex-row w-full mb-3">
                 <li class="w-2/4 text-left text-sm px-3">

@@ -113,13 +113,11 @@
                 @endif
 
             @endif
-
-
         </tbody>
     </table>
-    @if (!$transactions && !$format)
+    @if (!$format)
         <div class="w-full mt-5 text-center">Waiting input...</div>
-    @else
+    @elseif ($transactions == null)
         <div class="w-full mt-5 text-center">No transactions found.</div>
     @endif
 </div>

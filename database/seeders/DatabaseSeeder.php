@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Detail::factory(150)->create();
         $this->call(DetailsTableSeeder::class);
 
-        \App\Models\Transaction::factory(50)->create();
-        // \App\Models\Transaction::factory(1000)->create();
+        // \App\Models\Transaction::factory(50)->create();
+        \App\Models\Transaction::factory(500)->create();
         $this->call(TransactionsTableSeeder::class);
     }
 }

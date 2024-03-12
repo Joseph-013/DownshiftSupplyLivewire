@@ -20,7 +20,7 @@ class ReportTable extends Component
             case 'daily':
                 $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
                 foreach ($this->transactions as $transaction) {
-                    $transaction->identifier = $transaction->created_at->format('F j, Y');
+                    $transaction->identifier = $transaction->created_at->format('F j, Y D');
                 }
                 break;
             case 'weekly':
@@ -41,6 +41,9 @@ class ReportTable extends Component
                     $transaction->identifier = $transaction->created_at->format('Y');
                 }
                 break;
+        }
+        if ($this->transactions->count() == 0) {
+            $this->transactions = null;
         }
         $this->format = $format;
     }

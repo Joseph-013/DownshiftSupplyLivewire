@@ -18,6 +18,8 @@ class ProductDetails extends Component
     public $newCriticallevel;
     public $newImage;
     public $newlyUploadedImage;
+    public $confirmDelete = false;
+    public $confirmUpdate = false;
 
     // protected $listeners = ['productSelected'];
 
@@ -50,7 +52,14 @@ class ProductDetails extends Component
             $this->selectedProduct->delete();
             $this->selectedProduct = null;
             $this->dispatch('productDeleted');
+            $this->confirmDelete = false;
+            $this->dispatch('alertNotif', 'Product successfully deleted');
         }
+    }
+
+    public function deleteConfirm()
+    {
+        $this->confirmDelete = true;
     }
 
     public function updateProduct()
@@ -73,8 +82,15 @@ class ProductDetails extends Component
             $this->selectedProduct->criticallevel = $this->newCriticallevel;
             $this->selectedProduct->save();
             $this->dispatch('productCreated');
+            $this->confirmUpdate = false;
+            $this->dispatch('alertNotif', 'Product successfully updated');
+            $this->clearProductDetails();
         }
-        $this->clearProductDetails();
+    }
+
+    public function updateConfirm()
+    {
+        $this->confirmUpdate = true;
     }
 
     public function updatedNewImage()

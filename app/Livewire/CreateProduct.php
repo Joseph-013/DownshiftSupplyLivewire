@@ -21,7 +21,7 @@ class CreateProduct extends Component
     public $image;
 
     protected $rules = [
-        'name' => 'required|string',
+        'name' => 'required|string|unique:product',
         'price' => 'required|numeric',
         'stockquantity' => 'required|numeric',
         'criticallevel' => 'required|numeric',
@@ -33,6 +33,14 @@ class CreateProduct extends Component
 
     public function createProduct()
     {
+
+        $this->validate([
+            'name' => ['required', 'string', 'unique:' . Product::class],
+            'price' => ['required', 'numeric'],
+            'stockquantity' => ['required', 'numeric'],
+            'criticallevel' => ['required', 'numeric'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:4096'],
+        ]);
 
         // DO NOT CLEAR THESE COMMENTS
         // $storageAccountName = env('AZURE_STORAGE_ACCOUNT_NAME');
@@ -107,29 +115,30 @@ class CreateProduct extends Component
             $imageName = time() . '.' . $this->image->extension();
             $this->image->storeAs('public/assets', $imageName);
 
-            $newProduct = Product::create([
+            Product::create([
                 'name' => $this->name,
                 'price' => $this->price,
                 'stockquantity' => $this->stockquantity,
                 'criticallevel' => $this->criticallevel,
                 'image' => $imageName,
             ]);
+
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;
             $this->criticallevel = null;
             $this->image = null;
             $this->reset(['name', 'price', 'stockquantity', 'criticallevel', 'image']);
-            $this->render();
             $this->dispatch('productCreated');
             $this->dispatch('clearProductDetails');
+            $this->dispatch('alertNotif', 'Product successfully created');
         }
     }
 
     public function updatedImage()
     {
         $this->validate([
-            'image' => 'image|max:4096',
+            'image' => 'image|max:10240',
         ]);
     }
 

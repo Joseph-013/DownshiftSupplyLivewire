@@ -4,24 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Livewire\WithPagination;
 
 class ProductController extends Controller
 {
+    use WithPagination;
+
     public function index()
     {
+        // $products = Product::paginate(10);
         $products = Product::all();
         return view('livewire.main.admin.inventory', ['products' => $products]);
     }
 
     public function indexUser()
     {
-        $products = Product::all();
+        // $products = Product::paginate(10);
+        $products = Product::inRandomOrder()->get();
         return view('livewire.main.user.products', ['products' => $products]);
     }
 
     public function search(Request $request)
     {
         $search = $request->input('search');
+        // $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10)->get();
         $products = Product::where('name', 'like', '%' . $search . '%')->get();
         return view('livewire.main.admin.inventory', ['products' => $products]);
     }
@@ -29,7 +35,8 @@ class ProductController extends Controller
     public function searchProducts(Request $request)
     {
         $search = $request->input('search');
-        $products = Product::where('name', 'like', '%' . $search . '%')->get();
+        // $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10)->get();
+        $products = Product::where('name', 'like', '%' . $search . '%')->inRandomOrder()->get();
         return view('livewire.main.user.products', ['products' => $products]);
     }
 

@@ -15,37 +15,33 @@ class ReportTable extends Component
     #[On('renderReportTable')]
     public function renderReportTable($date, $format)
     {
-        $date = '01/01/2020'; // Delete this on deployment
+        // $date = '01/01/2020'; // Delete this on deployment
         switch ($format) {
             case 'daily':
                 $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
+                foreach ($this->transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('F j, Y');
+                }
                 break;
             case 'weekly':
                 $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
                 foreach ($this->transactions as $transaction) {
-                    $transaction->identifier = $transaction->created_at->format('l');
-                }
-                break;
-            case 'monthly':
-                $this->transactions = Transaction::whereBetween('created_at', [
-                    Carbon::parse($date)->startOfMonth(),
-                    Carbon::now()
-                ])->orderBy('created_at')->get();
-                foreach ($this->transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('F');
                 }
                 break;
+            case 'monthly':
+                $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
+                foreach ($this->transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('F Y');
+                }
+                break;
             case 'annual':
-                $this->transactions = Transaction::whereBetween('created_at', [
-                    Carbon::parse($date)->startOfYear(),
-                    Carbon::now()
-                ])->orderBy('created_at')->get();
+                $this->transactions = Transaction::whereBetween('created_at', [$date, Carbon::now()])->orderBy('created_at')->get();
                 foreach ($this->transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('Y');
                 }
                 break;
         }
-        // dd($this->transactions);
         $this->format = $format;
     }
 

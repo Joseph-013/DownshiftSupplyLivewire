@@ -34,6 +34,7 @@ class CreateFaq extends Component
             // session()->flash('success-message', 'FAQ entry created successfully.');
             $this->dispatch('renderFaqList');
             $this->dispatch('renderFaqDetails');
+            $this->dispatch('alertNotif', 'FAQ entry created');
         }
     }
 

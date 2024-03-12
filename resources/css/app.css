@@ -45,7 +45,7 @@
 }
 
 #faqs-container{
-    height: 10rem !important;
+    height: 9rem !important;
 }
 
 #faqs-qa-container{
@@ -66,13 +66,15 @@
 
 .container {
     position: relative;
-    width: 200px; /* Adjust the width as needed */
+    width: 500px; /* Adjust the width as needed */
 }
 
 .fixed-width-container {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; /* Optional: Add ellipsis (...) for overflowed text */
+    text-align: left !important;
+    padding: 0 !important;
 }
 
 .hover-text {
@@ -256,7 +258,9 @@ input[type="checkbox"]:checked{
     position: absolute;
     z-index: +1;
     left: 50%;
+    /* top: 50%; */
     transform: translateX(-50%);
+    /* transform: translateY(-50%); */
 
     margin-top: 1rem;
     /* border: 1px solid #dfdfdf; */
@@ -269,7 +273,7 @@ input[type="checkbox"]:checked{
     bottom: 0;
     width: 100%; /* Initially fills the .notif div */
     background-color: #fd831f; /* Background color of the timer */
-    animation: unfill 1.5s linear forwards;
+    animation: unfill 1.75s linear forwards;
 }
 
 @keyframes unfill {

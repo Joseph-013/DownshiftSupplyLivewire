@@ -294,16 +294,11 @@
                         updateAddress(marker.getPosition());
                     }, 200); // Adjust the debounce delay as needed
                 });
-            }
 
-            initMap();
-
-            searchInput.addEventListener('input', function() {
                 var autocomplete = new google.maps.places.Autocomplete(searchInput, {
                     types: ['geocode'],
-                    componentRestrictions: {country: 'ph'}
+                    componentRestrictions: { country: 'ph' }
                 });
-
                 autocomplete.addListener('place_changed', function() {
                     var place = autocomplete.getPlace();
                     if (!place.geometry) {
@@ -316,7 +311,9 @@
                     marker.setPosition({ lat: lat, lng: lng });
                     updateAddress(marker.getPosition());
                 });
-            });
+            }
+
+            initMap();
 
             // Function to update the input box with the address pointed by the marker
             function updateAddress(latLng) {

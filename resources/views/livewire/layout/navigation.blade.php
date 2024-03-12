@@ -51,7 +51,6 @@ new class extends Component {
             @endif
             <!-- Navigation Links (My stupid code lmao) -->
 
-
             <!-- Settings Dropdown -->
             <div class="h-full flex items-center">
 
@@ -68,15 +67,17 @@ new class extends Component {
 
                 </div>
 
-
                 <div class="hidden md:flex sm:items-center">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="inline-flex items-center px-2 lg:px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                class="inline-flex flex-col items-center px-2 lg:px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 <div>
                                     <img src="{{ asset('assets/profile.jpg') }}" alt="Logo" class="block h-5 w-5">
                                 </div>
+                                @if (auth()->guest())
+                                    <div class="text-xs -mb-2">Guest</div>
+                                @endif
                             </button>
                         </x-slot>
 
@@ -135,7 +136,8 @@ new class extends Component {
                 @endauth
             @else
                 <!-- Content for guests -->
-                @include('livewire.layout.usernav')
+                @include('livewire.layout.usernavresponsive')
+
             @endif
         </div>
 

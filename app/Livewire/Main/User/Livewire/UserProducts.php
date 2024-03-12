@@ -6,7 +6,6 @@ use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use Livewire\WithPagination;
 
 class UserProducts extends Component
 {
@@ -30,9 +29,9 @@ class UserProducts extends Component
                 // 'subtotal' => $productSelected->price,
             ]);
             // dump("Userid $result->user_id has added productid $result->product_id to cart");
-            $this->dispatch('alertCartAdd');
+            $this->dispatch('alertNotif', 'Added to Cart');
         } else {
-            $this->dispatch('alertCartExists');
+            $this->dispatch('alertNotif', 'Product already exists in your cart');
         }
     }
 

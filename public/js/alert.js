@@ -1,11 +1,8 @@
 // let alertActive = false;
 
-document.addEventListener('livewire:init', () => {
-    Livewire.on('alertCartAdd', (event) => {
-        revealAlert("Added to Cart");
-    });
-    Livewire.on('alertCartExists', (event) => {
-        revealAlert("Product already exists in your cart");
+document.addEventListener("livewire:init", () => {
+    Livewire.on("alertNotif", (message) => {
+        revealAlert(message);
     });
 });
 
@@ -17,5 +14,5 @@ function revealAlert(message) {
     alertDiv.style.display = "block";
     setTimeout(() => {
         alertDiv.style.display = "none";
-    }, 1500);
+    }, 1750);
 }

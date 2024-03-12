@@ -8,9 +8,9 @@
                     Inventory
                 </h1>
                 <div class="flex-1">
-                    <form action="{{ route('admin.inventory.search') }}" method="GET" class="flex flex-row">
+                    <form id="searchForm" action="{{ route('admin.inventory.search') }}" method="GET" class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
-                            <input name="search"
+                            <input name="search" id="searchInput"
                                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
                                 type="text">
                             <button type="clear"
@@ -61,13 +61,13 @@
                         <div class="w-full flex-row">
                             <ul class="flex flex-row w-full">
                                 <li class="w-7/12 text-center text-sm">Item Name</li>
-                                <li class="w-2/12 text-center text-sm">Remaining</li>
-                                <li class="w-3/12 text-center text-sm">Price</li>
+                                <li class="w-2/12 text-left text-sm">Remaining</li>
+                                <li class="w-3/12 text-left text-sm">Price</li>
                             </ul>
                         </div>
                         <hr class="my-1">
                         {{-- Products List  --}}
-                        <livewire:product-list />
+                        <livewire:product-list :products="$products" />
                     </div>
                     {{-- Products --}}
                 </div>
@@ -76,4 +76,11 @@
         </div>
     </div>
     {{-- @livewireScripts --}}
+    <script>
+        document.getElementById("searchInput").addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                document.getElementById("searchForm").submit();
+            }
+        });
+    </script>
 </x-app-layout>

@@ -21,7 +21,8 @@
                         for="transactionId{{ $transaction->id }}">
                         <ul class="flex flex-row w-full">
                             <li class="w-3/12 text-center text-sm">{{ $transaction->id }}</li>
-                            <li class="w-3/12 text-center text-sm">{{ $transaction->purchaseDate }}</li>
+                            <li class="w-3/12 text-center text-sm">
+                                {{ \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y') }}</li>
                             <li class="w-3/12 text-center text-sm">{{ $transaction->firstName }}
                                 {{ $transaction->lastName }}</li>
                             <li class="w-3/12 text-center text-sm">₱ {{ number_format($transaction->grandTotal, 2) }}

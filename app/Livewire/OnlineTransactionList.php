@@ -4,14 +4,14 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Transaction;
+use Livewire\Attributes\On;
 
 class OnlineTransactionList extends Component
 {
     public $selectedTransactionId;
     public $transactions;
 
-    protected $listeners = ['transactionUpdated'];
-
+    #[On('transactionUpdated')]
     public function render()
     {
         return view('livewire.main.admin.livewire.online-transaction-list');
@@ -21,10 +21,6 @@ class OnlineTransactionList extends Component
     {
         $this->selectedTransactionId = $transactionId;
         $this->dispatch('transactionSelected', $transactionId);
-    }
-
-    public function transactionUpdated()
-    {
-        $this->render();
+        $this->dispatch('alertNotif', 'Transaction selected');
     }
 }

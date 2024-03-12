@@ -72,16 +72,17 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="3" class="text-right text-xs">
+                                    <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
+                                    {{ $transactionData ? $transactionData->shippingFee : '--' }}
+                                </td>
+                                <td class="text-center text-xs">
+                                    ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
+                                </td>
+                            </tr>
                         @endif
-                        <tr>
-                            <td colspan="3" class="text-right text-xs">
-                                <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
-                                {{ $transactionData ? $transactionData->shippingFee : '--' }}
-                            </td>
-                            <td class="text-center text-xs">
-                                ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -91,7 +92,7 @@
         <hr class="my-1">
         <div class="w-full text-right text-xs ml-[-5rem] my-2">
             <span class="font-semibold mr-5">Total: </span>
-            ₱&nbsp;{{ $transactionData ? $transactionData->grandTotal : '--' }}
+            ₱&nbsp;{{ $transactionData ? number_format($transactionData->grandTotal, 2) : '--' }}
         </div>
     </div>
 

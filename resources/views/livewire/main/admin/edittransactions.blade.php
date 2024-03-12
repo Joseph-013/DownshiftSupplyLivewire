@@ -15,7 +15,8 @@
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
                     <div class="w-full h-full text-right flex">
-                        <form class="updateTransaction" method="POST" action="{{ route('update.transaction', ['id' => $transaction->id]) }}">
+                        <form class="updateTransaction" method="POST"
+                            action="{{ route('update.transaction', ['id' => $transaction->id]) }}">
                             @csrf
                             @method('PUT')
                             <div class="w-full h-full flex flex-col">
@@ -31,34 +32,34 @@
                                 <div class="w-full flex-row mt-4">
                                     <ul class="flex flex-row w-full">
                                         <li class="w-1/2 pr-2 text-left text-sm">
-                                            <label class="w-full h-10 flex items-center font-semibold">First Name:</label>
-                                            <input name="firstName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->firstName }}">
+                                            <label class="w-full h-10 flex items-center font-semibold">First
+                                                Name:</label>
+                                            <input name="firstName" class="w-full h-10 flex items-center" type="text"
+                                                value="{{ $transaction->firstName }}">
                                         </li>
 
                                         <li class="w-1/2 pl-2 text-left text-sm">
-                                            <label class="w-full h-10 flex items-center font-semibold">Last Name:</label>
-                                            <input name="lastName" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->lastName }}">
+                                            <label class="w-full h-10 flex items-center font-semibold">Last
+                                                Name:</label>
+                                            <input name="lastName" class="w-full h-10 flex items-center" type="text"
+                                                value="{{ $transaction->lastName }}">
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="w-full flex-row mt-3">
                                     <ul class="flex flex-row w-full">
                                         <li class="w-1/2 pr-2 text-left text-sm">
-                                            <label class="w-full h-10 flex items-center font-semibold">Contact #:</label>
-                                            <input name="contact" class="w-full h-10 flex items-center" type="text" value="{{ $transaction->contact }}">
+                                            <label class="w-full h-10 flex items-center font-semibold">Contact
+                                                #:</label>
+                                            <input name="contact" class="w-full h-10 flex items-center" type="text"
+                                                value="{{ $transaction->contact }}"
+                                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);"
+                                                maxlength="11" pattern="[0-9]*"
+                                                title="Please enter only positive integers with a maximum length of 11 characters">
                                         </li>
                                     </ul>
                                 </div>
-
-                                <div class="w-full mt-5 flex justify-center">
-                                    <button type="submit" id="save-changes-button" class="h-10 w-60  items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
-                                        Save Changes
-                                        <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
-                                            <path d="M11 2H9v3h2z" />
-                                            <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
-                                        </svg>
-                                    </button>
-                                </div>
+                                <livewire:save-changes-update />
                             </div>
                     </div>
                 </div>
@@ -86,60 +87,78 @@
                         <div class="w-full h-96 overflow-y-auto mb-3" id="edittransactions-container">
                             <ul class=" w-full flex flex-col items-center" id="product-list">
                                 @php
-                                $grandTotal = 0;
+                                    $grandTotal = 0;
                                 @endphp
-                                @foreach($transaction->details as $detail)
-                                @if($detail->products)
-                                @php
-                                $pricetofloat = floatval($detail->products->price);
-                                $calcsubtotal = $detail->quantity * $pricetofloat;
-                                $subtotal = (double)($calcsubtotal);
-                                $grandTotal += $subtotal;
-                                $detailProductId = (int)$detail->products->id;
-                                @endphp
-                                {{-- Single Unit of Product --}}
-                                <li data-product-id="{{ $detailProductId }}" class="product-item w-full flex justify-center select-none px-2">
-                                    {{-- Product Details --}}
-                                    <input hidden id="{{ $detailProductId }}" name="productList[]" value="{{ $detailProductId }}" checked>
-                                    <label class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center" for="productId{{ $detailProductId }}">
-                                        <ul class="flex flex-row w-full items-center"> <!-- Added items-center to align vertically -->
-                                            <li class="w-6/12 text-left text-xs flex items-left justify-left">
-                                                <!-- Wrapping content in a flex container -->
-                                                <div class="flex items-center">
-                                                    <div class="ml-2 w-24 h-20 flex-shrink-0">
-                                                        <!-- Adding margin to separate image and text -->
-                                                        <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}" class="w-full h-full object-cover">
-                                                    </div>
-                                                    <div class="ml-2">
-                                                        <!-- Adding margin to separate image and text -->
-                                                        <div class="text-sm text-left mb-1">
-                                                            <span class="font-semibold">Item ID:</span> {{ $detail->products->id }}
+                                @foreach ($transaction->details as $detail)
+                                    @if ($detail->products)
+                                        @php
+                                            $pricetofloat = floatval($detail->products->price);
+                                            $calcsubtotal = $detail->quantity * $pricetofloat;
+                                            $subtotal = (float) $calcsubtotal;
+                                            $grandTotal += $subtotal;
+                                            $detailProductId = (int) $detail->products->id;
+                                        @endphp
+                                        {{-- Single Unit of Product --}}
+                                        <li data-product-id="{{ $detailProductId }}"
+                                            class="product-item w-full flex justify-center select-none px-2">
+                                            {{-- Product Details --}}
+                                            <input hidden id="{{ $detailProductId }}" name="productList[]"
+                                                value="{{ $detailProductId }}" checked>
+                                            <label
+                                                class="w-11/12 py-2 my-1 rounded border-2 border-gray shadow-sm text-sm flex items-center"
+                                                for="productId{{ $detailProductId }}">
+                                                <ul class="flex flex-row w-full items-center">
+                                                    <!-- Added items-center to align vertically -->
+                                                    <li class="w-6/12 text-left text-xs flex items-left justify-left">
+                                                        <!-- Wrapping content in a flex container -->
+                                                        <div class="flex items-center">
+                                                            <div class="ml-2 w-24 h-20 flex-shrink-0">
+                                                                <!-- Adding margin to separate image and text -->
+                                                                <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                                                                    class="w-full h-full object-cover">
+                                                            </div>
+                                                            <div class="ml-2">
+                                                                <!-- Adding margin to separate image and text -->
+                                                                <div class="text-sm text-left mb-1">
+                                                                    <span class="font-semibold">Item ID:</span>
+                                                                    {{ $detail->products->id }}
+                                                                </div>
+                                                                <!-- Product Name -->
+                                                                <div class="text-sm text-left">
+                                                                    {{ substr($detail->products->name, 0, 18) }}{{ strlen($detail->products->name) > 18 ? '...' : '' }}
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <!-- Product Name -->
-                                                        <div class="text-sm text-left">
-                                                            {{ substr($detail->products->name, 0, 18) }}{{ strlen($detail->products->name) > 18  ? '...' : '' }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm price">₱ {{ number_format($detail->products->price, 2) }}</li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm">
-                                                <input class="w-4/6 h-10 flex items-center text-xs quantity" type="text" name="quantity[]" value="{{ $detail->quantity }}" data-product-id="{{ $detail->products->id }}">
-                                            </li>
-                                            <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal" data-subtotal="{{ $subtotal }}">₱ {{ number_format($subtotal, 2) }}</li>
-                                            <li class="w-1/12 text-center flex items-center justify-center text-sm">
-                                                <button type="button" class="delete-button h-full w-10 flex items-center justify-center">
-                                                    <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </label>
-                                </li>
-
-
-                                @endif
+                                                    </li>
+                                                    <li
+                                                        class="w-2/12 text-center flex items-center justify-center text-sm price">
+                                                        ₱ {{ number_format($detail->products->price, 2) }}</li>
+                                                    <li
+                                                        class="w-2/12 text-center flex items-center justify-center text-sm">
+                                                        <input class="w-4/6 h-10 flex items-center text-xs quantity"
+                                                            type="text" name="quantity[]"
+                                                            value="{{ $detail->quantity }}"
+                                                            data-product-id="{{ $detail->products->id }}">
+                                                    </li>
+                                                    <li class="w-2/12 text-center flex items-center justify-center text-sm subtotal"
+                                                        data-subtotal="{{ $subtotal }}">₱
+                                                        {{ number_format($subtotal, 2) }}</li>
+                                                    <li
+                                                        class="w-1/12 text-center flex items-center justify-center text-sm">
+                                                        <button type="button"
+                                                            class="delete-button h-full w-10 flex items-center justify-center">
+                                                            <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg"
+                                                                width="16" height="16" fill="currentColor"
+                                                                class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                                                            </svg>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </label>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -196,7 +215,8 @@
                 }
                 const listItem = quantityInput.closest('.product-item');
                 const productId = listItem.getAttribute('data-product-id');
-                const hiddenQuantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                const hiddenQuantityInput = document.querySelector(
+                    `input[name="quantity[]"][data-product-id="${productId}"]`);
                 hiddenQuantityInput.setAttribute('value', `${quantityInput.value}`);
             });
 
@@ -208,15 +228,18 @@
                     if (listItem) {
                         listItem.remove();
                         const productId = listItem.getAttribute('data-product-id');
-                        const hiddenProductInput = document.querySelector(`input[name="productList[]"][value="${productId}"]`);
-                        const hiddenQuantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                        const hiddenProductInput = document.querySelector(
+                            `input[name="productList[]"][value="${productId}"]`);
+                        const hiddenQuantityInput = document.querySelector(
+                            `input[name="quantity[]"][data-product-id="${productId}"]`);
                         if (hiddenProductInput) {
                             hiddenProductInput.remove();
                         }
                         if (hiddenQuantityInput) {
                             hiddenQuantityInput.remove();
                         }
-                        const quantityInputs = document.querySelectorAll(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                        const quantityInputs = document.querySelectorAll(
+                            `input[name="quantity[]"][data-product-id="${productId}"]`);
                         quantityInputs.forEach((input, index) => {
                             input.setAttribute('name', `quantity[${index}]`);
                         });
@@ -230,7 +253,8 @@
                 subtotalElements.forEach(subtotalElement => {
                     const listItem = subtotalElement.closest('.product-item');
                     const quantity = parseInt(listItem.querySelector('.quantity').value);
-                    const priceText = listItem.querySelector('.price').textContent.trim().replace('₱', '').replace(/,/g, '').trim();
+                    const priceText = listItem.querySelector('.price').textContent.trim().replace('₱', '').replace(/,/g,
+                        '').trim();
                     const priceValue = parseFloat(priceText);
                     const price = isNaN(priceValue) ? 0 : priceValue;
                     const subtotal = price * quantity;
@@ -265,7 +289,8 @@
 
                     quantityElement.value = currentQuantity + quantity;
 
-                    const quantityInput = document.querySelector(`input[name="quantity[]"][data-product-id="${productId}"]`);
+                    const quantityInput = document.querySelector(
+                        `input[name="quantity[]"][data-product-id="${productId}"]`);
                     quantityInput.setAttribute('value', `${currentQuantity + quantity}`);
 
                     const priceElement = existingProductItem.querySelector('.price');
@@ -307,7 +332,8 @@
 
                                 const productList = document.querySelector('#product-list');
                                 const newProductItem = document.createElement('li');
-                                newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center', 'select-none', 'px-2');
+                                newProductItem.classList.add('product-item', 'w-full', 'flex', 'justify-center',
+                                    'select-none', 'px-2');
                                 newProductItem.setAttribute('data-product-id', productId);
 
                                 newProductItem.innerHTML = `

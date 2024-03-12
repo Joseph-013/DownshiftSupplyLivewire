@@ -30,15 +30,15 @@
 
                 <div class="w-full h-10 flex items-center">
                     <ul class="flex flex-row w-full items-center">
-                        <li class="w-3/4 px-2 text-left text-sm">
-                            <div class="text-left text-sm mt-4">
+                        <li class="w-10/12 pl-2 text-left text-sm">
+                            <div class="text-left text-sm mt-4 leading-5 line-clamp-2">
                                 {{ $product->name }}
                             </div>
                             <div class="mt-2 text-left text-sm mb-[-1rem]">
                                 ₱&nbsp;{{ number_format($product->price, 2) }}
                             </div>
                         </li>
-                        <li class="w-1/4 text-left text-sm flex justify-center">
+                        <li class="w-2/12 text-left text-sm flex justify-center">
                             @if ($product->stockquantity > 0)
                                 <button wire:click="addToCart({{ $product->id }})">
                                     <svg class="svg-icon mt-3 w-full h-full hover:brightness-90"

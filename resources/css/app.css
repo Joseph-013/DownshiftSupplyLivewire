@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    /* Setting Content Heights for dynamic look */
+}
 
 
 .default-shadow {
@@ -280,3 +283,4 @@ input[type="checkbox"]:checked{
     0% { width: 0; } /* Start with full width */
     100% { width: 100%; } /* End with zero width */
 }
+

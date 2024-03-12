@@ -4,15 +4,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col h-full">
 
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
-                <h1 class="me-10 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
-                    Onsite Transactions
+                <h1
+                    class="ms-3 md:me-10 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
+                    Onsite <br class="block sm:hidden" />Transactions
                 </h1>
                 <div class="flex-1">
                     <form id="searchForm" action="{{ route('admin.onsitetransactions.search') }}" method="GET"
                         class="flex flex-row">
                         <div class="mx-2 flex flex-row w-full">
                             <input name="search" id="searchInput"
-                                class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
+                                class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full w-full"
                                 type="text" />
                             <button type="clear"
                                 class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
@@ -25,7 +26,7 @@
                         </div>
                         <button type="button"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
-                                class="svg-icon mr-2"
+                                class="svg-icon sm:mr-1"
                                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
                                 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -34,7 +35,9 @@
                                 <path
                                     d="M657.265 595.287c0 16.498 13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.498 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997H687.262c-16.498 0-29.997 13.499-29.997 29.997z m273.894 138.882H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z m0 168.878H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z"
                                     fill="" />
-                            </svg>Filters</button>
+                            </svg>
+                            <span class="hidden md:inline">Filters</span>
+                        </button>
                         <button
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="feather feather-search" fill="none" height="18" stroke="currentColor"
@@ -42,7 +45,9 @@
                                 width="24" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="11" cy="11" r="8" />
                                 <line x1="21" x2="16.65" y1="21" y2="16.65" />
-                            </svg>Search</button>
+                            </svg>
+                            <span class="hidden md:inline">Search</span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -50,21 +55,19 @@
             {{-- Content --}}
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
-                <div class="w-2/5 h-full px-3 hidden lg:block">
-                    <div class="w-full h-full text-right flex">
-                        <div class="w-full h-full flex flex-col">
-                            <div class="w-full flex-row px-5">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-full text-center text-sm font-semibold">Overview</li>
-                                </ul>
-                            </div>
-                            <hr class="my-1">
-                            {{-- Products List  --}}
-                            <livewire:onsite-transaction-details transId="{{ 0 }}" />
+                <div class="wifull lg:w-2/5 h-full px-3 hidden lg:block">
+                    {{-- <div class="w-full h-full text-right flex flex-col"> --}}
+                    <div class="w-full h-full text-right flex flex-col">
+                        <div class="w-full flex-row px-5">
+                            <ul class="flex flex-row w-full">
+                                <li class="w-full text-center text-sm font-semibold">Overview</li>
+                            </ul>
                         </div>
-
-                        {{-- Products --}}
+                        <hr class="my-1">
+                        {{-- Products List  --}}
+                        <livewire:onsite-transaction-details transId="{{ 0 }}" />
                     </div>
+                    {{-- </div> --}}
 
                 </div>
                 {{-- Right Panel border-2 border-black --}}
@@ -81,6 +84,7 @@
                         <hr class="my-1">
                         {{-- Products List  --}}
                         <livewire:onsite-transaction-list :transactions="$transactions" />
+                        <div class="w-full text-center">Pagination</div>
                         <div class="w-full mt-5 flex justify-center">
                             <button onclick="window.location='{{ route('admin.createtransactions') }}'"
                                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">

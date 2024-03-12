@@ -6,33 +6,39 @@
         <div class="w-full text-left font-light pl-3">
             <input type="date" class="calendar-icon rounded-xl default-shadow" wire:model="date" required>
         </div>
+        <div class="w-full text-center block md:hidden">Pagination Here</div>
+
     </div>
-    <div class="w-full flex-row pr-5 pl-5 mt-2 md:mt-3">
+    <div class="w-full flex-row md:px-5 mt-2 md:mt-3">
         <ul class="flex flex-col w-full">
             <label for="format" class="w-full text-start">Format:</label>
-            <li class="w-full text-left text-sm font-medium my-2 columns-2 md:columns-1">
+            <li class="w-full text-left text-sm font-medium my-2 columns-2 md:columns-1 gap-0">
                 <div class="flex flex-col">
                     <div class="flex flex-row">
                         <input type="radio" wire:model="format" id="daily" name="format" value="daily"
                             class="my-1 mx-2" required>
-                        <label for="daily" class="my-1">Daily&nbsp;Report</label>
+                        <label for="daily" class="my-1">Daily&nbsp;<span
+                                class="hidden md:inline">Report</span></label>
                     </div>
                     <div class="flex flex-row mt-2">
                         <input type="radio" wire:model="format" id="weekly" name="format" value="weekly"
                             class="my-1 mx-2" required>
-                        <label for="weekly" class="my-1">Weekly&nbsp;Report</label>
+                        <label for="weekly" class="my-1">Weekly&nbsp;<span
+                                class="hidden md:inline">Report</span></label>
                     </div>
                 </div>
                 <div class="flex flex-col md:mt-0 mt-2">
                     <div class="flex flex-row">
                         <input type="radio" wire:model="format" id="monthly" name="format" value="monthly"
                             class="my-1 mx-2" required>
-                        <label for="monthly" class="my-1">Monthly&nbsp;Report</label><br>
+                        <label for="monthly" class="my-1">Monthly&nbsp;<span
+                                class="hidden md:inline">Report</span></label><br>
                     </div>
                     <div class="flex flex-row mt-2">
                         <input type="radio" wire:model="format" id="annual" name="format" value="annual"
                             class="my-1 mx-2" required>
-                        <label for="annual" class="my-1">Annual&nbsp;Report</label><br>
+                        <label for="annual" class="my-1">Annual&nbsp;<span
+                                class="hidden md:inline">Report</span></label><br>
                     </div>
 
 
@@ -46,4 +52,5 @@
             </button>
         </div>
     </div>
+    <div class="w-full text-center hidden md:block">Pagination Here</div>
 </form>

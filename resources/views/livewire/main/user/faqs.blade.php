@@ -28,7 +28,7 @@
                                 </li>
                             </ul>
                             <!-- MAP -->
-                            <ul class="flex flex-col md:flex-row w-full my-2">
+                            <ul class="flex flex-col md:flex-row w-full my-4">
                                 <li class="w-full md:w-1/4 text-left text-sm">
                                     <span class="font-medium mt-1">Where can you find us?</span> <br>
                                     Be directed using this map
@@ -39,7 +39,7 @@
                             </ul>
 
                             <!-- EMAIL -->
-                            <div class="overlay-container">
+                            <div class="overlay-container my-4">
                                 <!-- Livewire component section with overlay -->
                                 <livewire:main.user.livewire.user-faqs-email />
 

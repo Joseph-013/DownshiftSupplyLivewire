@@ -4,13 +4,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col h-full">
 
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
-                <h1 class="me-10 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
+                <h1
+                    class="ms-3 md:me-10 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
                     FAQs
                 </h1>
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3">
+            <div class="flex flex-1 w-full mx-2">
                 {{-- Left Panel --}}
                 <div class="w-2/5 h-full px-3">
                     <div class="w-full h-full"> {{-- Not part of a livewire component. --}}

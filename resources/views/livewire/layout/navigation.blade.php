@@ -127,13 +127,13 @@ new class extends Component {
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @if (auth()->check())
-                @auth
-                    @if (auth()->user()->usertype === 'admin')
-                        @include('livewire.layout.adminnavresponsive')
-                    @else
-                        @include('livewire.layout.usernavresponsive')
-                    @endif
-                @endauth
+                {{-- @auth --}}
+                @if (auth()->user()->usertype === 'admin')
+                    @include('livewire.layout.adminnavresponsive')
+                @else
+                    @include('livewire.layout.usernavresponsive')
+                @endif
+                {{-- @endauth --}}
             @else
                 <!-- Content for guests -->
                 @include('livewire.layout.usernavresponsive')

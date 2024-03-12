@@ -38,7 +38,7 @@
                         </td>
                         <td class='border p-2'>$transaction->grandTotal</td>
                         <td class='border p-2'>" .
-                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i:s A') .
+                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i A') .
                                 "</td>
                         </tr>";
                         }
@@ -105,7 +105,7 @@
                                     </td>
                                     <td class='border p-2'>$transaction->grandTotal</td>
                                     <td class='border p-2'>" .
-                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i:s A') .
+                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i A') .
                                 "</td>
                                 </tr>";
                         }

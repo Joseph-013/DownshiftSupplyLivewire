@@ -11,7 +11,15 @@
 
             {{-- Content --}}
 
-            <livewire:main.user.livewire.user-orders-main />
+            <div class="flex flex-1 w-full -mx-3">
+
+                {{-- Left Panel --}}
+                <livewire:main.user.livewire.user-orders-detail />
+
+                {{-- Right Panel border-2 border-black --}}
+                <livewire:main.user.livewire.user-orders-list />
+
+            </div>
 
         </div>
     </div>

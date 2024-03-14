@@ -15,21 +15,21 @@
                 <div class="w-full h-full px-3 text-right flex">
                     <div class="w-full h-full flex flex-col">
                         <div class="w-full flex-row ml-9">
-                            <ul class="flex flex-row w-full">
+                            <ul class="flex flex-row w-full sm:flex hidden">
                                 <li class="w-5/12 text-center text-sm ml-[-5rem]">Item</li>
                                 <li class="w-2/12 text-center text-sm ml-[-1.5rem]">Price</li>
                                 <li class="w-3/12 text-center text-sm ml-[-1rem]">Quantity</li>
                                 <li class="w-3/12 text-center text-sm ml-[-3.5rem]">Subtotal</li>
                             </ul>
                         </div>
-                        <hr class="my-1">
+                        <hr class="my-1 sm:block hidden">
 
                         {{-- Order List  --}}
                         @if ($cartNotEmpty)
                             <div class="w-full h-full px-3 overflow-y-auto" id="cart-container">
                                 <livewire:main.user.livewire.user-cart />
                             </div>
-                            <hr class="my-3">
+                            <hr class="my-3 hidden sm:block">
                             <div class="w-full text-sm-right">
                                 <livewire:main.user.livewire.user-cart-total />
                             </div>
@@ -49,7 +49,7 @@
                                 <br />
                                 <div class="w-full text-center text-gray-600">Your cart is empty</div>
                             </div>
-                            <hr class="my-3">
+                            <hr class="my-3 hidden sm:block">
                             <div class="w-full text-sm-right">
                                 <livewire:main.user.livewire.user-cart-total />
                             </div>
@@ -59,7 +59,7 @@
                                     <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
 
                                     </li>
-                                    <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19">
+                                    <li class="w-2/5 text-center text-sm ml-[-10rem] mr-19 ">
                                         <hr class="my-2">
                                     </li>
                                 </ul>
@@ -78,7 +78,11 @@
                             @endif
                         </div>
 
-                        <div class="w-full mt-3 flex justify-end px-5 text-sm">
+                        <div class="w-full mt-3 flex justify-end px-5 text-sm sm:block hidden">
+                            Additional fees may be added upon checkout.
+
+                        </div>
+                        <div class="w-full mt-3 flex justify-center text-center px-5 text-sm sm:hidden block">
                             Additional fees may be added upon checkout.
 
                         </div>
@@ -87,6 +91,7 @@
                 </div>
 
             </div>
+
 
         </div>
         @livewireScripts

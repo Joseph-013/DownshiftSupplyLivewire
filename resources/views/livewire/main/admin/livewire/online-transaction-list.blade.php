@@ -2,8 +2,14 @@
     <ul class=" w-full flex flex-col items-center">
         @foreach ($transactions as $transaction)
             @if ($transaction->purchaseType === 'Online')
+                <div class="block lg:hidden">
+                    @if ($selectedTransactionId && $transaction->id == $selectedTransactionId)
+                        <livewire:online-transaction-details transaction="{{ $transaction }}"
+                            wire:key="{{ $transaction->id }}" />
+                    @endif
+                </div>
                 <li wire:click="selectTransaction({{ $transaction->id }})"
-                    class="w-full flex justify-center select-none px-2">
+                    class="w-full flex justify-center select-none px-2" wire:key="{{ $transaction->id }}">
                     {{-- Product Details --}}
                     <input class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
                         name="productList">
@@ -78,7 +84,8 @@
                                     @break
                                 @endswitch
                             </li>
-                            <li class="w-3/12 text-center text-xs">{{ number_format($transaction->grandTotal, 2) }}</li>
+                            <li class="w-3/12 text-center text-xs">{{ number_format($transaction->grandTotal, 2) }}
+                            </li>
                         </ul>
                     </label>
                 </li>

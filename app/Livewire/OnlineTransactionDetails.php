@@ -18,9 +18,12 @@ class OnlineTransactionDetails extends Component
     public $statusOptions;
     public $previousStatus;
 
-    public function mount()
+    public function mount($transaction)
     {
         $this->statusOptions = $this->getEnumValues('transactions', 'status');
+        if ($transaction != 0) {
+            $this->selectedTransaction = $transaction;
+        }
     }
 
     public function getEnumValues($table, $column)
@@ -59,14 +62,11 @@ class OnlineTransactionDetails extends Component
 
         $details = $this->selectedTransaction->details;
         foreach ($details as $detail) {
-            if($this->previousStatus != "Complete" && $this->status == "Complete")
-            {
+            if ($this->previousStatus != "Complete" && $this->status == "Complete") {
                 $product = $detail->products;
                 $product->stockquantity = $product->stockquantity - $detail->quantity;
                 $product->save();
-            }
-            elseif($this->previousStatus == "Complete" && $this->status != "Complete")
-            {
+            } elseif ($this->previousStatus == "Complete" && $this->status != "Complete") {
                 $product = $detail->products;
                 $product->stockquantity = $product->stockquantity + $detail->quantity;
                 $product->save();

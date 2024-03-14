@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Transaction;
 use Livewire\Attributes\On;
 
 class OnlineTransactionList extends Component

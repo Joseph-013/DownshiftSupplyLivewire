@@ -13,27 +13,23 @@ class ProductList extends Component
 
     // protected $listeners = ['productDeleted', 'productCreated'];
 
+    #[On('renderProductList')]
     public function render()
     {
+        $this->selectedProductId = null;
         return view('livewire.main.admin.livewire.product-list');
-    }
-
-    #[On('productDeleted')]
-    public function productDeleted()
-    {
-        // Product::find($productId)->delete();
-        $this->render();
-    }
-
-    #[On('productCreated')]
-    public function productCreated()
-    {
-        $this->render();
     }
 
     public function selectProduct($productId)
     {
         $this->selectedProductId = $productId;
         $this->dispatch('productSelected', $productId);
+    }
+
+    #[On('newProduct')]
+    public function newProduct()
+    {
+        $this->products = Product::all();
+        $this->render();
     }
 }

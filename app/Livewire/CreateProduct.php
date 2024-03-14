@@ -129,7 +129,7 @@ class CreateProduct extends Component
             $this->criticallevel = null;
             $this->image = null;
             $this->reset(['name', 'price', 'stockquantity', 'criticallevel', 'image']);
-            $this->dispatch('productCreated');
+            $this->dispatch('newProduct');
             $this->dispatch('clearProductDetails');
             $this->dispatch('alertNotif', 'Product successfully created');
         }

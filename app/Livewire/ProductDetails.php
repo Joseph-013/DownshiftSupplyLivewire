@@ -51,7 +51,7 @@ class ProductDetails extends Component
 
             $this->selectedProduct->delete();
             $this->selectedProduct = null;
-            $this->dispatch('productDeleted');
+            $this->dispatch('renderProductList');
             $this->confirmDelete = false;
             $this->dispatch('alertNotif', 'Product successfully deleted');
         }
@@ -81,7 +81,7 @@ class ProductDetails extends Component
             $this->selectedProduct->stockquantity = $this->newStockquantity;
             $this->selectedProduct->criticallevel = $this->newCriticallevel;
             $this->selectedProduct->save();
-            $this->dispatch('productCreated');
+            $this->dispatch('renderProductList');
             $this->confirmUpdate = false;
             $this->dispatch('alertNotif', 'Product successfully updated');
             $this->clearProductDetails();
@@ -105,6 +105,7 @@ class ProductDetails extends Component
         $this->render();
     }
 
+    #[On('renderProductDetails')]
     public function render()
     {
         return view('livewire.main.admin.livewire.product-details');

@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\Transaction;
 use Livewire\Component;
 
 class OnsiteTransactionList extends Component

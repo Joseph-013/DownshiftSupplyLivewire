@@ -1,4 +1,4 @@
-<div class="hidden lg:block w-2/5 h-full px-3">
+<div class="w-full h-full px-3">
     {{-- Left Main Container --}}
     <div class="border-black border-1 w-full rounded-lg p-1">
         <div class="w-full h-96 overflow-y-auto flex-row" id="questions-container">

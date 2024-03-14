@@ -5,15 +5,13 @@ namespace App\Livewire\Main\User\Livewire;
 use App\Models\Detail;
 use Livewire\Component;
 use App\Models\Transaction;
-use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
 
 class UserOrdersList extends Component
 {
 
-    public $selectedOrder;
-    public $orderList;
-    // public $isCompact = false;
+    public $selectedOrder; //Id
+    public $orderList; //products list purchase
 
     public function render()
     {
@@ -31,6 +29,5 @@ class UserOrdersList extends Component
         } else {
             abort(403, "Unauthorized/Illegal Access.");
         }
-        // dump("Order $orderId shown");
     }
 }

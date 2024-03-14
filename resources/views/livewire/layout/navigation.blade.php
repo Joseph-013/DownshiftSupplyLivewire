@@ -29,7 +29,7 @@ new class extends Component {
                         <img src="{{ asset('assets/logo.png') }}" alt="Logo"
                             class="block h-12 w-12 shadow-md mr-4 rounded-full">
                         <h1 class="block default-shadow text-sm text-spacing font-montserrat h-full">
-                            DOWNSHIFT&nbsp;<br class="hidden md:inline lg:hidden">SUPPLY
+                            DOWNSHIFT&nbsp;<br class="inline sm:hidden md:inline lg:hidden">SUPPLY
                         </h1>
                     </a>
                 </div>

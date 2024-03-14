@@ -8,7 +8,7 @@ use Livewire\Component;
 class OnsiteTransactionDetails extends Component
 {
     public $selectedTransaction;
-    public $selfTransId;
+    // public $selfTransId;
     public $newDate;
     public $newFirstname;
     public $newLastname;

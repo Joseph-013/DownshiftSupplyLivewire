@@ -18,32 +18,35 @@
 
                 @if ($transactionList)
                     @foreach ($transactionList as $transaction)
-                        {{-- <livewire:main.user.livewire.user-orders-detail-compact orderId="{{ $transaction->id }}"
-                            wire:key="{{ $transaction->id }}" /> --}}
-                        <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none px-2">
-                            {{-- <button @click="open = ! open" class="w-full h-full"> --}}
+                        {{-- <div class="block lg:hidden"> --}}
+                        <li class="block lg:hidden w-full sm:w-4/5 md:w-3/5">
+                            @if ($selectedOrder && $selectedOrder == $transaction->id)
+                                {{-- @dd($selectedOrder && $selectedOrder == $transaction->id) --}}
+                                <livewire:main.user.livewire.user-orders-detail class="my-2"
+                                    orderId="{{ $transaction->id }}" wire:key="{{ $transaction->id }}" />
+                            @endif
+                        </li>
 
+                        <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none px-2"
+                            id="transactionRowLi-{{ $transaction->id }}">
                             <input class="widenWhenSelected" hidden type="radio" id="productId{{ $transaction->id }}"
-                                name="productList">
+                                name="productList" onchange="toggleListRow({{ $transaction->id }})">
                             <label wire:click="showDetails({{ $transaction->id }})"
                                 class="w-11/12 py-2 my-1 rounded-full btransaction-2 btransaction-gray shadow-sm text-sm items-center"
-                                {{-- for="productId{{ $transaction->id }}" :class="{ 'flex': open, 'hidden': !open }"> --}} for="productId{{ $transaction->id }}">
-                                <ul class="flex flex-row w-full">
-                                    <li class="w-2/12 text-center text-sm">{{ $transaction->id }}</li>
-                                    <li class="w-2/12 text-center text-sm">
+                                for="productId{{ $transaction->id }}">
+                                <ul class="flex flex-row w-full text-xs md:text-sm">
+                                    <li class="w-2/12 text-center">{{ $transaction->id }}</li>
+                                    <li class="w-2/12 text-center">
                                         {{ $transaction->created_at->format('m-d-Y') }}
                                     </li>
-                                    <li class="w-3/12 text-center text-sm">
+                                    <li class="w-3/12 text-center">
                                         {{ $transaction->preferredService }}
-                                    <li class="w-2/12 text-center text-sm">{{ $transaction->status }}</li>
-                                    <li class="w-2/12 text-center text-sm">
+                                    <li class="w-2/12 text-center">{{ $transaction->status }}</li>
+                                    <li class="w-2/12 text-center">
                                         {{ number_format($transaction->grandTotal, 2) }}
                                     </li>
                                 </ul>
                             </label>
-
-                            {{-- </button> --}}
-
                         </li>
                     @endforeach
                 @endif
@@ -53,3 +56,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleListRow(id) {
+        let listRowInput = document.getElementById('productId' + id);
+        let listRow = document.getElementById('transactionRowLi' + id);
+
+        listRow.style.display = (listRowInput.checked) ? "none" : "flex";
+    }
+</script>

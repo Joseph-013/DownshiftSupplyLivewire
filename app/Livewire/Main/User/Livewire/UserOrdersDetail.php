@@ -6,15 +6,13 @@ use App\Models\Detail;
 use Livewire\Component;
 use App\Models\Transaction;
 use Livewire\Attributes\On;
-use PHPUnit\Event\Tracer\Tracer;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class UserOrdersDetail extends Component
 {
 
-    private $transactionData;
-    private $orderList;
+    public $transactionData;
+    public $orderList;
 
     #[On('showDetails')]
     public function showDetails($transactionId)
@@ -23,16 +21,31 @@ class UserOrdersDetail extends Component
         if ($transaction && $transaction->user_id == Auth::id()) {
             $this->transactionData = $transaction;
             $this->orderList = Detail::where('transaction_id', $transactionId)->with('products')->get();
+            $this->render();
         } else {
             abort(403, "Unauthorized/Illegal Access.");
         }
     }
 
+    public function mount($orderId)
+    {
+        if ($orderId != 0)
+            $this->showDetails($orderId);
+
+        // $orderId = (int)$orderId;
+        // if ($orderId != 0) {
+        //     $order = Transaction::find($orderId);
+        //     if ($order) {
+        //         $this->render();
+        //     } else {
+        //         $this->transactionData = null;
+        //     }
+        // } else
+        //     $this->transactionData = null;
+    }
+
     public function render()
     {
-        return view('livewire.main.user.livewire.user-orders-detail')->with([
-            'transactionData' => $this->transactionData,
-            'orderList' => $this->orderList,
-        ]);
+        return view('livewire.main.user.livewire.user-orders-detail');
     }
 }

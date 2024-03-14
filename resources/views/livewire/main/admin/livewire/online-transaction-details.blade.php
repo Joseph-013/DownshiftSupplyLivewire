@@ -12,45 +12,45 @@
                 <div class=" flex flex-1 w-full">
                     <div class="w-2/5 text-left text-xs pr-2">
                         <div class="text-left text-xs my-2">
-                            <span class="font-semibold">Order ID:</span> {{ $selectedTransaction->id }}
+                            <span class="font-semibold">Order ID:</span> {{ $selectedTransaction }}
                         </div>
                         <div class="text-left text-xs my-2">
-                            <span class="font-semibold">Date:</span> {{ $selectedTransaction->purchaseDate }}
+                            <span class="font-semibold">Date:</span> {{ $purchaseDate }}
                         </div>
                         <div class="text-left text-xs my-2">
-                            <span class="font-semibold">Name:</span> {{ $selectedTransaction->firstName }}
-                            {{ $selectedTransaction->lastName }}
+                            <span class="font-semibold">Name:</span> {{ $firstname }}
+                            {{ $lastname }}
                         </div>
-                        <div class="text-left text-xs my-2">
+                        {{-- <div class="text-left text-xs my-2">
                             <span class="font-semibold">Username:</span> {{ $selectedTransaction->user->username }}
                         </div>
                         <div class="text-left text-xs my-2">
                             <span class="font-semibold">Email:</span> {{ $selectedTransaction->user->email }}
+                        </div> --}}
+                        <div class="text-left text-xs my-2">
+                            <span class="font-semibold">Contact #:</span> {{ $contact }}
                         </div>
                         <div class="text-left text-xs my-2">
-                            <span class="font-semibold">Contact #:</span> {{ $selectedTransaction->contact }}
-                        </div>
-                        <div class="text-left text-xs my-2">
-                            <span class="font-semibold">Payment Opt:</span> {{ $selectedTransaction->paymentOption }}
+                            <span class="font-semibold">Payment Opt:</span> {{ $paymentOption }}
                         </div>
                         <div class="text-left text-xs my-2">
                             <span class="font-semibold">Preferred Service:</span>
-                            {{ $selectedTransaction->preferredService }}
+                            {{ $preferredService }}
                         </div>
                         <div class="text-left text-xs my-2 flex items-center">
                             <span class="font-semibold mr-2">Courier Service:</span>
                             <input wire:model="courierUsed" type="text" class="border-b border-gray-300 text-xs"
-                                placeholder="Enter Courier Service" value="{{ $selectedTransaction->courierUsed }}">
+                                placeholder="Enter Courier Service" value="{{ $courierUsed }}">
                         </div>
                         <div class="text-left text-xs my-2 flex items-center">
                             <span class="font-semibold mr-2">Shipping Fee:</span>
                             <input wire:model="shippingFee" type="number" class="border-b border-gray-300 text-xs"
-                                placeholder="Enter Shipping Fee" value="{{ $selectedTransaction->shippingFee }}">
+                                placeholder="Enter Shipping Fee" value="{{ $shippingFee }}">
                         </div>
                         <div class="text-left text-xs my-2 flex items-center">
                             <span class="font-semibold mr-2">Tracking #:</span>
                             <input wire:model="trackingNumber" type="text" class="border-b border-gray-300 text-xs"
-                                placeholder="Enter Tracking Number" value="{{ $selectedTransaction->trackingNumber }}">
+                                placeholder="Enter Tracking Number" value="{{ $trackingNumber }}">
                         </div>
                     </div>
                     <div class="w-2/5 text-left text-xs px-2 mx-1">
@@ -64,7 +64,7 @@
                             class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500">
                         </div>
                         <div>
-                            <input id="autocomplete{{ $selectedTransaction->id }}" type="text"
+                            <input id="autocomplete{{ $selectedTransaction }}" type="text"
                                 wire:model.="shippingAddress" class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                             class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"
                             style="height: 40vh;" onclick="showOverlay()">
                             <img id="image"
-                                src="{{ filter_var($selectedTransaction->proofOfPayment, FILTER_VALIDATE_URL) ? $selectedTransaction->proofOfPayment : asset('storage/assets/' . $selectedTransaction->proofOfPayment) }}"
+                                src="{{ filter_var($proofOfPayment, FILTER_VALIDATE_URL) ? $proofOfPayment : asset('storage/assets/' . $proofOfPayment) }}"
                                 class="max-w-full max-h-full object-contain">
                         </div>
                     </div>
@@ -98,7 +98,8 @@
                         @php
                             $grandTotal = 0;
                         @endphp
-                        @foreach ($selectedTransaction->details as $detail)
+                        @if($details)
+                        @foreach ($details as $detail)
                             @if ($detail->products)
                                 @php
                                     $subtotal = $detail->products->price * $detail->quantity;
@@ -121,6 +122,7 @@
                                 </div>
                             @endif
                         @endforeach
+                        @endif
                     </div>
                 </ul>
             </div>
@@ -143,7 +145,7 @@
             </div>
 
             <div class="w-full mt-4 flex justify-end">
-                <button id="updateButton" onclick="updateTransactionWithCurrentAddress({{ $selectedTransaction->id }})"
+                <button id="updateButton" onclick="updateTransactionWithCurrentAddress({{ $selectedTransaction }})"
                     class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                     <span class="flex pl-3 mr-[-1.5em]">Update</span>
                     <svg class="svg-icon ml-2"

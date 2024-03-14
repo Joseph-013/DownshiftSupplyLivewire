@@ -26,7 +26,7 @@ class OnsiteTransactionDetails extends Component
             if ($transaction) {
                 $this->selectedTransaction = $transaction->id;
                 $this->details = $transaction->details;
-                $this->newDate = $transaction->purchaseDate;
+                $this->newDate = $transaction->created_at;
                 $this->contact = $transaction->contact;
                 $this->newFirstname = $transaction->firstName;
                 $this->newLastname = $transaction->lastName;

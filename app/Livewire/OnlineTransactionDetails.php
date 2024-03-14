@@ -17,6 +17,16 @@ class OnlineTransactionDetails extends Component
     public $status;
     public $statusOptions;
     public $previousStatus;
+    public $transactions;
+    public $details;
+    public $purchaseDate;
+    public $contact;
+    public $firstname;
+    public $lastname;
+    public $grandtotal;
+    public $paymentOption;
+    public $preferredService;
+    public $proofOfPayment;
 
     public function mount($transaction)
     {
@@ -36,14 +46,26 @@ class OnlineTransactionDetails extends Component
     #[On('transactionSelected')]
     public function transactionSelected($transactionId)
     {
-        $this->selectedTransaction = Transaction::with('details')->find($transactionId);
-        $this->courierUsed = $this->selectedTransaction->courierUsed;
-        $this->shippingFee = $this->selectedTransaction->shippingFee;
-        $this->trackingNumber = $this->selectedTransaction->trackingNumber;
-        $this->shippingAddress = $this->selectedTransaction->shippingAddress;
-        $this->status = $this->selectedTransaction->status;
-        $this->previousStatus = $this->selectedTransaction->status;
-        $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
+        $this->transactions = Transaction::with('details')->find($transactionId);
+        if($this->transactions) {
+            $this->selectedTransaction = $transactionId;
+            $this->details = $this->transactions->details;
+            $this->purchaseDate = $this->transactions->created_at;
+            $this->contact = $this->transactions->contact;
+            $this->firstname = $this->transactions->firstName;
+            $this->lastname = $this->transactions->lastName;
+            $this->paymentOption = $this->transactions->paymentOption;
+            $this->preferredService = $this->transactions->preferredService;
+            $this->grandtotal = $this->transactions->grandTotal;
+            $this->courierUsed = $this->transactions->courierUsed;
+            $this->shippingFee = $this->transactions->shippingFee;
+            $this->trackingNumber = $this->transactions->trackingNumber;
+            $this->shippingAddress = $this->transactions->shippingAddress;
+            $this->proofOfPayment = $this->transactions->proofOfPayment;
+            $this->status = $this->transactions->status;
+            $this->previousStatus = $this->transactions->status;
+            $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction);
+        }
     }
 
     public function updateTransaction()

@@ -4,7 +4,7 @@
             @if ($transaction->purchaseType === 'Online')
                 <div class="block lg:hidden">
                     @if ($selectedTransactionId && $transaction->id == $selectedTransactionId)
-                        <livewire:online-transaction-details transaction="{{ $transaction }}"
+                        <livewire:online-transaction-details transaction="{{ $transaction->id }}"
                             wire:key="{{ $transaction->id }}" />
                     @endif
                 </div>

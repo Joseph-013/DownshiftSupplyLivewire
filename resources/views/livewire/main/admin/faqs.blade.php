@@ -13,7 +13,7 @@
             {{-- Content --}}
             <div class="flex flex-1 w-full mx-2">
                 {{-- Left Panel --}}
-                <div class="w-2/5 h-full px-3">
+                <div class="w-2/5 h-full px-3 hidden lg:block">
                     <div class="w-full h-full"> {{-- Not part of a livewire component. --}}
                         {{-- Left Main Container --}}
                         <livewire:faq-details />
@@ -21,7 +21,7 @@
 
                 </div>
                 {{-- Right Panel border-2 border-black --}}
-                <div class="w-3/5 h-full px-3 text-right flex">
+                <div class="w-full lg:w-3/5 h-full px-3 text-right flex">
                     <div class="w-full h-full px-4 flex flex-col">
                         <div class="w-full flex-row">
                             <ul class="flex flex-row w-full">

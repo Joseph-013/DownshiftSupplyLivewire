@@ -29,7 +29,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <button
+                        <!-- <button
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="svg-icon mr-2"
                                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
@@ -42,7 +42,7 @@
                                     fill="" />
                             </svg>
                             <span class="hidden sm:inline">Filters</span>
-                        </button>
+                        </button> -->
                         <button type="submit"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="feather feather-search" fill="none" height="18" stroke="currentColor"
@@ -60,7 +60,7 @@
             {{-- Content --}}
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Main List --}}
-                <div class="w-full h-full px-3 overflow-y-auto" id="questions-container">
+                <div class="w-full h-full px-3">
                     <div class="w-full h-full text-right flex">
                         <div class="w-full h-full flex flex-col">
                             <livewire:main.user.livewire.user-products :products="$products" />

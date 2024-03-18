@@ -1,3 +1,4 @@
+<div>
 <div class="w-full h-96 overflow-y-auto mb-5" id="orders-container">
     <ul class=" w-full flex flex-col items-center">
         @foreach ($transactions as $transaction)
@@ -93,3 +94,24 @@
         @endforeach
     </ul>
 </div>
+
+<div class="flex flex-row items-center mt-4">
+        <div class="w-full text-center">
+            Pagination
+        </div>
+
+        <!-- OVERLAY -->
+        <!-- <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
+            
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+
+            
+            <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
+                create product component here
+            </div>
+        </div> -->
+        <!-- END OF OVERLAY -->
+
+    </div>
+</div>
+

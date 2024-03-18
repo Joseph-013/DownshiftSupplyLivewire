@@ -54,6 +54,9 @@
 
             </ul>
         </div>
+        <div class="flex flex-row items-center mt-4">
+            <div class="w-full text-center">Pagination</div>
+        </div>
     </div>
 </div>
 

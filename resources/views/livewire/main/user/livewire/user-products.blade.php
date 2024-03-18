@@ -1,4 +1,5 @@
-<ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-16 w-full">
+<div>
+<ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-16 w-full overflow-y-auto" id="questions-container">
     <!-- <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h2 class="text-xl font-semibold mb-4 text-center">Have you received order XXXXXXXXloveu yet?</h2>
@@ -65,3 +66,9 @@
         @endforeach
     @endif
 </ul>
+<div class="flex flex-row items-center mt-4 justify-center">
+    <div class="text-center">Pagination</div>
+    
+</div>
+</div>  
+

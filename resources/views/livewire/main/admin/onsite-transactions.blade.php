@@ -24,7 +24,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <button type="button"
+                        <!-- <button type="button"
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="svg-icon sm:mr-1"
                                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
@@ -37,7 +37,7 @@
                                     fill="" />
                             </svg>
                             <span class="hidden md:inline">Filters</span>
-                        </button>
+                        </button> -->
                         <button
                             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                                 class="feather feather-search" fill="none" height="18" stroke="currentColor"
@@ -84,20 +84,7 @@
                         <hr class="my-1">
                         {{-- Products List  --}}
                         <livewire:onsite-transaction-list :transactions="$transactions" />
-                        <div class="w-full text-center">Pagination</div>
-                        <div class="w-full mt-5 flex justify-center">
-                            <button onclick="window.location='{{ route('admin.createtransactions') }}'"
-                                class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
-                                New Transaction
-                                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5" />
-                                    <path
-                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
-                                </svg>
-                            </button>
-                        </div>
+                        
                     </div>
 
                     {{-- Products --}}

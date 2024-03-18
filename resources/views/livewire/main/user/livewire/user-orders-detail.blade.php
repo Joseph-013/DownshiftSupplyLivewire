@@ -56,11 +56,15 @@
                         @if ($orderList)
                             @foreach ($orderList as $order)
                                 <tr>
-                                    <td class="w-4/12 text-center text-xs flex items-center justify-center">
-                                        <img src="{{ $order->products->image }}"
-                                            class="w-12 h-12 ml-[-2.5rem] object-cover">
-                                        {{ $order->products->name }}
-                                    </td>
+                                <td class="w-full text-xs flex items-center justify-left">
+    <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
+        <img src="{{ $order->products->image }}" class="w-12 h-12 object-cover rounded" alt="{{ $order->products->name }}">
+        <span class="ml-2">{{ strlen($order->products->name) > 11 ? substr($order->products->name, 0, 11) . '...' : $order->products->name }}</span>
+    </div>
+</td>
+
+
+
                                     <td class="w-3/12 text-center text-xs items-center justify-center">
                                         {{ number_format($order->products->price, 2) }}
                                     </td>

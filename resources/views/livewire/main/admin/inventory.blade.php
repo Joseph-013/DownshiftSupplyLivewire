@@ -76,7 +76,7 @@
                         </div>
                         <hr class="my-1">
                         {{-- Products List  --}}
-                        <livewire:product-list :products="$products" />
+                        <livewire:product-list />
                     </div>
                     {{-- Products --}}
                 </div>

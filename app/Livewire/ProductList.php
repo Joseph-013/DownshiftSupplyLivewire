@@ -5,11 +5,13 @@ namespace App\Livewire;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class ProductList extends Component
 {
+    use WithPagination;
+
     public $selectedProductId;
-    public $products;
 
     // protected $listeners = ['productDeleted', 'productCreated'];
 
@@ -17,7 +19,8 @@ class ProductList extends Component
     public function render()
     {
         $this->selectedProductId = null;
-        return view('livewire.main.admin.livewire.product-list');
+        $products = Product::paginate(50);
+        return view('livewire.main.admin.livewire.product-list')->with(['products' => $products]);
     }
 
     public function selectProduct($productId)
@@ -29,7 +32,6 @@ class ProductList extends Component
     #[On('newProduct')]
     public function newProduct()
     {
-        $this->products = Product::all();
         $this->render();
     }
 }

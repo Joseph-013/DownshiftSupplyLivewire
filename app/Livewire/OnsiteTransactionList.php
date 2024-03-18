@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Models\Transaction;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class OnsiteTransactionList extends Component
 {
+    use WithPagination;
+
     public $selectedTransactionId;
-    public $transactions;
 
     public function selectTransaction($transactionId)
     {
@@ -18,6 +21,7 @@ class OnsiteTransactionList extends Component
 
     public function render()
     {
-        return view('livewire.main.admin.livewire.onsite-transaction-list');
+        $transactions = Transaction::where('purchaseType', 'Onsite')->paginate(50);
+        return view('livewire.main.admin.livewire.onsite-transaction-list')->with(['transactions' => $transactions]);
     }
 }

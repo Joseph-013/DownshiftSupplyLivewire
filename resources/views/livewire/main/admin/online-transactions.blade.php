@@ -75,7 +75,7 @@
                     <hr class="my-1">
                     {{-- Products List  --}}
 
-                    <livewire:online-transaction-list :transactions="$transactions" />
+                    <livewire:online-transaction-list />
                 </div>
             </div>
         </div>

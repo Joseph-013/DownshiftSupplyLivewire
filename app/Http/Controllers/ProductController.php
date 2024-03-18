@@ -13,8 +13,9 @@ class ProductController extends Controller
     public function index()
     {
         // $products = Product::paginate(10);
-        $products = Product::all();
-        return view('livewire.main.admin.inventory', ['products' => $products]);
+        // $products = Product::all();
+        // return view('livewire.main.admin.inventory', ['products' => $products]);
+        return view('livewire.main.admin.inventory');
     }
 
     public function indexUser()

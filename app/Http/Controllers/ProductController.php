@@ -19,9 +19,9 @@ class ProductController extends Controller
 
     public function indexUser()
     {
-        // $products = Product::paginate(10);
-        $products = Product::inRandomOrder()->get();
-        return view('livewire.main.user.products', ['products' => $products]);
+        // $products = Product::inRandomOrder()->get();
+        // return view('livewire.main.user.products', ['products' => $products]);
+        return view('livewire.main.user.products');
     }
 
     public function search(Request $request)

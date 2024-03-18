@@ -63,7 +63,8 @@
                 <div class="w-full h-full px-3">
                     <div class="w-full h-full text-right flex">
                         <div class="w-full h-full flex flex-col">
-                            <livewire:main.user.livewire.user-products :products="$products" />
+                            {{-- <livewire:main.user.livewire.user-products :products="$products" /> --}}
+                            <livewire:main.user.livewire.user-products />
                         </div>
                     </div>
                 </div>
@@ -73,5 +74,5 @@
         </div>
 
     </div>
-    @livewireScripts
+    {{-- @livewireScripts --}}
 </x-app-layout>

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserProducts extends Component
 {
-    public $products;
 
     public function addToCart($productId)
     {
@@ -37,6 +36,7 @@ class UserProducts extends Component
 
     public function render()
     {
-        return view('livewire.main.user.livewire.user-products');
+        $products = Product::inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
+        return view('livewire.main.user.livewire.user-products')->with(['products' => $products]);
     }
 }

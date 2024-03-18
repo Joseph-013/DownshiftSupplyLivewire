@@ -5,18 +5,21 @@ namespace App\Livewire\Main\User\Livewire;
 use App\Models\Detail;
 use Livewire\Component;
 use App\Models\Transaction;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 
 class UserOrdersList extends Component
 {
+
+    use WithPagination;
 
     public $selectedOrder; //Id
     public $orderList; //products list purchase
 
     public function render()
     {
-        $transactionList = Transaction::where('user_id', Auth::id())->get();
-        return view('livewire.main.user.livewire.user-orders-list', compact('transactionList'));
+        $transactionList = Transaction::where('user_id', Auth::id())->simplePaginate(10);
+        return view('livewire.main.user.livewire.user-orders-list')->with(['transactionList' => $transactionList]);
     }
 
     public function showDetails($transactionId)

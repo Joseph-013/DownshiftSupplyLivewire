@@ -85,9 +85,9 @@
 
         <!-- OVERLAY -->
 
-        @if (isset($itemTemplateToggle))
-            <livewire:main.admin.livewire.inventory-create productId="{{ $itemTemplateToggle }}" />
-        @endif
+        @isset($itemTemplateToggle)
+            <livewire:main.admin.livewire.inventory-create product="{{ $itemTemplateToggle }}" />
+        @endisset
 
         <!-- END OF OVERLAY -->
 

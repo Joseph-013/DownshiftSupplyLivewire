@@ -9,9 +9,9 @@ class InventoryCreate extends Component
 {
     public $product = null;
 
-    public function mount($productId)
+    public function mount($product)
     {
-        $this->product = $productId != 0 ? Product::where('id', $productId)->get() : null;
+        $this->product = $product;
     }
 
     // public function hideItemTemplate()

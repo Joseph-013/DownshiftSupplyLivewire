@@ -12,33 +12,23 @@ class ProductDetails extends Component
     use WithFileUploads;
 
     public $selectedProduct;
-    public $newName;
-    public $newPrice;
-    public $newStockquantity;
-    public $newCriticallevel;
-    public $newImage;
-    public $newlyUploadedImage;
-    public $confirmDelete = false;
-    public $confirmUpdate = false;
-
-    // protected $listeners = ['productSelected'];
+    public $confirmDelete;
 
     public function mount()
     {
         $this->selectedProduct = null;
-        $this->newlyUploadedImage = false;
+        $this->confirmDelete = false;
     }
 
     #[On('productSelected')]
     public function productSelected($productId)
     {
         $this->selectedProduct = Product::find($productId);
-        $this->newName = $this->selectedProduct->name;
-        $this->newPrice = $this->selectedProduct->price;
-        $this->newStockquantity = $this->selectedProduct->stockquantity;
-        $this->newCriticallevel = $this->selectedProduct->criticallevel;
-        $this->newImage = $this->selectedProduct->image;
-        $this->newlyUploadedImage = false;
+    }
+
+    public function deleteConfirm()
+    {
+        $this->confirmDelete = true;
     }
 
     public function deleteProduct()
@@ -51,16 +41,16 @@ class ProductDetails extends Component
 
             $this->selectedProduct->delete();
             $this->selectedProduct = null;
-            $this->dispatch('renderProductList');
             $this->confirmDelete = false;
+            $this->dispatch('renderProductList');
             $this->dispatch('alertNotif', 'Product successfully deleted');
         }
     }
 
-    public function deleteConfirm()
-    {
-        $this->confirmDelete = true;
-    }
+    // public function deleteConfirm()
+    // {
+    //     $this->confirmDelete = true;
+    // }
 
     // public function updateProduct()
     // {
@@ -86,16 +76,6 @@ class ProductDetails extends Component
     //         $this->dispatch('alertNotif', 'Product successfully updated');
     //         $this->clearProductDetails();
     //     }
-    // }
-
-    // public function updateConfirm()
-    // {
-    //     $this->confirmUpdate = true;
-    // }
-
-    // public function updatedNewImage()
-    // {
-    //     $this->newlyUploadedImage = true;
     // }
 
     #[On('clearProductDetails')]

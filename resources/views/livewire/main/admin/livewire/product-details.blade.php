@@ -34,11 +34,29 @@
             <td>{{ isset($selectedProduct) ? $selectedProduct->criticallevel : '--' }}</td>
         </tr>
     </table>
+    @if($confirmDelete)
+        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
+        <!-- Semi-transparent overlay -->
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+
+            <!-- Confirmation prompt -->
+            <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
+                <p class="text-xs text-gray-800 mb-4 font-medium">Are you sure you want to delete this
+                    product?</p>
+                <div class="flex justify-end">
+                    <button type="button" wire:click="deleteProduct"
+                        class="px-4 py-2 bg-red-600 text-white rounded-md mr-2">Yes</button>
+                    <button type="button" wire:click="$set('confirmDelete', false)"
+                        class="px-4 py-2 bg-gray-400 text-white rounded-md">No</button>
+                </div>
+            </div>
+        </div>
+    @endif
     {{-- </div> --}}
     @isset($selectedProduct)
         <div class="columns-2 mt-2">
             <div class="flex justify-center">
-                <button wire:click="deleteConfirm" type="submit" @if ($confirmDelete || $confirmUpdate) disabled @endif
+                <button wire:click="deleteConfirm"
                     class="h-10 flex-1 items-center justify-center rounded-lg bg-red-600 mr-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
                     Delete
                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -49,7 +67,7 @@
                 </button>
             </div>
             <div class="flex justify-center">
-                <button wire:click="modifyProduct()"
+                <button wire:click="modifyProduct"
                     class="h-10 flex-1 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
                     Modify
                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"

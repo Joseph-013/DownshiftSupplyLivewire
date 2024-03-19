@@ -39,16 +39,12 @@ class ProductList extends Component
     #[On('useItemTemplate')]
     public function itemTemplate($product)
     {
-        // if ($product)
-        //     dd('edit' . $product);
-        // else
-        //     dd('create');
-        if ($product == null)
+        if ($product == null) {
             $this->itemTemplateToggle = 0;
-        // dd('bullshit');
-        else
-            $this->itemTemplateToggle = Product::where('id', $product)->get();
-        // dd('ass framework');
+        }
+        else {
+            $this->itemTemplateToggle = $product;
+        }
     }
 
     #[On('hideItemTemplate')]

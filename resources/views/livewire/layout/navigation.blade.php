@@ -4,25 +4,19 @@ use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    /**
-     * Log the current user out of the application.
-     */
-    public function logout(Logout $logout): void
+    public function logout(Logout $logout)
     {
         $logout();
 
-        $this->redirect('/', navigate: true);
+        return redirect()->route('login');
     }
 }; ?>
 
 <nav x-data="{ open: false }" class="bg-white ">
-    <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-b-black">
         <div class="flex justify-between h-20">
 
-            <!-- Logo and Navigation Links -->
             <div class="flex">
-                <!-- Logo -->
                 <div class="flex items-center anchor-clean">
                     <a href="{{ auth()->check() ? (auth()->user()->usertype === 'admin' ? route('admin.inventory') : route('user.products')) : route('user.products') }}"
                         wire:navigate class="flex items-center no-underline text-black">
@@ -33,11 +27,9 @@ new class extends Component {
                         </h1>
                     </a>
                 </div>
-                <!-- /Navigation Links -->
             </div>
 
             @if (auth()->check())
-                <!-- Content for authenticated users -->
                 @auth
                     @if (auth()->user()->usertype === 'admin')
                         @include('livewire.layout.adminnav')
@@ -46,12 +38,9 @@ new class extends Component {
                     @endif
                 @endauth
             @else
-                <!-- Content for guests -->
                 @include('livewire.layout.usernav')
             @endif
-            <!-- Navigation Links (My stupid code lmao) -->
 
-            <!-- Settings Dropdown -->
             <div class="h-full flex items-center">
 
                 <div class="h-8 w-8 me-6">
@@ -75,9 +64,9 @@ new class extends Component {
                                 <div>
                                     <img src="{{ asset('assets/profile.jpg') }}" alt="Logo" class="block h-5 w-5">
                                 </div>
-                                @if (auth()->guest())
+                                {{-- @guest
                                     <div class="text-xs -mb-2">Guest</div>
-                                @endif
+                                @endguest --}}
                             </button>
                         </x-slot>
 
@@ -88,7 +77,6 @@ new class extends Component {
                                 </x-dropdown-link>
                             @endauth
 
-                            <!-- Authentication -->
                             <button wire:click="logout" class="w-full text-start">
                                 <x-dropdown-link>
                                     @if (auth()->guest())
@@ -102,7 +90,6 @@ new class extends Component {
                     </x-dropdown>
                 </div>
 
-                <!-- Hamburger -->
                 <div class="-me-2 flex items-center md:hidden">
                     <button @click="open = ! open"
                         class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -118,30 +105,23 @@ new class extends Component {
                 </div>
             </div>
 
-
-
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @if (auth()->check())
-                {{-- @auth --}}
                 @if (auth()->user()->usertype === 'admin')
                     @include('livewire.layout.adminnavresponsive')
                 @else
                     @include('livewire.layout.usernavresponsive')
                 @endif
-                {{-- @endauth --}}
             @else
-                <!-- Content for guests -->
                 @include('livewire.layout.usernavresponsive')
 
             @endif
         </div>
 
-        <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 border border-b-2">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 mb-2">
@@ -159,7 +139,6 @@ new class extends Component {
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                <!-- Authentication -->
                 <button wire:click="logout" class="w-full text-start">
                     <x-responsive-nav-link>
                         {{ __('Log Out') }}

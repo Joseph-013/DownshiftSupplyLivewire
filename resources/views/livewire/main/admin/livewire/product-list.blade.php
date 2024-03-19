@@ -1,4 +1,4 @@
-<div>
+<div class="w-full h-full">
     <div class="w-full h-96 overflow-y-auto" id="questions-container">
         <ul class="w-full flex flex-col items-center">
             @if ($products)
@@ -70,7 +70,7 @@
         </div>
 
         <div class="w-1/2 flex justify-center">
-            <button type="submit" wire:click="itemTemplate(null)"
+            <button wire:click="itemTemplate(null)"
                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
                 Create Item
                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -85,33 +85,42 @@
 
         <!-- OVERLAY -->
 
-        <div class="absolute top-0 left-0 w-full h-full items-center justify-center border" id="itemTemplate">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-
-
-            <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
-                create product component here
-            </div>
-        </div>
+        @if (isset($itemTemplateToggle))
+            <livewire:main.admin.livewire.inventory-create productId="{{ $itemTemplateToggle }}" />
+        @endif
 
         <!-- END OF OVERLAY -->
 
     </div>
 </div>
 
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const itemTemplateContainer = document.getElementById('itemTemplate');
-        itemTemplateContainer.style.display = "none"; // Set display to none initially
-    });
-</script> --}}
+{{-- @script --}}
 
-@script
+{{-- @endscript --}}
+
+{{-- @script
     <script>
+        // $wire.on('showItemTemplate', () => {
+        //     const itemTemplateContainer = document.getElementById("itemTemplate");
+        //     itemTemplateContainer.style.display = "flex";
+        //     // console.log(itemTemplateContainer.style.display);
+        // });
+        // function reveal() {
+        //     const itemContainer = document.getElementById("itemTemplate");
+        //     itemContainer.style.display = "flex";
+        //     console.log(itemContainer.style.display);
+        // }
+
+        function revealItemTemplate() {
+            const itemContainer = document.getElementById("itemTemplate");
+            itemContainer.style.display = "flex";
+            console.log(itemContainer.style.display);
+        }
+
         $wire.on('showItemTemplate', () => {
-            const itemTemplateContainer = document.getElementById('itemTemplate');
-            itemTemplateContainer.style.display = "flex";
-            console.log(itemTemplateContainer.style.display);
-        });
+            const itemContainer = document.getElementById("itemTemplate");
+            itemContainer.style.display = "flex";
+            console.log(itemContainer.style.display);
+        })
     </script>
-@endscript
+@endscript --}}

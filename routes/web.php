@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::redirect('/', 'login');
+Route::redirect('/', '/products');
 
 // Admin routes with middleware protection
 Route::middleware(['auth', 'verified', 'checkadmin'])

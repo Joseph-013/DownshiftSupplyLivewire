@@ -1,7 +1,7 @@
 <div class="border-black border-1 w-full rounded-lg p-3">
     <div class="flex justify-center h-52">
         <img class="rounded-md object-cover"
-            src="{{ isset($selectedProduct->image) ? (filter_var($selectedProduct->image, FILTER_VALIDATE_URL) ? $selectedProduct->image : asset('storage/assets/' . $selectedProduct->image)) : 'https://via.placeholder.com/350x200' }}"
+            src="{{ isset($selectedProduct->image) ? (filter_var($selectedProduct->image, FILTER_VALIDATE_URL) ? $selectedProduct->image : asset('storage/assets/' . $selectedProduct->image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
             alt="{{ isset($selectedProduct->image) ? $selectedProduct->name : 'No Image Selected' }}"
             style="max-height: 200px;">
     </div>

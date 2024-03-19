@@ -12,6 +12,7 @@ class ProductList extends Component
     use WithPagination;
 
     public $selectedProductId;
+    public $itemTemplateToggle;
 
     // protected $listeners = ['productDeleted', 'productCreated'];
 
@@ -39,10 +40,20 @@ class ProductList extends Component
     public function itemTemplate($product)
     {
         // if ($product)
-        // dd('edit');
+        //     dd('edit' . $product);
         // else
-        // dd('create');
+        //     dd('create');
+        if ($product == null)
+            $this->itemTemplateToggle = 0;
+        // dd('bullshit');
+        else
+            $this->itemTemplateToggle = Product::where('id', $product)->get();
+        // dd('ass framework');
+    }
 
-        $this->dispatch('showItemTemplate')->self();
+    #[On('hideItemTemplate')]
+    public function hideItemTemplate()
+    {
+        $this->itemTemplateToggle = null;
     }
 }

@@ -19,6 +19,8 @@ class CreateProduct extends Component
     public $stockquantity;
     public $criticallevel;
     public $image;
+    public $test;
+
 
     protected $rules = [
         'name' => 'required|string|unique:product',
@@ -140,6 +142,10 @@ class CreateProduct extends Component
         $this->validate([
             'image' => 'image|max:10240',
         ]);
+    }
+    public function mount($productId)
+    {
+        $this->test = $productId;
     }
 
     public function render()

@@ -114,6 +114,6 @@ class ProductDetails extends Component
     public function modifyProduct()
     {
         // dd($this->selectedProduct->id);
-        $this->dispatch('useItemTemplate', $this->selectedProduct->id);
+        $this->dispatch('useItemTemplate', product: $this->selectedProduct->id);
     }
 }

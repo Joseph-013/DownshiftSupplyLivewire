@@ -38,7 +38,9 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
         Route::get('/onlinetransactions', [OnlineTransactionController::class, 'index'])->name('onlinetransactions');
         Route::get('/onlinetransactions/search', [OnlineTransactionController::class, 'search'])->name('onlinetransactions.search');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
-        Route::view('/reports', 'livewire/main/admin/reports')->name('reports');
+        Route::get('/reports', function () {
+            return view('livewire/main/admin/reports');
+        })->name('reports');
     });
 
 // User routes with middleware protection

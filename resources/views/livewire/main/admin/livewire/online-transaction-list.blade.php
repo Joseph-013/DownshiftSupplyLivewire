@@ -96,6 +96,7 @@
     </div>
 
     <div class="flex flex-row items-center mt-4 w-full justify-center">
+
         <div class="w-4/5 text-center">
             <div class="flex justify-between items-center w-full h-full px-3">
                 <a class="hover:bg-slate-300 py-1 px-2 rounded-full" href="{{ $transactions->url(1) }}">

@@ -58,14 +58,14 @@
             {{-- Content --}}
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
-                <div class="w-2/5 h-full px-3">
+                <div class="w-4/12 h-full px-3">
                     <div class="w-full h-full">
                         {{-- Left Main Container --}}
                         <livewire:product-details />
                     </div>
                 </div>
                 {{-- Right Panel border-2 border-black --}}
-                <div class="w-3/5 h-full px-3 text-right flex">
+                <div class="w-8/12 h-full px-3 text-right flex">
                     <div class="w-full h-full px-4 flex flex-col">
                         <div class="w-full flex-row">
                             <ul class="flex flex-row w-full">

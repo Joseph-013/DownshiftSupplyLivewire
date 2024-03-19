@@ -34,4 +34,15 @@ class ProductList extends Component
     {
         $this->render();
     }
+
+    #[On('useItemTemplate')]
+    public function itemTemplate($product)
+    {
+        // if ($product)
+        // dd('edit');
+        // else
+        // dd('create');
+
+        $this->dispatch('showItemTemplate')->self();
+    }
 }

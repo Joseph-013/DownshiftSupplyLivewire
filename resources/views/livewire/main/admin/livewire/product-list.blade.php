@@ -69,7 +69,8 @@
             </div>
         </div>
 
-        <div class="w-1/2 flex justify-center"><button type="submit"
+        <div class="w-1/2 flex justify-center">
+            <button type="submit" wire:click="itemTemplate(null)"
                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
                 Create Item
                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -83,16 +84,34 @@
         </div>
 
         <!-- OVERLAY -->
-        <!-- <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
 
+        <div class="absolute top-0 left-0 w-full h-full items-center justify-center border" id="itemTemplate">
             <div class="absolute inset-0 bg-black opacity-50"></div>
 
 
             <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
                 create product component here
             </div>
-        </div> -->
+        </div>
+
         <!-- END OF OVERLAY -->
 
     </div>
 </div>
+
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const itemTemplateContainer = document.getElementById('itemTemplate');
+        itemTemplateContainer.style.display = "none"; // Set display to none initially
+    });
+</script> --}}
+
+@script
+    <script>
+        $wire.on('showItemTemplate', () => {
+            const itemTemplateContainer = document.getElementById('itemTemplate');
+            itemTemplateContainer.style.display = "flex";
+            console.log(itemTemplateContainer.style.display);
+        });
+    </script>
+@endscript

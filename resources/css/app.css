@@ -285,3 +285,6 @@ input[type="checkbox"]:checked{
     100% { width: 100%; } /* End with zero width */
 }
 
+#itemTemplate {
+    display: none;
+}

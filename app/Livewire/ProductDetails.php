@@ -62,41 +62,41 @@ class ProductDetails extends Component
         $this->confirmDelete = true;
     }
 
-    public function updateProduct()
-    {
-        if ($this->selectedProduct) {
-            if ($this->newImage instanceof \Illuminate\Http\UploadedFile) {
-                $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
-                if (file_exists($imagePath)) {
-                    unlink($imagePath);
-                }
+    // public function updateProduct()
+    // {
+    //     if ($this->selectedProduct) {
+    //         if ($this->newImage instanceof \Illuminate\Http\UploadedFile) {
+    //             $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
+    //             if (file_exists($imagePath)) {
+    //                 unlink($imagePath);
+    //             }
 
-                $newImageName = time() . '.' . $this->newImage->extension();
-                $this->newImage->storeAs('public/assets/', $newImageName);
+    //             $newImageName = time() . '.' . $this->newImage->extension();
+    //             $this->newImage->storeAs('public/assets/', $newImageName);
 
-                $this->selectedProduct->image = $newImageName;
-            }
-            $this->selectedProduct->name = $this->newName;
-            $this->selectedProduct->price = $this->newPrice;
-            $this->selectedProduct->stockquantity = $this->newStockquantity;
-            $this->selectedProduct->criticallevel = $this->newCriticallevel;
-            $this->selectedProduct->save();
-            $this->dispatch('renderProductList');
-            $this->confirmUpdate = false;
-            $this->dispatch('alertNotif', 'Product successfully updated');
-            $this->clearProductDetails();
-        }
-    }
+    //             $this->selectedProduct->image = $newImageName;
+    //         }
+    //         $this->selectedProduct->name = $this->newName;
+    //         $this->selectedProduct->price = $this->newPrice;
+    //         $this->selectedProduct->stockquantity = $this->newStockquantity;
+    //         $this->selectedProduct->criticallevel = $this->newCriticallevel;
+    //         $this->selectedProduct->save();
+    //         $this->dispatch('renderProductList');
+    //         $this->confirmUpdate = false;
+    //         $this->dispatch('alertNotif', 'Product successfully updated');
+    //         $this->clearProductDetails();
+    //     }
+    // }
 
-    public function updateConfirm()
-    {
-        $this->confirmUpdate = true;
-    }
+    // public function updateConfirm()
+    // {
+    //     $this->confirmUpdate = true;
+    // }
 
-    public function updatedNewImage()
-    {
-        $this->newlyUploadedImage = true;
-    }
+    // public function updatedNewImage()
+    // {
+    //     $this->newlyUploadedImage = true;
+    // }
 
     #[On('clearProductDetails')]
     public function clearProductDetails()
@@ -109,5 +109,11 @@ class ProductDetails extends Component
     public function render()
     {
         return view('livewire.main.admin.livewire.product-details');
+    }
+
+    public function modifyProduct()
+    {
+        // dd($this->selectedProduct->id);
+        $this->dispatch('useItemTemplate', $this->selectedProduct->id);
     }
 }

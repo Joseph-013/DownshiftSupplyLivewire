@@ -4,14 +4,27 @@ namespace App\Livewire\Main\Admin\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class InventoryCreate extends Component
 {
+    use WithFileUploads;
+
     public $product = null;
+    public $name;
+    public $price;
+    public $stockquantity;
+    public $criticallevel;
+    public $image;
 
     public function mount($product)
     {
         $this->product = $product;
+        $this->name = null;
+        $this->price = null;
+        $this->stockquantity = null;
+        $this->criticallevel = null;
+        $this->image = null;
     }
 
     // public function hideItemTemplate()
@@ -23,5 +36,31 @@ class InventoryCreate extends Component
     public function render()
     {
         return view('livewire.main.admin.livewire.inventory-create');
+    }
+
+    public function createProduct() {
+        $this->validate([
+            'name' => ['required', 'string', 'unique:' . Product::class],
+            'price' => ['required', 'numeric'],
+            'stockquantity' => ['required', 'numeric'],
+            'criticallevel' => ['required', 'numeric'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:4096'],
+        ]);
+
+        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
+            $imageName = time() . '.' . $this->image->extension();
+            $this->image->storeAs('public/assets', $imageName);
+
+            Product::create([
+                'name' => $this->name,
+                'price' => $this->price,
+                'stockquantity' => $this->stockquantity,
+                'criticallevel' => $this->criticallevel,
+                'image' => $imageName,
+            ]);
+
+            $this->dispatch('alertNotif', 'Product successfully created');
+            $this->dispatch('hideItemTemplate');
+        }
     }
 }

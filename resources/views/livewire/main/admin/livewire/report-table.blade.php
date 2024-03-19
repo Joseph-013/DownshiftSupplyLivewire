@@ -3,7 +3,7 @@
         <h4 class="text-lg font-bold font-montserrat">{{ $format ? ucfirst($format) . ' Report' : '' }}</h4>
         <div class="">
             Rows:
-            <input type="number" min="10" max="500" placeholder="Row Count" class="rounded-md max-w-36 ms-2"
+            <input type="number" min="10" max="1000" placeholder="Row Count" class="rounded-md max-w-36 ms-2"
                 value="100" wire:model="rowCount" wire:change="updateRowCount($event.target.value)" />
         </div>
     </div>
@@ -50,6 +50,11 @@
                         </tr>";
                         }
                     @endphp
+                    @if (!$transactions->hasMorePages())
+                        <tr>
+                            <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
+                        </tr>
+                    @endif
                 @else
                     @php
                         $identifierSwitch = '';
@@ -117,6 +122,11 @@
                                 </tr>";
                         }
                     @endphp
+                    @if (!$transactions->hasMorePages())
+                        <tr>
+                            <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
+                        </tr>
+                    @endif
                 @endif
 
             @endif
@@ -130,7 +140,7 @@
         @endif
     @endif
     @if (isset($transactions) && $transactions)
-        <div class="">
+        <div class="mt-3">
 
             {{ $transactions->links() }}
 

@@ -12,7 +12,8 @@
                     <th colspan="2" class="text-center font-semibold">Item Details</th>
                 </tr>
                 <tr>
-                    <td class="h-11 mt-3" colspan="2"><input type="file"></td>
+                    <td class="h-11 mt-3" colspan="2"><input type="file" style="min-width:10rem; width:100%;">
+                    </td>
                 </tr>
                 <tr class="h-11">
                     <td>Name:</td>

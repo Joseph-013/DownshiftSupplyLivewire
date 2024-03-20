@@ -50,7 +50,7 @@
                         </tr>";
                         }
                     @endphp
-                    @if (!$transactions->hasMorePages())
+                    @if (!$transactions->hasMorePages() && $transactions->count() != 0)
                         <tr>
                             <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
                         </tr>
@@ -122,7 +122,7 @@
                                 </tr>";
                         }
                     @endphp
-                    @if (!$transactions->hasMorePages())
+                    @if (!$transactions->hasMorePages() && $transactions->count() != 0)
                         <tr>
                             <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
                         </tr>
@@ -140,10 +140,8 @@
         @endif
     @endif
     @if (isset($transactions) && $transactions)
-        <div class="mt-3">
-
-            {{ $transactions->links('pagination.default') }}
-
+        <div class="flex justify-center mt-3 w-full">
+            <div class="w-96">{{ $transactions->links('pagination.default') }}</div>
         </div>
     @endif
 </div>

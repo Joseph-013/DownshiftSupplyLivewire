@@ -40,25 +40,25 @@ class ReportTable extends Component
     {
         switch ($this->format) {
             case 'daily':
-                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->simplePaginate($this->rowCount);
+                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->paginate($this->rowCount);
                 foreach ($transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('F j, Y D');
                 }
                 break;
             case 'weekly':
-                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->simplePaginate($this->rowCount);
+                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->paginate($this->rowCount);
                 foreach ($transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('F');
                 }
                 break;
             case 'monthly':
-                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->simplePaginate($this->rowCount);
+                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->paginate($this->rowCount);
                 foreach ($transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('F Y');
                 }
                 break;
             case 'annual':
-                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->simplePaginate($this->rowCount);
+                $transactions = Transaction::whereBetween('created_at', [$this->date, Carbon::now()])->orderBy('created_at')->paginate($this->rowCount);
                 foreach ($transactions as $transaction) {
                     $transaction->identifier = $transaction->created_at->format('Y');
                 }

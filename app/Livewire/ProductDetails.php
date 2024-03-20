@@ -56,6 +56,36 @@ class ProductDetails extends Component
         $this->selectedProduct = null;
         $this->render();
     }
+    // public function deleteConfirm()
+    // {
+    //     $this->confirmDelete = true;
+    // }
+
+    // public function updateProduct()
+    // {
+    //     if ($this->selectedProduct) {
+    //         if ($this->newImage instanceof \Illuminate\Http\UploadedFile) {
+    //             $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
+    //             if (file_exists($imagePath)) {
+    //                 unlink($imagePath);
+    //             }
+
+    //             $newImageName = time() . '.' . $this->newImage->extension();
+    //             $this->newImage->storeAs('public/assets/', $newImageName);
+
+    //             $this->selectedProduct->image = $newImageName;
+    //         }
+    //         $this->selectedProduct->name = $this->newName;
+    //         $this->selectedProduct->price = $this->newPrice;
+    //         $this->selectedProduct->stockquantity = $this->newStockquantity;
+    //         $this->selectedProduct->criticallevel = $this->newCriticallevel;
+    //         $this->selectedProduct->save();
+    //         $this->dispatch('renderProductList');
+    //         $this->confirmUpdate = false;
+    //         $this->dispatch('alertNotif', 'Product successfully updated');
+    //         $this->clearProductDetails();
+    //     }
+    // }
 
     #[On('renderProductDetails')]
     public function render()
@@ -65,7 +95,6 @@ class ProductDetails extends Component
 
     public function modifyProduct()
     {
-        // dd($this->selectedProduct->id);
         $this->dispatch('useItemTemplate', product: $this->selectedProduct->id);
     }
 }

@@ -1,43 +1,33 @@
-<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
     <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
-        <div style="display:flex; justify-content: center; align-items: center;">
-            @if ($temporaryImage)
-                <img src="{{ $temporaryImage->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover" style="max-height: 200px;" />
-            @else
-                <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}" class="rounded-md object-cover" style="max-height: 200px;" />
-            @endif
-        </div>
         {{-- @if (!isset($product)) --}}
-        <form 
-            @if($product)
-                wire:submit.prevent="editProduct" 
+        <form
+            @if($faq)
+                wire:submit.prevent="editFaq" 
             @else
-                wire:submit.prevent="createProduct" 
+                wire:submit.prevent="createFaq" 
             @endif
-        class="h-full w-full flex flex-col">
-            <table class="w-full">
+            class="h-full w-full flex flex-col">
+            <table class="w-96">
                 <tr class="h-14">
-                    <th colspan="2" class="text-center font-semibold">Item Details</th>
-                </tr>
-                <tr>
-                    <td class="h-11 mt-3" colspan="2"><input wire:model="image" type="file" @if(!$product) required @endif></td>
+                    <th colspan="2" class="text-center font-semibold">FAQ Details</th>
                 </tr>
                 <tr class="h-11">
-                    <td>Name:</td>
-                    <td><input wire:model="name" type="text" class="rounded-lg h-9" required></td>
+                    <td class="text-center">Question:</td>
                 </tr>
                 <tr class="h-11">
-                    <td>Price:</td>
-                    <td><input wire:model="price" type="number" step="any" class="rounded-lg h-9" required></td>
+                    <td>
+                        <textarea wire:model="question" class="w-full h-30 p-2 mx-1 border-gray rounded-md" rows="4" style="resize: none;"></textarea>
+                    </td>
+                </tr>
+                <tr class="h-11 mt-5">
+                    <td class="text-center">Answer:</td>
                 </tr>
                 <tr class="h-11">
-                    <td>Stocks:</td>
-                    <td><input wire:model="stockquantity" type="number" class="rounded-lg h-9" required></td>
-                </tr>
-                <tr class="h-11">
-                    <td>Critical Level:</td>
-                    <td><input wire:model="criticallevel" type="number" class="rounded-lg h-9" required></td>
+                    <td>
+                        <textarea wire:model="answer" class="w-full h-30 p-2 mx-1 border-gray rounded-md" rows="4" style="resize: none;"></textarea>
+                    </td>
                 </tr>
             </table>
             <div class="columns-2 mt-2">

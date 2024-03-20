@@ -20,22 +20,27 @@
                         <hr class="my-1">
 
 
-                        @foreach ($cartItems as $item)
-    <div class="w-full flex-row my-1 select-none flex justify-center">
-        {{-- <input class="widenWhenSelectedEdit" hidden type="radio" id="productId1" name="productList"> --}}
-        <label class="w-full py-2 my-1 px-3 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId1">
-            <div class="flex items-center justify-between w-full">
-                <div class="flex items-center w-4/12">
-                    <img src="{{ $item->product->image }}" class="w-12 h-12 mr-2 rounded" alt="Product Image">
-                    <span class="truncate">{{ $item->product->name }}</span>
+                        <table class="w-full">
+    <tbody>
+        @foreach ($cartItems as $item)
+        <tr class="w-full my-1 select-none flex justify-center">
+            {{-- <td><input class="widenWhenSelectedEdit" hidden type="radio" id="productId1" name="productList"></td> --}}
+            <td class="w-full py-2 my-1 px-3 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="productId1">
+                <div class="flex items-center justify-between w-full">
+                    <div class="flex items-center w-4/12">
+                        <img src="{{ $item->product->image }}" class="w-12 h-12 mr-2 rounded" alt="Product Image">
+                        <span class="truncate">{{ $item->product->name }}</span>
+                    </div>
+                    <div class="w-3/12 text-center">{{ number_format($item->product->price, 2) }}</div>
+                    <div class="w-2/12 text-center">{{ $item->quantity }}</div>
+                    <div class="w-3/12 text-center">{{ number_format($item->quantity * $item->product->price, 2) }}</div>
                 </div>
-                <div class="w-3/12 text-center">{{ number_format($item->product->price, 2) }}</div>
-                <div class="w-2/12 text-center">{{ $item->quantity }}</div>
-                <div class="w-3/12 text-center">{{ number_format($item->quantity * $item->product->price, 2) }}</div>
-            </div>
-        </label>
-    </div>
-@endforeach
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
 
 
 

@@ -28,12 +28,6 @@ class ProductList extends Component
         $this->dispatch('productSelected', $productId);
     }
 
-    #[On('newProduct')]
-    public function newProduct()
-    {
-        $this->render();
-    }
-
     #[On('useItemTemplate')]
     public function itemTemplate($product)
     {

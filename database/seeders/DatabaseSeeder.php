@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Product::factory(500)->create();
 
         $this->call(FAQsTableSeeder::class);
-        \App\Models\FAQ::factory(5)->create();
+        \App\Models\FAQ::factory(20)->create();
 
         $this->call(CartsTableSeeder::class);
         \App\Models\Cart::factory(100)->create();

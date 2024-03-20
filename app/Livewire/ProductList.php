@@ -14,12 +14,10 @@ class ProductList extends Component
     public $selectedProductId;
     public $itemTemplateToggle;
 
-    // protected $listeners = ['productDeleted', 'productCreated'];
-
     #[On('renderProductList')]
     public function render()
     {
-        $this->selectedProductId = null;
+        // $this->selectedProductId = null;
         $products = Product::paginate(50);
         return view('livewire.main.admin.livewire.product-list')->with(['products' => $products]);
     }
@@ -41,8 +39,7 @@ class ProductList extends Component
     {
         if ($product == null) {
             $this->itemTemplateToggle = 0;
-        }
-        else {
+        } else {
             $this->itemTemplateToggle = $product;
         }
     }

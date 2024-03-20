@@ -1,12 +1,24 @@
 <div class="w-full h-full">
+    {{-- @isset(true) --}}
+    {{-- <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex lg:hidden justify-center items-center z-50"> --}}
+    {{-- <div
+        class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 {{ isset($selectedProductId) ? '' : 'block lg:hidden' }} justify-center items-center z-50">
+        <div class=""></div>
+    </div> --}}
+    {{-- @endisset --}}
+
     <div class="w-full h-96 overflow-y-auto" id="questions-container">
         <ul class="w-full flex flex-col items-center">
             @if ($products)
                 @foreach ($products as $product)
-                    {{-- Single Unit of Product --}}
+                    {{-- @if (isset($selectedProductId) && $selectedProductId == $product->id)
+                        <div wire:key="{{ $product->id }}" class="block lg:hidden">
+                            <livewire:main.admin.livewire.product-details productId="{{ $product->id }}" />
+                        </div>
+                    @endif --}}
+
                     <li wire:key="{{ $product->id }}" wire:click="selectProduct({{ $product->id }})"
                         class="w-full flex justify-center select-none px-2">
-                        {{-- Product Details --}}
                         <input class="widenWhenSelected" hidden type="radio" id="productId{{ $product->id }}"
                             name="productList">
                         <label

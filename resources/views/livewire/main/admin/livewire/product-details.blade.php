@@ -34,9 +34,9 @@
             <td>{{ isset($selectedProduct) ? $selectedProduct->criticallevel : '--' }}</td>
         </tr>
     </table>
-    @if($confirmDelete)
+    @if ($confirmDelete)
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
-        <!-- Semi-transparent overlay -->
+            <!-- Semi-transparent overlay -->
             <div class="absolute inset-0 bg-black opacity-50"></div>
 
             <!-- Confirmation prompt -->

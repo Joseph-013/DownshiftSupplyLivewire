@@ -14,9 +14,12 @@ class ProductDetails extends Component
     public $selectedProduct;
     public $confirmDelete;
 
-    public function mount()
+    public function mount($productId)
     {
-        $this->selectedProduct = null;
+        if ($productId != 0)
+            $this->selectedProduct = $productId;
+        else
+            $this->selectedProduct = null;
         $this->confirmDelete = false;
     }
 
@@ -46,37 +49,6 @@ class ProductDetails extends Component
             $this->dispatch('alertNotif', 'Product successfully deleted');
         }
     }
-
-    // public function deleteConfirm()
-    // {
-    //     $this->confirmDelete = true;
-    // }
-
-    // public function updateProduct()
-    // {
-    //     if ($this->selectedProduct) {
-    //         if ($this->newImage instanceof \Illuminate\Http\UploadedFile) {
-    //             $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
-    //             if (file_exists($imagePath)) {
-    //                 unlink($imagePath);
-    //             }
-
-    //             $newImageName = time() . '.' . $this->newImage->extension();
-    //             $this->newImage->storeAs('public/assets/', $newImageName);
-
-    //             $this->selectedProduct->image = $newImageName;
-    //         }
-    //         $this->selectedProduct->name = $this->newName;
-    //         $this->selectedProduct->price = $this->newPrice;
-    //         $this->selectedProduct->stockquantity = $this->newStockquantity;
-    //         $this->selectedProduct->criticallevel = $this->newCriticallevel;
-    //         $this->selectedProduct->save();
-    //         $this->dispatch('renderProductList');
-    //         $this->confirmUpdate = false;
-    //         $this->dispatch('alertNotif', 'Product successfully updated');
-    //         $this->clearProductDetails();
-    //     }
-    // }
 
     #[On('clearProductDetails')]
     public function clearProductDetails()

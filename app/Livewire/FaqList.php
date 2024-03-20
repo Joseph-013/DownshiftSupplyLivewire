@@ -11,20 +11,37 @@ class FaqList extends Component
 {
     use WithPagination;
 
-    public $selectedFaqId = null;
+    public $selectedFaqId;
+    public $itemTemplateToggle;
 
     #[On('renderFaqList')]
     public function render()
     {
         $this->selectedFaqId = null;
         $faqs = FAQ::paginate(10);
-        return view('livewire.main.admin.livewire.faq-list', compact('faqs'));
+        return view('livewire.main.admin.livewire.faq-list')->with(['faqs' => $faqs]);
     }
 
     public function selectFaq($faqId)
     {
         $this->selectedFaqId = $faqId;
         $this->dispatch('faqSelected', $faqId);
-        $this->dispatch('alertNotif', 'FAQ entry selected');
+    }
+
+    #[On('useItemTemplate')]
+    public function itemTemplate($faq)
+    {
+        if ($faq == null) {
+            $this->itemTemplateToggle = 0;
+        }
+        else {
+            $this->itemTemplateToggle = $faq;
+        }
+    }
+
+    #[On('hideItemTemplate')]
+    public function hideItemTemplate()
+    {
+        $this->itemTemplateToggle = null;
     }
 }

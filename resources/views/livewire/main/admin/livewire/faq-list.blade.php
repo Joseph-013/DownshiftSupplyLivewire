@@ -1,12 +1,7 @@
 <div>
     <div class="w-full h-96 overflow-y-auto" id="questions-container">
-        <div class="w-full block lg:hidden">
-            @if ($selectedFaqId == null)
-                <livewire:faq-details />
-            @endif
-        </div>
-
         <ul class="w-full flex flex-col items-center">
+        @if($faqs)
             @foreach ($faqs as $faq)
                 <li wire:click="selectFaq({{ $faq->id }})" class="w-full flex justify-center select-none px-2">
                     <input class="widenWhenSelected" hidden type="radio" id="faqId{{ $faq->id }}" name="productList">
@@ -19,6 +14,7 @@
                     </label>
                 </li>
             @endforeach
+        @endif
         </ul>
     </div>
 
@@ -60,7 +56,8 @@
             </div>
         </div>
 
-        <div class="w-1/2 flex justify-center"><button type="submit"
+        <div class="w-1/2 flex justify-center">
+            <button wire:click="itemTemplate(null)"
                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
                 Create FAQ
                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -72,6 +69,10 @@
                 </svg>
             </button>
         </div>
+
+        @isset($itemTemplateToggle)
+            <livewire:main.admin.livewire.faq-create faq="{{ $itemTemplateToggle }}" />
+        @endisset
 
         <!-- OVERLAY -->
         <!-- <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">

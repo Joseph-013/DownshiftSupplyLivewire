@@ -78,13 +78,6 @@ class ProductDetails extends Component
     //     }
     // }
 
-    #[On('clearProductDetails')]
-    public function clearProductDetails()
-    {
-        $this->selectedProduct = null;
-        $this->render();
-    }
-
     #[On('renderProductDetails')]
     public function render()
     {
@@ -93,7 +86,6 @@ class ProductDetails extends Component
 
     public function modifyProduct()
     {
-        // dd($this->selectedProduct->id);
         $this->dispatch('useItemTemplate', product: $this->selectedProduct->id);
     }
 }

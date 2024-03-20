@@ -58,7 +58,7 @@ class InventoryCreate extends Component
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:4096'],
         ]);
 
-        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
+        if($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
             $imageName = time() . '.' . $this->image->extension();
             $this->image->storeAs('public/assets', $imageName);
 

@@ -33,7 +33,7 @@
     <div class="flex flex-row items-center mt-4">
         <div class="w-1/2 text-center">
 
-            {{ $products->links() }}
+            {{ $products->links('pagination.default') }}
             {{-- <div class="flex justify-between items-center w-full h-full px-3">
                 <a class="hover:bg-slate-300 py-1 px-2 rounded-full" href="{{ $products->url(1) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"

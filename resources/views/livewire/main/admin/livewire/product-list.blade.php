@@ -32,7 +32,9 @@
 
     <div class="flex flex-row items-center mt-4">
         <div class="w-1/2 text-center">
-            <div class="flex justify-between items-center w-full h-full px-3">
+
+            {{ $products->links() }}
+            {{-- <div class="flex justify-between items-center w-full h-full px-3">
                 <a class="hover:bg-slate-300 py-1 px-2 rounded-full" href="{{ $products->url(1) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-skip-backward" viewBox="0 0 16 16">
@@ -66,7 +68,7 @@
                             d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.752l-6.267 3.636c-.52.302-1.233-.043-1.233-.696v-2.94l-6.267 3.636C.713 12.69 0 12.345 0 11.692V4.308c0-.653.713-.998 1.233-.696L7.5 7.248v-2.94c0-.653.713-.998 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5M1 4.633v6.734L6.804 8zm7.5 0v6.734L14.304 8z" />
                     </svg>
                 </a>
-            </div>
+            </div> --}}
         </div>
 
         <div class="w-1/2 flex justify-center">
@@ -93,34 +95,3 @@
 
     </div>
 </div>
-
-{{-- @script --}}
-
-{{-- @endscript --}}
-
-{{-- @script
-    <script>
-        // $wire.on('showItemTemplate', () => {
-        //     const itemTemplateContainer = document.getElementById("itemTemplate");
-        //     itemTemplateContainer.style.display = "flex";
-        //     // console.log(itemTemplateContainer.style.display);
-        // });
-        // function reveal() {
-        //     const itemContainer = document.getElementById("itemTemplate");
-        //     itemContainer.style.display = "flex";
-        //     console.log(itemContainer.style.display);
-        // }
-
-        function revealItemTemplate() {
-            const itemContainer = document.getElementById("itemTemplate");
-            itemContainer.style.display = "flex";
-            console.log(itemContainer.style.display);
-        }
-
-        $wire.on('showItemTemplate', () => {
-            const itemContainer = document.getElementById("itemTemplate");
-            itemContainer.style.display = "flex";
-            console.log(itemContainer.style.display);
-        })
-    </script>
-@endscript --}}

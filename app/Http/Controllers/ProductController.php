@@ -28,7 +28,6 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        // $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10)->get();
         $products = Product::where('name', 'like', '%' . $search . '%')->get();
         return view('livewire.main.admin.inventory', ['products' => $products]);
     }

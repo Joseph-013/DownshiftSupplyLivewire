@@ -14,12 +14,20 @@ class ProductList extends Component
     public $selectedProductId;
     public $itemTemplateToggle;
     public $itemTemplateToggleRes;
+    public $search;
 
     #[On('renderProductList')]
     public function render()
     {
-        $products = Product::paginate(50);
+        $products = Product::where('name', 'like', '%' . $this->search . '%')
+                    ->paginate(50);
         return view('livewire.main.admin.livewire.product-list')->with(['products' => $products]);
+    }
+
+    #[On('searchResults')]
+    public function searchResults($value)
+    {
+        $this->search = $value;
     }
 
     public function selectProduct($productId)

@@ -12,7 +12,7 @@
             <tbody>
                 @if ($products)
                     @foreach ($products as $product)
-                        <tr class="w-full">
+                        <tr wire:click="selectProduct({{ $product->id }})" class="w-full">
                             <td class="w-full flex justify-center select-none px-2">
                                 <input class="widenWhenSelected" hidden type="radio" id="productId{{ $product->id }}"
                                     name="productList">

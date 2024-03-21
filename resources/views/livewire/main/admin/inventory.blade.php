@@ -61,7 +61,7 @@
                 <div class="hidden lg:block w-4/12 h-full px-3">
                     <div class="w-full h-full">
                         {{-- Left Main Container --}}
-                        <livewire:product-details />
+                        <livewire:product-details productId="0" />
                     </div>
                 </div>
                 {{-- Right Panel border-2 border-black --}}

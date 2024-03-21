@@ -14,9 +14,12 @@ class ProductDetails extends Component
     public $selectedProduct;
     public $confirmDelete;
 
-    public function mount()
+    public function mount($productId)
     {
-        $this->selectedProduct = null;
+        if ($productId != 0)
+            $this->selectedProduct = $productId;
+        else
+            $this->selectedProduct = null;
         $this->confirmDelete = false;
     }
 

@@ -3,46 +3,55 @@
     <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
         <div style="display:flex; justify-content: center; align-items: center;">
             @if ($temporaryImage)
-                <img src="{{ $temporaryImage->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover" style="max-height: 200px;" />
+                <img src="{{ $temporaryImage->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover"
+                    style="max-height: 200px;" />
             @else
-                <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}" class="rounded-md object-cover" style="max-height: 200px;" />
+                <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
+                    class="rounded-md object-cover" style="max-height: 200px;" />
             @endif
         </div>
         {{-- @if (!isset($product)) --}}
-        <form 
-            @if($product)
-                wire:submit.prevent="editProduct" 
+        <form
+            @if ($product) wire:submit.prevent="editProduct"
             @else
-                wire:submit.prevent="createProduct" 
-            @endif
-        class="h-full w-full flex flex-col">
+                wire:submit.prevent="createProduct" @endif
+            class="h-full w-full flex flex-col">
             <table class="w-full">
                 <tr class="h-14">
                     <th colspan="2" class="text-center font-semibold">Item Details</th>
                 </tr>
                 <tr>
-                    <td class="h-11 mt-3" colspan="2"><input wire:model="image" type="file" @if(!$product) required @endif></td>
+                    <td class="h-11 mt-3" colspan="2"><input wire:model="image" type="file"
+                            @if (!$product) required @endif></td>
                 </tr>
                 <tr class="h-11">
-                    <td>Name:</td>
-                    <td><input wire:model="name" type="text" class="rounded-lg h-9" required></td>
+                    <td class="pe-3">Name:</td>
+                    <td><input wire:model="name" type="text" class="rounded-lg h-9 w-full" required></td>
                 </tr>
                 <tr class="h-11">
-                    <td>Price:</td>
-                    <td><input wire:model="price" type="number" step="any" class="rounded-lg h-9" required></td>
+                    <td class="pe-3">Description:</td>
+                    <td>
+                        <textarea name="" id="" rows="5" class="rounded-lg w-full"></textarea>
+                        {{-- <input wire:model="name" type="text" class="rounded-lg h-9" required> --}}
+                    </td>
                 </tr>
                 <tr class="h-11">
-                    <td>Stocks:</td>
-                    <td><input wire:model="stockquantity" type="number" class="rounded-lg h-9" required></td>
+                    <td class="pe-3">Price:</td>
+                    <td><input wire:model="price" type="number" step="any" class="rounded-lg h-9 w-full" required>
+                    </td>
                 </tr>
                 <tr class="h-11">
-                    <td>Critical Level:</td>
-                    <td><input wire:model="criticallevel" type="number" class="rounded-lg h-9" required></td>
+                    <td class="pe-3">Stocks:</td>
+                    <td><input wire:model="stockquantity" type="number" class="rounded-lg h-9 w-full" required></td>
+                </tr>
+                <tr class="h-11">
+                    <td class="pe-3">Critical Level:</td>
+                    <td><input wire:model="criticallevel" type="number" class="rounded-lg h-9 w-full" required></td>
                 </tr>
             </table>
             <div class="columns-2 mt-2">
                 <div class="flex justify-center">
-                    <button type="button" wire:click="cancel"
+                    <button type="button" wire:click="cancel; "
                         class="h-10 flex-1 items-center justify-center rounded-lg bg-red-600 mr-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
                         Cancel
                         <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"

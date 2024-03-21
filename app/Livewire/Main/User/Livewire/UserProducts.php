@@ -6,9 +6,11 @@ use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class UserProducts extends Component
 {
+    use WithPagination;
 
     public function addToCart($productId)
     {

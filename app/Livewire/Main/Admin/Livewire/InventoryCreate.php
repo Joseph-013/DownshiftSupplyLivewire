@@ -22,14 +22,13 @@ class InventoryCreate extends Component
     {
         $this->product = Product::find($product);
         $this->temporaryImage = null;
-        if($this->product) {
+        if ($this->product) {
             $this->name = $this->product->name;
             $this->price = $this->product->price;
             $this->stockquantity = $this->product->stockquantity;
             $this->criticallevel = $this->product->criticallevel;
             $this->image = $this->product->image;
-        }
-        else {
+        } else {
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;
@@ -38,18 +37,13 @@ class InventoryCreate extends Component
         }
     }
 
-    // public function hideItemTemplate()
-    // {
-    //     dump('test');
-    //     $this->dispatch('hideItemTemplate');
-    // }
-
     public function render()
     {
         return view('livewire.main.admin.livewire.inventory-create');
     }
 
-    public function createProduct() {
+    public function createProduct()
+    {
         $this->validate([
             'name' => ['required', 'string', 'unique:' . Product::class],
             'price' => ['required', 'numeric', 'min:0'],
@@ -58,7 +52,7 @@ class InventoryCreate extends Component
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:4096'],
         ]);
 
-        if($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
+        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
             $imageName = time() . '.' . $this->image->extension();
             $this->image->storeAs('public/assets', $imageName);
 
@@ -75,7 +69,8 @@ class InventoryCreate extends Component
         }
     }
 
-    public function editProduct() {
+    public function editProduct()
+    {
         $currentProduct = $this->product;
         $rules = [
             'name' => ['required', 'string'],
@@ -93,14 +88,13 @@ class InventoryCreate extends Component
             $currentProduct->price = $this->price;
             $currentProduct->stockquantity = $this->stockquantity;
             $currentProduct->criticallevel = $this->criticallevel;
-            if($this->temporaryImage)
-            {
+            if ($this->temporaryImage) {
                 $imageName = time() . '.' . $this->image->extension();
                 $this->image->storeAs('public/assets', $imageName);
                 $currentProduct->image = $imageName;
             }
             $currentProduct->save();
-            
+
             $this->dispatch('alertNotif', 'Product details successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderProductDetails');
@@ -113,7 +107,7 @@ class InventoryCreate extends Component
         $this->temporaryImage = $this->image;
     }
 
-    public function cancel() 
+    public function cancel()
     {
         $this->dispatch('hideItemTemplate');
     }

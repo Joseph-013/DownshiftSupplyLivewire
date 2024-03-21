@@ -13,6 +13,8 @@ class ProductsTableSeeder extends Seeder
      */
     public function run(): void
     {
+        //OUTDATED:
+
         // DB::table('products')->insert([
         //     // Admin
         //     // [

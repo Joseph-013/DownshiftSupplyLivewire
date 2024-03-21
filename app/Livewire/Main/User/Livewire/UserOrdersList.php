@@ -18,7 +18,7 @@ class UserOrdersList extends Component
 
     public function render()
     {
-        $transactionList = Transaction::where('user_id', Auth::id())->simplePaginate(10);
+        $transactionList = Transaction::where('user_id', Auth::id())->paginate(10);
         return view('livewire.main.user.livewire.user-orders-list')->with(['transactionList' => $transactionList]);
     }
 

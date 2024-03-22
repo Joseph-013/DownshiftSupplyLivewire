@@ -51,7 +51,7 @@
             </table>
             <div class="columns-2 mt-2">
                 <div class="flex justify-center">
-                    <button type="button" wire:click="cancel; "
+                    <button type="button" wire:click="cancel"
                         class="h-10 flex-1 items-center justify-center rounded-lg bg-red-600 mr-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
                         Cancel
                         <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"

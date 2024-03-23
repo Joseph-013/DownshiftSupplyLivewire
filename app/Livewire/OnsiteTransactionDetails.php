@@ -25,6 +25,26 @@ class OnsiteTransactionDetails extends Component
         $this->details = $this->selectedTransaction->details;
     }
 
+    public function deleteConfirm()
+    {
+        $this->confirmDelete = true;
+    }
+
+    public function deleteTrans()
+    {
+        if ($this->selectedTransaction) {
+            foreach($this->details as $detail) {
+                $detail->delete();
+            }
+            $this->selectedTransaction->delete();
+            $this->details = null;
+            $this->selectedTransaction = null;
+            $this->confirmDelete = false;
+            $this->dispatch('renderTransactionList');
+            $this->dispatch('alertNotif', 'Transaction deleted');
+        }
+    }
+
     #[On('renderTransactionDetails')]
     public function render()
     {

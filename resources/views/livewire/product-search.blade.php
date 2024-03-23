@@ -61,56 +61,56 @@
 
 @livewireScripts
 <script>
-    var selectedProductId;
+    // var selectedProductId;
 
-    function fillInputAndHide(id, name, image) {
-        var imageUrl;
+    // function fillInputAndHide(id, name, image) {
+    //     var imageUrl;
 
-        if (image.startsWith('http://') || image.startsWith('https://')) {
-            // If it starts with 'http://' or 'https://', consider it as a URL
-            imageUrl = image;
-        } else {
-            // Otherwise, assume it's a file path and append it to the assets directory
-            imageUrl = "{{ asset('storage/assets/') }}" + '/' + image;
+    //     if (image.startsWith('http://') || image.startsWith('https://')) {
+    //         // If it starts with 'http://' or 'https://', consider it as a URL
+    //         imageUrl = image;
+    //     } else {
+    //         // Otherwise, assume it's a file path and append it to the assets directory
+    //         imageUrl = "{{ asset('storage/assets/') }}" + '/' + image;
 
-            // Check if the file extension corresponds to an image type
-            var extension = image.split('.').pop().toLowerCase();
-            var validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-            if (!validExtensions.includes(extension)) {
-                // If the file extension is not in the list of valid image extensions, set imageUrl to an empty string
-                imageUrl = "";
-            }
-        }
+    //         // Check if the file extension corresponds to an image type
+    //         var extension = image.split('.').pop().toLowerCase();
+    //         var validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    //         if (!validExtensions.includes(extension)) {
+    //             // If the file extension is not in the list of valid image extensions, set imageUrl to an empty string
+    //             imageUrl = "";
+    //         }
+    //     }
 
-        document.getElementById('searchInput').value = name;
-        document.getElementById('displayName').textContent = name;
-        document.getElementById('searchResults').style.display = 'none';
-        document.getElementById('displayImage').src = imageUrl;
+    //     document.getElementById('searchInput').value = name;
+    //     document.getElementById('displayName').textContent = name;
+    //     document.getElementById('searchResults').style.display = 'none';
+    //     document.getElementById('displayImage').src = imageUrl;
 
-        selectedProductId = id;
-    }
+    //     selectedProductId = id;
+    // }
 
-    function addItem() {
-        if(selectedProductId != null)
-        {
-            var productId = selectedProductId;
-            var quantity = document.getElementById('quantity-input').value;
-            Livewire.dispatch('itemAdded', {
-                productId: productId, 
-                quantity: quantity
-            });
-            document.getElementById('searchInput').value = '';
-            document.getElementById('displayName').textContent = '';
-            document.getElementById('displayImage').src = '';
-            selectedProductId = null;
-        }
-    }
+    // function addItem() {
+    //     if(selectedProductId != null)
+    //     {
+    //         var productId = selectedProductId;
+    //         var quantity = document.getElementById('quantity-input').value;
+    //         Livewire.dispatch('itemAdded', {
+    //             productId: productId, 
+    //             quantity: quantity
+    //         });
+    //         document.getElementById('searchInput').value = '';
+    //         document.getElementById('displayName').textContent = '';
+    //         document.getElementById('displayImage').src = '';
+    //         selectedProductId = null;
+    //     }
+    // }
 
-    document.getElementById('searchInput').addEventListener('keydown', function(event) {
-        // Check if the pressed key is Enter (key code 13)
-        if (event.keyCode === 13) {
-            // Prevent the default behavior (form submission)
-            event.preventDefault();
-        }
-    });
+    // document.getElementById('searchInput').addEventListener('keydown', function(event) {
+    //     // Check if the pressed key is Enter (key code 13)
+    //     if (event.keyCode === 13) {
+    //         // Prevent the default behavior (form submission)
+    //         event.preventDefault();
+    //     }
+    // });
 </script>

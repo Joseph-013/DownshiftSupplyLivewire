@@ -26,7 +26,37 @@
                     <td><input wire:model="contact" type="number" step="any" class="rounded-lg h-9 w-full" required>
                     </td>
                 </tr>
+                <tr class="h-11">
+                    <td class="pe-3">Search Product:</td>
+                    <td><livewire:product-search /></td>
+                </tr>
             </table>
+            <hr class="my-3" />
+            <table class="w-full text-xs text-center font-bold">
+                <tr class="h-8">
+                    <td class="w-1/12">Image</td>
+                    <td class="w-4/12">Item Name</td>
+                    <td class="w-3/12">Price</td>
+                    <td class="w-1/12">Qty</td>
+                    <td class="w-3/12">Subtotal</td>
+                </tr>
+            </table>
+            @if($details)
+            <div class="max-h-44 overflow-y-auto">
+                <table class="w-full text-xs text-center">
+                    @foreach($details as $detail)
+                    <tr class="h-8">
+                        <td class="w-1/12"><img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                            class="w-12 h-6 rounded"></td>
+                        <td class="w-4/12">{{ $detail->products->name }}</td>
+                        <td class="w-3/12">{{ number_format($detail->products->price, 2) }}</td>
+                        <td class="w-1/12">{{ $detail->quantity }}</td>
+                        <td class="w-3/12">{{ number_format($detail->subtotal, 2) }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>  
+            @endif
             <div class="columns-2 mt-2">
                 <div class="flex justify-center">
                     <button type="button" wire:click="cancel"

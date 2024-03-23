@@ -1,11 +1,11 @@
 <div class="border-black border-1 w-full rounded-lg p-3">
-    <table class="w-full">
+    <table class="w-full text-left">
         <tr class="h-9">
             <th colspan="2" class="text-center font-semibold">Transaction Details</th>
         </tr>
         <tr class="h-9">
-            <td class="w-3/12">Transaction ID:</td>
-            <td class="w-7/12">{{ isset($selectedTransaction) ? $selectedTransaction->id : '--' }}</td>
+            <td class="w-6/12">Transaction ID:</td>
+            <td class="w-6/12">{{ isset($selectedTransaction) ? $selectedTransaction->id : '--' }}</td>
         </tr>
         <tr class="h-9">
             <td>Full Name:</td>
@@ -13,7 +13,7 @@
         </tr>
         <tr class="h-9">
             <td>Contact Number:</td>
-            <td>{{ isset($selectedTransaction) ? '0' . $selectedTransaction->contact : '--' }}</td>
+            <td>{{ isset($selectedTransaction) ? $selectedTransaction->contact : '--' }}</td>
         </tr>
     </table>
     @if($details)
@@ -41,6 +41,24 @@
         @endforeach
     </table>
     </div>  
+    @endif
+    @if($confirmDelete)
+        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
+        <!-- Semi-transparent overlay -->
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+
+            <!-- Confirmation prompt -->
+            <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
+                <p class="text-xs text-gray-800 mb-4 font-medium">Are you sure you want to delete this
+                    transaction?</p>
+                <div class="flex justify-end">
+                    <button type="button" wire:click="deleteTrans"
+                        class="px-4 py-2 bg-red-600 text-white rounded-md mr-2">Yes</button>
+                    <button type="button" wire:click="$set('confirmDelete', false)"
+                        class="px-4 py-2 bg-gray-400 text-white rounded-md">No</button>
+                </div>
+            </div>
+        </div>
     @endif
     @isset($selectedTransaction)
         <div class="columns-2 mt-6">

@@ -13,7 +13,6 @@ class ProductDetails extends Component
     public function mount($productId)
     {
         $this->product = Product::find($productId);
-        // dd($this->product->id);
     }
 
     public function render()

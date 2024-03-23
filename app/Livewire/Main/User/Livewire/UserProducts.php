@@ -5,12 +5,24 @@ namespace App\Livewire\Main\User\Livewire;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class UserProducts extends Component
 {
     use WithPagination;
+    public $selectedProductId;
+
+    #[On('toggleDetails')]
+    public function toggleDetails($productId)
+    {
+        $productExists = Product::find($productId);
+        if ($productExists)
+            $this->selectedProductId = $productId;
+        else
+            $this->selectedProductId = $productId;
+    }
 
     public function addToCart($productId)
     {

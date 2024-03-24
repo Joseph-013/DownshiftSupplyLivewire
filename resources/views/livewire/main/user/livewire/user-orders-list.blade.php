@@ -17,18 +17,18 @@
                 <tbody>
                     @if ($transactionList)
                         @foreach ($transactionList as $transaction)
-                            <tr class="w-full">
-                                <td class="block lg:hidden w-full sm:w-4/5 md:w-3/5">
+                            <tr class="w-full" id="transaction{{ $transaction->id }}">
+                                {{-- <td class="block lg:hidden w-full sm:w-4/5 md:w-3/5">
                                     @if ($selectedOrder && $selectedOrder == $transaction->id)
                                         <livewire:main.user.livewire.user-orders-detail class="my-2"
                                             orderId="{{ $transaction->id }}" wire:key="{{ $transaction->id }}" />
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td class="w-full flex justify-center select-none px-2"
                                     id="transactionRowLi-{{ $transaction->id }}">
                                     <input class="widenWhenSelected" hidden type="radio"
-                                        id="productId{{ $transaction->id }}" name="productList"
-                                        onchange="toggleListRow({{ $transaction->id }})">
+                                        id="productId{{ $transaction->id }}" name="productList" {{-- onchange="toggleListRow({{ $transaction->id }})" --}}
+                                        @if (request()->query('orderId') == $transaction->id) checked @endif>
                                     <label wire:click="showDetails({{ $transaction->id }})"
                                         class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm items-center"
                                         for="productId{{ $transaction->id }}">
@@ -47,6 +47,7 @@
                                 </td>
                             </tr>
                         @endforeach
+
                     @endif
                 </tbody>
             </table>
@@ -60,11 +61,63 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function toggleListRow(id) {
         let listRowInput = document.getElementById('productId' + id);
         let listRow = document.getElementById('transactionRowLi' + id);
 
         listRow.style.display = (listRowInput.checked) ? "none" : "flex";
     }
+</script> --}}
+
+{{-- @script
+    <script>
+        $wire.on('scrollToSelectedInput', () => {
+            const params = new URLSearchParams(window.location.search);
+            const paramsOrderId = params.get('orderId');
+            // console.log('test' + params.get('orderId'));
+            // Scroll to the selected input element
+            const selectedInput = document.getElementById('productId' + paramsOrderId);
+            if (selectedInput) {
+                selectedInput.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    </script>
+@endscript --}}
+
+<script>
+    window.onload = function() {
+        // Check if orderId query parameter exists
+        const orderId = new URLSearchParams(window.location.search).get('orderId');
+        if (orderId) {
+            // Scroll to the selected input
+            const selectedInput = document.getElementById('transaction' + orderId);
+            if (selectedInput) {
+                selectedInput.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        }
+    };
 </script>
+
+{{-- <script>
+    document.addEventListener('livewire:load', function() {
+        Livewire.on('scrollToSelectedInput', (productId) => {
+            // Scroll to the selected input element
+            const params = new URLSearchParams(window.location.search);
+            const selectedInput = document.getElementById('productId' + params.get('orderId'));
+            console.log('test');
+            if (selectedInput) {
+                selectedInput.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script> --}}

@@ -74,5 +74,9 @@
         </div>
 
     </div>
-    {{-- @livewireScripts --}}
+
+    {{-- Overlays --}}
+    <livewire:main.user.livewire.product-details />
+    <livewire:main.user.livewire.order-notification />
+
 </x-app-layout>

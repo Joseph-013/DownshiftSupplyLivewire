@@ -14,14 +14,10 @@ class UserProducts extends Component
     use WithPagination;
     public $selectedProductId;
 
-    #[On('toggleDetails')]
     public function toggleDetails($productId)
     {
-        $productExists = Product::find($productId);
-        if ($productExists)
-            $this->selectedProductId = $productId;
-        else
-            $this->selectedProductId = $productId;
+        $this->dispatch('showDetails', productId: $productId);
+        $this->skipRender();
     }
 
     public function addToCart($productId)
@@ -46,6 +42,7 @@ class UserProducts extends Component
         } else {
             $this->dispatch('alertNotif', 'Product already exists in your cart');
         }
+        $this->skipRender();
     }
 
     public function render()

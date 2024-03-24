@@ -4,12 +4,6 @@
             @foreach ($transactions as $transaction)
                 @if ($transaction->purchaseType === 'Onsite')
                     {{-- Single Unit of Product --}}
-                    <div class="block lg:hidden">
-                        @if ($selectedTransactionId && $transaction->id == $selectedTransactionId)
-                            <livewire:onsite-transaction-details transId="{{ $transaction->id }}"
-                                wire:key="{{ $transaction->id }}" />
-                        @endif
-                    </div>
 
                     <li wire:key="{{ $transaction->id }}" wire:click="selectTransaction({{ $transaction->id }})"
                         class="w-full flex justify-center select-none px-2">
@@ -44,9 +38,10 @@
             {{ $transactions->links('pagination.default') }}
         </div>
 
-        <div class="w-1/2 flex justify-center"><button type="submit"
+        <div class="w-1/2 flex justify-center">
+            <button wire:click="itemTemplate(null)"
                 class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
-                New Transaction
+                Create Transaction
                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
                     <path
@@ -82,5 +77,8 @@
         </div> -->
         <!-- END OF OLD PAGINATION AND NEW TRANSACTION BUTTON -->
 
+        @isset($itemTemplateToggle)
+            <livewire:onsite-create transaction="{{ $itemTemplateToggle }}" />
+        @endisset
     </div>
 </div>

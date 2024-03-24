@@ -58,7 +58,7 @@ class FaqCreate extends Component
             $currentFaq->answer = $this->answer;
             $currentFaq->save();
 
-            $this->dispatch('alertNotif', 'FAQ entry successfully created');
+            $this->dispatch('alertNotif', 'FAQ entry successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderFaqDetails');
         }

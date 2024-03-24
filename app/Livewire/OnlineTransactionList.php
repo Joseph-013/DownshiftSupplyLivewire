@@ -13,7 +13,7 @@ class OnlineTransactionList extends Component
 
     public $selectedTransactionId;
 
-    #[On('transactionUpdated')]
+    #[On('renderTransactionList')]
     public function render()
     {
         $transactions = Transaction::where('purchaseType', 'Online')->paginate(50);

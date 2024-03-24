@@ -45,14 +45,8 @@
                 <div class="wifull lg:w-2/5 h-full px-3 hidden lg:block">
                     {{-- <div class="w-full h-full text-right flex flex-col"> --}}
                     <div class="w-full h-full text-right flex flex-col">
-                        <div class="w-full flex-row px-5">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-full text-center text-sm font-semibold">Overview</li>
-                            </ul>
-                        </div>
-                        <hr class="my-1">
                         {{-- Products List  --}}
-                        <livewire:onsite-transaction-details transId="{{ 0 }}" />
+                        <livewire:onsite-transaction-details />
                     </div>
                     {{-- </div> --}}
 
@@ -70,7 +64,7 @@
                         </div>
                         <hr class="my-1">
                         {{-- Products List  --}}
-                        <livewire:onsite-transaction-list :transactions="$transactions" />
+                        <livewire:onsite-transaction-list />
 
                     </div>
 
@@ -81,11 +75,4 @@
 
         </div>
     </div>
-    <script>
-        document.getElementById("searchInput").addEventListener("keydown", function(event) {
-            if (event.keyCode === 13) {
-                document.getElementById("searchForm").submit();
-            }
-        });
-    </script>
 </x-app-layout>

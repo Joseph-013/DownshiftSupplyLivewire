@@ -13,11 +13,11 @@ class FaqList extends Component
 
     public $selectedFaqId;
     public $itemTemplateToggle;
+    public $itemTemplateToggleRes;
 
     #[On('renderFaqList')]
     public function render()
     {
-        $this->selectedFaqId = null;
         $faqs = FAQ::paginate(10);
         return view('livewire.main.admin.livewire.faq-list')->with(['faqs' => $faqs]);
     }
@@ -26,6 +26,7 @@ class FaqList extends Component
     {
         $this->selectedFaqId = $faqId;
         $this->dispatch('faqSelected', $faqId);
+        $this->toggleItemTemplate($faqId);
     }
 
     #[On('useItemTemplate')]
@@ -43,5 +44,18 @@ class FaqList extends Component
     public function hideItemTemplate()
     {
         $this->itemTemplateToggle = null;
+        $this->itemTemplateToggleRes = null;
+    }
+
+    #[On('toggleItemTemplate')]
+    public function toggleItemTemplate($value)
+    {
+        if ($value == null) {
+            $this->itemTemplateToggleRes = null;
+        } elseif ($value == false) {
+            $this->itemTemplateToggleRes = false;
+        } else {
+            $this->itemTemplateToggleRes = $value;
+        }
     }
 }

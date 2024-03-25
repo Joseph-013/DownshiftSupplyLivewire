@@ -31,21 +31,29 @@ class UserOrdersDetail extends Component
     {
         if ($orderId != 0)
             $this->showDetails($orderId);
-
-        // $orderId = (int)$orderId;
-        // if ($orderId != 0) {
-        //     $order = Transaction::find($orderId);
-        //     if ($order) {
-        //         $this->render();
-        //     } else {
-        //         $this->transactionData = null;
-        //     }
-        // } else
-        //     $this->transactionData = null;
     }
 
     public function render()
     {
         return view('livewire.main.user.livewire.user-orders-detail');
+    }
+
+    public function confirmOrderReceived()
+    {
+        $this->dispatch('confirmationOverlay', data: [
+            'positive' => 'Yes',
+            'negative' => 'Cancel',
+            'message' => 'This action is permanent.',
+            'title' => 'Confirm order \'' . $this->transactionData->id . '\' is received?',
+        ]);
+    }
+
+    #[On('positive')]
+    public function setOrderComplete()
+    {
+        $this->transactionData->status = 'Complete';
+        $this->transactionData->save();
+        $this->dispatch('alertNotif', 'Order \'' . $this->transactionData->id . '\' is now completed');
+        $this->dispatch('UserOrdersListRender');
     }
 }

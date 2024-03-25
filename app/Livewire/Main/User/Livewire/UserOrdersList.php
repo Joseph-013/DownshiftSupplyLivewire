@@ -5,6 +5,7 @@ namespace App\Livewire\Main\User\Livewire;
 use App\Models\Detail;
 use Livewire\Component;
 use App\Models\Transaction;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,7 @@ class UserOrdersList extends Component
         }
     }
 
+    #[On('UserOrdersListRender')]
     public function render()
     {
         $transactionList = Transaction::where('user_id', Auth::id())->paginate(10);

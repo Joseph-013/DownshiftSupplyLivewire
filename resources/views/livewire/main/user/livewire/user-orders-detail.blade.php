@@ -56,12 +56,15 @@
                         @if ($orderList)
                             @foreach ($orderList as $order)
                                 <tr>
-                                <td class="w-full text-xs flex items-center justify-left">
-    <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
-        <img src="{{ $order->products->image }}" class="w-12 h-12 object-cover rounded" alt="{{ $order->products->name }}">
-        <span class="ml-2">{{ strlen($order->products->name) > 11 ? substr($order->products->name, 0, 11) . '...' : $order->products->name }}</span>
-    </div>
-</td>
+                                    <td class="w-full text-xs flex items-center justify-left">
+                                        <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
+                                            <img src="{{ $order->products->image }}"
+                                                class="w-12 h-12 object-cover rounded"
+                                                alt="{{ $order->products->name }}">
+                                            <span
+                                                class="ml-2">{{ strlen($order->products->name) > 11 ? substr($order->products->name, 0, 11) . '...' : $order->products->name }}</span>
+                                        </div>
+                                    </td>
 
 
 
@@ -90,13 +93,21 @@
                     </tbody>
                 </table>
             </div>
-
-
         </div>
         <hr class="my-1">
-        <div class="w-full text-right text-xs ml-[-5rem] my-2">
-            <span class="font-semibold mr-5">Total: </span>
-            ₱&nbsp;{{ $transactionData ? number_format($transactionData->grandTotal, 2) : '--' }}
+        <div class="w-full text-xs my-2 flex">
+            <div class="w-full pl-5">
+                @if (isset($transactionData) && $transactionData->status == 'In Transit')
+                    <button wire:click="confirmOrderReceived"
+                        class="py-2 px-3 bg-orange-500 text-white text-base rounded-lg hover:bg-orange-600">
+                        Order Received
+                    </button>
+                @endif
+            </div>
+            <div class="w-full pr-5 flex items-center justify-end"> <span class="font-semibold mr-5">Total:
+                </span>
+                ₱&nbsp;{{ $transactionData ? number_format($transactionData->grandTotal, 2) : '--' }}
+            </div>
         </div>
     </div>
 

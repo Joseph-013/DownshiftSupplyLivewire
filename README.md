@@ -41,49 +41,16 @@ Creating fresh database
 1. php artisan migrate:fresh --seed
 
 
-## Project Progress
+## Project Custom Events
+Component (Listener) alertNotif, 'message'
+    $this->dispatch('alertNotif', 'message');
 
-- Login
-    - (DONE)Login User and Admin
-    - (DONE)Recover Account Password
-    - (DONE)Register new account
-        >Needs API (email verification) to complete
-- Inventory Management
-    - (DONE)Add new inventory items
-    - (DONE)Update existing inventory items
-    - (DONE)Delete inventory items
-    - Search inventory items
-    - (DONE)View product listings
-    - Inquire products through FAQs thread
-    - Talk to agent through embedded email form
-- Sales Management
-    - Create new sales transactions
-    - Update existing sales transactions
-    - View sales history
-    - Add products to shopping cart
-    - Remove products to shopping cart
-    - Update the quantity of products in the cart
-- Validate Payment
-    - Enter shipping information
-    - Select shipping method
-    - Choose payment method
-    - Upload screenshots or photos of proof of payment
-    - Drop Orders
-    - Set Order as Complete
-    - View/Select entry in Pending Orders
-    - View screenshots or photos of proof of payment
-- Generate Sales Reports
-    - Generate organized daily, weekly, monthly, and yearly sales reports based on inventory and sales
+Component confirmation-notification (Listener)
+    $this->dispatch('confirmationOverlay', data: [
+                'positive' => 'positiveButton',
+                'neutral' => 'neutralButton',
+                'negative' => 'negativeButton',
+                'message' => 'message',
+                'title' => 'title',
+            ]);
 
-
-- Others
-    - Email content.
-    - Deleting account deletes other relevant rows
-
-
-**Hide as soon as possible:
-SQL Database Server:
-    - dsldb-sqldbserver
-    - Southeast Asia
-    - Capuno
-    - Downshift!1242024

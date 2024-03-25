@@ -38,6 +38,9 @@
             </div>
             {{-- Temp Notification --}}
         </div>
+
+        <livewire:layout.confirmation-notification />
+
         <script type="text/javascript" src="{{ URL::asset('js/alert.js') }}"></script>
 
         {{-- alertConfirmFrontEnd --}}

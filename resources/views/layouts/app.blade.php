@@ -47,6 +47,8 @@
         <main class="flex flex-grow justify-center">
             {{ $slot }}
         </main>
+
+        {{--  --}}
     </div>
 
     <!-- Bootstrap Body -->

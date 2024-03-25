@@ -149,7 +149,6 @@
                                     });
                                 </script>
 
-
                                 <div class="w-full text-left px-3 font-semibold">
                                     Delivery Address:
                                     <div class="my-2">
@@ -296,7 +295,7 @@
                 });
 
                 var autocomplete = new google.maps.places.Autocomplete(searchInput, {
-                    types: ['geocode'],
+                    types: ['address'],
                     componentRestrictions: { country: 'ph' }
                 });
                 autocomplete.addListener('place_changed', function() {

@@ -188,7 +188,7 @@
 
         const searchInput = document.querySelector(`#autocomplete${transactionId}`);
         var autocomplete = new google.maps.places.Autocomplete(searchInput, {
-            types: ['geocode'],
+            types: ['address'],
             componentRestrictions: {
                 country: 'ph'
             }

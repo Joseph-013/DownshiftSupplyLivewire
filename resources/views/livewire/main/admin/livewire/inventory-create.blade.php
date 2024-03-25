@@ -31,7 +31,7 @@
                 <tr class="h-11">
                     <td class="pe-3">Description:</td>
                     <td>
-                        <textarea name="" id="" rows="5" class="rounded-lg w-full"></textarea>
+                        <textarea wire:model="description" name="" id="" rows="5" class="rounded-lg w-full" style="resize: none;"></textarea>
                         {{-- <input wire:model="name" type="text" class="rounded-lg h-9" required> --}}
                     </td>
                 </tr>

@@ -16,6 +16,7 @@ class InventoryCreate extends Component
     public $stockquantity;
     public $criticallevel;
     public $image;
+    public $description;
     public $temporaryImage;
 
     public function mount($product)
@@ -28,12 +29,14 @@ class InventoryCreate extends Component
             $this->stockquantity = $this->product->stockquantity;
             $this->criticallevel = $this->product->criticallevel;
             $this->image = $this->product->image;
+            $this->description = $this->product->description;
         } else {
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;
             $this->criticallevel = null;
             $this->image = null;
+            $this->description = null;
         }
     }
 
@@ -62,6 +65,7 @@ class InventoryCreate extends Component
                 'stockquantity' => $this->stockquantity,
                 'criticallevel' => $this->criticallevel,
                 'image' => $imageName,
+                'description' => $this->description
             ]);
 
             $this->dispatch('alertNotif', 'Product successfully created');
@@ -77,6 +81,7 @@ class InventoryCreate extends Component
             'price' => ['required', 'numeric', 'min:0'],
             'stockquantity' => ['required', 'numeric', 'min:0'],
             'criticallevel' => ['required', 'numeric', 'min:0'],
+            'description' => ['required', 'string']
         ];
         if ($this->temporaryImage) {
             $rules['image'] = ['image', 'mimes:jpeg,png,jpg', 'max:4096'];
@@ -88,6 +93,7 @@ class InventoryCreate extends Component
             $currentProduct->price = $this->price;
             $currentProduct->stockquantity = $this->stockquantity;
             $currentProduct->criticallevel = $this->criticallevel;
+            $currentProduct->description = $this->description;
             if ($this->temporaryImage) {
                 $imageName = time() . '.' . $this->image->extension();
                 $this->image->storeAs('public/assets', $imageName);

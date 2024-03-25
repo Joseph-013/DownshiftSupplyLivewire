@@ -106,9 +106,15 @@ class OnlineTransactionDetails extends Component
     //     $this->dispatch('alertNotif', 'Transaction successfully updated');
     //     $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
     // }
-
+    
+    #[On('renderTransactionDetails')]
     public function render()
     {
         return view('livewire.main.admin.livewire.online-transaction-details');
+    }
+
+    public function modifyTrans()
+    {
+        $this->dispatch('useItemTemplate', transaction: $this->selectedTransaction->id);
     }
 }

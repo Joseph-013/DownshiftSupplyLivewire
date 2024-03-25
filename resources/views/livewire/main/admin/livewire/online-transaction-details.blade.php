@@ -1,8 +1,8 @@
 <div class="border-black border-1 w-full rounded-lg text-right p-3 flex" style="height: 75vh;">
     <div class="w-full h-full flex flex-col">
+        <p class="text-center font-semibold h-9">Transaction Details</p>
         {{-- Products List  --}}
         <div class="w-full h-96 overflow-y-auto" id="orders-container">
-            <p class="text-center font-semibold h-9">Transaction Details</p>
             <div class=" flex flex-1 w-full">
                 <div class="w-2/5 text-left text-xs pr-2">
                     <div class="text-left text-xs my-2">
@@ -79,7 +79,7 @@
             </div>
 
         </div>
-        <div class="w-full h-full flex flex-col mt-10">
+        <div class="w-full flex flex-col mt-10">
             <div class="w-full flex-row px-5">
                 <table class="w-full">
                     <thead>

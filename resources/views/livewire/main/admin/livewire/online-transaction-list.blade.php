@@ -107,6 +107,8 @@
             </div>
         </div> -->
         <!-- END OF OVERLAY -->
-
+        @isset($itemTemplateToggle)
+            <livewire:online-create transaction="{{ $itemTemplateToggle }}" />
+        @endisset
     </div>
 </div>

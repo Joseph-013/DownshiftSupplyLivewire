@@ -12,6 +12,8 @@ class OnlineTransactionList extends Component
     use WithPagination;
 
     public $selectedTransactionId;
+    public $itemTemplateToggle;
+    public $itemTemplateToggleRes;
     public $search;
 
     #[On('renderTransactionList')]
@@ -36,6 +38,36 @@ class OnlineTransactionList extends Component
     {
         $this->selectedTransactionId = $transactionId;
         $this->dispatch('transactionSelected', $transactionId);
-        $this->dispatch('alertNotif', 'Transaction selected');
+        $this->toggleItemTemplate($transactionId);
+    }
+
+    #[On('useItemTemplate')]
+    public function itemTemplate($transaction)
+    {
+        if ($transaction == null) {
+            $this->itemTemplateToggle = 0;
+        }
+        else {
+            $this->itemTemplateToggle = $transaction;
+        }
+    }
+
+    #[On('hideItemTemplate')]
+    public function hideItemTemplate()
+    {
+        $this->itemTemplateToggle = null;
+        $this->itemTemplateToggleRes = null;
+    }
+
+    #[On('toggleItemTemplate')]
+    public function toggleItemTemplate($value)
+    {
+        if ($value == null) {
+            $this->itemTemplateToggleRes = null;
+        } elseif ($value == false) {
+            $this->itemTemplateToggleRes = false;
+        } else {
+            $this->itemTemplateToggleRes = $value;
+        }
     }
 }

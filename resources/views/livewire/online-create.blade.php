@@ -33,7 +33,7 @@
                     </td>
                 </tr>
             </table>
-            <table>
+            <table class="mt-3">
                 <tr class="h-11">
                     <td colspan="1" class="text-center">Shipping Address:</td>
                 </tr>

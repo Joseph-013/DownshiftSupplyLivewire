@@ -42,6 +42,31 @@ class OnlineCreate extends Component
         return view('livewire.online-create');
     }
 
+    public function editTrans()
+    {
+        $currentTrans = $this->transaction;
+        $this->validate([
+            'courierUsed' => ['required', 'string'],
+            'shippingFee' => ['required', 'numeric', 'min:0'],
+            'trackingNumber' => ['required', 'string'],
+            'shippingAddress' => ['required', 'string'],
+            'status' => ['required', 'string']
+        ]);
+
+        if($this->courierUsed && $this->shippingFee && $this->trackingNumber && $this->shippingAddress && $this->status) {
+            $currentTrans->courierUsed = $this->courierUsed;
+            $currentTrans->shippingFee = $this->shippingFee;
+            $currentTrans->trackingNumber = $this->trackingNumber;
+            $currentTrans->shippingAddress = $this->shippingAddress;
+            $currentTrans->status = $this->status;
+            $currentTrans->save();
+
+            $this->dispatch('alertNotif', 'Transaction successfully updated');
+            $this->dispatch('hideItemTemplate');
+            $this->dispatch('renderTransactionDetails');
+        }
+    }
+
     public function cancel()
     {
         $this->dispatch('hideItemTemplate');

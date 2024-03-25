@@ -14,6 +14,7 @@ class OnlineCreate extends Component
     public $shippingFee;
     public $trackingNumber;
     public $shippingAddress;
+    public $status;
 
     public function mount($transaction)
     {
@@ -24,12 +25,15 @@ class OnlineCreate extends Component
             $this->shippingFee = $this->transaction->shippingFee;
             $this->trackingNumber = $this->transaction->trackingNumber;
             $this->shippingAddress = $this->transaction->shippingAddress;
+            $this->status = $this->transaction->status;
+
         }
         else {
             $this->courierUsed = null;
             $this->shippingFee = null;
             $this->trackingNumber = null;
             $this->shippingAddress = null;
+            $this->status = null;
         }
     }
 

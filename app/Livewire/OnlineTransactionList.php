@@ -12,12 +12,24 @@ class OnlineTransactionList extends Component
     use WithPagination;
 
     public $selectedTransactionId;
+    public $search;
 
     #[On('renderTransactionList')]
     public function render()
     {
-        $transactions = Transaction::where('purchaseType', 'Online')->paginate(50);
+        $transactions = Transaction::where('purchaseType', 'Online')
+        ->where(function($query) {
+            $query->where('firstName', 'like', '%' . $this->search . '%')
+                ->orWhere('lastName', 'like', '%' . $this->search . '%');
+        })
+        ->paginate(50);
         return view('livewire.main.admin.livewire.online-transaction-list')->with(['transactions' => $transactions]);
+    }
+
+    #[On('searchResults')]
+    public function searchResults($value)
+    {
+        $this->search = $value;
     }
 
     public function selectTransaction($transactionId)

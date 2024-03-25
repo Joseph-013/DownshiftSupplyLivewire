@@ -14,6 +14,7 @@ class OnsiteTransactionList extends Component
     public $selectedTransactionId;
     public $itemTemplateToggle;
     public $itemTemplateToggleRes;
+    public $search;
 
     public function selectTransaction($transactionId)
     {
@@ -25,8 +26,19 @@ class OnsiteTransactionList extends Component
     #[On('renderTransactionList')]
     public function render()
     {
-        $transactions = Transaction::where('purchaseType', 'Onsite')->paginate(50);
+        $transactions = Transaction::where('purchaseType', 'Onsite')
+        ->where(function($query) {
+            $query->where('firstName', 'like', '%' . $this->search . '%')
+                ->orWhere('lastName', 'like', '%' . $this->search . '%');
+        })
+        ->paginate(50);
         return view('livewire.main.admin.livewire.onsite-transaction-list')->with(['transactions' => $transactions]);
+    }
+
+    #[On('searchResults')]
+    public function searchResults($value)
+    {
+        $this->search = $value;
     }
 
     #[On('useItemTemplate')]

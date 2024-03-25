@@ -4,13 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class SearchInventory extends Component
+class SearchTransaction extends Component
 {
     public $search;
 
     public function render()
     {
-        return view('livewire.search-inventory');
+        return view('livewire.search-transaction');
     }
 
     public function clearSearch()

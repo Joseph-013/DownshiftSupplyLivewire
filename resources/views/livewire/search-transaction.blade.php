@@ -1,7 +1,9 @@
 <div class="flex-1">
     <form id="searchForm" wire:submit.prevent="submitSearch" class="flex flex-row">
-        <div class="md:ml-2 ms-2 flex flex-row w-full">
-            <input wire:model="search" name="search" id="searchInput" class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full w-full" type="text">
+        <div class="mx-2 flex flex-row w-full">
+            <input wire:model="search" name="search" id="searchInput"
+                class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
+                type="text" />
             <button type="button" wire:click.prevent="clearSearch"
                 class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
                 <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -11,8 +13,9 @@
                 </svg>
             </button>
         </div>
+
         <!-- <button type="button"
-            class="ml-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
+            class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                 class="svg-icon mr-2"
                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
                 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -24,9 +27,6 @@
                     fill="" />
             </svg>
             <span class="hidden md:inline">Filters</span>
-            <div class="absolute">
-                Filters Container
-            </div>
         </button> -->
         <button type="submit"
             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg

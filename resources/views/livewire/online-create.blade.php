@@ -22,6 +22,16 @@
                     </td>
                 </tr>
                 @endif
+                <tr class="h-11">
+                    <td class="pe-3">Status:</td>
+                    <td>
+                        <select wire:model="status" class="rounded-lg h-10 w-full">
+                            @foreach ($statusOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
             </table>
             <table>
                 <tr class="h-11">
@@ -33,7 +43,7 @@
                     </td>
                 </tr>
             </table>
-            <div id="map" class="w-full h-52 my-2 p-2 border rounded-md border-black border-1"></div>
+            {{-- <div id="map" class="w-full h-52 my-2 p-2 border rounded-md border-black border-1"></div> --}}
             <div class="columns-2 mt-2">
                 <div class="flex justify-center">
                     <button type="button" wire:click="cancel"

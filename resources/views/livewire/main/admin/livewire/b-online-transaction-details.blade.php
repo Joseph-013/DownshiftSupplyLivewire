@@ -1,18 +1,25 @@
-<div class="border-black border-1 w-full rounded-lg text-right p-3 flex" style="height: 75vh;">
+<div class="w-full h-full text-right flex">
     <div class="w-full h-full flex flex-col">
+        <div class="w-full flex-row px-5">
+            <ul class="flex flex-row w-full">
+                <li class="w-full text-center text-sm font-semibold">Details</li>
+            </ul>
+        </div>
+        <hr class="my-1">
+        @if ($selectedTransaction)
         {{-- Products List  --}}
         <div class="w-full h-96 overflow-y-auto" id="orders-container">
-            <p class="text-center font-semibold h-9">Transaction Details</p>
             <div class=" flex flex-1 w-full">
                 <div class="w-2/5 text-left text-xs pr-2">
                     <div class="text-left text-xs my-2">
-                        <span class="font-semibold">Transaction ID:</span> {{ isset($selectedTransaction) ? $selectedTransaction->id : '--' }}
+                        <span class="font-semibold">Order ID:</span> {{ $selectedTransaction }}
                     </div>
                     <div class="text-left text-xs my-2">
-                        <span class="font-semibold">Date:</span> {{ isset($selectedTransaction) ? $selectedTransaction->created_at : '--' }}
+                        <span class="font-semibold">Date:</span> {{ $purchaseDate }}
                     </div>
                     <div class="text-left text-xs my-2">
-                        <span class="font-semibold">Name:</span> {{ isset($selectedTransaction) ? $selectedTransaction->firstName . ' ' . $selectedTransaction->lastName : '--' }}
+                        <span class="font-semibold">Name:</span> {{ $firstname }}
+                        {{ $lastname }}
                     </div>
                     {{-- <div class="text-left text-xs my-2">
                             <span class="font-semibold">Username:</span> {{ $selectedTransaction->user->username }}
@@ -21,31 +28,27 @@
                     <span class="font-semibold">Email:</span> {{ $selectedTransaction->user->email }}
                 </div> --}}
                 <div class="text-left text-xs my-2">
-                    <span class="font-semibold">Contact #:</span> {{ isset($selectedTransaction) ? $selectedTransaction->contact : '--' }}
+                    <span class="font-semibold">Contact #:</span> {{ $contact }}
                 </div>
                 <div class="text-left text-xs my-2">
-                    <span class="font-semibold">Payment Opt:</span> {{ isset($selectedTransaction) ? $selectedTransaction->paymentOption : '--' }}
+                    <span class="font-semibold">Payment Opt:</span> {{ $paymentOption }}
                 </div>
                 <div class="text-left text-xs my-2">
                     <span class="font-semibold">Preferred Service:</span>
-                    {{ isset($selectedTransaction) ? $selectedTransaction->preferredService : '--' }}
+                    {{ $preferredService }}
                 </div>
-                @if(isset($selectedTransaction))
-                @if($selectedTransaction->preferredService === "Delivery")
                 <div class="text-left text-xs my-2 flex items-center">
                     <span class="font-semibold mr-2">Courier Service:</span>
-                    {{ isset($selectedTransaction) ? $selectedTransaction->courierUsed : '--' }}
+                    <input wire:model="courierUsed" type="text" class="border-b border-gray-300 text-xs" placeholder="Enter Courier Service" value="{{ $courierUsed }}">
                 </div>
                 <div class="text-left text-xs my-2 flex items-center">
                     <span class="font-semibold mr-2">Shipping Fee:</span>
-                    {{ isset($selectedTransaction) ? $selectedTransaction->shippingFee : '--' }}
+                    <input wire:model="shippingFee" type="number" class="border-b border-gray-300 text-xs" placeholder="Enter Shipping Fee" value="{{ $shippingFee }}">
                 </div>
                 <div class="text-left text-xs my-2 flex items-center">
                     <span class="font-semibold mr-2">Tracking #:</span>
-                    {{ isset($selectedTransaction) ? $selectedTransaction->trackingNumber : '--' }}
+                    <input wire:model="trackingNumber" type="text" class="border-b border-gray-300 text-xs" placeholder="Enter Tracking Number" value="{{ $trackingNumber }}">
                 </div>
-                @endif
-                @endif
             </div>
             <div class="w-2/5 text-left text-xs px-2 mx-1">
                 <div class="text-left text-xs font-semibold px-2">
@@ -56,30 +59,21 @@
                 </div> --}}
                 <div id="map" class="w-full h-4/5 p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500">
                 </div>
-                
-                <div class="text-left text-xs px-2 my-2">
-                    {{ isset($selectedTransaction) ? $selectedTransaction->shippingAddress : '--' }}
+                <div>
+                    <input id="autocomplete{{ $selectedTransaction }}" type="text" wire:model.="shippingAddress" class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
                 </div>
-                {{-- <div>
-                    @if(isset($selectedTransaction))
-                    {{ isset($selectedTransaction) ? $selectedTransaction->shippingAddress : '--' }}
-                    <input id="autocomplete{{ $selectedTransaction->id }}" type="text" wire:model.="shippingAddress" class="w-full h-50 p-2 mx-1 border text-xs mt-2"></input>
-                    @endif
-                </div> --}}
             </div>
             <div class="w-2/5 text-left text-xs px-2 mx-1">
                 <div class="text-left text-xs font-semibold px-2">
                     Proof of Payment
                 </div>
-                <div id="imageDiv" class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" style="height: 30vh;" onclick="showOverlay()">
-                    @if(isset($selectedTransaction))
-                    <img id="image" src="{{ filter_var($selectedTransaction->proofOfPayment, FILTER_VALIDATE_URL) ? $selectedTransaction->proofOfPayment : asset('storage/assets/' . $selectedTransaction->proofOfPayment) }}" class="max-w-full max-h-full object-contain">
-                    @endif
+                <div id="imageDiv" class="w-full p-2 mx-1 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" style="height: 40vh;" onclick="showOverlay()">
+                    <img id="image" src="{{ filter_var($proofOfPayment, FILTER_VALIDATE_URL) ? $proofOfPayment : asset('storage/assets/' . $proofOfPayment) }}" class="max-w-full max-h-full object-contain">
                 </div>
             </div>
 
         </div>
-        <div class="w-full h-full flex flex-col mt-10">
+        <div class="w-full h-full flex flex-col">
             <div class="w-full flex-row px-5">
                 <table class="w-full">
                     <thead>
@@ -133,12 +127,12 @@
     <hr class="mt-3 mb-2">
     <div class="w-full text-xs text-right pr-1 flex items-center">
         <div class="w-1/2 flex ml-20">
-            <span class="font-semibold text-xs flex items-center mr-2">Status: </span> {{ isset($selectedTransaction) ? $selectedTransaction->status : '--' }}
-            {{-- <select wire:model="status" class="ml-2 border rounded-md text-sm">
+            <span class="font-semibold text-xs flex items-center">Status: </span>
+            <select wire:model="status" class="ml-2 border rounded-md text-sm">
                 @foreach ($statusOptions as $option)
                 <option value="{{ $option }}">{{ $option }}</option>
                 @endforeach
-            </select> --}}
+            </select>
         </div>
 
 
@@ -156,19 +150,30 @@
             </svg>
         </button>
     </div>
+    @endif
 </div>
 @livewireScripts
 <script>
-    let map
+    let map;
+    let data;
+    let marker;
+    let geocoder;
 
     Livewire.on('loadMap', (data) => {
         initMap(data);
-    })
+    });
 
-    async function initMap(data)
-    {
-        const address = data[0];
-        const { Map } = await google.maps.importLibrary("maps");
+    async function initMap(data) {
+        if (!Array.isArray(data) || data.length < 2) {
+            return;
+        }
+
+        const shippingAddress = data[0];
+        const transactionId = data[1];
+
+        const {
+            Map
+        } = await google.maps.importLibrary("maps");
 
         map = new Map(document.getElementById("map"), {
             zoom: 16,
@@ -179,60 +184,28 @@
 
         geocoder = new google.maps.Geocoder();
 
-        geocodeAddress(address);
+        geocodeAddress(shippingAddress);
+
+        const searchInput = document.querySelector(`#autocomplete${transactionId}`);
+        var autocomplete = new google.maps.places.Autocomplete(searchInput, {
+            types: ['address'],
+            componentRestrictions: {
+                country: 'ph'
+            }
+        });
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+
+            map.marker && map.marker.setMap(null);
+
+            map.setCenter(place.geometry.location);
+
+            map.marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+        });
     }
-    // let map;
-    // let data;
-    // let marker;
-    // let geocoder;
-
-    // Livewire.on('loadMap', (data) => {
-    //     initMap(data);
-    // });
-
-    // async function initMap(data) {
-    //     if (!Array.isArray(data) || data.length < 2) {
-    //         return;
-    //     }
-
-    //     const shippingAddress = data[0];
-    //     const transactionId = data[1];
-
-    //     const {
-    //         Map
-    //     } = await google.maps.importLibrary("maps");
-
-    //     map = new Map(document.getElementById("map"), {
-    //         zoom: 16,
-    //         disableDefaultUI: true,
-    //         mapTypeControl: false,
-    //         fullscreenControl: true,
-    //     });
-
-    //     geocoder = new google.maps.Geocoder();
-
-    //     geocodeAddress(shippingAddress);
-
-    //     const searchInput = document.querySelector(`#autocomplete${transactionId}`);
-    //     var autocomplete = new google.maps.places.Autocomplete(searchInput, {
-    //         types: ['address'],
-    //         componentRestrictions: {
-    //             country: 'ph'
-    //         }
-    //     });
-    //     autocomplete.addListener('place_changed', function() {
-    //         var place = autocomplete.getPlace();
-
-    //         map.marker && map.marker.setMap(null);
-
-    //         map.setCenter(place.geometry.location);
-
-    //         map.marker = new google.maps.Marker({
-    //             map: map,
-    //             position: place.geometry.location
-    //         });
-    //     });
-    // }
 
     function geocodeAddress(address) {
         geocoder.geocode({
@@ -285,9 +258,9 @@
         }
     }
 
-    // function updateTransactionWithCurrentAddress(transactionId) {
-    //     var address = document.getElementById('autocomplete' + transactionId).value;
-    //     @this.set('shippingAddress', address);
-    //     @this.call('updateTransaction');
-    // }
+    function updateTransactionWithCurrentAddress(transactionId) {
+        var address = document.getElementById('autocomplete' + transactionId).value;
+        @this.set('shippingAddress', address);
+        @this.call('updateTransaction');
+    }
 </script>

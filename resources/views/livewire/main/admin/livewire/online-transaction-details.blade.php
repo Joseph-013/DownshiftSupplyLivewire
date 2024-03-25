@@ -163,7 +163,7 @@
 </div>
 @livewireScripts
 <script>
-    let map
+    let map;
 
     Livewire.on('loadMap', (data) => {
         initMap(data);

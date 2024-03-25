@@ -2,13 +2,7 @@
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
     <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
         {{-- @if (!isset($product)) --}}
-        <form
-            @if($transaction)
-                wire:submit.prevent="editTrans" 
-            @else
-                wire:submit.prevent="createTrans" 
-            @endif
-            class="h-full w-full flex flex-col">
+        <form wire:submit.prevent="editTrans" class="h-full w-full flex flex-col">
             <table class="w-96">
                 <tr class="h-11">
                     <th colspan="2" class="text-center font-semibold">Transaction Details</th>
@@ -35,10 +29,11 @@
                 </tr>
                 <tr class="h-11">
                     <td>
-                        <input wire:model="shippingAddress" type="text" class="rounded-lg h-9 w-full" required></input>
+                        <input id="autocomplete" wire:model="shippingAddress" type="text" class="rounded-lg h-9 w-full" required></input>
                     </td>
                 </tr>
             </table>
+            <div id="map" class="w-full h-52 my-2 p-2 border rounded-md border-black border-1"></div>
             <div class="columns-2 mt-2">
                 <div class="flex justify-center">
                     <button type="button" wire:click="cancel"
@@ -69,3 +64,6 @@
 
     </div>
 </div>
+@livewireScripts
+<script>
+</script>

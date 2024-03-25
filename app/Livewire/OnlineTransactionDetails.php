@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Transaction;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -30,7 +29,7 @@ class OnlineTransactionDetails extends Component
     // public $preferredService;
     // public $proofOfPayment;
 
-    public function mount($transaction)
+    public function mount()
     {
         // $this->statusOptions = $this->getEnumValues('transactions', 'status');
         // if ($transaction != 0) {

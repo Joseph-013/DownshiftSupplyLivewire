@@ -14,7 +14,7 @@
             <div class="flex flex-1 w-full -mx-3">
                 {{-- Left Panel --}}
                 <div class="hidden lg:block w-4/5 h-full px-3">
-                    <livewire:online-transaction-details transaction="0" />
+                    <livewire:online-transaction-details />
                 </div>
 
             </div>

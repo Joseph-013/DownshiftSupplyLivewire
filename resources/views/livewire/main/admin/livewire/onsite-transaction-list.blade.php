@@ -1,4 +1,12 @@
 <div>
+    @isset($itemTemplateToggleRes)
+        <div
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 block lg:hidden justify-center items-center z-50">
+            @if ($itemTemplateToggleRes != false)
+                <livewire:onsite-create transaction="{{ $itemTemplateToggleRes }}" />
+            @endif
+        </div>
+    @endisset
     <div class="w-full h-96 overflow-y-auto mb-5" id="transactions-container">
         <ul class=" w-full flex flex-col items-center">
             @foreach ($transactions as $transaction)

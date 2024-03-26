@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('shippingFee', 6, 2)->unsigned()->nullable(); //nullable
             $table->string('trackingNumber')->nullable(); //nullable
             $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //for now nullable
-            $table->date('intransit_at')->nullable();
+            $table->dateTime('intransit_at')->nullable();
             $table->timestamps();
         });
     }

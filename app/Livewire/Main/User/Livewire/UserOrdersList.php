@@ -35,27 +35,10 @@ class UserOrdersList extends Component
     #[On('UserOrdersListRender')]
     public function render()
     {
-        $transactionList = Transaction::where('user_id', Auth::id())->paginate(10);
-        // if (request()->has('orderId')) {
-        //     $checkOrderTampering = Transaction::where([
-        //         'user_id' => Auth::id(),
-        //         'id' => request()->query('orderId'),
-        //     ])->first();
-        //     if ($checkOrderTampering) {
-        //         $index = null;
-        //         $transactions = Transaction::where('user_id', Auth::id())->get();
-        //         foreach ($transactions as $key => $transaction) {
-        //             if ($transaction->id === $checkOrderTampering) {
-        //                 $index = $key;
-        //                 break;
-        //             }
-        //         }
-        //         $index = $index / 10 + 1;
-        //         request()->merge(['page' => $index]);
-        //     } else {
-        //         abort(403, 'Unauthorized / Illegal Access');
-        //     }
-        // }
+        $transactionList = Transaction::where([
+            'user_id' => Auth::id(),
+            'purchaseType' => 'Online',
+        ])->paginate(10);
         return view('livewire.main.user.livewire.user-orders-list')->with(['transactionList' => $transactionList]);
     }
 

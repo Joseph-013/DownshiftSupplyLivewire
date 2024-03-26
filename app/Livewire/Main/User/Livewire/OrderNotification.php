@@ -52,11 +52,12 @@ class OrderNotification extends Component
             'status' => 'In Transit',
         ])->whereDate('intransit_at', '>', Carbon::now()->subDays(7))->orderBy('intransit_at')->skip($this->transactionCount)->first();
 
-        if ($this->transaction && $this->showOverlay) {
+        if ($this->transaction && $this->showOverlay && !session()->has('orderNotifStop')) {
             $this->showOverlay = true;
             $this->findDetails();
         } else {
             $this->showOverlay = false;
+            session(['orderNotifStop' => true]);
         }
         return view('livewire.main.user.livewire.order-notification');
     }

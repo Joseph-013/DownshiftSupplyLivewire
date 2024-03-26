@@ -20,20 +20,20 @@
     <hr class="my-3" />
     <table class="w-full text-xs text-center font-bold">
         <tr class="h-8">
-            <td class="w-1/12">Image</td>
-            <td class="w-4/12">Item Name</td>
+            <td class="w-2/12"></td>
+            <td class="w-3/12 text-left">Item Name</td>
             <td class="w-3/12">Price</td>
-            <td class="w-1/12">Qty</td>
-            <td class="w-3/12">Subtotal</td>
+            <td class="w-1/12 text-left">Qty</td>
+            <td class="w-3/12 text-left">Subtotal</td>
         </tr>
     </table>
     <div class="max-h-44 overflow-y-auto">
     <table class="w-full text-xs text-center">
         @foreach($details as $detail)
-        <tr class="h-8">
-            <td class="w-1/12"><img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
-                class="w-12 h-6 rounded"></td>
-            <td class="w-4/12">{{ $detail->products->name }}</td>
+        <tr class="h-full">
+            <td class="w-2/12"><img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                class="w-14 h-14 rounded"></td>
+            <td class="w-3/12 text-left">{{ $detail->products->name }}</td>
             <td class="w-3/12">{{ number_format($detail->products->price, 2) }}</td>
             <td class="w-1/12">{{ $detail->quantity }}</td>
             <td class="w-3/12">{{ number_format($detail->subtotal, 2) }}</td>

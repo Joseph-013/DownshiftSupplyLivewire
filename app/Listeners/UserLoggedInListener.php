@@ -23,25 +23,25 @@ class UserLoggedInListener
      */
     public function handle(Authenticated $event)
     {
-        $user = $event->user;
+        // if ($event->user->usertype = 'user') {
 
-        if ($user->usertype = 'user') {
+        //     $user = $event->user;
 
-            $inTransitTransactions = Transaction::where('user_id', $user->id)->where('status', 'In Transit')->get();
+        //     $inTransitTransactions = Transaction::where('user_id', $user->id)->where('status', 'In Transit')->get();
 
-            $modifiedTransactions = [];
+        //     $modifiedTransactions = [];
 
-            foreach ($inTransitTransactions as $transaction) {
-                if (Carbon::now()->diffInDays($transaction->intransit_at) >= 7) {
-                    $transaction->status = 'Complete';
-                    $transaction->save();
-                    $modifiedTransactions[] = $transaction->id;
-                }
-            }
+        //     foreach ($inTransitTransactions as $transaction) {
+        //         if (Carbon::now()->diffInDays($transaction->intransit_at) > 7) {
+        //             $transaction->status = 'Complete';
+        //             $transaction->save();
+        //             $modifiedTransactions[] = $transaction->id;
+        //         }
+        //     }
 
-            if (!empty($modifiedTransactions)) {
-                session()->flash('complete', $modifiedTransactions);
-            }
-        }
+        //     if (!empty($modifiedTransactions)) {
+        //         session()->flash('complete', $modifiedTransactions);
+        //     }
+        // }
     }
 }

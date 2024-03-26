@@ -1,5 +1,5 @@
 <div>
-    <ul class="flex flex-row w-full hidden sm:flex">
+    <ul class="flex-row w-full hidden sm:flex">
         <li class="w-4/5"></li>
         <li class="w-1/5 text-center text-sm ml-22 mr-[-3rem]">
             Total:
@@ -9,7 +9,7 @@
         </li>
     </ul>
 
-    <ul class="flex flex-col w-full sm:hidden flex sm:mt-3">
+    <ul class="flex flex-col w-full sm:hidden sm:mt-3">
         <li class="flex items-center justify-between w-full text-center text-md">
             <span class="w-1/5">
                 Total:

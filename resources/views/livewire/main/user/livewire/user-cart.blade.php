@@ -1,5 +1,5 @@
 <div>
-    <ul class="w-full flex flex-col items-center hidden sm:block">
+    <ul class="w-full flex-col items-center hidden sm:flex">
 
         @foreach ($cartEntries as $entry)
         <li class="w-full flex justify-center select-none px-2 my-3 mt-4" wire:key="{{ $entry->id }}">
@@ -83,7 +83,7 @@
         </style>
     </ul>
 
-    <ul class="w-full flex flex-col items-center block sm:hidden">
+    <ul class="w-full flex flex-col items-center sm:hidden">
         @foreach ($cartEntries as $entry)
         <li class="w-full flex justify-between select-none px-2 my-3 mt-4" wire:key="{{ $entry->id }}">
             {{-- Order Details --}}

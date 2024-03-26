@@ -50,7 +50,7 @@ class OrderNotification extends Component
         $this->transaction = Transaction::where([
             'user_id' => Auth::id(),
             'status' => 'In Transit',
-        ])->orderBy('intransit_at')->skip($this->transactionCount)->first();
+        ])->whereDate('intransit_at', '>', Carbon::now()->subDays(7))->orderBy('intransit_at')->skip($this->transactionCount)->first();
 
         if ($this->transaction && $this->showOverlay) {
             $this->showOverlay = true;

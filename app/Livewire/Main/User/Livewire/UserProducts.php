@@ -8,11 +8,37 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 class UserProducts extends Component
 {
     use WithPagination;
     public $selectedProductId;
+
+    public function mount()
+    {
+        if (session()->has('complete')) {
+            $transactionIds = session()->get('complete');
+            $message = '';
+            if (count($transactionIds) <= 1) {
+                $message = $message . $transactionIds[0];
+            } else {
+                foreach ($transactionIds as $transactionId) {
+                    $message = $message . $transactionId . ', ';
+                }
+                substr($message, 0, -2);
+            }
+
+            $this->dispatch('confirmationOverlay', data: [
+                'title' => 'Order/s exceeded 7 days in transit',
+                'message' => 'Order/s ' . $message . ' have been set to complete. Thank you.',
+                'neutral' => 'Ok',
+            ]);
+
+            session()->forget('complete');
+        }
+    }
 
     public function toggleDetails($productId)
     {

@@ -164,6 +164,9 @@
 @livewireScripts
 <script>
     let map;
+    let data;
+    let marker;
+    let geocoder;
 
     Livewire.on('loadMap', (data) => {
         initMap(data);
@@ -185,58 +188,6 @@
 
         geocodeAddress(address);
     }
-    // let map;
-    // let data;
-    // let marker;
-    // let geocoder;
-
-    // Livewire.on('loadMap', (data) => {
-    //     initMap(data);
-    // });
-
-    // async function initMap(data) {
-    //     if (!Array.isArray(data) || data.length < 2) {
-    //         return;
-    //     }
-
-    //     const shippingAddress = data[0];
-    //     const transactionId = data[1];
-
-    //     const {
-    //         Map
-    //     } = await google.maps.importLibrary("maps");
-
-    //     map = new Map(document.getElementById("map"), {
-    //         zoom: 16,
-    //         disableDefaultUI: true,
-    //         mapTypeControl: false,
-    //         fullscreenControl: true,
-    //     });
-
-    //     geocoder = new google.maps.Geocoder();
-
-    //     geocodeAddress(shippingAddress);
-
-    //     const searchInput = document.querySelector(`#autocomplete${transactionId}`);
-    //     var autocomplete = new google.maps.places.Autocomplete(searchInput, {
-    //         types: ['address'],
-    //         componentRestrictions: {
-    //             country: 'ph'
-    //         }
-    //     });
-    //     autocomplete.addListener('place_changed', function() {
-    //         var place = autocomplete.getPlace();
-
-    //         map.marker && map.marker.setMap(null);
-
-    //         map.setCenter(place.geometry.location);
-
-    //         map.marker = new google.maps.Marker({
-    //             map: map,
-    //             position: place.geometry.location
-    //         });
-    //     });
-    // }
 
     function geocodeAddress(address) {
         geocoder.geocode({
@@ -293,5 +244,58 @@
     //     var address = document.getElementById('autocomplete' + transactionId).value;
     //     @this.set('shippingAddress', address);
     //     @this.call('updateTransaction');
+    // }
+
+    // let map;
+    // let data;
+    // let marker;
+    // let geocoder;
+
+    // Livewire.on('loadMap', (data) => {
+    //     initMap(data);
+    // });
+
+    // async function initMap(data) {
+    //     if (!Array.isArray(data) || data.length < 2) {
+    //         return;
+    //     }
+
+    //     const shippingAddress = data[0];
+    //     const transactionId = data[1];
+
+    //     const {
+    //         Map
+    //     } = await google.maps.importLibrary("maps");
+
+    //     map = new Map(document.getElementById("map"), {
+    //         zoom: 16,
+    //         disableDefaultUI: true,
+    //         mapTypeControl: false,
+    //         fullscreenControl: true,
+    //     });
+
+    //     geocoder = new google.maps.Geocoder();
+
+    //     geocodeAddress(shippingAddress);
+
+    //     const searchInput = document.querySelector(`#autocomplete${transactionId}`);
+    //     var autocomplete = new google.maps.places.Autocomplete(searchInput, {
+    //         types: ['address'],
+    //         componentRestrictions: {
+    //             country: 'ph'
+    //         }
+    //     });
+    //     autocomplete.addListener('place_changed', function() {
+    //         var place = autocomplete.getPlace();
+
+    //         map.marker && map.marker.setMap(null);
+
+    //         map.setCenter(place.geometry.location);
+
+    //         map.marker = new google.maps.Marker({
+    //             map: map,
+    //             position: place.geometry.location
+    //         });
+    //     });
     // }
 </script>

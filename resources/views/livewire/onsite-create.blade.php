@@ -9,28 +9,30 @@
                 wire:submit.prevent="createTrans" 
             @endif
             class="h-full w-full flex flex-col">
-            <table class="w-96">
-                <tr class="h-14">
-                    <th colspan="2" class="text-center font-semibold">Transaction Details</th>
-                </tr>
-                <tr class="h-11">
-                    <td class="pe-3">First Name:</td>
-                    <td><input wire:model="firstName" type="text" class="rounded-lg h-9 w-full" required></td>
-                </tr>
-                <tr class="h-11">
-                    <td class="pe-3">Last Name:</td>
-                    <td><input wire:model="lastName" type="text" class="rounded-lg h-9 w-full" required></td>
-                </tr>
-                <tr class="h-11">
-                    <td class="pe-3">Contact Number:</td>
-                    <td><input wire:model="contact" type="number" step="any" class="rounded-lg h-9 w-full" required>
-                    </td>
-                </tr>
-                <tr class="h-11">
-                    <td class="pe-3">Search Product:</td>
-                    <td><livewire:product-search /></td>
-                </tr>
-            </table>
+            <table class="w-96 text-sm text-left">
+    <tr class="h-14">
+        <th colspan="2" class="text-center font-semibold">Transaction Details</th>
+    </tr>
+    <tr class="h-11">
+        <td class="pe-3 w-32 whitespace-nowrap">First Name:</td> <!-- Adjusted width and added whitespace-nowrap -->
+        <td><input wire:model="firstName" type="text" class="rounded-lg h-9 w-full" required></td>
+    </tr>
+    <tr class="h-11">
+        <td class="pe-3 w-32 whitespace-nowrap">Last Name:</td> <!-- Adjusted width and added whitespace-nowrap -->
+        <td><input wire:model="lastName" type="text" class="rounded-lg h-9 w-full" required></td>
+    </tr>
+    <tr class="h-11">
+        <td class="pe-3 w-32 whitespace-nowrap">Contact Number:</td> <!-- Adjusted width and added whitespace-nowrap -->
+        <td><input wire:model="contact" type="number" step="any" class="rounded-lg h-9 w-full" required></td>
+    </tr>
+    <tr class="h-11">
+        <td class="pe-3 w-32 whitespace-nowrap">Search Product:</td> <!-- Adjusted width and added whitespace-nowrap -->
+        <td><livewire:product-search /></td>
+    </tr>
+</table>
+
+
+
             <hr class="my-3" />
             <table class="w-full text-xs text-center font-bold">
                 <tr class="h-8">

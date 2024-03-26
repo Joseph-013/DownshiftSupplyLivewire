@@ -1,8 +1,8 @@
-<div class="w-full flex-row px-5 ml-[-.5rem] relative">
-    <ul class="flex flex-row w-full rounded border border-gray-500 px-1 py-2">
-        <li class="w-5/12 text-center text-xs flex items-center justify-center ">
+<div class="w-full flex-row relative">
+    <ul class="flex flex-row w-full rounded border border-gray-500 px-3 py-2">
+        <li class="w-7/12 text-center text-xs flex items-center justify-center ">
             <div class="flex items-center"> <!-- Wrapping content in a flex container -->
-                <div class=""> <!-- Adding margin to separate image and text -->
+                <div class="w-full"> <!-- Adding margin to separate image and text -->
                     <label class="w-full h-10 flex items-center font-semibold">Item ID/Name:</label>
                     <input wire:model.live="search" class="w-4/6 h-10 flex items-center text-xs" type="text" id="searchInput">
                     <ul id="searchResults" class="list-group absolute z-10" style="bottom: calc(50%);">
@@ -12,12 +12,12 @@
                     </ul>
                 </div>
                 <img id="displayImage" src=""
-                    class="w-24 h-20 ml-[-3rem]">
+                    class="w-24 h-20 ml-[-2.5rem]">
             </div>
         </li>
         <li id="displayName" class="w-2/12 text-center flex items-center justify-center text-xs ">
         </li>
-        <li class="w-3/12 text-center flex items-center justify-center text-xs mr-2">
+        <li class="w-4/12 text-center flex items-center justify-center text-xs mr-2">
             <div class=""> <!-- Adding margin to separate image and text -->
                 <label
                     class="w-full h-10 flex items-center font-semibold text-xs">Quantity:</label>

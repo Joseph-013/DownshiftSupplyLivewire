@@ -27,7 +27,7 @@ class UserProducts extends Component
                 foreach ($transactionIds as $transactionId) {
                     $message = $message . $transactionId . ', ';
                 }
-                substr($message, 0, -2);
+                $message = substr($message, 0, -2);
             }
 
             $this->dispatch('confirmationOverlay', data: [

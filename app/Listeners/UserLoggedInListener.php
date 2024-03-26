@@ -28,7 +28,6 @@ class UserLoggedInListener
         if ($user->usertype = 'user') {
 
             $inTransitTransactions = Transaction::where('user_id', $user->id)->where('status', 'In Transit')->get();
-            // dd($inTransitTransactions);
 
             $modifiedTransactions = [];
 

@@ -15,14 +15,14 @@
                 <div class="w-full h-full px-3 text-right flex">
                     <div class="w-full h-full flex flex-col">
                         <div class="w-full flex-row ml-9">
-                            <ul class="flex flex-row w-full sm:flex hidden">
+                            <ul class="flex-row w-full lg:flex hidden">
                                 <li class="w-5/12 text-center text-sm ml-[-5rem]">Item</li>
                                 <li class="w-2/12 text-center text-sm ml-[-1.5rem]">Price</li>
                                 <li class="w-3/12 text-center text-sm ml-[-1rem]">Quantity</li>
                                 <li class="w-3/12 text-center text-sm ml-[-3.5rem]">Subtotal</li>
                             </ul>
                         </div>
-                        <hr class="my-1 sm:block hidden">
+                        <hr class="my-1 lg:block hidden">
 
                         {{-- Order List  --}}
                         @if ($cartNotEmpty)
@@ -78,11 +78,11 @@
                             @endif
                         </div>
 
-                        <div class="w-full mt-3 flex justify-end px-5 text-sm sm:block hidden">
+                        <div class="w-full mt-3 justify-end px-5 text-sm sm:flex hidden">
                             Additional fees may be added upon checkout.
 
                         </div>
-                        <div class="w-full mt-3 flex justify-center text-center px-5 text-sm sm:hidden block">
+                        <div class="w-full mt-3 flex justify-center text-center px-5 text-sm sm:hidden">
                             Additional fees may be added upon checkout.
 
                         </div>

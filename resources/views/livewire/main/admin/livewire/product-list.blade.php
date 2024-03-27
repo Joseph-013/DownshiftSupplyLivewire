@@ -4,7 +4,7 @@
         <div
             class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 block lg:hidden justify-center items-center z-50">
             @if ($itemTemplateToggleRes != false)
-                <livewire:main.admin.livewire.inventory-create product="{{ $itemTemplateToggleRes }}" />
+                <livewire:main.admin.livewire.inventory-create :product="$itemTemplateToggleRes" mode="{{ 'read' }}" />
             @endif
         </div>
     @endisset
@@ -60,8 +60,9 @@
 
         <!-- OVERLAY -->
 
+        {{-- For desktop create/edit --}}
         @isset($itemTemplateToggle)
-            <livewire:main.admin.livewire.inventory-create product="{{ $itemTemplateToggle }}" />
+            <livewire:main.admin.livewire.inventory-create :product="$itemTemplateToggle" mode="{{ 'update' }}" />
         @endisset
 
         <!-- END OF OVERLAY -->

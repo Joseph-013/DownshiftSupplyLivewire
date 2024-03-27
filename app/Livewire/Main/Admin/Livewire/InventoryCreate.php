@@ -22,12 +22,16 @@ class InventoryCreate extends Component
     public $description;
     public $temporaryImage;
 
-    public function mount($product)
+    public function mount($product, $mode)
     {
         $this->product = Product::find($product);
+        if ($mode == null) {
+            $this->mode = 'read';
+        } else {
+            $this->mode = $mode;
+        }
         $this->temporaryImage = null;
         if ($this->product) {
-            $this->mode = 'read';
             $this->id = $this->product->id;
             $this->name = $this->product->name;
             $this->price = $this->product->price;
@@ -36,7 +40,7 @@ class InventoryCreate extends Component
             $this->image = $this->product->image;
             $this->description = $this->product->description;
         } else {
-            $this->mode = 'write';
+            $this->mode = 'create';
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;
@@ -49,6 +53,11 @@ class InventoryCreate extends Component
     public function render()
     {
         return view('livewire.main.admin.livewire.inventory-create');
+    }
+
+    public function modifyProduct()
+    {
+        $this->mode = 'update';
     }
 
     public function createProduct()

@@ -1,35 +1,43 @@
 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
+
+    <div class="bg-gray-100 p-3 rounded-lg relative z-10 border" id="itemTemplate">
+        @if ($mode == 'read')
+            read
+        @elseif ($mode == 'write')
+            write
+        @endif
+    </div>
+
+    {{--
     <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
-        {{-- @if (!isset($product)) --}}
         <form
-            @if($transaction)
-                wire:submit.prevent="editTrans" 
+            @if ($transaction) wire:submit.prevent="editTrans"
             @else
-                wire:submit.prevent="createTrans" 
-            @endif
+                wire:submit.prevent="createTrans" @endif
             class="h-full w-full flex flex-col">
             <table class="w-96 text-sm text-left">
-    <tr class="h-14">
-        <th colspan="2" class="text-center font-semibold">Transaction Details</th>
-    </tr>
-    <tr class="h-11">
-        <td class="pe-3 w-32 whitespace-nowrap">First Name:</td> <!-- Adjusted width and added whitespace-nowrap -->
-        <td><input wire:model="firstName" type="text" class="rounded-lg h-9 w-full" required></td>
-    </tr>
-    <tr class="h-11">
-        <td class="pe-3 w-32 whitespace-nowrap">Last Name:</td> <!-- Adjusted width and added whitespace-nowrap -->
-        <td><input wire:model="lastName" type="text" class="rounded-lg h-9 w-full" required></td>
-    </tr>
-    <tr class="h-11">
-        <td class="pe-3 w-32 whitespace-nowrap">Contact Number:</td> <!-- Adjusted width and added whitespace-nowrap -->
-        <td><input wire:model="contact" type="number" step="any" class="rounded-lg h-9 w-full" required></td>
-    </tr>
-    <tr class="h-11">
-        <td class="pe-3 w-32 whitespace-nowrap">Search Product:</td> <!-- Adjusted width and added whitespace-nowrap -->
-        <td><livewire:product-search /></td>
-    </tr>
-</table>
+                <tr class="h-14">
+                    <th colspan="2" class="text-center font-semibold">Transaction Details</th>
+                </tr>
+                <tr class="h-11">
+                    <td class="pe-3 w-32 whitespace-nowrap">First Name:</td>
+                    <td><input wire:model="firstName" type="text" class="rounded-lg h-9 w-full" required></td>
+                </tr>
+                <tr class="h-11">
+                    <td class="pe-3 w-32 whitespace-nowrap">Last Name:</td>
+                    <td><input wire:model="lastName" type="text" class="rounded-lg h-9 w-full" required></td>
+                </tr>
+                <tr class="h-11">
+                    <td class="pe-3 w-32 whitespace-nowrap">Contact Number:</td>
+                    <td><input wire:model="contact" type="number" step="any" class="rounded-lg h-9 w-full"
+                            required></td>
+                </tr>
+                <tr class="h-11">
+                    <td class="pe-3 w-32 whitespace-nowrap">Search Product:</td>
+                    <td><livewire:product-search /></td>
+                </tr>
+            </table>
 
 
 
@@ -43,21 +51,22 @@
                     <td class="w-3/12">Subtotal</td>
                 </tr>
             </table>
-            @if($details)
-            <div class="max-h-44 overflow-y-auto">
-                <table class="w-full text-xs text-center">
-                    @foreach($details as $detail)
-                    <tr class="h-8">
-                        <td class="w-1/12"><img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
-                            class="w-12 h-6 rounded"></td>
-                        <td class="w-4/12">{{ $detail->products->name }}</td>
-                        <td class="w-3/12">{{ number_format($detail->products->price, 2) }}</td>
-                        <td class="w-1/12">{{ $detail->quantity }}</td>
-                        <td class="w-3/12">{{ number_format($detail->subtotal, 2) }}</td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>  
+            @if ($details)
+                <div class="max-h-44 overflow-y-auto">
+                    <table class="w-full text-xs text-center">
+                        @foreach ($details as $detail)
+                            <tr class="h-8">
+                                <td class="w-1/12"><img
+                                        src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                                        class="w-12 h-6 rounded"></td>
+                                <td class="w-4/12">{{ $detail->products->name }}</td>
+                                <td class="w-3/12">{{ number_format($detail->products->price, 2) }}</td>
+                                <td class="w-1/12">{{ $detail->quantity }}</td>
+                                <td class="w-3/12">{{ number_format($detail->subtotal, 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
             @endif
             <div class="columns-2 mt-2">
                 <div class="flex justify-center">
@@ -85,7 +94,5 @@
                 </div>
             </div>
         </form>
-        {{-- @endif --}}
-
-    </div>
+    </div> --}}
 </div>

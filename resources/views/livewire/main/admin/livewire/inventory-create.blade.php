@@ -1,7 +1,6 @@
 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
 
-
     @if ($mode == 'read')
         <div class="bg-white z-10 p-3 rounded-lg max-w-80">
             <div class="flex justify-center h-52">
@@ -62,7 +61,7 @@
                 </div>
             </div>
         </div>
-    @elseif($mode == 'write')
+    @elseif($mode == 'create' || $mode == 'update')
         <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
             <div style="display:flex; justify-content: center; align-items: center;">
                 @if ($temporaryImage)

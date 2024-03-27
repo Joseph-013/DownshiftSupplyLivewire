@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class OnsiteCreate extends Component
 {
+    public $mode = 'read';
+
     public $transaction;
     public $firstName;
     public $lastName;
@@ -16,13 +18,14 @@ class OnsiteCreate extends Component
     public function mount($transaction)
     {
         $this->transaction = Transaction::find($transaction);
-        if($this->transaction) {
+        if ($this->transaction) {
+            $this->mode = 'read';
             $this->firstName = $this->transaction->firstName;
             $this->lastName = $this->transaction->lastName;
             $this->contact = $this->transaction->contact;
             $this->details = $this->transaction->details;
-        }
-        else {
+        } else {
+            $this->mode = 'write';
             $this->firstName = null;
             $this->lastName = null;
             $this->contact = null;
@@ -43,7 +46,7 @@ class OnsiteCreate extends Component
             'contact' => ['required', 'numeric', 'digits_between:1,11'],
         ]);
 
-        if($this->firstName && $this->lastName && $this->contact) {
+        if ($this->firstName && $this->lastName && $this->contact) {
             Transaction::create([
                 'firstName' => $this->firstName,
                 'lastName' => $this->lastName,
@@ -64,7 +67,7 @@ class OnsiteCreate extends Component
             'contact' => ['required', 'numeric', 'digits_between:1,11'],
         ]);
 
-        if($this->firstName && $this->lastName && $this->contact) {
+        if ($this->firstName && $this->lastName && $this->contact) {
             $currentTrans->firstName = $this->firstName;
             $currentTrans->lastName = $this->lastName;
             $currentTrans->contact = $this->contact;

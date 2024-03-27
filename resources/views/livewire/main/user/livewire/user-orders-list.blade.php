@@ -1,4 +1,12 @@
 <div class="w-full lg:w-3/5 h-full px-3 text-right flex">
+    @isset($itemTemplateToggleRes)
+        <div
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 block lg:hidden justify-center items-center z-50">
+        @if ($itemTemplateToggleRes != false)
+            <livewire:order-overlay order="{{ $itemTemplateToggleRes }}" />
+        @endif
+        </div>
+    @endisset
     <div class="w-full h-full flex flex-col">
         <div class="w-full flex-row ml-9">
             <ul class="flex flex-row w-full">

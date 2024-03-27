@@ -19,6 +19,7 @@ class ConfirmationNotification extends Component
     {
         $this->showConfirmationOverlay = false;
         $this->dispatch('negative');
+        $this->dispatch('showItemTemplate');
     }
 
     public function neutral()
@@ -36,9 +37,10 @@ class ConfirmationNotification extends Component
     #[On('confirmationOverlay')]
     public function revealConfirmationOverlay($data)
     {
-        if (isset($data['negative']))
+        if (isset($data['negative'])){
             $this->negativeButtonName = $data['negative'];
-
+        }
+        
         if (isset($data['neutral']))
             $this->neutralButtonName = $data['neutral'];
 

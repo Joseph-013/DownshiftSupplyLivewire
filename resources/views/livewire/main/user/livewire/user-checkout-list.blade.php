@@ -13,8 +13,8 @@
                             <ul class="flex flex-row w-full mt-3">
                                 <li class="w-4/12 text-center text-xs font-semibold">Item</li>
                                 <li class="w-3/12 text-center text-xs font-semibold">Unit Price (₱)</li>
-                                <li class="w-2/12 text-center text-xs font-semibold">Quantity</li>
-                                <li class="w-3/12 text-center text-xs font-semibold">Subtotal (₱)</li>
+                                <li class="w-2/12 text-right text-xs font-semibold">Quantity</li>
+                                <li class="w-3/12 text-right text-xs font-semibold">Subtotal (₱)</li>
                             </ul>
                         </div>
                         <hr class="my-1">

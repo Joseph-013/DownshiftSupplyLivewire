@@ -29,6 +29,7 @@ class ProductDetails extends Component
         $this->selectedProduct = Product::find($productId);
     }
 
+    #[On('deleteConfirm')]
     public function deleteConfirm()
     {
         $this->confirmDelete = true;

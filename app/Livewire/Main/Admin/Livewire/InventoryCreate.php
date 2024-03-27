@@ -10,7 +10,10 @@ class InventoryCreate extends Component
 {
     use WithFileUploads;
 
+    public $mode = 'read';
+
     public $product;
+    public $id;
     public $name;
     public $price;
     public $stockquantity;
@@ -24,6 +27,8 @@ class InventoryCreate extends Component
         $this->product = Product::find($product);
         $this->temporaryImage = null;
         if ($this->product) {
+            $this->mode = 'read';
+            $this->id = $this->product->id;
             $this->name = $this->product->name;
             $this->price = $this->product->price;
             $this->stockquantity = $this->product->stockquantity;
@@ -31,6 +36,7 @@ class InventoryCreate extends Component
             $this->image = $this->product->image;
             $this->description = $this->product->description;
         } else {
+            $this->mode = 'write';
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;

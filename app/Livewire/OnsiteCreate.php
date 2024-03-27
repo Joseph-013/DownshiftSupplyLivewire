@@ -16,6 +16,8 @@ class OnsiteCreate extends Component
     public $contact;
     public $details;
 
+    public $productTemp = null;
+
     public function mount($transaction, $mode)
     {
         $this->mode = $mode;
@@ -59,6 +61,11 @@ class OnsiteCreate extends Component
             $this->dispatch('alertNotif', 'Transaction successfully created');
             $this->dispatch('hideItemTemplate');
         }
+    }
+
+    public function modifyTrans()
+    {
+        $this->mode = "write";
     }
 
     public function editTrans()

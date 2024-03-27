@@ -1,4 +1,4 @@
-<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max">
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
 
     <div class="bg-gray-100 p-3 rounded-lg relative z-10 border" id="itemTemplate">
@@ -48,10 +48,159 @@
                     </table>
                 </div>
             @endif
+            <div class="columns-2 mt-6 w-full">
+                <div class="flex justify-center">
+                    <button wire:click="deleteConfirm"
+                        class="h-10 flex-1 items-center justify-center rounded-lg bg-red-600 mr-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
+                        Delete
+                        <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path
+                                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex justify-center">
+                    <button wire:click="modifyTrans"
+                        class="h-10 flex-1 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
+                        Modify
+                        <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path
+                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         @elseif ($mode == 'write')
-            write
+            <div class=" max-w-2xl">
+                <form action="">
+                    <table class="text-left border-spacing-x-2">
+                        <tr>
+                            <th colspan="2">
+                                Item Details
+                            </th>
+                        </tr>
+                        <tr class="h-11">
+                            <td>
+                                <div class="flex flex-col">
+                                    <div class="">
+                                        First Name:
+                                    </div>
+                                    <input type="text">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="flex flex-col">
+                                    <div class="">
+                                        Last Name:
+                                    </div>
+                                    <input type="text">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="h-11">
+                            <td>
+                                <div class="flex flex-col">
+                                    <div class="">
+                                        Contact Number:
+                                    </div>
+                                    <input type="number">
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="flex flex-col text-left">
+                        Item:
+                        <div class="w-full">
+                            @if (isset($productTemp))
+                                product
+                            @else
+                                <button
+                                    class="h-10 px-3 flex-1 items-center justify-center rounded-lg bg-sky-600 border-1 border-black text-white text-sm font-semibold text-spacing flex flex-row">
+                                    Find Item
+                                    <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                    </svg>
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table class="w-full text-center">
+                <tr>
+                    <th class="w-2/12"></th>
+                    <th class="w-5/12 text-left">Item Name</th>
+                    <th class="w-2/12">Price</th>
+                    <th class="w-1/12">Qty</th>
+                    <th class="w-2/12">Subtotal</th>
+                </tr>
+                <tr>
+                    <td>image</td>
+                    <td class="line-clamp-3 text-left">item name</td>
+                    <td>360,000.00</td>
+                    <td>3</td>
+                    <td>920,000</td>
+                </tr>
+            </table>
         @endif
     </div>
+
+
+    {{-- Overlay List --}}
+
+    {{-- <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+        <div class="absolute inset-0 bg-black opacity-50 z-20" wire:click="hideItemFindList"></div>
+
+        <div class="size-10 bg-white z-30 w-96 p-2 h-max rounded-lg">
+            <div class="w-full text-center">Find Item:</div>
+            <form id="searchForm" wire:submit.prevent="submitSearch" class="flex flex-row">
+                <div class="flex flex-row w-full">
+                    <input wire:model="search" name="search" id="searchInput"
+                        class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
+                        type="text" />
+                    <button type="button" wire:click.prevent="clearSearch"
+                        class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
+                        <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                        </svg>
+                    </button>
+                </div>
+                <button type="submit"
+                    class="ml-1 rounded-lg border-gray-500 border-2 px-2 text-sm hover:bg-gray-200 flex items-center">
+                    <svg class="feather feather-search" fill="none" height="18" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                        width="24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" x2="16.65" y1="21" y2="16.65" />
+                    </svg>
+                </button>
+            </form>
+            <table class="w-full">
+                <tr>
+                    <td>item match 1</td>
+                </tr>
+                <tr>
+                    <td>item match 2</td>
+                </tr>
+            </table>
+        </div>
+    </div> --}}
+
+
+
+
+
+
+
+
+
 
     {{--
     <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">

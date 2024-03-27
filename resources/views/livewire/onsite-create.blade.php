@@ -3,7 +3,51 @@
 
     <div class="bg-gray-100 p-3 rounded-lg relative z-10 border" id="itemTemplate">
         @if ($mode == 'read')
-            read
+            <table class="w-full text-left">
+                <tr class="h-9">
+                    <th colspan="2" class="text-center font-semibold">Transaction Details</th>
+                </tr>
+                <tr class="h-9">
+                    <td class="w-6/12">Transaction ID:</td>
+                    <td class="w-6/12">{{ $id }}</td>
+                </tr>
+                <tr class="h-9">
+                    <td>Full Name:</td>
+                    <td>{{ $firstName . ' ' . $lastName }}
+                    </td>
+                </tr>
+                <tr class="h-9">
+                    <td>Contact Number:</td>
+                    <td>{{ $contact }}</td>
+                </tr>
+            </table>
+            @if ($details)
+                <hr class="my-3" />
+                <table class="w-full text-xs text-center font-bold">
+                    <tr class="h-8">
+                        <td class="w-2/12"></td>
+                        <td class="w-3/12 text-left">Item Name</td>
+                        <td class="w-3/12">Price</td>
+                        <td class="w-1/12 text-left">Qty</td>
+                        <td class="w-3/12 text-left">Subtotal</td>
+                    </tr>
+                </table>
+                <div class="max-h-44 overflow-y-auto">
+                    <table class="w-full text-xs text-center">
+                        @foreach ($details as $detail)
+                            <tr class="h-full">
+                                <td class="w-2/12"><img
+                                        src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                                        class="w-14 h-14 rounded"></td>
+                                <td class="w-3/12 text-left">{{ $detail->products->name }}</td>
+                                <td class="w-3/12">{{ number_format($detail->products->price, 2) }}</td>
+                                <td class="w-1/12">{{ $detail->quantity }}</td>
+                                <td class="w-3/12">{{ number_format($detail->subtotal, 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            @endif
         @elseif ($mode == 'write')
             write
         @endif

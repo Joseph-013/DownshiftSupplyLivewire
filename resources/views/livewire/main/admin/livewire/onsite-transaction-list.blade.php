@@ -3,7 +3,7 @@
         <div
             class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 block lg:hidden justify-center items-center z-50">
             @if ($itemTemplateToggleRes != false)
-                <livewire:onsite-create transaction="{{ $itemTemplateToggleRes }}" />
+                <livewire:onsite-create :transaction="$itemTemplateToggleRes" mode="{{ 'read' }}" />
             @endif
         </div>
     @endisset
@@ -13,12 +13,11 @@
                 @if ($transaction->purchaseType === 'Onsite')
                     {{-- Single Unit of Product --}}
 
-                    <li wire:key="{{ $transaction->id }}" 
-                        class="w-full flex justify-center select-none px-2">
+                    <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none px-2">
                         {{-- Product Details --}}
 
-                        <input wire:click="selectTransaction({{ $transaction->id }})" class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
-                            name="productList">
+                        <input wire:click="selectTransaction({{ $transaction->id }})" class="widenWhenSelected" hidden
+                            type="radio" id="transactionId{{ $transaction->id }}" name="productList">
                         <label
                             class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
                             for="transactionId{{ $transaction->id }}">
@@ -86,7 +85,7 @@
         <!-- END OF OLD PAGINATION AND NEW TRANSACTION BUTTON -->
 
         @isset($itemTemplateToggle)
-            <livewire:onsite-create transaction="{{ $itemTemplateToggle }}" />
+            <livewire:onsite-create :transaction="$itemTemplateToggle" mode="{{ 'write' }}" />
         @endisset
     </div>
 </div>

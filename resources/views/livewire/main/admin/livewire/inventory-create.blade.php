@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-    @elseif($mode == 'create' || $mode == 'update')
+    @elseif($mode == 'write')
         <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
             <div style="display:flex; justify-content: center; align-items: center;">
                 @if ($temporaryImage)

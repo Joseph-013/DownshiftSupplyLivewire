@@ -9,17 +9,20 @@ class OnsiteCreate extends Component
 {
     public $mode = 'read';
 
+    public $id;
     public $transaction;
     public $firstName;
     public $lastName;
     public $contact;
     public $details;
 
-    public function mount($transaction)
+    public function mount($transaction, $mode)
     {
+        $this->mode = $mode;
+
         $this->transaction = Transaction::find($transaction);
         if ($this->transaction) {
-            $this->mode = 'read';
+            $this->id = $this->transaction->id;
             $this->firstName = $this->transaction->firstName;
             $this->lastName = $this->transaction->lastName;
             $this->contact = $this->transaction->contact;

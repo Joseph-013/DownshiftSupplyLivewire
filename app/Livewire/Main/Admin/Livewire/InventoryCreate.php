@@ -25,11 +25,12 @@ class InventoryCreate extends Component
     public function mount($product, $mode)
     {
         $this->product = Product::find($product);
-        if ($mode == null) {
-            $this->mode = 'read';
-        } else {
-            $this->mode = $mode;
-        }
+        // redundant ata tong part ng code
+        // if ($mode == null) {
+        //     $this->mode = 'read';
+        // } else {
+        $this->mode = $mode;
+        // }
         $this->temporaryImage = null;
         if ($this->product) {
             $this->id = $this->product->id;
@@ -40,7 +41,7 @@ class InventoryCreate extends Component
             $this->image = $this->product->image;
             $this->description = $this->product->description;
         } else {
-            $this->mode = 'create';
+            $this->mode = 'write';
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;
@@ -57,7 +58,7 @@ class InventoryCreate extends Component
 
     public function modifyProduct()
     {
-        $this->mode = 'update';
+        $this->mode = 'write';
     }
 
     public function createProduct()

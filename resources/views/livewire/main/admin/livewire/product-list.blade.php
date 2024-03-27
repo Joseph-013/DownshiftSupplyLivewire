@@ -62,7 +62,7 @@
 
         {{-- For desktop create/edit --}}
         @isset($itemTemplateToggle)
-            <livewire:main.admin.livewire.inventory-create :product="$itemTemplateToggle" mode="{{ 'update' }}" />
+            <livewire:main.admin.livewire.inventory-create :product="$itemTemplateToggle" mode="{{ 'write' }}" />
         @endisset
 
         <!-- END OF OVERLAY -->

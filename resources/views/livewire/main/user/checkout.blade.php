@@ -252,7 +252,6 @@
             var map = null;
             var marker = null;
             var address;
-            var setNavigator = false;
 
             async function initMap() {
                 const { Map } = await google.maps.importLibrary("maps");
@@ -264,7 +263,6 @@
                     gestureHandling: "cooperative"
                 });
 
-                if(setNavigator){
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var userLatLng = {
@@ -282,7 +280,6 @@
                     });
                 } else {
                     handleLocationError(false);
-                }
                 }
 
                 function handleLocationError(browserHasGeolocation) {

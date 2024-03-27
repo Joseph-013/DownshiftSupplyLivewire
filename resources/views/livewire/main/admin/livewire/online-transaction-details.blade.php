@@ -1,4 +1,4 @@
-<div class="border-black border-1 w-full rounded-lg text-right p-3 flex" style="height: 75vh;">
+<div class="border-black border-1 w-full rounded-lg text-right p-3 flex" style="height: 70vh;">
     <div class="w-full h-full flex flex-col">
         <p class="text-center font-semibold h-9">Transaction Details</p>
         {{-- Products List  --}}

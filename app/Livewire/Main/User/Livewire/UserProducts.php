@@ -15,6 +15,7 @@ class UserProducts extends Component
 {
     use WithPagination;
     public $selectedProductId;
+    public $search;
 
     public function mount()
     {
@@ -73,7 +74,13 @@ class UserProducts extends Component
 
     public function render()
     {
-        $products = Product::inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
+        $products = Product::where('name', 'like', '%' . $this->search . '%')->inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
         return view('livewire.main.user.livewire.user-products')->with(['products' => $products]);
+    }
+
+    #[On('searchResults')]
+    public function searchResults($value)
+    {
+        $this->search = $value;
     }
 }

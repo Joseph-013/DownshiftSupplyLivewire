@@ -150,11 +150,14 @@
                                 </script>
 
                                 <div class="w-full text-left px-3 font-semibold">
-                                    Delivery Address:
+                                    <span id="addressHeading">Store Location:</span>
                                     <div class="my-2">
-                                        <input name="shippingAddress" id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;" required>
+                                        <input name="shippingAddress" id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;" required disabled
+                                        value="140 Cordillera Street, Santa Mesa Heights 1114 Quezon City, Philippines">
                                     </div>
-                                    <div id="map" class="h-48 bg-gray-100 justify-center flex items-center mb-3">
+                                    <div id="deliveryMapContainer">
+                                        <div id="map" class="h-48 bg-gray-100 justify-center flex items-center mb-3">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -245,19 +248,15 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var searchInput = document.getElementById('autocomplete');
+            const preferredServiceRadios = document.querySelectorAll('input[name="preferredService"]');
+            const deliveryMapContainer = document.getElementById('deliveryMapContainer');
+            const addressHeading = document.getElementById('addressHeading');
+            const searchInput = document.getElementById('autocomplete');
             var map = null;
             var marker = null;
+            var address;
 
-            async function initMap() {
-                const { Map } = await google.maps.importLibrary("maps");
-                const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-                map = new Map(document.getElementById("map"), {
-                    center: {lat: 0, lng: 0},
-                    zoom: 16,
-                    mapId: "c1568d819b26135",
-                });
-
+            function getCurrentLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var userLatLng = {
@@ -276,6 +275,17 @@
                 } else {
                     handleLocationError(false);
                 }
+            }
+
+            async function initMap() {
+                const { Map } = await google.maps.importLibrary("maps");
+                const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+                map = new Map(document.getElementById("map"), {
+                    center: {lat: 14.6371991, lng: 120.9870849},
+                    zoom: 16,
+                    mapId: "c1568d819b26135",
+                    gestureHandling: "cooperative",
+                });
 
                 function handleLocationError(browserHasGeolocation) {
                     var errorMessage = browserHasGeolocation ?
@@ -290,33 +300,29 @@
                     draggable: false
                 });
 
-                updateAddress(marker.getPosition());
+                // map.addListener('drag', function() {
+                //     clearTimeout(debounceTimer);
+                //     marker.setPosition(map.getCenter());
+                //     debounceTimer = setTimeout(function() {
+                //         updateAddress(marker.getPosition());
+                //     }, 200);
+                // });
 
-                let debounceTimer;
+                // map.addListener('zoom_changed', function() {
+                //     clearTimeout(debounceTimer);
+                //     marker.setPosition(map.getCenter());
+                //     debounceTimer = setTimeout(function() {
+                //         updateAddress(marker.getPosition());
+                //     }, 200); 
+                // });
 
-                map.addListener('drag', function() {
-                    clearTimeout(debounceTimer);
-                    marker.setPosition(map.getCenter());
-                    debounceTimer = setTimeout(function() {
-                        updateAddress(marker.getPosition());
-                    }, 200);
-                });
-
-                map.addListener('zoom_changed', function() {
-                    clearTimeout(debounceTimer);
-                    marker.setPosition(map.getCenter());
-                    debounceTimer = setTimeout(function() {
-                        updateAddress(marker.getPosition());
-                    }, 200); 
-                });
-
-                marker.addListener('dragend', function() {
-                    clearTimeout(debounceTimer);
-                    debounceTimer = setTimeout(function() {
-                        map.panTo(marker.getPosition());
-                        updateAddress(marker.getPosition());
-                    }, 200);
-                });
+                // marker.addListener('dragend', function() {
+                //     clearTimeout(debounceTimer);
+                //     debounceTimer = setTimeout(function() {
+                //         map.panTo(marker.getPosition());
+                //         updateAddress(marker.getPosition());
+                //     }, 200);
+                // });
 
                 var autocomplete = new google.maps.places.Autocomplete(searchInput, {
                     types: ['address'],
@@ -334,6 +340,10 @@
                     marker.setPosition({ lat: lat, lng: lng });
                     updateAddress(marker.getPosition());
                 });
+
+                marker.addListener('dragend', function(event) {
+                    updateAddress(event.latLng);
+                });
             }
 
             initMap();
@@ -350,6 +360,25 @@
                     }
                 });
             }
+
+            preferredServiceRadios.forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    if (radio.value === "Delivery") {
+                        addressHeading.textContent = "Delivery Address:";
+                        getCurrentLocation();
+                        searchInput.removeAttribute('disabled');
+                        marker.setDraggable(true);
+                    } else {
+                        addressHeading.textContent = "Store Location:";
+                        searchInput.value = "140 Cordillera Street, Santa Mesa Heights 1114 Quezon City, Philippines";
+                        searchInput.setAttribute('disabled', 'disabled');
+                        const pickupCenter = { lat: 14.6371991, lng: 120.9870849 };
+                        map.setCenter(pickupCenter);
+                        marker.setPosition(pickupCenter);
+                        marker.setDraggable(false);
+                    }
+                });
+            });
         });
     </script>
 </x-app-layout>

@@ -200,8 +200,8 @@
                                             <!-- Modified file input -->
                                             <label for="fileUpload" class="w-full h-10 text-xs bg-gray-200 rounded-lg px-4 flex items-center justify-center cursor-pointer">
                                                 <input name="proofOfPayment" type="file" id="fileUpload" class="hidden" accept=".jpg, .jpeg, .png" required>
-                                                <ul id="uploadLabel" class="flex flex-row w-full items-center gap-10">
-                                                    <li class="w-3/4">Upload Image</li>
+                                                <ul id="uploadLabel" class="flex flex-row w-full items-center gap-10" style="max-width: 200px;">
+                                                    <li class="w-full truncate">Upload Image</li>
                                                     <li class="w-1/4 font-medium text-lg text-right">+</li>
                                                 </ul>
                                             </label>

@@ -87,7 +87,7 @@
                                     <div class="">
                                         First Name:
                                     </div>
-                                    <input type="text">
+                                    <input wire:model="firstName" type="text">
                                 </div>
                             </td>
                             <td>
@@ -95,7 +95,7 @@
                                     <div class="">
                                         Last Name:
                                     </div>
-                                    <input type="text">
+                                    <input wire:model="lastName" type="text">
                                 </div>
                             </td>
                         </tr>
@@ -105,7 +105,7 @@
                                     <div class="">
                                         Contact Number:
                                     </div>
-                                    <input type="number">
+                                    <input wire:model="contact" type="number">
                                 </div>
                             </td>
                             <td></td>
@@ -139,13 +139,19 @@
                     <th class="w-1/12">Qty</th>
                     <th class="w-2/12">Subtotal</th>
                 </tr>
+                @foreach($details as $detail)
                 <tr>
-                    <td>image</td>
-                    <td class="line-clamp-3 text-left">item name</td>
-                    <td>360,000.00</td>
-                    <td>3</td>
-                    <td>920,000</td>
+                    <td>
+                        <img
+                            src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                            class="w-14 h-14 rounded">
+                    </td>
+                    <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
+                    <td>{{ $detail->products->price }}</td>
+                    <td>{{ $detail->quantity }}</td>
+                    <td>{{ $detail->subtotal }}</td>
                 </tr>
+                @endforeach
             </table>
         @endif
     </div>

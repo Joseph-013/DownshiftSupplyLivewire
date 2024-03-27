@@ -25,6 +25,12 @@
     border-color: gray;
 }
 
+.widenWhenSelectedOrders:checked + label {
+    width: 100%;
+    height: 120%;
+    border-color: gray;
+}
+
 /* FAQs */
 #questions-container{
     height: 32rem !important;

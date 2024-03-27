@@ -14,7 +14,7 @@
                 <li class="w-2/12 text-center text-sm">Date</li>
                 <li class="w-2/12 text-center text-sm">Mode</li>
                 <li class="w-2/12 text-center text-sm">Status</li>
-                <li class="w-2/12 text-center text-sm">Total&nbsp;(₱)</li>
+                <li class="w-2/12 text-left text-sm">Total&nbsp;(₱)</li>
             </ul>
         </div>
         <hr class="my-1">
@@ -34,14 +34,14 @@
                                 </td> --}}
                                 <td class="w-full flex justify-center select-none px-2"
                                     id="transactionRowLi-{{ $transaction->id }}">
-                                    <input wire:click="showDetails({{ $transaction->id }})" class="widenWhenSelected" hidden type="radio"
+                                    <input wire:click="showDetails({{ $transaction->id }})" class="widenWhenSelectedOrders" hidden type="radio"
                                         id="productId{{ $transaction->id }}" name="productList" {{-- onchange="toggleListRow({{ $transaction->id }})" --}}
                                         @if (request()->query('orderId') == $transaction->id) checked @endif>
                                     <label 
                                         class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm items-center"
                                         for="productId{{ $transaction->id }}">
-                                        <table class="w-full">
-                                            <tr class="flex flex-row w-full text-xs md:text-sm">
+                                        <table class="w-full py-1">
+                                            <tr class="flex flex-row w-full text-xs md:text-sm items-center">
                                                 <td class="w-2/12 text-center">{{ $transaction->id }}</td>
                                                 <td class="w-2/12 text-center">
                                                     {{ $transaction->created_at->format('m-d-Y') }}</td>

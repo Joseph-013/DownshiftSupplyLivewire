@@ -10,15 +10,15 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3">
+            <div class="flex flex-1 w-full -mx-3 flex-col md:flex-row">
                 {{-- Left Panel --}}
-                <div class="w-3/5 h-full px-3">
+                <div class="w-full h-full px-3 md:w-3/5">
                     <livewire:main.user.livewire.user-checkout-list />
                 </div>
 
 
                 {{-- Right Panel border-2 border-black --}}
-                <div class="w-2/5 h-full px-3 text-right flex text-xs ">
+                <div class="w-full md:w-2/5 h-full px-3 text-right flex text-xs ">
                     <form action="{{ route('user.checkout.submit') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- Left Main Container --}}

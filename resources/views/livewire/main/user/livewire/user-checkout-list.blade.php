@@ -59,7 +59,7 @@
 
         </div>
         <hr class="my-1">
-        <div class="w-full text-right text-xs ml-[-5rem] my-2">
+        <div class="w-full text-right text-lg ml-[-5rem] my-2">
             <span class="font-semibold mr-5">Total: </span> ₱&nbsp;{{ number_format($cartTotal, 2) }}
         </div>
     </div>

@@ -13,11 +13,11 @@
                 @if ($transaction->purchaseType === 'Onsite')
                     {{-- Single Unit of Product --}}
 
-                    <li wire:key="{{ $transaction->id }}" wire:click="selectTransaction({{ $transaction->id }})"
+                    <li wire:key="{{ $transaction->id }}" 
                         class="w-full flex justify-center select-none px-2">
                         {{-- Product Details --}}
 
-                        <input class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
+                        <input wire:click="selectTransaction({{ $transaction->id }})" class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
                             name="productList">
                         <label
                             class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"

@@ -26,10 +26,10 @@
                                 </td> --}}
                                 <td class="w-full flex justify-center select-none px-2"
                                     id="transactionRowLi-{{ $transaction->id }}">
-                                    <input class="widenWhenSelected" hidden type="radio"
+                                    <input wire:click="showDetails({{ $transaction->id }})" class="widenWhenSelected" hidden type="radio"
                                         id="productId{{ $transaction->id }}" name="productList" {{-- onchange="toggleListRow({{ $transaction->id }})" --}}
                                         @if (request()->query('orderId') == $transaction->id) checked @endif>
-                                    <label wire:click="showDetails({{ $transaction->id }})"
+                                    <label 
                                         class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm items-center"
                                         for="productId{{ $transaction->id }}">
                                         <table class="w-full">

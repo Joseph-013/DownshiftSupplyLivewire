@@ -11,8 +11,8 @@
         <ul class="w-full flex flex-col items-center">
         @if($faqs)
             @foreach ($faqs as $faq)
-                <li wire:click="selectFaq({{ $faq->id }})" class="w-full flex justify-center select-none px-2">
-                    <input class="widenWhenSelected" hidden type="radio" id="faqId{{ $faq->id }}" name="productList">
+                <li class="w-full flex justify-center select-none px-2">
+                    <input wire:click="selectFaq({{ $faq->id }})" class="widenWhenSelected" hidden type="radio" id="faqId{{ $faq->id }}" name="productList">
                     <label
                         class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
                         for="faqId{{ $faq->id }}">

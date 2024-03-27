@@ -11,10 +11,9 @@
         <ul class=" w-full flex flex-col items-center">
             @foreach ($transactions as $transaction)
                 @if ($transaction->purchaseType === 'Online')
-                    <li wire:click="selectTransaction({{ $transaction->id }})"
-                        class="w-full flex justify-center select-none px-2" wire:key="{{ $transaction->id }}">
+                    <li class="w-full flex justify-center select-none px-2" wire:key="{{ $transaction->id }}">
                         {{-- Product Details --}}
-                        <input class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
+                        <input wire:click="selectTransaction({{ $transaction->id }})" class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}"
                             name="productList">
                         <label
                             class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"

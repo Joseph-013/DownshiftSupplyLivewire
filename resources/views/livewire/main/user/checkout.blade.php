@@ -150,11 +150,14 @@
                                 </script>
 
                                 <div class="w-full text-left px-3 font-semibold">
-                                    Delivery Address:
+                                    <span id="addressHeading">Store Location:</span>
                                     <div class="my-2">
-                                        <input name="shippingAddress" id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;" required>
+                                        <input name="shippingAddress" id="autocomplete" class="w-full h-10 text-xs font-light" type="text" placeholder="Address" style="position: relative;" required
+                                        value="140 Cordillera Street, Santa Mesa Heights 1114 Quezon City, Philippines">
                                     </div>
-                                    <div id="map" class="h-48 bg-gray-100 justify-center flex items-center mb-3">
+                                    <div id="deliveryMapContainer" class="hidden">
+                                        <div id="map" class="h-48 bg-gray-100 justify-center flex items-center mb-3">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -248,16 +251,20 @@
             var searchInput = document.getElementById('autocomplete');
             var map = null;
             var marker = null;
+            var address;
+            var setNavigator = false;
 
             async function initMap() {
                 const { Map } = await google.maps.importLibrary("maps");
                 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
                 map = new Map(document.getElementById("map"), {
-                    center: {lat: 0, lng: 0},
+                    center: {lat: 14.6371991, lng: 120.9870849},
                     zoom: 16,
                     mapId: "c1568d819b26135",
+                    gestureHandling: "cooperative"
                 });
 
+                if(setNavigator){
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var userLatLng = {
@@ -275,6 +282,7 @@
                     });
                 } else {
                     handleLocationError(false);
+                }
                 }
 
                 function handleLocationError(browserHasGeolocation) {
@@ -336,20 +344,44 @@
                 });
             }
 
-            initMap();
-
             function updateAddress(latLng) {
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ 'location': latLng }, function(results, status) {
                     if (status === 'OK') {
                         if (results[0]) {
-                            searchInput.value = results[0].formatted_address;
+                            address = results[0].formatted_address;
+                            searchInput.value = address;
                         } else {
                             console.error('No results found');
                         }
                     }
                 });
             }
+
+            const preferredServiceRadios = document.querySelectorAll('input[name="preferredService"]');
+            const deliveryMapContainer = document.getElementById('deliveryMapContainer');
+            const addressHeading = document.getElementById('addressHeading');
+
+            preferredServiceRadios.forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    if (radio.value === "Delivery") {
+                        addressHeading.textContent = "Delivery Address:"
+                        deliveryMapContainer.classList.remove('hidden');
+                        if(map == null)
+                        {
+                            initMap();
+                        }
+                        else
+                        {
+                            searchInput.value = address;
+                        }
+                    } else {
+                        addressHeading.textContent = "Store Location:";
+                        deliveryMapContainer.classList.add('hidden');
+                        searchInput.value = "140 Cordillera Street, Santa Mesa Heights 1114 Quezon City, Philippines";
+                    }
+                });
+            });
         });
     </script>
 </x-app-layout>

@@ -14,7 +14,7 @@ new #[Layout('layouts.guest')] class extends Component {
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function login()
     {
         $this->validate();
 
@@ -24,7 +24,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         $redirectUrl = $this->getRedirectUrl();
 
-        $this->redirect($redirectUrl, ['navigate' => true]);
+        return redirect($redirectUrl, ['navigate' => true]);
     }
 
     private function getRedirectUrl(): string

@@ -47,6 +47,10 @@
     height: 26rem !important;
 }
 
+#online-orders-container{
+    height: 30rem !important;
+}
+
 #faqs-container{
     height: 9rem !important;
 }

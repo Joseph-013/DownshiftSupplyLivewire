@@ -2,7 +2,7 @@
     <div class="w-full h-full flex flex-col">
         <p class="text-center font-semibold h-9">Transaction Details</p>
         {{-- Products List  --}}
-        <div class="w-full h-96 overflow-y-auto" id="orders-container">
+        <div class="w-full h-96 overflow-y-auto" id="online-orders-container">
             <div class=" flex flex-1 w-full">
                 <div class="w-2/5 text-left text-xs pr-2">
                     <div class="text-left text-xs my-2">

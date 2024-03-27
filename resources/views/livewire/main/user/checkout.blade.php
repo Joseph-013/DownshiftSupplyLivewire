@@ -10,7 +10,7 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3 flex-col md:flex-row">
+            <div class="flex flex-1 w-full flex-col md:flex-row">
                 {{-- Left Panel --}}
                 <div class="w-full h-full px-3 md:w-3/5">
                     <livewire:main.user.livewire.user-checkout-list />

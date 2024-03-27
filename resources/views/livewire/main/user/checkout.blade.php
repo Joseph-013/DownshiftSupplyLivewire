@@ -253,37 +253,61 @@
                 const { Map } = await google.maps.importLibrary("maps");
                 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
                 map = new Map(document.getElementById("map"), {
-                    center: {lat: 14.645180093180294, lng: 121.1151444089714},
+                    center: {lat: 0, lng: 0},
                     zoom: 16,
                     mapId: "c1568d819b26135",
                 });
 
-                // Create a marker initially at the center of the map
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var userLatLng = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        map.setCenter(userLatLng);
+
+                        marker.setPosition(map.getCenter());
+
+                        updateAddress(marker.getPosition());
+                    }, function() {
+                        handleLocationError(true);
+                    });
+                } else {
+                    handleLocationError(false);
+                }
+
+                function handleLocationError(browserHasGeolocation) {
+                    var errorMessage = browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.';
+                    alert(errorMessage);
+                }
+
                 marker = new google.maps.Marker({
                     position: map.getCenter(),
                     map: map,
-                    draggable: true
+                    draggable: false
                 });
 
-                // Update the input box with the address pointed by the marker
                 updateAddress(marker.getPosition());
 
                 let debounceTimer;
 
                 map.addListener('drag', function() {
                     clearTimeout(debounceTimer);
+                    marker.setPosition(map.getCenter());
                     debounceTimer = setTimeout(function() {
-                        marker.setPosition(map.getCenter());
                         updateAddress(marker.getPosition());
-                    }, 200); // Adjust the debounce delay as needed
+                    }, 200);
                 });
 
                 map.addListener('zoom_changed', function() {
                     clearTimeout(debounceTimer);
+                    marker.setPosition(map.getCenter());
                     debounceTimer = setTimeout(function() {
-                        marker.setPosition(map.getCenter());
                         updateAddress(marker.getPosition());
-                    }, 200); // Adjust the debounce delay as needed
+                    }, 200); 
                 });
 
                 marker.addListener('dragend', function() {
@@ -291,7 +315,7 @@
                     debounceTimer = setTimeout(function() {
                         map.panTo(marker.getPosition());
                         updateAddress(marker.getPosition());
-                    }, 200); // Adjust the debounce delay as needed
+                    }, 200);
                 });
 
                 var autocomplete = new google.maps.places.Autocomplete(searchInput, {
@@ -314,7 +338,6 @@
 
             initMap();
 
-            // Function to update the input box with the address pointed by the marker
             function updateAddress(latLng) {
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ 'location': latLng }, function(results, status) {

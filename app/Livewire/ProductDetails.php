@@ -35,6 +35,7 @@ class ProductDetails extends Component
         $this->confirmDelete = true;
     }
 
+    #[On('deleteProduct')]
     public function deleteProduct()
     {
         if ($this->selectedProduct) {

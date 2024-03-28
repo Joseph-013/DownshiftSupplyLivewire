@@ -144,18 +144,9 @@ class InventoryCreate extends Component
 
     public function deleteProduct()
     {
-        if ($this->product) {
-            $imagePath = public_path('storage/assets/' . $this->product->image);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-
-            $this->product->delete();
-            $this->product = null;
-            $this->confirmDelete = false;
-            $this->dispatch('renderProductList');
-            $this->dispatch('alertNotif', 'Product successfully deleted');
-            $this->cancel();
-        }
+        $this->dispatch('renderProductList');
+        $this->dispatch('alertNotif', 'Product successfully deleted');
+        $this->cancel();
+        $this->dispatch('deleteProduct');
     }
 }

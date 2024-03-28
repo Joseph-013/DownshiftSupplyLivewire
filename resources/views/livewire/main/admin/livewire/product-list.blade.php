@@ -13,7 +13,7 @@
         <ul class="w-full flex flex-col items-center">
             @if ($products)
                 @foreach ($products as $product)
-                    <li class="w-full flex justify-center select-none px-2">
+                    <li wire:key='{{ $product->id }}' class="w-full flex justify-center select-none px-2">
                         <input wire:click="selectProduct({{ $product->id }})" class="widenWhenSelected" hidden
                             type="radio" id="productId{{ $product->id }}" name="productList">
                         <label

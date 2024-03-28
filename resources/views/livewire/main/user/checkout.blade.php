@@ -125,7 +125,7 @@
                                     </label>
 
                                     <div id="infoMessage"
-                                        class="hidden absolute bg-white border border-gray-300 p-3 text-justify rounded shadow mt-[-4rem] mr-20 w-90">
+                                        class="hidden absolute bg-white border border-gray-300 p-3 text-justify rounded shadow mt-[-4rem] mr-20 w-90 z-10">
                                         For delivery, the courier will collect shipping fees from the recipient upon
                                         arrival at the
                                         delivery location.

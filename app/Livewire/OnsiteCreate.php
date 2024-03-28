@@ -22,6 +22,7 @@ class OnsiteCreate extends Component
     public $searchResults;
     public $tempDetails;
     public $detailsToRemove;
+    public $quantity;
 
     public $findItemTemp;
     public $productTemp = null;
@@ -185,8 +186,8 @@ class OnsiteCreate extends Component
                     'id' => $product->id,
                     'name' => $product->name,
                     'price' => $product->price,
-                    'quantity' => 1,
-                    'subtotal' => $product->price,
+                    'quantity' => $this->quantity,
+                    'subtotal' => $product->price * $this->quantity,
                     'image' => $product->image
                 ];
             }

@@ -8,17 +8,17 @@
             <td class="w-7/12">{{ isset($selectedFaq) ? $selectedFaq->id : '--' }}</td>
         </tr>
         <tr class="h-9">
-            <td>Question:</td>
+            <td class="flex items-start">Question:</td>
             <td>{{ isset($selectedFaq) ? $selectedFaq->question : '--' }}</td>
         </tr>
         <tr class="h-9">
-            <td>Answer:</td>
+            <td class="flex items-start">Answer:</td>
             <td>{{ isset($selectedFaq) ? $selectedFaq->answer : '--' }}</td>
         </tr>
     </table>
-    @if($confirmDelete)
+    @if ($confirmDelete)
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
-        <!-- Semi-transparent overlay -->
+            <!-- Semi-transparent overlay -->
             <div class="absolute inset-0 bg-black opacity-50"></div>
 
             <!-- Confirmation prompt -->

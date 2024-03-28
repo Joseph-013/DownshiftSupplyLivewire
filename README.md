@@ -40,6 +40,10 @@ Creating fresh database
 
 1. php artisan migrate:fresh --seed
 
+Routing issue: Second time trigger
+php artisan route:cache
+php artisan config:cache
+php artisan cache:clear
 
 ## Project Custom Events
 Component (Listener) alertNotif, 'message'

@@ -1,28 +1,29 @@
 <div>
     @isset($itemTemplateToggleRes)
-    <div
-    class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 block lg:hidden justify-center items-center z-50">
-    @if ($itemTemplateToggleRes != false)
-        <livewire:main.admin.livewire.faq-create faq="{{ $itemTemplateToggleRes }}" />
-    @endif
-</div>
+        <div
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 block lg:hidden justify-center items-center z-50">
+            @if ($itemTemplateToggleRes != false)
+                <livewire:main.admin.livewire.faq-create :faq="$itemTemplateToggleRes" mode="{{ 'read' }}" />
+            @endif
+        </div>
     @endisset
     <div class="w-full h-96 overflow-y-auto" id="questions-container">
         <ul class="w-full flex flex-col items-center">
-        @if($faqs)
-            @foreach ($faqs as $faq)
-                <li class="w-full flex justify-center select-none px-2">
-                    <input wire:click="selectFaq({{ $faq->id }})" class="widenWhenSelected" hidden type="radio" id="faqId{{ $faq->id }}" name="productList">
-                    <label
-                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
-                        for="faqId{{ $faq->id }}">
-                        <ul class="flex flex-row w-full">
-                            <li class="w-full text-center text-sm">{{ $faq->question }}</li>
-                        </ul>
-                    </label>
-                </li>
-            @endforeach
-        @endif
+            @if ($faqs)
+                @foreach ($faqs as $faq)
+                    <li class="w-full flex justify-center select-none px-2">
+                        <input wire:click="selectFaq({{ $faq->id }})" class="widenWhenSelected" hidden type="radio"
+                            id="faqId{{ $faq->id }}" name="productList">
+                        <label
+                            class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                            for="faqId{{ $faq->id }}">
+                            <ul class="flex flex-row w-full">
+                                <li class="w-full text-center text-sm">{{ $faq->question }}</li>
+                            </ul>
+                        </label>
+                    </li>
+                @endforeach
+            @endif
         </ul>
     </div>
 
@@ -79,7 +80,7 @@
         </div>
 
         @isset($itemTemplateToggle)
-            <livewire:main.admin.livewire.faq-create faq="{{ $itemTemplateToggle }}" />
+            <livewire:main.admin.livewire.faq-create :faq="$itemTemplateToggle" mode="{{ 'write' }}" />
         @endisset
 
         <!-- OVERLAY -->

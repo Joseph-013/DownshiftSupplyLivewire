@@ -7,18 +7,21 @@ use Livewire\Component;
 
 class FaqCreate extends Component
 {
+    public $mode = 'read';
+
     public $faq;
     public $question;
     public $answer;
 
-    public function mount($faq)
+    public function mount($faq, $mode)
     {
         $this->faq = FAQ::find($faq);
-        if($this->faq) {
+        $this->mode = $mode;
+        if ($this->faq) {
             $this->question = $this->faq->question;
             $this->answer = $this->faq->answer;
-        }
-        else {
+        } else {
+            $this->mode = 'write';
             $this->question = null;
             $this->answer = null;
         }
@@ -29,13 +32,14 @@ class FaqCreate extends Component
         return view('livewire.main.admin.livewire.faq-create');
     }
 
-    public function createFaq() {
+    public function createFaq()
+    {
         $this->validate([
             'question' => ['required', 'string', 'unique:' . FAQ::class],
             'answer' => ['required', 'string'],
         ]);
 
-        if($this->question && $this->answer) {
+        if ($this->question && $this->answer) {
             FAQ::create([
                 'question' => $this->question,
                 'answer' => $this->answer,
@@ -46,14 +50,20 @@ class FaqCreate extends Component
         }
     }
 
-    public function editFaq() {
+    public function modifyFaq()
+    {
+        $this->mode = 'write';
+    }
+
+    public function editFaq()
+    {
         $currentFaq = $this->faq;
         $this->validate([
             'question' => ['required', 'string'],
             'answer' => ['required', 'string'],
         ]);
 
-        if($this->question && $this->answer) {
+        if ($this->question && $this->answer) {
             $currentFaq->question = $this->question;
             $currentFaq->answer = $this->answer;
             $currentFaq->save();
@@ -64,7 +74,7 @@ class FaqCreate extends Component
         }
     }
 
-    public function cancel() 
+    public function cancel()
     {
         $this->dispatch('hideItemTemplate');
     }

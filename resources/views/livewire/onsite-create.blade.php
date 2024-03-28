@@ -85,7 +85,7 @@
                         </tr>
                         <tr class="h-11">
                             <td>
-                                <div class="flex flex-col w-[18rem]">
+                                <div class="flex flex-col sm:w-[18rem] w-full">
                                     <div class="">
                                         First Name:
                                     </div>
@@ -93,7 +93,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="flex flex-col w-[18rem] ">
+                                <div class="flex flex-col sm:w-[18rem] w-full">
                                     <div class="">
                                         Last Name:
                                     </div>
@@ -129,7 +129,7 @@
                         </tr>
                     </table>
                     <div class="flex flex-row">
-                    <div class="flex flex-col text-left w-1/2">
+                    <div class="flex flex-col text-left sm:w-1/2">
                         Item:
                         <div class="w-full">
                                 <button wire:click="findItemTemplate" type="button"
@@ -143,10 +143,10 @@
                                 </button>
                         </div>
                     </div>
-                    <div class="flex flex-col text-left">
+                    <div class="flex flex-col text-left sm:w-1/2 ml-20">
                         Quantity:
                         <div class="w-full">
-                            <input wire:model="quantity" type="number" name="quantity" class="rounded w-[18rem]">
+                            <input wire:model="quantity" type="number" name="quantity" class="rounded sm:w-[18rem] w-full">
                         </div>            
                     </div>
                     </div>
@@ -178,7 +178,7 @@
                         </div>
                     </div>
             </div>
-            <div class="h-auto max-h-40 overflow-y-auto max-w-[38rem]">
+            <div class="h-auto max-h-40 overflow-y-auto md:max-w-[38rem] ">
             <table class="w-full text-center ">
                 <tr>
                     <th class="w-2/12"></th>

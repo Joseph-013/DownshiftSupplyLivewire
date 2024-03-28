@@ -143,7 +143,7 @@
                                 </button>
                         </div>
                     </div>
-                    <div class="flex flex-col text-left sm:w-1/2 ml-20">
+                    <div class="flex flex-col text-left sm:w-1/2 ml-18">
                         Quantity:
                         <div class="w-full">
                             <input wire:model="quantity" type="number" name="quantity" class="rounded sm:w-[18rem] w-full">

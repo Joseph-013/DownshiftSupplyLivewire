@@ -4,6 +4,7 @@ namespace App\Livewire\Main\Admin\Livewire;
 
 use App\Models\FAQ;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class FaqCreate extends Component
 {
@@ -12,6 +13,7 @@ class FaqCreate extends Component
     public $faq;
     public $question;
     public $answer;
+    public $confirmDelete;
 
     public function mount($faq, $mode)
     {
@@ -77,5 +79,18 @@ class FaqCreate extends Component
     public function cancel()
     {
         $this->dispatch('hideItemTemplate');
+    }
+
+    #[On('deleteConfirm')]
+    public function deleteConfirm()
+    {
+        $this->confirmDelete = true;
+    }
+
+    public function deleteFaq()
+    {
+        $this->dispatch('deleteFaq');
+        $this->dispatch('alertNotif', 'FAQ entry successfully deleted');
+        $this->cancel();
     }
 }

@@ -28,6 +28,7 @@ class FaqDetails extends Component
         $this->confirmDelete = true;
     }
 
+    #[On('deleteFaq')]
     public function deleteFaq()
     {
         if ($this->selectedFaq) {

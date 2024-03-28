@@ -144,9 +144,8 @@ class InventoryCreate extends Component
 
     public function deleteProduct()
     {
-        $this->dispatch('renderProductList');
+        $this->dispatch('deleteProduct');
         $this->dispatch('alertNotif', 'Product successfully deleted');
         $this->cancel();
-        $this->dispatch('deleteProduct');
     }
 }

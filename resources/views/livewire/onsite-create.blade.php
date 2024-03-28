@@ -159,7 +159,7 @@
 
     {{-- Overlay List --}}
 
-    {{-- <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
         <div class="absolute inset-0 bg-black opacity-50 z-20" wire:click="hideItemFindList"></div>
 
         <div class="size-10 bg-white z-30 w-96 p-2 h-max rounded-lg">
@@ -197,7 +197,7 @@
                 </tr>
             </table>
         </div>
-    </div> --}}
+    </div>
 
 
 

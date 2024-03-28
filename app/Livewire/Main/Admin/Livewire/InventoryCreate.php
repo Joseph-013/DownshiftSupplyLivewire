@@ -5,6 +5,7 @@ namespace App\Livewire\Main\Admin\Livewire;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\Attributes\On;
 
 class InventoryCreate extends Component
 {
@@ -21,6 +22,7 @@ class InventoryCreate extends Component
     public $image;
     public $description;
     public $temporaryImage;
+    public $confirmDelete;
 
     public function mount($product, $mode)
     {
@@ -132,5 +134,28 @@ class InventoryCreate extends Component
     public function cancel()
     {
         $this->dispatch('hideItemTemplate');
+    }
+
+    #[On('deleteConfirm')]
+    public function deleteConfirm()
+    {
+        $this->confirmDelete = true;
+    }
+
+    public function deleteProduct()
+    {
+        if ($this->product) {
+            $imagePath = public_path('storage/assets/' . $this->product->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $this->product->delete();
+            $this->product = null;
+            $this->confirmDelete = false;
+            $this->dispatch('renderProductList');
+            $this->dispatch('alertNotif', 'Product successfully deleted');
+            $this->cancel();
+        }
     }
 }

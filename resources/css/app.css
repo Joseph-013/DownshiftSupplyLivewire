@@ -49,6 +49,10 @@
     height: 20rem !important;
 }
 
+#onsitecreate-container{
+    height: 10rem !important;
+}
+
 #orders-container{
     height: 26rem !important;
 }

@@ -21,6 +21,7 @@ class OnsiteCreate extends Component
     public $search;
     public $searchResults;
     public $tempDetails;
+    public $detailsToRemove;
 
     public $findItemTemp;
     public $productTemp = null;
@@ -112,6 +113,11 @@ class OnsiteCreate extends Component
                 }
             }
 
+            if (!empty($this->detailsToRemove)) {
+                foreach($this->detailsToRemove as $detailsToRemove)
+                    Detail::destroy($detailsToRemove);
+            }
+
             $currentTrans->firstName = $this->firstName;
             $currentTrans->lastName = $this->lastName;
             $currentTrans->contact = $this->contact;
@@ -124,6 +130,7 @@ class OnsiteCreate extends Component
                 ]);
             }
 
+            $this->detailsToRemove = [];
             $this->dispatch('alertNotif', 'Transaction successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
@@ -217,6 +224,10 @@ class OnsiteCreate extends Component
         });
     
         if ($index !== false) {
+            if ($this->mode == 'write') {
+                $this->detailsToRemove[] = $detailId;
+            }
+
             $this->details->forget($index);
         }
     }

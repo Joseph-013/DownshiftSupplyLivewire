@@ -22,7 +22,7 @@ class OnsiteTransactionDetails extends Component
     public function transactionSelected($transactionId)
     {
         $this->selectedTransaction = Transaction::with('details')->find($transactionId);
-        $this->details = $this->selectedTransaction->details;
+        $this->renderDetails();
     }
 
     public function deleteConfirm()
@@ -48,11 +48,18 @@ class OnsiteTransactionDetails extends Component
     #[On('renderTransactionDetails')]
     public function render()
     {
+        if($this->details)
+            $this->renderDetails();
         return view('livewire.main.admin.livewire.onsite-transaction-details');
     }
 
     public function modifyTrans()
     {
         $this->dispatch('useItemTemplate', transaction: $this->selectedTransaction->id);
+    }
+
+    public function renderDetails()
+    {
+        $this->details = $this->selectedTransaction->details;
     }
 }

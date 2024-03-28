@@ -175,6 +175,9 @@ class OnsiteCreate extends Component
 
     public function addItem($productId)
     {
+        $this->validate([
+            'quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ]);
         $product = Product::find($productId);
         if ($product) {
             $existingItemIndex = $this->findExistingItemIndex($productId);

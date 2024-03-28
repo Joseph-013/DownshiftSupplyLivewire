@@ -33,8 +33,7 @@ class OnlineCreate extends Component
     public function mount($transaction, $mode)
     {
         $this->mode = $mode;
-
-        $this->statusOptions = $this->getEnumValues('transactions', 'status');
+        
         // $this->transaction = Transaction::find($transaction)->with('details');
         $this->transaction = Transaction::find($transaction);
         $this->details = Detail::where('transaction_id', $this->transaction->id)->with('products')->get();
@@ -61,6 +60,8 @@ class OnlineCreate extends Component
             $this->shippingAddress = null;
             $this->status = null;
         }
+
+        $this->statusOptions = $this->getEnumValues('transactions', 'status');
     }
 
     public function render()
@@ -107,6 +108,26 @@ class OnlineCreate extends Component
     {
         $columnInfo = DB::select("SHOW COLUMNS FROM $table WHERE Field = ?", [$column])[0]->Type;
         preg_match('/^enum\((.*)\)$/', $columnInfo, $matches);
-        return explode(',', str_replace("'", '', $matches[1]));
+        $statuses = explode(',', str_replace("'", '', $matches[1]));
+
+    
+        $filteredStatuses = array_filter($statuses, function($status) {
+            $conditions = [
+                'Delivery' => ['Ready for Pickup'],
+                'Pickup' => ['In Transit']
+            ];
+            
+            $preferredService = $this->preferredService ?? null;
+            if ($preferredService === 'Delivery' && in_array($status, $conditions['Delivery'])) {
+                return false;
+            }
+            if ($preferredService === 'Pickup' && in_array($status, $conditions['Pickup'])) {
+                return false;
+            }
+
+            return true;
+        });
+
+        return $filteredStatuses;
     }
 }

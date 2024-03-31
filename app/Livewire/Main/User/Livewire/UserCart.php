@@ -25,9 +25,11 @@ class UserCart extends Component
     {
         // dd("$productId & $productQuantity");
         $productQuantity = (int) $productQuantity;
-        $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
+        $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->with('product')->first();
         if ($productQuantity <= 0) {
             $productQuantity = 1;
+        } elseif ($productQuantity > $product->product->stockquantity) {
+            $productQuantity = $product->product->stockquantity;
         }
         $product->quantity = $productQuantity;
         $product->save();
@@ -50,6 +52,11 @@ class UserCart extends Component
             $product->quantity += 1;
             $product->save();
         }
+    }
+
+    public function testRender()
+    {
+        $this->render();
     }
 
     public function removeItem($productId)

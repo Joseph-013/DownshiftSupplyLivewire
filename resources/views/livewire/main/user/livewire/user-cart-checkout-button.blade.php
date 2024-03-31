@@ -1,11 +1,8 @@
-<div>
+<div class="w-full max-w-96 flex flex-col items-center justify-center">
     <button wire:click="checkout" id="checkoutButton"
-        class="sm:block h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+        class="sm:block h-10 md:w-72 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
         Check out
     </button>
+    Additional fees may be added upon checkout.
 
-    <button wire:click="checkout" id="checkoutButton"
-        class="sm:hidden mx-auto w-full h-10 px-20 align-center flex flex-row items-center justify-center rounded-lg bg-orange-500 border-1 border-black text-white text-sm font-semibold text-spacing">
-        Check out
-    </button>
 </div>

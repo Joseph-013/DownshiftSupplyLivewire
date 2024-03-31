@@ -76,22 +76,13 @@
                                     Check out
                                 </button>
                             @endif
-                        </div>
-
-                        <div class="w-full mt-3 justify-end px-5 text-sm sm:flex hidden">
-                            Additional fees may be added upon checkout.
 
                         </div>
-                        <div class="w-full mt-3 flex justify-center text-center px-5 text-sm sm:hidden">
-                            Additional fees may be added upon checkout.
 
-                        </div>
-                        {{-- Products --}}
+
                     </div>
                 </div>
-
             </div>
-
 
         </div>
         @livewireScripts

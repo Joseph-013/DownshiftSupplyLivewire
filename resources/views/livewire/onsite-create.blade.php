@@ -73,7 +73,7 @@
                 </div>
             </div>
         @elseif ($mode == 'write')
-            <div class=" max-w-2xl">
+            <div class="w-[37rem]">
                 <form @if ($transaction) wire:submit.prevent="editTrans"
                 @else
                     wire:submit.prevent="createTrans" @endif>
@@ -85,35 +85,51 @@
                         </tr>
                         <tr class="h-11">
                             <td>
-                                <div class="flex flex-col">
+                                <div class="flex flex-col sm:w-[18rem] w-full">
                                     <div class="">
                                         First Name:
                                     </div>
-                                    <input wire:model="firstName" type="text">
+                                    <input wire:model="firstName" type="text" class="rounded">
                                 </div>
                             </td>
                             <td>
-                                <div class="flex flex-col">
+                                <div class="flex flex-col sm:w-[18rem] w-full">
                                     <div class="">
                                         Last Name:
                                     </div>
-                                    <input wire:model="lastName" type="text">
+                                    <input wire:model="lastName" type="text" class="rounded">
                                 </div>
                             </td>
                         </tr>
                         <tr class="h-11">
                             <td>
-                                <div class="flex flex-col">
+                                <div class="flex flex-col w-full">
                                     <div class="">
                                         Contact Number:
                                     </div>
-                                    <input wire:model="contact" type="number">
+                                    <input wire:model="contact" type="number" inputmode="numeric" class="rounded">
+                                    <style>
+    /* Hide spinner arrows for Chrome, Edge, and Safari */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide spinner arrows for Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+
                                 </div>
                             </td>
                             <td></td>
                         </tr>
                     </table>
-                    <div class="flex flex-col text-left">
+                    <div class="flex flex-row">
+                    <div class="flex flex-col text-left sm:w-1/2">
                         Item:
                         <div class="w-full">
                                 <button wire:click="findItemTemplate" type="button"
@@ -125,9 +141,16 @@
                                             d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                                     </svg>
                                 </button>
-                                <input wire:model="quantity" type="number" name="quantity">
                         </div>
                     </div>
+                    <div class="flex flex-col text-left sm:w-1/2 ml-18">
+                        Quantity:
+                        <div class="w-full">
+                            <input wire:model="quantity" type="number" name="quantity" class="rounded sm:w-[18rem] w-full">
+                        </div>            
+                    </div>
+                    </div>
+                    
                     <div class="columns-2 mt-2">
                         <div class="flex justify-center">
                             <button type="button" wire:click="cancel"
@@ -136,7 +159,8 @@
                                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" class="bi bi-slash-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708" />
+                                    <path
+                                        d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708" />
                                 </svg>
                             </button>
                         </div>
@@ -154,7 +178,8 @@
                         </div>
                     </div>
             </div>
-            <table class="w-full text-center">
+            <div class="h-auto max-h-40 overflow-y-auto md:max-w-[38rem] ">
+            <table class="w-full text-center ">
                 <tr>
                     <th class="w-2/12"></th>
                     <th class="w-5/12 text-left">Item Name</th>
@@ -162,27 +187,28 @@
                     <th class="w-1/12">Qty</th>
                     <th class="w-2/12">Subtotal</th>
                 </tr>
-                @if($details)
-                @foreach($details as $detail)
-                <tr>
-                    <td>
-                        <img
-                            src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
-                            class="w-14 h-14 rounded">
-                    </td>
-                    <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
-                    <td>{{ $detail->products->price }}</td>
-                    <td>{{ $detail->quantity }}</td>
-                    <td>{{ $detail->subtotal }}</td>
-                    <td>
-                        <button wire:click="removeDetail({{ $detail->id }})">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                              </svg>
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
+                @if ($details)
+                    @foreach ($details as $detail)
+                        <tr>
+                            <td>
+                                <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                                    class="w-14 h-14 rounded">
+                            </td>
+                            <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
+                            <td>{{ $detail->products->price }}</td>
+                            <td>{{ $detail->quantity }}</td>
+                            <td>{{ $detail->subtotal }}</td>
+                            <td>
+                                <button wire:click="removeDetail({{ $detail->id }})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endif
                 @if($tempDetails)
                 @foreach($tempDetails as $tempDetail)
@@ -192,7 +218,7 @@
                             src="{{ filter_var($tempDetail['image'], FILTER_VALIDATE_URL) ? $tempDetail['image'] : asset('storage/assets/' . $tempDetail['image']) }}"
                             class="w-14 h-14 rounded">
                     </td>
-                    <td class="line-clamp-3 text-left">{{ $tempDetail['name'] }}</td>
+                    <td class="text-left">{{ $tempDetail['name'] }}</td>
                     <td>{{ $tempDetail['price'] }}</td>
                     <td>{{ $tempDetail['quantity'] }}</td>
                     <td>{{ $tempDetail['subtotal'] }}</td>
@@ -206,35 +232,36 @@
                 </tr>
                 @endforeach
                 @endif
+                
             </table>
+            </div>
         @endif
         </form>
     </div>
 
 
     {{-- Overlay List --}}
-    @if($findItemTemp)
-    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-        <div class="absolute inset-0 bg-black opacity-50 z-20" wire:click="hideItemFindList"></div>
+    @if ($findItemTemp)
+        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+            <div class="absolute inset-0 bg-black opacity-50 z-20" wire:click="hideItemFindList"></div>
 
         <div class="size-10 bg-white z-30 w-96 p-2 h-max rounded-lg">
             <div class="w-full text-center">Find Item:</div>
             <form id="searchForm" wire:submit.prevent="submitSearch" class="flex flex-row">
-                <div class="flex flex-row w-full">
+                <div class="flex flex-row w-full my-1 mb-2">
                     <input wire:model="search" name="search" id="searchInput"
                         class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
                         type="text" />
                     <button type="button" wire:click.prevent="clearSearch"
-                        class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
-                        <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2  h-10 w-10 flex items-center justify-center">
+                        <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16"
                             fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                             <path
                                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
                         </svg>
                     </button>
-                </div>
-                <button type="submit"
-                    class="ml-1 rounded-lg border-gray-500 border-2 px-2 text-sm hover:bg-gray-200 flex items-center">
+                    <button type="submit"
+                    class="ml-1 rounded-lg border-gray-500 border-2 px-2 text-sm hover:bg-gray-200 flex items-center h-10">
                     <svg class="feather feather-search" fill="none" height="18" stroke="currentColor"
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                         width="24" xmlns="http://www.w3.org/2000/svg">
@@ -242,13 +269,15 @@
                         <line x1="21" x2="16.65" y1="21" y2="16.65" />
                     </svg>
                 </button>
+                </div>
+                
             </form>
-            <div class="w-full h-80 overflow-y-auto">
+            <div class="w-full h-80 overflow-y-auto text-sm">
             <table class="w-full">
                 @foreach($products as $product)
                     <tr class="border-black border-1">
-                        <td>{{ $product->name }}</td>
-                        <td><button wire:click="addItem({{ $product->id }})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                        <td class="mr-4 text-left pl-1">{{ $product->name }}</td>
+                        <td class=""><button wire:click="addItem({{ $product->id }})"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
                           </svg></button></td>
                     </tr>
@@ -256,6 +285,5 @@
             </table>
             </div>
         </div>
-    </div>
     @endif
 </div>

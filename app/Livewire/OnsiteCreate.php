@@ -24,6 +24,7 @@ class OnsiteCreate extends Component
     public $detailsToRemove;
     public $quantity;
     public $quantities = [];
+    public $subtotals = [];
 
     public $findItemTemp;
     public $productTemp = null;
@@ -43,6 +44,7 @@ class OnsiteCreate extends Component
             $this->details = $this->transaction->details;
             foreach ($this->details as $detail) {
                 $this->quantities[$detail->id] = $detail->quantity;
+                $this->subtotals[$detail->id] = $detail->subtotal;
             }
         } else {
             $this->mode = 'write';
@@ -89,6 +91,8 @@ class OnsiteCreate extends Component
             $this->dispatch('alertNotif', 'Transaction successfully created');
             $this->dispatch('hideItemTemplate');
             $this->tempDetails = [];
+            $this->quantities = [];
+            $this->subtotals = [];
             $this->dispatch('renderTransactionDetails');
             $this->dispatch('renderTransactionList');
         }
@@ -102,6 +106,7 @@ class OnsiteCreate extends Component
     public function editTrans()
     {
         $currentTrans = $this->transaction;
+        $grandTotal = 0;
         $this->validate([
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
@@ -116,6 +121,7 @@ class OnsiteCreate extends Component
                     $newDetail->product_id = $tempDetail['id'];
                     $newDetail->quantity = $tempDetail['quantity'];
                     $newDetail->subtotal = $tempDetail['subtotal'];
+                    $grandTotal += $tempDetail['subtotal'];
                     $newDetail->save();
                 }
             }
@@ -128,20 +134,25 @@ class OnsiteCreate extends Component
             $currentTrans->firstName = $this->firstName;
             $currentTrans->lastName = $this->lastName;
             $currentTrans->contact = $this->contact;
-            $currentTrans->save();
 
             foreach ($this->details as $detail) {
                 $detail->update([
                     'quantity' => $this->quantities[$detail->id] ?? 0,
-                    'subtotal' => $detail['subtotal'],
+                    'subtotal' => $this->subtotals[$detail->id] ?? 0,
                 ]);
+                $grandTotal += $detail->subtotal;
             }
+            $currentTrans->grandTotal = $grandTotal;
+            $currentTrans->save();
 
-            $this->detailsToRemove = [];
             $this->dispatch('alertNotif', 'Transaction successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
             $this->dispatch('renderTransactionList');
+            $this->detailsToRemove = [];
+            $this->tempDetails = [];
+            $this->quantities = [];
+            $this->subtotals = [];
         }
     }
 
@@ -253,16 +264,31 @@ class OnsiteCreate extends Component
         foreach ($this->tempDetails as &$tempDetail) {
             if ($tempDetail['id'] == $productId) {
                 $tempDetail['quantity'] = $newQuantity;
-                $tempDetail['subtotal'] = $tempDetail['price'] * $newQuantity;
+                $product = Product::find($tempDetail['id']);
+                if ($product) {
+                    $tempDetail['subtotal'] = $product->price * $newQuantity;
+                }
                 break;
             }
         }
     }
 
-    public function updatedTempDetails()
+    public function updateExistingQuantity($productId, $newQuantity)
     {
-        foreach ($this->tempDetails as $tempDetail) {
-            $tempDetail['subtotal'] = $tempDetail['price'] * $tempDetail['quantity'];
+        $this->validate([
+            'quantities.*' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ]);
+
+        foreach ($this->details as $detail) {
+            if ($detail->id == $productId) {
+                $this->quantities[$detail->id] = $newQuantity;
+                $product = Product::find($detail->products->id);
+                if ($product) {
+                    $detail->subtotal = $product->price * $newQuantity;
+                    $this->subtotals[$detail->id] = $detail->subtotal;
+                }
+                break;
+            }
         }
     }
 }

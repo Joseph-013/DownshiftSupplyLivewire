@@ -198,8 +198,8 @@
                                 </td>
                                 <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
                                 <td>{{ $detail->products->price }}</td>
-                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}"></td>
-                                <td>{{ $detail->subtotal }}</td>
+                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}" wire:change="updateExistingQuantity({{ $detail->id }}, $event.target.value)"></td>
+                                <td>{{ number_format($detail->subtotal, 2) }}</td>
                                 <td>
                                     <button wire:click="removeDetail({{ $detail->id }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -222,7 +222,7 @@
                                 <td class="text-left">{{ $tempDetail['name'] }}</td>
                                 <td>{{ $tempDetail['price'] }}</td>
                                 <td><input class="w-11/12" type="number" wire:model="tempDetails.{{ $index }}.quantity" wire:change="updateQuantity({{ $tempDetail['id'] }}, $event.target.value)"></td>
-                                <td>{{ $tempDetail['subtotal'] }}</td>
+                                <td>{{ number_format($tempDetail['subtotal'], 2) }}</td>
                                 <td>
                                     <button wire:click="removeItem({{ $tempDetail['id'] }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

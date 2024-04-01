@@ -230,7 +230,7 @@
                                 <td>Shipping Fee:</td>
                                 <td class="text-left">
                                     <input id="autocomplete" wire:model="shippingFee" type="number"
-                                        class="rounded-lg h-9 w-full" required min="0" />
+                                        class="rounded-lg h-9 w-full" min="0" />
                                 </td>
                             </tr>
                             <tr>

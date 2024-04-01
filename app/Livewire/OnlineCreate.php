@@ -46,9 +46,9 @@ class OnlineCreate extends Component
             $this->contact = $this->transaction->contact;
             $this->paymentOption = $this->transaction->paymentOption;
             $this->preferredService = $this->transaction->preferredService;
-            $this->courierUsed = $this->transaction->courierUsed ?? 'Not Set';
-            $this->shippingFee = $this->transaction->shippingFee ?? 'Not Set';
-            $this->trackingNumber = $this->transaction->trackingNumber ?? 'Not Set';
+            $this->courierUsed = $this->transaction->courierUsed;
+            $this->shippingFee = $this->transaction->shippingFee;
+            $this->trackingNumber = $this->transaction->trackingNumber;
             $this->shippingAddress = $this->transaction->shippingAddress;
             $this->status = $this->transaction->status;
             $this->image = $this->transaction->proofOfPayment;
@@ -73,18 +73,19 @@ class OnlineCreate extends Component
     {
         $currentTrans = $this->transaction;
         $this->validate([
-            'courierUsed' => ['required', 'string'],
-            'shippingFee' => ['required', 'numeric', 'min:0'],
-            'trackingNumber' => ['required', 'string'],
-            'shippingAddress' => ['required', 'string'],
             'status' => ['required', 'string']
         ]);
 
-        if ($this->courierUsed && $this->shippingFee && $this->trackingNumber && $this->shippingAddress && $this->status) {
+        if ($this->status) {
             $currentTrans->courierUsed = $this->courierUsed;
-            $currentTrans->shippingFee = $this->shippingFee;
             $currentTrans->trackingNumber = $this->trackingNumber;
             $currentTrans->shippingAddress = $this->shippingAddress;
+            if ($this->shippingFee) {
+                $currentTrans->shippingFee = $this->shippingFee;
+            }
+            else {
+                $currentTrans->shippingFee = null;
+            }
             $currentTrans->status = $this->status;
             $currentTrans->save();
 

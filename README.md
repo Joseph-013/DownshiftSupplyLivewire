@@ -38,12 +38,15 @@ Installing node on project directory:
 
 Creating fresh database
 
-1. php artisan migrate:fresh --seed
+- php artisan migrate:fresh --seed
 
 Routing issue: Second time trigger
 php artisan route:cache
 php artisan config:cache
 php artisan cache:clear
+
+Storage issue:
+php artisan storage:link
 
 ## Project Custom Events
 Component (Listener) alertNotif, 'message'

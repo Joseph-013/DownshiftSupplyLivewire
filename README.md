@@ -45,6 +45,10 @@ php artisan route:cache
 php artisan config:cache
 php artisan cache:clear
 
+Storage issue:
+php artisan storage:link
+
+
 ## Project Custom Events
 Component (Listener) alertNotif, 'message'
     $this->dispatch('alertNotif', 'message');

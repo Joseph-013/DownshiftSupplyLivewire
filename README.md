@@ -45,7 +45,7 @@ php artisan route:cache
 php artisan config:cache
 php artisan cache:clear
 
-Storage issue:
+Storage/Picture issue:
 php artisan storage:link
 
 ## Project Custom Events

@@ -14,6 +14,7 @@
 
 ## Links
 - Email: downshiftsupply.store@gmail.com
+- Password: Downshift!1242024
 
 Client Name
 - Christian Carlo Cataring Capuno

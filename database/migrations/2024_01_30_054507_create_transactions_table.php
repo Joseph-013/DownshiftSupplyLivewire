@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('status', ['Processing', 'On Hold', 'Cancelled', 'Returned', 'In Transit', 'Ready for Pickup', 'Complete'])->nullable(); //nullable
             $table->string('shippingAddress')->nullable(); //nullable
             $table->string('courierUsed')->nullable(); //nullable
-            $table->decimal('shippingFee', 6, 2)->unsigned()->nullable(); //nullable
+            $table->decimal('shippingFee', 10, 2)->unsigned()->nullable(); //nullable
             $table->string('trackingNumber')->nullable(); //nullable
             $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //for now nullable
             $table->dateTime('intransit_at')->nullable();

@@ -19,7 +19,8 @@ class ProductList extends Component
     #[On('renderProductList')]
     public function render()
     {
-        $products = Product::where('name', 'like', '%' . $this->search . '%')
+        $products = Product::where('status', 'Existing')
+                    ->where('name', 'like', '%' . $this->search . '%')
                     ->paginate(50);
         return view('livewire.main.admin.livewire.product-list')->with(['products' => $products]);
     }

@@ -43,8 +43,9 @@ class ProductDetails extends Component
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }
-
-            $this->selectedProduct->delete();
+            
+            $this->selectedProduct->status = 'Deleted';
+            $this->selectedProduct->save();
             $this->selectedProduct = null;
             $this->confirmDelete = false;
             $this->dispatch('renderProductList');

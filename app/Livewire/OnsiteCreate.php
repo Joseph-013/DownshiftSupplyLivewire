@@ -24,6 +24,7 @@ class OnsiteCreate extends Component
     public $detailsToRemove;
     public $quantity;
     public $quantities = [];
+    public $subtotals = [];
 
     public $findItemTemp;
     public $productTemp = null;
@@ -89,6 +90,8 @@ class OnsiteCreate extends Component
             $this->dispatch('alertNotif', 'Transaction successfully created');
             $this->dispatch('hideItemTemplate');
             $this->tempDetails = [];
+            $this->quantities = [];
+            $this->subtotals = [];
             $this->dispatch('renderTransactionDetails');
             $this->dispatch('renderTransactionList');
         }
@@ -133,11 +136,14 @@ class OnsiteCreate extends Component
             foreach ($this->details as $detail) {
                 $detail->update([
                     'quantity' => $this->quantities[$detail->id] ?? 0,
-                    'subtotal' => $detail['subtotal'],
+                    'subtotal' => $this->subtotals[$detail->id] ?? 0,
                 ]);
             }
 
             $this->detailsToRemove = [];
+            $this->tempDetails = [];
+            $this->quantities = [];
+            $this->subtotals = [];
             $this->dispatch('alertNotif', 'Transaction successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
@@ -253,16 +259,31 @@ class OnsiteCreate extends Component
         foreach ($this->tempDetails as &$tempDetail) {
             if ($tempDetail['id'] == $productId) {
                 $tempDetail['quantity'] = $newQuantity;
-                $tempDetail['subtotal'] = $tempDetail['price'] * $newQuantity;
+                $product = Product::find($tempDetail['id']);
+                if ($product) {
+                    $tempDetail['subtotal'] = $product->price * $newQuantity;
+                }
                 break;
             }
         }
     }
 
-    public function updatedTempDetails()
+    public function updateExistingQuantity($productId, $newQuantity)
     {
-        foreach ($this->tempDetails as $tempDetail) {
-            $tempDetail['subtotal'] = $tempDetail['price'] * $tempDetail['quantity'];
+        $this->validate([
+            'quantities.*' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ]);
+
+        foreach ($this->details as $detail) {
+            if ($detail->id == $productId) {
+                $this->quantities[$detail->id] = $newQuantity;
+                $product = Product::find($detail->products->id);
+                if ($product) {
+                    $detail->subtotal = $product->price * $newQuantity;
+                    $this->subtotals[$detail->id] = $detail->subtotal;
+                }
+                break;
+            }
         }
     }
 }

@@ -198,7 +198,7 @@
                                 </td>
                                 <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
                                 <td>{{ $detail->products->price }}</td>
-                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}"></td>
+                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}" wire:change="updateExistingQuantity({{ $detail->id }}, $event.target.value)"></td>
                                 <td>{{ $detail->subtotal }}</td>
                                 <td>
                                     <button wire:click="removeDetail({{ $detail->id }})">

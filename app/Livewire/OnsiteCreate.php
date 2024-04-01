@@ -47,6 +47,8 @@ class OnsiteCreate extends Component
             $this->contact = null;
             $this->details = null;
         }
+
+        $this->quantity = 1;
     }
 
     public function render()
@@ -115,7 +117,7 @@ class OnsiteCreate extends Component
             }
 
             if (!empty($this->detailsToRemove)) {
-                foreach($this->detailsToRemove as $detailsToRemove)
+                foreach ($this->detailsToRemove as $detailsToRemove)
                     Detail::destroy($detailsToRemove);
             }
 
@@ -200,8 +202,7 @@ class OnsiteCreate extends Component
 
     public function findExistingItemIndex($productId)
     {
-        if($this->tempDetails)
-        {
+        if ($this->tempDetails) {
             foreach ($this->tempDetails as $index => $item) {
                 if ($item['id'] == $productId) {
                     return $index;
@@ -216,7 +217,7 @@ class OnsiteCreate extends Component
         foreach ($this->tempDetails as $index => $item) {
             if ($item['id'] == $detailId) {
                 unset($this->tempDetails[$index]);
-                break; 
+                break;
             }
         }
     }
@@ -226,7 +227,7 @@ class OnsiteCreate extends Component
         $index = $this->details->search(function ($detail) use ($detailId) {
             return $detail->id == $detailId;
         });
-    
+
         if ($index !== false) {
             if ($this->mode == 'write') {
                 $this->detailsToRemove[] = $detailId;

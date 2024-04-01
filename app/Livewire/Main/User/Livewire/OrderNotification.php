@@ -47,15 +47,11 @@ class OrderNotification extends Component
 
     public function render()
     {
-        // session()->forget('orderNotifStop');
         $this->transaction = Transaction::where([
             'user_id' => Auth::id(),
             'status' => 'In Transit',
-        ])
-            // ->whereDate('intransit_at', '>', Carbon::now()->subDays(0))
-            ->orderBy('intransit_at')->skip($this->transactionCount)->first();
+        ])->whereDate('intransit_at', '>', Carbon::now()->subDays(7))->orderBy('intransit_at')->skip($this->transactionCount)->first();
 
-        // dd($this->transaction);
         if ($this->transaction && $this->showOverlay && !session()->has('orderNotifStop')) {
             $this->showOverlay = true;
             $this->findDetails();

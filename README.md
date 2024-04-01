@@ -48,7 +48,6 @@ php artisan cache:clear
 Storage issue:
 php artisan storage:link
 
-
 ## Project Custom Events
 Component (Listener) alertNotif, 'message'
     $this->dispatch('alertNotif', 'message');

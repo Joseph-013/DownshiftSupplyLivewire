@@ -67,15 +67,13 @@
                         @endif
 
                         <div class="w-full mt-3 flex justify-end px-5">
-                            @if ($cartNotEmpty)
-                                {{-- <a href="{{ route('user.checkout') }}" --}}
                                 <livewire:main.user.livewire.user-cart-checkout-button />
-                            @else
+                            {{-- @else
                                 <button disabled id="checkoutButton"
                                     class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-gray-300 ml-3 border-1 border-gray-400 text-gray-600 text-sm font-semibold text-spacing cursor-not-allowed">
                                     Check out
                                 </button>
-                            @endif
+                            @endif --}}
 
                         </div>
 

@@ -9,11 +9,17 @@ use Livewire\Component;
 
 class UserCartCheckoutButton extends Component
 {
+    public $cartEntries;
+
+    public function mount()
+    {
+        $this->cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();
+    }
+
     public function checkout()
     {
-        $cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();
-        if ($cartEntries) {
-            foreach ($cartEntries as $cartEntry) {
+        if ($this->cartEntries) {
+            foreach ($this->cartEntries as $cartEntry) {
                 if ($cartEntry->quantity > $cartEntry->product->stockquantity) {
                     $this->dispatch('alertNotif', 'Some items exceed available stocks');
                     return;

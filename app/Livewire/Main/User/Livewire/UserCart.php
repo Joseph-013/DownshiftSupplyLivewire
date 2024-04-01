@@ -14,6 +14,19 @@ class UserCart extends Component
     public $hasExceeded;
     // public $productDetails;
 
+    public function mount()
+    {
+        $deletedEntryIds = Cart::where('user_id', Auth::id())
+                            ->whereDoesntHave('product', function($query) {
+                                $query->where('status', '!=', 'deleted');
+                            })
+                            ->pluck('id');
+
+        if ($deletedEntryIds->isNotEmpty()) {
+            Cart::destroy($deletedEntryIds);
+        }
+    }
+
     public function render()
     {
         $this->cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();

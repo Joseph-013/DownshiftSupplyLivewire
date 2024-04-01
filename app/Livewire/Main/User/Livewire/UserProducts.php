@@ -74,7 +74,7 @@ class UserProducts extends Component
 
     public function render()
     {
-        $products = Product::where('name', 'like', '%' . $this->search . '%')->inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
+        $products = Product::where('status', 'Existing')->where('name', 'like', '%' . $this->search . '%')->inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
         return view('livewire.main.user.livewire.user-products')->with(['products' => $products]);
     }
 

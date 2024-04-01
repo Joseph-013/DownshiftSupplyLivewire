@@ -198,7 +198,7 @@
                                 </td>
                                 <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
                                 <td>{{ $detail->products->price }}</td>
-                                <td>{{ $detail->quantity }}</td>
+                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}"></td>
                                 <td>{{ $detail->subtotal }}</td>
                                 <td>
                                     <button wire:click="removeDetail({{ $detail->id }})">
@@ -213,7 +213,7 @@
                         @endforeach
                     @endif
                     @if ($tempDetails)
-                        @foreach ($tempDetails as $tempDetail)
+                        @foreach ($tempDetails as $index => $tempDetail)
                             <tr>
                                 <td>
                                     <img src="{{ filter_var($tempDetail['image'], FILTER_VALIDATE_URL) ? $tempDetail['image'] : asset('storage/assets/' . $tempDetail['image']) }}"
@@ -221,7 +221,7 @@
                                 </td>
                                 <td class="text-left">{{ $tempDetail['name'] }}</td>
                                 <td>{{ $tempDetail['price'] }}</td>
-                                <td>{{ $tempDetail['quantity'] }}</td>
+                                <td><input class="w-11/12" type="number" wire:model="tempDetails.{{ $index }}.quantity" wire:change="updateQuantity({{ $tempDetail['id'] }}, $event.target.value)"></td>
                                 <td>{{ $tempDetail['subtotal'] }}</td>
                                 <td>
                                     <button wire:click="removeItem({{ $tempDetail['id'] }})">

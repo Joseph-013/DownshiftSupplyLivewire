@@ -64,6 +64,7 @@ class OnsiteCreate extends Component
 
     public function createTrans()
     {
+        $grandTotal = 0;
         $this->validate([
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
@@ -80,13 +81,17 @@ class OnsiteCreate extends Component
             ]);
 
             foreach ($this->tempDetails as $detail) {
-                Detail::create([
+                $newDetail = Detail::create([
                     'transaction_id' => $newTransaction->id,
                     'product_id' => $detail['id'],
                     'quantity' => $detail['quantity'],
                     'subtotal' => $detail['subtotal'],
                 ]);
+                $grandTotal += $newDetail->subtotal;
             }
+
+            $newTransaction->grandTotal = $grandTotal;
+            $newTransaction->save();
 
             $this->dispatch('alertNotif', 'Transaction successfully created');
             $this->dispatch('hideItemTemplate');

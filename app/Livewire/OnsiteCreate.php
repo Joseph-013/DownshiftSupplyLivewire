@@ -184,7 +184,7 @@ class OnsiteCreate extends Component
         if ($product) {
             $existingItemIndex = $this->findExistingItemIndex($productId);
             if ($existingItemIndex !== null) {
-                $this->tempDetails[$existingItemIndex]['quantity']++;
+                $this->tempDetails[$existingItemIndex]['quantity'] = $this->tempDetails[$existingItemIndex]['quantity'] + $this->quantity;
                 $this->tempDetails[$existingItemIndex]['subtotal'] += $product->price;
             } else {
                 $this->tempDetails[] = [

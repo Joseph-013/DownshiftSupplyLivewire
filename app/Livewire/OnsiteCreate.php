@@ -23,6 +23,7 @@ class OnsiteCreate extends Component
     public $tempDetails;
     public $detailsToRemove;
     public $quantity;
+    public $quantities = [];
 
     public $findItemTemp;
     public $productTemp = null;
@@ -40,6 +41,9 @@ class OnsiteCreate extends Component
             $this->lastName = $this->transaction->lastName;
             $this->contact = $this->transaction->contact;
             $this->details = $this->transaction->details;
+            foreach ($this->details as $detail) {
+                $this->quantities[$detail->id] = $detail->quantity;
+            }
         } else {
             $this->mode = 'write';
             $this->firstName = null;
@@ -128,7 +132,7 @@ class OnsiteCreate extends Component
 
             foreach ($this->details as $detail) {
                 $detail->update([
-                    'quantity' => $detail['quantity'],
+                    'quantity' => $this->quantities[$detail->id] ?? 0,
                     'subtotal' => $detail['subtotal'],
                 ]);
             }
@@ -181,11 +185,14 @@ class OnsiteCreate extends Component
             'quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
         ]);
         $product = Product::find($productId);
+
         if ($product) {
+            $transactionDetails = Detail::where('transaction_id', $this->id)->get();
+            $existingItem = $transactionDetails->firstWhere('product_id', $productId);
             $existingItemIndex = $this->findExistingItemIndex($productId);
-            if ($existingItemIndex !== null) {
-                $this->tempDetails[$existingItemIndex]['quantity'] = $this->tempDetails[$existingItemIndex]['quantity'] + $this->quantity;
-                $this->tempDetails[$existingItemIndex]['subtotal'] += $product->price;
+
+            if ($existingItem || $existingItemIndex !== null) {
+                $this->dispatch('alertNotif', 'Product already exists in the list');
             } else {
                 $this->tempDetails[] = [
                     'id' => $product->id,
@@ -234,6 +241,28 @@ class OnsiteCreate extends Component
             }
 
             $this->details->forget($index);
+        }
+    }
+
+    public function updateQuantity($productId, $newQuantity)
+    {
+        $this->validate([
+            'tempDetails.*.quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ]);
+
+        foreach ($this->tempDetails as &$tempDetail) {
+            if ($tempDetail['id'] == $productId) {
+                $tempDetail['quantity'] = $newQuantity;
+                $tempDetail['subtotal'] = $tempDetail['price'] * $newQuantity;
+                break;
+            }
+        }
+    }
+
+    public function updatedTempDetails()
+    {
+        foreach ($this->tempDetails as $tempDetail) {
+            $tempDetail['subtotal'] = $tempDetail['price'] * $tempDetail['quantity'];
         }
     }
 }

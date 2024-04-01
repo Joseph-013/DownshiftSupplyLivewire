@@ -83,7 +83,8 @@ class InventoryCreate extends Component
                 'stockquantity' => $this->stockquantity,
                 'criticallevel' => $this->criticallevel,
                 'image' => $imageName,
-                'description' => $this->description
+                'description' => $this->description,
+                'status' => 'Existing'
             ]);
 
             $this->dispatch('alertNotif', 'Product successfully created');

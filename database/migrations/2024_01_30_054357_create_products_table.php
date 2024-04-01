@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('stockquantity')->unsigned();
             $table->integer('criticallevel')->unsigned();
             $table->text('image')->nullable();
+            $table->enum('status', ['Existing', 'Deleted'])->default('Existing')->nullable();
             $table->timestamps();
         });
     }

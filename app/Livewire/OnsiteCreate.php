@@ -157,7 +157,6 @@ class OnsiteCreate extends Component
             $this->detailsToRemove = [];
             $this->tempDetails = [];
             $this->quantities = [];
-            $this->subtotals = [];
         }
     }
 

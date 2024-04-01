@@ -44,6 +44,7 @@ class OnsiteCreate extends Component
             $this->details = $this->transaction->details;
             foreach ($this->details as $detail) {
                 $this->quantities[$detail->id] = $detail->quantity;
+                $this->subtotals[$detail->id] = $detail->subtotal;
             }
         } else {
             $this->mode = 'write';
@@ -105,6 +106,7 @@ class OnsiteCreate extends Component
     public function editTrans()
     {
         $currentTrans = $this->transaction;
+        $grandTotal = 0;
         $this->validate([
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
@@ -119,6 +121,7 @@ class OnsiteCreate extends Component
                     $newDetail->product_id = $tempDetail['id'];
                     $newDetail->quantity = $tempDetail['quantity'];
                     $newDetail->subtotal = $tempDetail['subtotal'];
+                    $grandTotal += $tempDetail['subtotal'];
                     $newDetail->save();
                 }
             }
@@ -131,23 +134,25 @@ class OnsiteCreate extends Component
             $currentTrans->firstName = $this->firstName;
             $currentTrans->lastName = $this->lastName;
             $currentTrans->contact = $this->contact;
-            $currentTrans->save();
 
             foreach ($this->details as $detail) {
                 $detail->update([
                     'quantity' => $this->quantities[$detail->id] ?? 0,
                     'subtotal' => $this->subtotals[$detail->id] ?? 0,
                 ]);
+                $grandTotal += $detail->subtotal;
             }
+            $currentTrans->grandTotal = $grandTotal;
+            $currentTrans->save();
 
-            $this->detailsToRemove = [];
-            $this->tempDetails = [];
-            $this->quantities = [];
-            $this->subtotals = [];
             $this->dispatch('alertNotif', 'Transaction successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
             $this->dispatch('renderTransactionList');
+            $this->detailsToRemove = [];
+            $this->tempDetails = [];
+            $this->quantities = [];
+            $this->subtotals = [];
         }
     }
 

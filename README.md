@@ -39,9 +39,15 @@ Installing node on project directory:
 
 Creating fresh database
 
-- php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
+php artisan route:clear
+php artisan route:cache
+php artisan config:cache
+php artisan cache:clear
+
 
 Routing issue: Second time trigger
+php artisan route:clear
 php artisan route:cache
 php artisan config:cache
 php artisan cache:clear

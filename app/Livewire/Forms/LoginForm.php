@@ -32,14 +32,27 @@ class LoginForm extends Form
     {
         $this->ensureIsNotRateLimited();
 
+        $user = User::where('email', $this->email)->first();
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
+
+        if ($user->status === 'deleted') {
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
         if (!Auth::attempt($this->only(['email', 'password']), $this->remember)) {
+
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         } else {
-            $user = User::where('email', $this->email)->first();
             event(new Authenticated('web', $user));
         }
 

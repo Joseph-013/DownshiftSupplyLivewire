@@ -3,6 +3,7 @@
 use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
+use App\Models\User;
 
 new class extends Component {
     public string $password = '';
@@ -16,9 +17,19 @@ new class extends Component {
             'password' => ['required', 'string', 'current_password'],
         ]);
 
-        tap(Auth::user(), $logout(...))->delete();
+        // tap(Auth::user(), $logout(...))->delete();
+        $user = User::find(Auth::id());
 
-        $this->redirect('/', navigate: true);
+        Auth::logout();
+
+        $user->fullname = '(deleted)';
+        $user->email = '(deleted)';
+        $user->status = 'deleted';
+        Cart::where('user_id', $user->id)->delete();
+        $user->save();
+        $user = null;
+
+        $this->redirect('login', navigate: true);
     }
 }; ?>
 

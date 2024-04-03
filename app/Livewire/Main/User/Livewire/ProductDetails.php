@@ -19,7 +19,7 @@ class ProductDetails extends Component
     #[On('showDetails')]
     public function showDetails($productId)
     {
-        $findProduct = Product::find($productId)->first();
+        $findProduct = Product::find($productId);
         if ($findProduct)
             $this->product = $findProduct;
     }

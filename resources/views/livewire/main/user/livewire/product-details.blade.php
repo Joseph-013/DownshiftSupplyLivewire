@@ -32,15 +32,15 @@
                         </td>
                     </tr>
                     <tr class="h-9">
-                        <td class="w-1/3 text-left text-gray-500 flex h-full">Description:</td>
-                        <td class="w-2/3 text-left">
-                            {{ $product->description }}
-                        </td>
-                    </tr>
-                    <tr class="h-9">
                         <td class="w-1/3 text-left text-gray-500 flex h-full">Price:</td>
                         <td class="w-2/3 text-left">
                             ₱ {{ $product->price }}
+                        </td>
+                    </tr>
+                    <tr class="h-9">
+                        <td class="w-1/3 text-left text-gray-500 flex h-full">Description:</td>
+                        <td class="w-2/3 text-left">
+                            {{ $product->description }}
                         </td>
                     </tr>
                     <tr class="h-9">

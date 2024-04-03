@@ -15,9 +15,7 @@
                         <span class="font-medium">Shipping
                             Address:&nbsp;</span><br>{{ $transactionData ? $transactionData->shippingAddress : '--' }}
                     </div>
-                </li>
-                <li class="w-2/4 text-left text-sm px-3">
-                    <div class="my-1 mt-2">
+                    <div class="my-1">
                         <span class="font-medium">Date:&nbsp;</span>
                         {{ $transactionData ? $transactionData->created_at->format('m-d-Y') : '--' }}
                     </div>
@@ -33,6 +31,11 @@
                         <span class="font-medium">Tracking
                             Number:&nbsp;</span><br>{{ $transactionData ? $transactionData->trackingNumber : '--' }}
                     </div>
+                </li>
+                <li class="w-2/4 text-left text-sm px-3">
+                    <img class="rounded-md object-cover"
+                        src="{{ isset($transactionData) ? (filter_var($transactionData->proofOfPayment, FILTER_VALIDATE_URL) ? $transactionData->proofOfPayment : asset('storage/assets/' . $transactionData->proofOfPayment)) : 'https://via.placeholder.com/350x500.png/000000?text=...' }}"
+                        class="h-auto w-full object-cover" alt="Proof of Payment" style="max-height: 1000px">
                 </li>
             </ul>
 

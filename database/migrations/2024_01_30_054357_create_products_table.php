@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->text('description');
             $table->decimal('price', 10, 2)->unsigned();
             $table->integer('stockquantity')->unsigned();
             $table->integer('criticallevel')->unsigned();
@@ -32,3 +32,16 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
+
+/*
+
+            [
+                'name' => 'text',
+                'description' => 'text',
+                'price' => 999,
+                'stockquantity' => 999,
+                'criticallevel' => 3,
+                'image' => 'URL',
+            ],
+
+*/

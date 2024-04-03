@@ -69,7 +69,7 @@ class OnlineTransactionDetails extends Component
         //     $this->previousStatus = $this->transactions->status;
         //     $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction);
         // }
-        $this->selectedTransaction = Transaction::with('details')->find($transactionId);
+        $this->selectedTransaction = Transaction::with('details')->with('user')->find($transactionId);
         $this->details = $this->selectedTransaction->details;
         $this->dispatch('loadMap', $this->selectedTransaction->shippingAddress);
     }
@@ -105,7 +105,7 @@ class OnlineTransactionDetails extends Component
     //     $this->dispatch('alertNotif', 'Transaction successfully updated');
     //     $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction->id);
     // }
-    
+
     #[On('renderTransactionDetails')]
     public function render()
     {

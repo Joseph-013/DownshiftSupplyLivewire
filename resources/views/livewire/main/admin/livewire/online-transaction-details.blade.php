@@ -10,6 +10,10 @@
                         {{ isset($selectedTransaction) ? $selectedTransaction->id : '--' }}
                     </div>
                     <div class="text-left text-xs my-2">
+                        <span class="font-semibold">User Email:</span>
+                        {{ isset($selectedTransaction) ? $selectedTransaction->user->email : '--' }}
+                    </div>
+                    <div class="text-left text-xs my-2">
                         <span class="font-semibold">Date:</span>
                         {{ isset($selectedTransaction) ? $selectedTransaction->created_at : '--' }}
                     </div>

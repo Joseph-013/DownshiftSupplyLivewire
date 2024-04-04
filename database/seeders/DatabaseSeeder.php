@@ -14,24 +14,24 @@ class DatabaseSeeder extends Seeder
     {
         // Development:
 
-        $this->call(UsersTableSeeder::class);
-        \App\Models\User::factory(18)->create();
+        // $this->call(UsersTableSeeder::class);
+        // \App\Models\User::factory(18)->create();
 
-        // $this->call(ProductsTableSeeder::class);
-        \App\Models\Product::factory(500)->create();
+        // // $this->call(ProductsTableSeeder::class);
+        // \App\Models\Product::factory(500)->create();
 
-        // $this->call(FAQsTableSeeder::class);
-        \App\Models\FAQ::factory(20)->create();
+        // // $this->call(FAQsTableSeeder::class);
+        // \App\Models\FAQ::factory(20)->create();
 
-        // $this->call(CartsTableSeeder::class);
-        \App\Models\Cart::factory(100)->create();
+        // // $this->call(CartsTableSeeder::class);
+        // \App\Models\Cart::factory(100)->create();
 
-        \App\Models\Detail::factory(150)->create();
-        // $this->call(DetailsTableSeeder::class);
+        // \App\Models\Detail::factory(150)->create();
+        // // $this->call(DetailsTableSeeder::class);
 
-        // $this->call(TransactionsTableSeeder::class);
-        // \App\Models\Transaction::factory(50)->create();
-        \App\Models\Transaction::factory(500)->create();
+        // // $this->call(TransactionsTableSeeder::class);
+        // // \App\Models\Transaction::factory(50)->create();
+        // \App\Models\Transaction::factory(500)->create();
 
 
 
@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
 
         // Deployment:
 
-        // $this->call(UsersTableSeeder::class);
-        // $this->call(ProductsTableSeeder::class);
-        // $this->call(FAQsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(FAQsTableSeeder::class);
     }
 }

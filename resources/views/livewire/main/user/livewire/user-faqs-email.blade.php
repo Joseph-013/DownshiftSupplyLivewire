@@ -10,7 +10,9 @@
             Thank you.
         </span>
     </li>
-    <li class="w-full md:w-3/4 h-full px-3 overflow-y-auto border p-2" id="faqs-email-container">
+
+    {{-- faqs-email-container --}}
+    <li class="w-full md:w-3/4 h-full px-3 overflow-y-auto border p-2" id="">
         <form wire:submit.prevent="send">
             <div class="mb-2 text-start text-sm">
                 Name:&nbsp;&nbsp;@auth
@@ -20,12 +22,7 @@
                     {{ '--' }}
                 @endguest
             </div>
-            {{-- <div class="mb-1">
-                <input type="email" class="w-full px-3 py-2 border rounded-md text-xs text-gray-500" disabled
-                    @auth
-value="{{ Auth::user()->email }}" @endauth>
-            </div> --}}
-            <div class="mb-3 text-start text-sm">
+            <div class="mb-2 text-start text-sm">
                 Email:&nbsp;&nbsp;@auth
                     {{ Auth::user()->email }}
                 @endauth
@@ -33,9 +30,36 @@ value="{{ Auth::user()->email }}" @endauth>
                     {{ '--' }}
                 @endguest
             </div>
+            <div class="mb-3 text-start text-sm">
+                <span class="mr-2">Subject:</span>
+                <select class="rounded-lg h-10 w-36" required wire:model='subject'
+                    wire:change='updateSubject($event.target.value)'>
+                    <option value="" disabled selected hidden> - select - </option>
+                    {{-- Maybe pa add ng error handling sa placeholder --}}
+                    <option value="inquiry">Inquiry</option>
+                    <option value="return">Return</option>
+                </select>
+                @if ($subject == 'return')
+                    <div class="ml-4 my-2 text-gray-500">
+                        <span class="italic">Please make sure to follow the email format:<br />
+                            Order Number/Id: [Order Id]<br />
+                            Defective Product/s: [Defective Product/s]<br />
+                            Details: [Details]
+                        </span>
+                    </div>
+                @endif
+                <x-input-error :messages="$errors->get('subject')" class="mt-2 w-fit" />
+            </div>
+            {{-- @if ($subject == 'return')
+                <div class="w-full flex justify-start text-sm items-center">
+                    <label for="inputOrderId" class="mr-2">Order Id:</label>
+                    <input id="inputOrderId" class="rounded-lg" type="text">
+                </div>
+            @endif --}}
             <div>
-                <textarea name="inquiry" required wire:model="inquiry" placeholder="Your inquiry (Max: 500)"
-                    class="w-full px-3 py-2 border rounded-md resize-none text-xs" rows="4" @guest disabled @endguest></textarea>
+                <textarea name="inquiry" required wire:model="inquiry"
+                    placeholder="{{ $subject == 'return' ? 'Your return inquiry' : 'Your inquiry' }} (Max: 500)"
+                    class="w-full px-3 py-2 border rounded-md resize-none text-xs" rows="10" @guest disabled @endguest></textarea>
                 <x-input-error :messages="$errors->get('inquiry')" class="mt-2 w-fit" />
             </div>
             <div class="w-full mt-1 flex flex-row justify-end ">

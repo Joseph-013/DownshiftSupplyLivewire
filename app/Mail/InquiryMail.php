@@ -12,19 +12,21 @@ class InquiryMail extends Mailable
 
     public $name;
     public $email;
+    public $subject;
     public $inquiry;
 
-    public function __construct($name, $email, $inquiry)
+    public function __construct($name, $email, $subject, $inquiry)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->subject = $subject;
         $this->inquiry = $inquiry;
     }
 
     public function build()
     {
-        return $this->subject('DS: Customer Inquiry')
-                    ->from($this->email)
-                    ->view('emails.inquiry');
+        return $this->subject($this->subject)
+            ->from($this->email)
+            ->view('emails.inquiry');
     }
 }

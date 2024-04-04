@@ -1,11 +1,11 @@
 <ul class="flex flex-col md:flex-row w-full my-2">
     <li class="w-full md:w-1/4 text-left text-sm">
         <span class="font-medium mt-1">Do you have further questions?</span> <br>
-        Send email for additional inquiries <br class="hidden md:inline"><br class="hidden md:inline"><br
-            class="hidden md:inline"><br class="hidden md:inline">
-        <span class="text-xs">
+        Send email for additional inquiries <br /><br />
+        <span class="text-xs text-red-500">
             Emails will be sent to the customer
-            service. <br class="hidden md:block" />Expect a reply in 2-3 business days. We deeply appreciate your
+            service. <br class="hidden md:block" />Expect a reply in 2-3 business days. For returns, customer service
+            will include instructions <br class="hidden md:block" />for your return process. We deeply appreciate your
             patience.
             Thank you.
         </span>
@@ -48,7 +48,6 @@
                         </span>
                         <br />
                         <br />
-                        Please wait for a response within 2-3 business days for further instructions.
                     </div>
                 @endif
                 <x-input-error :messages="$errors->get('subject')" class="mt-2 w-fit" />

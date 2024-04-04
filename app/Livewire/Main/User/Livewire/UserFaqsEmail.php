@@ -56,7 +56,7 @@ class UserFaqsEmail extends Component
                     ->send(new InquiryMail(
                         Auth::user()->fullname,
                         Auth::user()->email,
-                        $subject, // Include the subject in the email
+                        $subject,
                         $this->inquiry
                     ));
                 session()->flash('sendStatus', 'Success! Your inquiry has been sent.');

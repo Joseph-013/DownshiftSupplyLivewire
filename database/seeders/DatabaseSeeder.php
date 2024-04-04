@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Development:
+
         $this->call(UsersTableSeeder::class);
         \App\Models\User::factory(18)->create();
 
@@ -30,5 +32,15 @@ class DatabaseSeeder extends Seeder
         // $this->call(TransactionsTableSeeder::class);
         // \App\Models\Transaction::factory(50)->create();
         \App\Models\Transaction::factory(500)->create();
+
+
+
+
+
+        // Deployment:
+
+        // $this->call(UsersTableSeeder::class);
+        // $this->call(ProductsTableSeeder::class);
+        // $this->call(FAQsTableSeeder::class);
     }
 }

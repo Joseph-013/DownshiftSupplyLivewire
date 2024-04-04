@@ -46,6 +46,9 @@
                             Defective Product/s: [Defective Product/s]<br />
                             Details: [Details]
                         </span>
+                        <br />
+                        <br />
+                        Please wait for a response within 2-3 business days for further instructions.
                     </div>
                 @endif
                 <x-input-error :messages="$errors->get('subject')" class="mt-2 w-fit" />

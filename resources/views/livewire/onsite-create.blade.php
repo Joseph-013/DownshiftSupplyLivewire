@@ -73,7 +73,7 @@
                 </div>
             </div>
         @elseif ($mode == 'write')
-            <div class="w-[37rem]">
+            <div class="lg:w-[37rem] w-full">
                 <form
                     @if ($transaction) wire:submit.prevent="editTrans"
                 @else
@@ -86,7 +86,7 @@
                         </tr>
                         <tr class="h-11">
                             <td>
-                                <div class="flex flex-col sm:w-[18rem] w-full">
+                                <div class="flex flex-col lg:w-[18rem] w-full">
                                     <div class="">
                                         First Name:
                                     </div>
@@ -94,7 +94,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="flex flex-col sm:w-[18rem] w-full">
+                                <div class="flex flex-col lg:w-[18rem] w-full">
                                     <div class="">
                                         Last Name:
                                     </div>
@@ -130,7 +130,7 @@
                         </tr>
                     </table>
                     <div class="flex flex-row">
-                        <div class="flex flex-col text-left sm:w-1/2">
+                        <div class="flex flex-col text-left lg:w-[18rem] w-full">
                             Item:
                             <div class="w-full">
                                 <button wire:click="findItemTemplate" type="button"
@@ -144,7 +144,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="flex flex-col text-left sm:w-1/2 ml-18">
+                        <div class="flex flex-col text-left lg:w-[18rem] w-full">
                             Quantity:
                             <div class="w-full">
                                 <input wire:model="quantity" type="number" name="quantity"
@@ -192,9 +192,9 @@
                     @if ($details)
                         @foreach ($details as $detail)
                             <tr>
-                                <td>
+                                <td class="hidden lg:block">
                                     <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
-                                        class="w-14 h-14 rounded">
+                                        class="w-14 h-14 rounded ">
                                 </td>
                                 <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
                                 <td>{{ $detail->products->price }}</td>
@@ -275,21 +275,25 @@
                     </div>
 
                 </form>
-                <div class="w-full h-80 overflow-y-auto text-sm">
-                    <table class="w-full">
-                        @foreach ($products as $product)
-                            <tr class="border-black border-1">
-                                <td class="mr-4 text-left pl-1">{{ $product->name }}</td>
-                                <td class=""><button wire:click="addItem({{ $product->id }})"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
-                                        </svg></button></td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
+                <div class="w-full h-80 overflow-y-auto text-sm ">
+                <table class="w-full">
+    @foreach ($products as $product)
+        <tr class="border-black border-1">
+            <td class="flex items-center justify-between py-1">
+                <span class="mr-4 text-left pl-1">{{ $product->name }}</span>
+                <button wire:click="addItem({{ $product->id }})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
+                    </svg>
+                </button>
+            </td>
+        </tr>
+    @endforeach
+</table>
+
+
+</div>
+
             </div>
     @endif
 </div>

@@ -67,11 +67,6 @@ class UserCart extends Component
         }
     }
 
-    public function testRender()
-    {
-        $this->render();
-    }
-
     public function removeItem($productId)
     {
         $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();

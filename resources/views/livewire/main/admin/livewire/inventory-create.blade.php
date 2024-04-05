@@ -103,6 +103,9 @@
                     <tr>
                         <td class="h-11 mt-3" colspan="2"><input wire:model="image" type="file"
                                 @if (!$product) required @endif></td>
+                        @error('image')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
                     </tr>
                     <tr class="h-11">
                         <td class="pe-3">Name:</td>
@@ -133,6 +136,21 @@
                         </td>
                     </tr>
                 </table>
+                <div>
+                    @error('price')
+                        <span class="text-red-500 text-center">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div>
+                    @error('stockquantity')
+                        <span class="text-red-500 text-center">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div>
+                    @error('criticallevel')
+                        <span class="text-red-500 text-center">{{ $message }}</span>
+                    @enderror
+                </div>
                 <div class="columns-2 mt-2">
                     <div class="flex justify-center">
                         <button type="button" wire:click="cancel"

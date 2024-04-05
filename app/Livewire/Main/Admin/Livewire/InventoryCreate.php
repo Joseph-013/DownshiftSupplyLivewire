@@ -70,7 +70,7 @@ class InventoryCreate extends Component
             'price' => ['required', 'numeric', 'min:0'],
             'stockquantity' => ['required', 'numeric', 'min:0'],
             'criticallevel' => ['required', 'numeric', 'min:0'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:4096'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'],
         ]);
 
         if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
@@ -98,14 +98,32 @@ class InventoryCreate extends Component
         $rules = [
             'name' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'stockquantity' => ['required', 'numeric', 'min:0'],
-            'criticallevel' => ['required', 'numeric', 'min:0'],
+            'stockquantity' => ['required', 'numeric', 'integer', 'min:0'],
+            'criticallevel' => ['required', 'numeric', 'integer', 'min:0'],
             'description' => ['required', 'string']
         ];
+        $customMessages = [
+            'name.required' => 'The name field is required.',
+            'price.required' => 'The price field is required.',
+            'price.numeric' => 'The price must be a number.',
+            'price.min' => 'The price must be at least 0.',
+            'stockquantity.required' => 'The stock quantity field is required.',
+            'stockquantity.numeric' => 'The stock quantity must be a number.',
+            'stockquantity.integer' => 'The stock quantity must be an integer.',
+            'stockquantity.min' => 'The stock quantity must be at least 0.',
+            'criticallevel.required' => 'The critical level field is required.',
+            'criticallevel.numeric' => 'The critical level must be a number.',
+            'criticallevel.integer' => 'The critical level must be an integer.',
+            'criticallevel.min' => 'The critical level must be at least 0.',
+            'description.required' => 'The description field is required.',
+            'image.image' => 'The image must be an image file.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
+            'image.max' => 'The image may not be greater than 10 MB in size.',
+        ];
         if ($this->temporaryImage) {
-            $rules['image'] = ['image', 'mimes:jpeg,png,jpg', 'max:4096'];
+            $rules['image'] = ['image', 'mimes:jpeg,png,jpg', 'max:10240'];
         }
-        $this->validate($rules);
+        $this->validate($rules, $customMessages);
 
         if ($this->name && $this->price && $this->stockquantity && $this->criticallevel) {
             $currentProduct->name = $this->name;
@@ -128,7 +146,7 @@ class InventoryCreate extends Component
 
     public function updatedImage($value)
     {
-        $this->validate(['image' => ['image', 'mimes:jpeg,png,jpg', 'max:4096']]);
+        $this->validate(['image' => ['image', 'mimes:jpeg,png,jpg', 'max:10240']]);
         $this->temporaryImage = $this->image;
     }
 

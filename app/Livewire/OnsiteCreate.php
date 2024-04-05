@@ -116,6 +116,19 @@ class OnsiteCreate extends Component
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
             'contact' => ['required', 'numeric', 'digits_between:1,11'],
+            'tempDetails.*.quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+            'quantities.*' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ], [
+            'tempDetails.*.quantity.required' => 'The quantity field of newly added items is required.',
+            'tempDetails.*.quantity.numeric' => 'The quantity of newly added items must be a number.',
+            'tempDetails.*.quantity.integer' => 'The quantity of newly added items must be an integer.',
+            'tempDetails.*.quantity.gt' => 'The quantity of newly added items must be greater than 0.',
+            'tempDetails.*.quantity.min' => 'The quantity of newly added items must be at least 1.',
+            'quantities.*.required' => 'The quantity field of existing details is required.',
+            'quantities.*.numeric' => 'The quantity of existing details must be a number.',
+            'quantities.*.integer' => 'The quantity of existing details must be an integer.',
+            'quantities.*.gt' => 'The quantity of existing details must be greater than 0.',
+            'quantities.*.min' => 'The quantity of existing details must be at least 1.',
         ]);
 
         if ($this->firstName && $this->lastName && $this->contact) {
@@ -167,6 +180,15 @@ class OnsiteCreate extends Component
 
     public function findItemTemplate()
     {
+        $this->validate([
+            'quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ], [
+            'quantity.required' => 'The quantity field is required.',
+            'quantity.numeric' => 'The quantity must be a number.',
+            'quantity.integer' => 'The quantity must be an integer.',
+            'quantity.gt' => 'The quantity must be greater than 0.',
+            'quantity.min' => 'The quantity must be at least 1.',
+        ]);
         $this->findItemTemp = true;
     }
 
@@ -198,6 +220,12 @@ class OnsiteCreate extends Component
     {
         $this->validate([
             'quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ], [
+            'quantity.required' => 'The quantity field is required.',
+            'quantity.numeric' => 'The quantity must be a number.',
+            'quantity.integer' => 'The quantity must be an integer.',
+            'quantity.gt' => 'The quantity must be greater than 0.',
+            'quantity.min' => 'The quantity must be at least 1.',
         ]);
         $product = Product::find($productId);
 
@@ -263,6 +291,12 @@ class OnsiteCreate extends Component
     {
         $this->validate([
             'tempDetails.*.quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ], [
+            'tempDetails.*.quantity.required' => 'The quantity field of newly added items is required.',
+            'tempDetails.*.quantity.numeric' => 'The quantity of newly added items must be a number.',
+            'tempDetails.*.quantity.integer' => 'The quantity of newly added items must be an integer.',
+            'tempDetails.*.quantity.gt' => 'The quantity of newly added items must be greater than 0.',
+            'tempDetails.*.quantity.min' => 'The quantity of newly added items must be at least 1.',
         ]);
 
         foreach ($this->tempDetails as &$tempDetail) {
@@ -281,6 +315,12 @@ class OnsiteCreate extends Component
     {
         $this->validate([
             'quantities.*' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
+        ], [
+            'quantities.*.required' => 'The quantity field of existing details is required.',
+            'quantities.*.numeric' => 'The quantity of existing details must be a number.',
+            'quantities.*.integer' => 'The quantity of existing details must be an integer.',
+            'quantities.*.gt' => 'The quantity of existing details must be greater than 0.',
+            'quantities.*.min' => 'The quantity of existing details must be at least 1.',
         ]);
 
         foreach ($this->details as $detail) {

@@ -110,7 +110,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => 34000,
                 'stockquantity' => 999,
                 'criticallevel' => 5,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihYzh3OLS4O4aCfFF1QC98w7UgNcKNDLaaVB0lK1FkfUun6r9jzQPAmwe3EeJBILN9yTKqxyXJZperNjSq9VuYJIf2pDoA=s1600-v0',
+                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihZIfb19ABkKGiTttfJdzHkpcqkYw2EEVh8GyQpSLwQsLnW0FmH9vCA4GIsNiyX6rIjxQUBDO8Mw4ONeEqrZvBwctTXSGYtS4kk=s1600-rw-v1',
             ],
             [
                 'name' => 'Yellow Speed Racing Coilovers for FD',

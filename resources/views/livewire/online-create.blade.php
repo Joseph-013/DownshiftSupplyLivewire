@@ -119,13 +119,13 @@
                             <td class="text-left">
                                 Item
                             </td>
-                            <td class="text-center">
+                            <td class="text-left">
                                 Price
                             </td>
                             <td class="text-center">
                                 Qty
                             </td>
-                            <td class="text-center">
+                            <td class="text-left">
                                 Subtotal
                             </td>
                         </tr>
@@ -135,14 +135,15 @@
                                     <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
                                         class="w-12 h-12 object-cover rounded" style="vertical-align: middle;">
                                 </td>
-                                <td class="w-5/12 text-left">
+                                <td class="w-6/12 text-left">
                                     <div class="w-full max-w-52 line-clamp-3">
                                         {{ $detail->products->name }}
                                     </div>
                                 </td>
-                                <td class="w-2/12 text-sm">{{ $detail->products->price }}</td>
-                                <td class="w-1/12">{{ $detail->quantity }}</td>
-                                <td class="w-2/12 text-sm">{{ $detail->quantity * $detail->products->price }}</td>
+                                <td class="w-1/12 text-left text-sm">{{ $detail->products->price }}</td>
+                                <td class="w-1/12 text-center">{{ $detail->quantity }}</td>
+                                <td class="w-2/12 text-left text-sm">{{ $detail->quantity * $detail->products->price }}
+                                </td>
                             </tr>
                         @endforeach
                     </table>

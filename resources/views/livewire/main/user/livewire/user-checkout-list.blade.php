@@ -29,7 +29,7 @@
                                             for="productId1">
                                             <div class="flex items-center justify-between w-full">
                                                 <div class="flex items-center w-5/12">
-                                                    <img src="{{ $item->product->image }}"
+                                                    <img src="{{ filter_var($item->product->image, FILTER_VALIDATE_URL) ? $item->product->image : asset('storage/assets/' . $item->product->image) }}"
                                                         class="w-12 h-12 mr-2 rounded" alt="Product Image">
                                                     <div class=" line-clamp-2">
                                                         {{ $item->product->name }}

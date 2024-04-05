@@ -6,7 +6,7 @@
                 {{-- Order Details --}}
                 <ul class="flex flex-row w-full">
                     <li class="w-6/12 flex items-center text-sm text-left">
-                        <img src="{{ $entry->product->image }}"
+                        <img src="{{ filter_var($entry->product->image, FILTER_VALIDATE_URL) ? $entry->product->image : asset('storage/assets/' . $entry->product->image) }}"
                             class="w-20 h-20 border-2 border-gray rounded object-cover">
                         <div class="container">
                             <div class="fixed-width-container text-left px-0">

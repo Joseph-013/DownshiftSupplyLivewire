@@ -90,7 +90,7 @@
                                     <div class="">
                                         First Name:
                                     </div>
-                                    <input wire:model="firstName" type="text" class="rounded">
+                                    <input wire:model="firstName" type="text" class="rounded" required>
                                 </div>
                             </td>
                             <td>
@@ -98,7 +98,7 @@
                                     <div class="">
                                         Last Name:
                                     </div>
-                                    <input wire:model="lastName" type="text" class="rounded">
+                                    <input wire:model="lastName" type="text" class="rounded" required>
                                 </div>
                             </td>
                         </tr>
@@ -108,7 +108,7 @@
                                     <div class="">
                                         Contact Number:
                                     </div>
-                                    <input wire:model="contact" type="number" inputmode="numeric" class="rounded">
+                                    <input wire:model="contact" type="number" inputmode="numeric" class="rounded" required>
                                     <style>
                                         /* Hide spinner arrows for Chrome, Edge, and Safari */
                                         input[type=number]::-webkit-inner-spin-button,
@@ -148,7 +148,10 @@
                             Quantity:
                             <div class="w-full">
                                 <input wire:model="quantity" type="number" name="quantity"
-                                    class="rounded sm:w-[18rem] w-full" required>
+                                    class="rounded sm:w-[18rem] w-full">
+                                    @error('quantity')
+                                        <span class="text-red-500">{{ $message }}</span>
+                                    @enderror
                             </div>
                         </div>
                     </div>
@@ -183,11 +186,10 @@
             <div class="h-auto max-h-40 overflow-y-auto md:max-w-[38rem] ">
                 <table class="w-full text-center ">
                     <tr>
-                        <th class="w-2/12"></th>
-                        <th class="w-5/12 text-left">Item Name</th>
-                        <th class="w-2/12">Price</th>
-                        <th class="w-1/12">Qty</th>
-                        <th class="w-2/12">Subtotal</th>
+                        <th class="w-4/12 text-left">Item Name</th>
+                        <th class="w-3/12">Price</th>
+                        <th class="w-2/12">Qty</th>
+                        <th class="w-3/12">Subtotal</th>
                     </tr>
                     @if ($details)
                         @foreach ($details as $detail)
@@ -198,7 +200,8 @@
                                 </td>
                                 <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
                                 <td>{{ $detail->products->price }}</td>
-                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}" wire:change="updateExistingQuantity({{ $detail->id }}, $event.target.value)"></td>
+                                <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}" wire:change="updateExistingQuantity({{ $detail->id }}, $event.target.value)">
+                                </td>
                                 <td>{{ number_format($subtotals[$detail->id], 2) }}</td>
                                 <td>
                                     <button wire:click="removeDetail({{ $detail->id }})">
@@ -215,13 +218,15 @@
                     @if ($tempDetails)
                         @foreach ($tempDetails as $index => $tempDetail)
                             <tr>
-                                <td>
+                                <td class="hidden lg:block">
                                     <img src="{{ filter_var($tempDetail['image'], FILTER_VALIDATE_URL) ? $tempDetail['image'] : asset('storage/assets/' . $tempDetail['image']) }}"
                                         class="w-14 h-14 rounded">
                                 </td>
-                                <td class="text-left">{{ $tempDetail['name'] }}</td>
+                                <td class="line-clamp-3 text-left">{{ $tempDetail['name'] }}</td>
                                 <td>{{ $tempDetail['price'] }}</td>
-                                <td><input class="w-11/12" type="number" wire:model="tempDetails.{{ $index }}.quantity" wire:change="updateQuantity({{ $tempDetail['id'] }}, $event.target.value)"></td>
+                                <td>
+                                    <input class="w-11/12" type="number" wire:model="tempDetails.{{ $index }}.quantity" wire:change="updateQuantity({{ $tempDetail['id'] }}, $event.target.value)">
+                                </td>
                                 <td>{{ number_format($tempDetail['subtotal'], 2) }}</td>
                                 <td>
                                     <button wire:click="removeItem({{ $tempDetail['id'] }})">
@@ -237,6 +242,16 @@
                     @endif
 
                 </table>
+            </div>
+            <div>
+            @error('quantities.*')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+            </div>
+            <div>
+            @error('tempDetails.*.quantity')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             </div>
         @endif
         </form>

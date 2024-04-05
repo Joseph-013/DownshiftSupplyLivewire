@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Detail;
+use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -27,6 +28,7 @@ class OnlineCreate extends Component
     public $trackingNumber;
     public $shippingAddress;
     public $status;
+    public $previousStatus;
 
     public $details;
 
@@ -51,6 +53,7 @@ class OnlineCreate extends Component
             $this->trackingNumber = $this->transaction->trackingNumber;
             $this->shippingAddress = $this->transaction->shippingAddress;
             $this->status = $this->transaction->status;
+            $this->previousStatus = $this->transaction->status;
             $this->image = $this->transaction->proofOfPayment;
         } else {
             $this->mode = 'write';
@@ -86,6 +89,26 @@ class OnlineCreate extends Component
             else {
                 $currentTrans->shippingFee = null;
             }
+
+            if($currentTrans->details && $this->previousStatus != 'Complete' && $this->status === 'Complete')
+            {
+                foreach($currentTrans->details as $detail)
+                {
+                    $product = Product::findOrFail($detail->product_id);
+                    $product->stockquantity -= $detail->quantity;
+                    $product->save();
+                }
+            }
+            elseif($currentTrans->details && $this->previousStatus === 'Complete' && $this->status != 'Complete')
+            {
+                foreach($currentTrans->details as $detail)
+                {
+                    $product = Product::findOrFail($detail->product_id);
+                    $product->stockquantity += $detail->quantity;
+                    $product->save();
+                }
+            }
+            
             $currentTrans->status = $this->status;
             $currentTrans->save();
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Main\User\Livewire;
 
+use App\Models\Product;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Transaction;
@@ -42,6 +43,15 @@ class OrderNotification extends Component
     public function completeTransaction()
     {
         $this->transaction->status = 'Complete';
+        if($this->transaction->details)
+        {
+            foreach($this->transaction->details as $detail)
+            {
+                $product = Product::findOrFail($detail->product_id);
+                $product->stockquantity -= $detail->quantity;
+                $product->save();
+            }
+        }
         $this->transaction->save();
     }
 

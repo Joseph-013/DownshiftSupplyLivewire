@@ -87,6 +87,9 @@ class OnsiteCreate extends Component
                     'quantity' => $detail['quantity'],
                     'subtotal' => $detail['subtotal'],
                 ]);
+                $product = Product::findOrFail($detail['id']);
+                $product->stockquantity -= $newDetail->quantity;
+                $product->save();
                 $grandTotal += $newDetail->subtotal;
             }
 
@@ -134,19 +137,28 @@ class OnsiteCreate extends Component
         if ($this->firstName && $this->lastName && $this->contact) {
             if (!empty($this->tempDetails)) {
                 foreach ($this->tempDetails as $tempDetail) {
+                    $product = Product::findOrFail($tempDetail['id']);
                     $newDetail = new Detail();
                     $newDetail->transaction_id = $currentTrans->id;
                     $newDetail->product_id = $tempDetail['id'];
                     $newDetail->quantity = $tempDetail['quantity'];
                     $newDetail->subtotal = $tempDetail['subtotal'];
+                    $product->stockquantity -= $tempDetail['quantity'];
                     $grandTotal += $tempDetail['subtotal'];
                     $newDetail->save();
+                    $product->save();
                 }
             }
 
             if (!empty($this->detailsToRemove)) {
                 foreach ($this->detailsToRemove as $detailsToRemove)
+                {
+                    $detail = Detail::findOrFail($detailsToRemove);
+                    $product = Product::findOrFail($detail->product_id);
+                    $product->stockquantity += $detail->quantity;
+                    $product->save();
                     Detail::destroy($detailsToRemove);
+                }
             }
 
             $currentTrans->firstName = $this->firstName;
@@ -154,10 +166,14 @@ class OnsiteCreate extends Component
             $currentTrans->contact = $this->contact;
 
             foreach ($this->details as $detail) {
+                $product = Product::findOrFail($detail->product_id);
+                $previousQuantity = $detail->quantity;
                 $detail->update([
                     'quantity' => $this->quantities[$detail->id] ?? 0,
                     'subtotal' => $this->subtotals[$detail->id] ?? 0,
                 ]);
+                $product->stockquantity += $previousQuantity - $detail->quantity;
+                $product->save();
                 $grandTotal += $detail->subtotal;
             }
             $currentTrans->grandTotal = $grandTotal;

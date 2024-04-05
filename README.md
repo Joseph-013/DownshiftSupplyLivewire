@@ -44,11 +44,24 @@ php artisan migrate:fresh --seed
 Routing issue: Second time trigger
 php artisan route:clear
 php artisan route:cache
+php artisan config:clear
 php artisan config:cache
 php artisan cache:clear
 
 Storage/Picture issue:
 php artisan storage:link
+
+Timezone Setup
+1. open config/app.php
+2. line 73, change
+    'timezone' => 'Asia/Singapore',
+    to
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
+3. open .env file
+4. add code
+    APP_TIMEZONE='Asia/Singapore'
+    to last line of the first code group: "APP_"
+
 
 ## Project Custom Events
 Component (Listener) alertNotif, 'message'

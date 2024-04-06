@@ -232,13 +232,12 @@
                                         <div class="my-1 flex items-center">
                                             <!-- Modified file input -->
                                             <label for="fileUpload"
-                                                class="w-full h-10 text-xs bg-gray-200 rounded-lg px-4 flex items-center justify-center cursor-pointer">
+                                                class="w-full h-10 text-xs bg-gray-200 rounded-lg pl-3 pr-3 flex items-center justify-between cursor-pointer">
                                                 <input name="proofOfPayment" type="file" id="fileUpload"
                                                     class="hidden" accept=".jpg, .jpeg, .png" required>
-                                                <ul id="uploadLabel" class="flex flex-row w-full items-center gap-10"
-                                                    style="max-width: 200px;">
-                                                    <li class="w-full truncate">Upload Image</li>
-                                                    <li class="w-1/4 font-medium text-lg text-right">+</li>
+                                                <ul id="uploadLabel" class="flex flex-row w-full items-center">
+                                                    <li class="w-10/12 truncate">Upload Image</li>
+                                                    <li class="w-2/12 font-medium text-lg text-right lg:ml-0 ml-4">+</li>
                                                 </ul>
                                             </label>
                                             <script>

@@ -90,6 +90,19 @@ class OnlineCreate extends Component
             } else {
                 $currentTrans->shippingFee = null;
             }
+            
+            if ($this->previousStatus != 'In Transit' && $this->status === 'In Transit')
+            {
+                $currentTrans->status = $this->status;
+                $currentTrans->intransit_at = Carbon::now();
+                $currentTrans->save();
+            }
+            elseif ($this->previousStatus === 'In Transit' && $this->status !== 'In Transit')
+            {
+                $currentTrans->status = $this->status;
+                $currentTrans->intransit_at = null;
+                $currentTrans->save();
+            }
 
             if ($currentTrans->details && $this->previousStatus != 'Complete' && $this->status === 'Complete') {
                 foreach ($currentTrans->details as $detail) {

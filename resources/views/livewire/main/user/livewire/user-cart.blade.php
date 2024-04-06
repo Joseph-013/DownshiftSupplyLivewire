@@ -90,7 +90,7 @@
                 {{-- Order Details --}}
                 <div class="flex w-full gap-4 items-center justify-center"> <!-- Updated: Added justify-center -->
                     <div class="flex items-center text-xs w-2/5 justify-center"> <!-- Adjusted width and alignment -->
-                        <img src="{{ $entry->product->image }}"
+                        <img src="{{ filter_var($entry->product->image, FILTER_VALIDATE_URL) ? $entry->product->image : asset('storage/assets/' . $entry->product->image) }}"
                             class="w-20 h-20 border-2 border-gray rounded object-cover mr-2">
                         <div class="fixed-width-container" style="max-height: 3rem;">
                             <!-- Adjust max-height to allow for two lines -->

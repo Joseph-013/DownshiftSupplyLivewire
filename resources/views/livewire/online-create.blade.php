@@ -147,7 +147,9 @@
                             </tr>
                         @endforeach
                     </table>
-
+                    <div class="w-full text-right">
+                        <span class="font-bold">Total:</span>&nbsp;&nbsp;{{ $total }}
+                    </div>
                 </div>
             </div>
             <div class="w-full flex justify-center mt-4">

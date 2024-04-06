@@ -29,13 +29,14 @@ class OnlineCreate extends Component
     public $shippingAddress;
     public $status;
     public $previousStatus;
+    public $total;
 
     public $details;
 
     public function mount($transaction, $mode)
     {
         $this->mode = $mode;
-        
+
         // $this->transaction = Transaction::find($transaction)->with('details');
         $this->transaction = Transaction::find($transaction);
         $this->details = Detail::where('transaction_id', $this->transaction->id)->with('products')->get();
@@ -55,6 +56,7 @@ class OnlineCreate extends Component
             $this->status = $this->transaction->status;
             $this->previousStatus = $this->transaction->status;
             $this->image = $this->transaction->proofOfPayment;
+            $this->total = $this->transaction->grandTotal;
         } else {
             $this->mode = 'write';
             $this->courierUsed = null;
@@ -85,30 +87,24 @@ class OnlineCreate extends Component
             $currentTrans->shippingAddress = $this->shippingAddress;
             if ($this->shippingFee) {
                 $currentTrans->shippingFee = $this->shippingFee;
-            }
-            else {
+            } else {
                 $currentTrans->shippingFee = null;
             }
 
-            if($currentTrans->details && $this->previousStatus != 'Complete' && $this->status === 'Complete')
-            {
-                foreach($currentTrans->details as $detail)
-                {
+            if ($currentTrans->details && $this->previousStatus != 'Complete' && $this->status === 'Complete') {
+                foreach ($currentTrans->details as $detail) {
                     $product = Product::findOrFail($detail->product_id);
                     $product->stockquantity -= $detail->quantity;
                     $product->save();
                 }
-            }
-            elseif($currentTrans->details && $this->previousStatus === 'Complete' && $this->status != 'Complete')
-            {
-                foreach($currentTrans->details as $detail)
-                {
+            } elseif ($currentTrans->details && $this->previousStatus === 'Complete' && $this->status != 'Complete') {
+                foreach ($currentTrans->details as $detail) {
                     $product = Product::findOrFail($detail->product_id);
                     $product->stockquantity += $detail->quantity;
                     $product->save();
                 }
             }
-            
+
             $currentTrans->status = $this->status;
             $currentTrans->save();
 
@@ -134,13 +130,13 @@ class OnlineCreate extends Component
         preg_match('/^enum\((.*)\)$/', $columnInfo, $matches);
         $statuses = explode(',', str_replace("'", '', $matches[1]));
 
-    
-        $filteredStatuses = array_filter($statuses, function($status) {
+
+        $filteredStatuses = array_filter($statuses, function ($status) {
             $conditions = [
                 'Delivery' => ['Ready for Pickup'],
                 'Pickup' => ['In Transit']
             ];
-            
+
             $preferredService = $this->preferredService ?? null;
             if ($preferredService === 'Delivery' && in_array($status, $conditions['Delivery'])) {
                 return false;

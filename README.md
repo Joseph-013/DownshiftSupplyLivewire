@@ -61,7 +61,9 @@ Timezone Setup
 4. add code
     APP_TIMEZONE='Asia/Singapore'
     to last line of the first code group: "APP_"
-
+5. run terminal:
+    php artisan config:clear
+    php artisan config:cache
 
 ## Project Custom Events
 Component (Listener) alertNotif, 'message'

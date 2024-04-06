@@ -58,12 +58,14 @@ new #[Layout('layouts.guest')] class extends Component {
     <div class="h-full">
         <div class="hidden sm:block w-screen h-full">
             <div class="bg-white overflow-hidden flex flex-row h-full">
-                {{-- Left Panel --}}
-                <div class="max-w-full flex-1 relative">
-                    <img src="/assets/g567ah.jpg" class="relative object-cover h-full w-full z-10">
-                    {{-- Logo on top middle --}}
-                    <div class="absolute top-1 left-1/2 transform -translate-x-1/2 z-20 mt-16">
-                        <img src="assets/logo1.png" class="w-64" alt="">
+            <div class="max-w-full flex-1 relative">
+                    {{-- Left Panel --}}
+                    <div class="relative h-full w-full">
+                        <img src="/assets/g567ah.jpg" class="absolute inset-0 object-cover h-full w-full z-10 opacity-90" alt="Darkened Image">
+                        <div class="absolute inset-0 bg-black opacity-40 z-20"></div>
+                    </div>
+                    <div class="absolute top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
+                        <img src="assets/logo1.png" class="w-64" alt="Logo">
                     </div>
                 </div>
                 {{-- Right Panel --}}

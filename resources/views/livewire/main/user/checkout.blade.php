@@ -38,12 +38,12 @@
                                     <li class="w-3/4 text-left pr-3">
                                         <div class="my-1 flex items-center">
                                             <span class="font-medium mr-2">First:</span>
-                                            <input name="firstName" class="w-full h-10 text-xs" type="text"
+                                            <input name="firstName" class="w-full h-10 text-xs lg:ml-[0.44rem] ml-[0.30rem]" type="text"
                                                 placeholder="First Name" required>
                                         </div>
                                         <div class="my-1 flex items-center">
                                             <span class="font-medium mr-2">Last:</span>
-                                            <input name="lastName" class="w-full h-10 text-xs" type="text"
+                                            <input name="lastName" class="w-full h-10 text-xs lg:ml-[0.55rem] ml-[0.40rem]" type="text"
                                                 placeholder="Last Name" required>
                                         </div>
                                     </li>

@@ -11,7 +11,23 @@ class ReportSetup extends Component
 
     public function submitSetup()
     {
-        $this->dispatch('renderReportTable', date: $this->date, format: $this->format);
+        if ($this->format == 'weekly') {
+            $day = (new \DateTime($this->date))->format('j'); // 'j' format gives the day of the month (1-31)
+            if ($day >= 1 && $day <= 7) {
+                $day = 1;
+            } elseif ($day >= 8 && $day <= 14) {
+                $day = 8;
+            } elseif ($day >= 15 && $day <= 21) {
+                $day = 15;
+            } elseif ($day >= 22) {
+                $day = 22;
+            }
+            $parsedDate = (new \DateTime($this->date))->setDate((new \DateTime($this->date))->format('Y'), (new \DateTime($this->date))->format('m'), $day)->format('Y-m-d');
+            $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
+            // parse date and dispatch
+        } else {
+            $this->dispatch('renderReportTable', date: $this->date, format: $this->format);
+        }
     }
 
     public function render()

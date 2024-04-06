@@ -66,7 +66,7 @@
                                 <tr>
                                     <td class="w-full text-xs flex items-center justify-left">
                                         <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
-                                            <img src="{{ $order->products->image }}"
+                                            <img src="{{ filter_var($order->products->image, FILTER_VALIDATE_URL) ? $order->products->image : asset('storage/assets/' . $order->products->image) }}"
                                                 class="w-12 h-12 object-cover rounded"
                                                 alt="{{ $order->products->name }}">
                                             <span

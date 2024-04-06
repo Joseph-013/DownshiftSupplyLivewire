@@ -9,5 +9,6 @@
             </div>
         @endforeach
     @endif
+    <livewire:main.user.livewire.order-notification />
 
 </div>

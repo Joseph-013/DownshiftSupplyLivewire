@@ -30,7 +30,7 @@ Installing composer and building database on project directory:
 5. Run php artisan migrate
 6. Run php artisan serve
 7. Go to link localhost:8000
-8. Set APP_NAME="Downshift Supply" in .env file
+8. Set APP_NAME="Downshift Supply" in .env file  !!!IMPORTANT
 
 Installing node on project directory:
 

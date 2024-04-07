@@ -3,6 +3,7 @@
 namespace App\Livewire\Main\User\Livewire;
 
 use App\Models\Detail;
+use App\Models\Product;
 use Livewire\Component;
 use App\Models\Transaction;
 use Livewire\Attributes\On;
@@ -52,6 +53,15 @@ class UserOrdersDetail extends Component
     public function setOrderComplete()
     {
         $this->transactionData->status = 'Complete';
+        if($this->transactionData->details)
+        {
+            foreach($this->transactionData->details as $detail)
+            {
+                $product = Product::findOrFail($detail->product_id);
+                $product->stockquantity -= $detail->quantity;
+                $product->save();
+            }
+        }
         $this->transactionData->save();
         $this->dispatch('alertNotif', 'Order \'' . $this->transactionData->id . '\' is now completed');
         $this->dispatch('UserOrdersListRender');

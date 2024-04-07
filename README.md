@@ -71,10 +71,10 @@ Component (Listener) alertNotif, 'message'
 
 Component confirmation-notification (Listener)
     $this->dispatch('confirmationOverlay', data: [
-                'positive' => 'positiveButton',
-                'neutral' => 'neutralButton',
-                'negative' => 'negativeButton',
-                'message' => 'message',
-                'title' => 'title',
-            ]);
+        'positive' => 'positiveButton',
+        'neutral' => 'neutralButton',
+        'negative' => 'negativeButton',
+        'message' => 'message',
+        'title' => 'title',
+    ]);
 

@@ -24,8 +24,12 @@ class ReportSetup extends Component
             }
             $parsedDate = (new \DateTime($this->date))->setDate((new \DateTime($this->date))->format('Y'), (new \DateTime($this->date))->format('m'), $day)->format('Y-m-d');
             $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
-        } else {
-            $this->dispatch('renderReportTable', date: $this->date, format: $this->format);
+        } elseif ($this->format == 'monthly') {
+            $parsedDate = (new \DateTime($this->date))->setDate((new \DateTime($this->date))->format('Y'), (new \DateTime($this->date))->format('m'), 01)->format('Y-m-d');
+            $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
+        } elseif ($this->format == 'annual') {
+            $parsedDate = (new \DateTime($this->date))->format('Y-01-01'); // Set to January 1 of the selected year
+            $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
         }
     }
 

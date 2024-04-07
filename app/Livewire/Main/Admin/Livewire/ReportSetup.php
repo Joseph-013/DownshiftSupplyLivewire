@@ -30,6 +30,8 @@ class ReportSetup extends Component
         } elseif ($this->format == 'annual') {
             $parsedDate = (new \DateTime($this->date))->format('Y-01-01'); // Set to January 1 of the selected year
             $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
+        } else {
+            $this->dispatch('renderReportTable', date: $this->date, format: $this->format);
         }
     }
 

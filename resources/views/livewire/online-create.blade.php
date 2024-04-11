@@ -86,7 +86,9 @@
                         <td rowspan="9">Proof of<br />Payment:</td>
                         <td rowspan="9" class="border border-black w-52">
                             <div class="w-full h-full flex justify-center items-center">
-                                PICTURE
+                                <img id="image"
+                                src="{{ filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image) }}"
+                                class="max-w-full max-h-full object-contain">
                             </div>
                         </td>
                     </tr>

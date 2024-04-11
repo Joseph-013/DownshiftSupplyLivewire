@@ -69,7 +69,7 @@
                 <button type="submit"
                     class="h-8 w-35 px-20 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing"
                     @guest disabled @endguest>
-                    Send Inquiry
+                    Send
                     <img wire:loading wire:target="send" src="{{ asset('assets/loading.gif') }}" alt="please wait..."
                         class="h-4 w-4 ml-2" />
                 </button>

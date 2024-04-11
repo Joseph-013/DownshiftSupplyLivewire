@@ -161,7 +161,7 @@
 
             <div class="w-2/2 flex ml-20">
                 <span class="font-semibold">Total: </span>
-                <span>&nbsp;₱ {{ number_format($grandTotal, 2) }}</span>
+                <span>&nbsp;₱ {{ isset($selectedTransaction) ? number_format($selectedTransaction->grandTotal, 2) : '--' }}</span>
             </div>
         </div>
 

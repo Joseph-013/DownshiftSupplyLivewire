@@ -25,6 +25,7 @@ class OnlineCreate extends Component
     public $statusOptions;
     public $courierUsed;
     public $shippingFee;
+    public $previousShippingFee;
     public $trackingNumber;
     public $shippingAddress;
     public $status;
@@ -51,6 +52,7 @@ class OnlineCreate extends Component
             $this->preferredService = $this->transaction->preferredService;
             $this->courierUsed = $this->transaction->courierUsed;
             $this->shippingFee = $this->transaction->shippingFee;
+            $this->previousShippingFee = $this->transaction->shippingFee;
             $this->trackingNumber = $this->transaction->trackingNumber;
             $this->shippingAddress = $this->transaction->shippingAddress;
             $this->status = $this->transaction->status;
@@ -87,8 +89,14 @@ class OnlineCreate extends Component
             $currentTrans->shippingAddress = $this->shippingAddress;
             if ($this->shippingFee) {
                 $currentTrans->shippingFee = $this->shippingFee;
+                if($this->shippingFee != $this->previousShippingFee)
+                {
+                    $difference = $this->previousShippingFee - $this->shippingFee;
+                    $currentTrans->grandTotal -= $difference;
+                }
             } else {
                 $currentTrans->shippingFee = null;
+                $currentTrans->grandTotal -= $this->previousShippingFee;
             }
             
             if ($this->previousStatus != 'In Transit' && $this->status === 'In Transit')

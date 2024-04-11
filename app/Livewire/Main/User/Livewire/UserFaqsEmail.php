@@ -26,6 +26,8 @@ class UserFaqsEmail extends Component
         $this->subject = $value;
         if ($value == 'return') {
             $this->inquiry = "Order Number/Id: \n\nDefective Product/s: \n\nDetails: ";
+        } elseif ($value == 'inquiry') {
+            $this->inquiry = "";
         }
     }
 

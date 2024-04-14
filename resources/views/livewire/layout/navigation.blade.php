@@ -135,13 +135,20 @@ new class extends Component {
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')" wire:navigate>
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+                @auth
+                    <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')" wire:navigate>
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endauth
 
                 <button wire:click="logout" class="w-full text-start">
                     <x-responsive-nav-link>
-                        {{ __('Log Out') }}
+                        @auth
+                            {{ __('Log Out') }}
+                        @endauth
+                        @guest
+                            {{ __('Log In') }}
+                        @endguest
                     </x-responsive-nav-link>
                 </button>
             </div>

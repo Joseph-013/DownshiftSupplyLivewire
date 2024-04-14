@@ -1,13 +1,19 @@
 <div class="w-full h-full text-start">
     <div class="w-full flex justify-between">
         <h4 class="text-lg font-bold font-montserrat">{{ $format ? ucfirst($format) . ' Report' : '' }}</h4>
+        <div class="pl-3">
+            <button type="button" onclick="printReport()    "
+                class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing">
+                Print PDF
+            </button>
+        </div>
         <div class="">
             Rows:
             <input type="number" min="10" max="1000" placeholder="Row Count" class="rounded-md max-w-36 ms-2"
                 value="100" wire:model="rowCount" wire:change="updateRowCount($event.target.value)" />
         </div>
     </div>
-    <table class="border w-full mt-2 text-xs">
+    <table id="report-table" class="border w-full mt-2 text-xs">
         <thead class="border">
             <tr class="border font-bold">
                 <th class="border-b-4 border-black p-2 w-1/12">Trans. Id</th>
@@ -145,3 +151,27 @@
         </div>
     @endif
 </div>
+<script>
+    function printReport() {
+        var table = document.getElementById('report-table').outerHTML;
+
+        var printWindow = window.open('', '_blank');
+        var printDocument = printWindow.document;
+
+        var head = printDocument.head;
+
+        var tailwindCSS = document.createElement('link');
+        tailwindCSS.rel = 'stylesheet';
+        tailwindCSS.href = 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
+        head.appendChild(tailwindCSS);
+
+        var bootstrapCSS = document.createElement('link');
+        bootstrapCSS.rel = 'stylesheet';
+        bootstrapCSS.href = 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css';
+        head.appendChild(bootstrapCSS);
+
+        printDocument.body.innerHTML = table;
+
+        printWindow.print();
+    }
+</script>

@@ -132,6 +132,7 @@ class OnlineCreate extends Component
             $this->dispatch('alertNotif', 'Transaction successfully updated');
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
+            $this->dispatch('updateBadge');
         }
     }
 

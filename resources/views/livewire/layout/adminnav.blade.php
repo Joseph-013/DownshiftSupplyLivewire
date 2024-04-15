@@ -1,6 +1,6 @@
 <div class="flex h-full space-x-2 lg:space-x-4">
     <div class="hidden sm:-my-px sm:ms-2 lg:ms-8 md:flex gap-10">
-        <x-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
+        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dasboard')" wire:navigate>
             <svg fill="currentColor" width="30" height="30" viewBox="0 0 32 32" id="icon"
                 xmlns="http://www.w3.org/2000/svg">
                 <defs>

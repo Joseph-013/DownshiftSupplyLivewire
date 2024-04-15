@@ -5,9 +5,10 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OnlineTransactionController;
 use App\Http\Controllers\OnsiteTransactionController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
+use App\Livewire\Main\Admin\Livewire\DashboardMain;
 use App\Models\Cart;
-use App\Models\Product;
+// use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+        Route::get('/dashboard', function () {
+            return view('livewire.main.admin.livewire.dashboard-main');
+        })->name('dashboard');
         Route::get('/inventory', [ProductController::class, 'index'])->name('inventory');
         Route::get('/inventory/search', [ProductController::class, 'search'])->name('inventory.search');
         Route::get('/onsitetransactions', [OnsiteTransactionController::class, 'index'])->name('onsitetransactions');
@@ -39,7 +43,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
         Route::get('/onlinetransactions/search', [OnlineTransactionController::class, 'search'])->name('onlinetransactions.search');
         Route::view('/faqs', 'livewire/main/admin/faqs')->name('faqs');
         Route::get('/reports', function () {
-            return view('livewire/main/admin/reports');
+            return view('livewire.main.admin.reports');
         })->name('reports');
     });
 

@@ -32,7 +32,7 @@
                             <div class="w-full h-full flex justify-center items-center">
                                 <img class="rounded-md object-cover w-full h-auto"
                                     src="{{ filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image) }}"
-                                    alt="proof of payment">
+                                    alt="Proof of Payment">
                             </div>
                         </td>
                     </tr>
@@ -187,7 +187,7 @@
                                 <div class="w-full h-full flex justify-center items-center">
                                     <img class="rounded-md object-cover w-full h-auto"
                                         src="{{ filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image) }}"
-                                        alt="proof of payment">
+                                        alt="Proof of Payment">
                                 </div>
                             </td>
                         </tr>
@@ -258,7 +258,9 @@
                             <td rowspan="9">Proof of<br />Payment:</td>
                             <td rowspan="9" class="border border-black w-52">
                                 <div class="w-full h-full flex justify-center items-center">
-                                    PICTURE
+                                    <img class="rounded-md object-cover w-full h-auto"
+                                    src="{{ filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image) }}"
+                                    alt="Proof of Payment">
                                 </div>
                             </td>
                         </tr>

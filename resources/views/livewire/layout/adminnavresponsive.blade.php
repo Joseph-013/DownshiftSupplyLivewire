@@ -6,11 +6,7 @@
 </x-responsive-nav-link>
 <x-responsive-nav-link :href="route('admin.onlinetransactions')" :active="request()->routeIs('admin.onlinetransactions')" wire:navigate class="flex">
     Online Transactions
-    <div class="bg-red-600 text-white text-xs flex justify-center items-center h-fit rounded-full font-mono ml-3"
-        style="padding: 1px 6px;">
-        {{-- change me --}}
-        1
-    </div>
+    <livewire:notification-badge-responsive />
 </x-responsive-nav-link>
 <x-responsive-nav-link :href="route('admin.faqs')" :active="request()->routeIs('admin.faqs')" wire:navigate>
     FAQs

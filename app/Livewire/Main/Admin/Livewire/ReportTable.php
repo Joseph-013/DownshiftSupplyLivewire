@@ -25,15 +25,15 @@ class ReportTable extends Component
     #[On('renderReportTable')]
     public function renderReportTable($startDate, $endDate, $format)
     {
-
         $this->format = $format;
         $realFormat = "";
 
         switch ($format) {
             case 'daily': {
                     $realFormat = "Date";
-                    $this->startDate = $startDate;
-                    $this->endDate = $endDate;
+                    $this->startDate = Carbon::parse($startDate)->startOfDay();
+                    $this->endDate = Carbon::parse($endDate)->endOfDay();
+                    // dd('Start: ' . $this->startDate . ' End: ' . $this->endDate);
                     break;
                 }
 

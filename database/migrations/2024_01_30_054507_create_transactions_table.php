@@ -18,12 +18,13 @@ return new class extends Migration
             $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable(); //nullable
             $table->string('paymentOption')->nullable(); //nullable
             $table->text('proofOfPayment')->nullable(); //nullable
-            $table->enum('status', ['Processing', 'On Hold', 'Cancelled', 'Returned', 'In Transit', 'Ready for Pickup', 'Complete'])->nullable(); //nullable
+            $table->enum('status', ['Processing', 'On Hold', 'Cancelled', 'Returned', 'In Transit', 'Ready for Pickup', 'Completed'])->nullable(); //nullable
             $table->string('shippingAddress')->nullable(); //nullable
             $table->string('courierUsed')->nullable(); //nullable
             $table->decimal('shippingFee', 10, 2)->unsigned()->nullable(); //nullable
             $table->string('trackingNumber')->nullable(); //nullable
-            $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //for now nullable
+            // $table->decimal('grandTotal', 10, 2)->unsigned(); //deploy
+            $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //dev
             $table->dateTime('intransit_at')->nullable();
             $table->timestamps();
         });

@@ -2,41 +2,56 @@
 
 namespace App\Livewire\Main\Admin\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class ReportSetup extends Component
 {
-    public $date;
+    // public $year;
+    public $startDate;
+    public $endDate;
+    public $startYear;
+    public $endYear;
     public $format;
+    // public $currentYear;
+
+    public function changeDateSelector($format)
+    {
+        if ($format == 'annual') {
+            $this->startDate;
+            $this->endDate;
+            $this->render();
+        }
+        // dump($format);
+    }
+
+    public function mount()
+    {
+        $this->startYear = $this->endYear = (int) Carbon::now()->year;
+    }
+    // Objectives
+    // set all start to now()
 
     public function submitSetup()
     {
-        if ($this->format == 'weekly') {
-            $day = (new \DateTime($this->date))->format('j');
-            if ($day >= 1 && $day <= 7) {
-                $day = 1;
-            } elseif ($day >= 8 && $day <= 14) {
-                $day = 8;
-            } elseif ($day >= 15 && $day <= 21) {
-                $day = 15;
-            } elseif ($day >= 22) {
-                $day = 22;
-            }
-            $parsedDate = (new \DateTime($this->date))->setDate((new \DateTime($this->date))->format('Y'), (new \DateTime($this->date))->format('m'), $day)->format('Y-m-d');
-            $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
-        } elseif ($this->format == 'monthly') {
-            $parsedDate = (new \DateTime($this->date))->setDate((new \DateTime($this->date))->format('Y'), (new \DateTime($this->date))->format('m'), 01)->format('Y-m-d');
-            $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
-        } elseif ($this->format == 'annual') {
-            $parsedDate = (new \DateTime($this->date))->format('Y-01-01'); // Set to January 1 of the selected year
-            $this->dispatch('renderReportTable', date: $parsedDate, format: $this->format);
-        } else {
-            $this->dispatch('renderReportTable', date: $this->date, format: $this->format);
+        if ($this->format == 'annual') {
+            $this->startDate = $this->startYear;
+            $this->endDate = $this->endYear;
         }
+
+        $this->dispatch('renderReportTable', startDate: $this->startDate, endDate: $this->endDate, format: $this->format);
     }
 
     public function render()
     {
         return view('livewire.main.admin.livewire.report-setup');
+    }
+
+    #[On('reportSetupError')]
+    public function errorSession($message)
+    {
+        // dd('Start Date should be later than End Date');
+        session()->flash('reportSetupError', (string) $message);
     }
 }

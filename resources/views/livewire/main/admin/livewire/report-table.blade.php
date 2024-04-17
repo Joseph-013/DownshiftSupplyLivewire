@@ -1,12 +1,6 @@
 <div class="w-full h-full text-start">
     <div class="w-full flex justify-between">
         <h4 class="text-lg font-bold font-montserrat">{{ $format ? ucfirst($format) . ' Report' : '' }}</h4>
-        <div class="pl-3">
-            <button type="button" onclick="printReport()    "
-                class="h-10 w-35 px-10 mr-10 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-xs font-medium text-spacing">
-                Print PDF
-            </button>
-        </div>
         <div class="">
             Rows:
             <input type="number" min="10" max="1000" placeholder="Row Count" class="rounded-md max-w-36 ms-2"
@@ -62,72 +56,46 @@
                         </tr>
                     @endif
                 @else
+                    {{-- For Weekly --}}
                     @php
                         $identifierSwitch = '';
-                        $day;
                         $weekSwitch = 0;
-                        $weekNum = 1;
                         foreach ($transactions as $transaction) {
-                            $day = (int) $transaction->created_at->format('d');
+                            $currentWeekNum = Carbon\Carbon::parse($transaction->created_at)->weekOfYear;
                             if ($transaction->identifier !== $identifierSwitch) {
                                 $identifierSwitch = $transaction->identifier;
                             }
-                            switch ($day) {
-                                case $day <= 7:
-                                    $weekNum = 1;
-                                    break;
-                                case $day <= 14:
-                                    $weekNum = 2;
-                                    break;
-                                case $day <= 21:
-                                    $weekNum = 3;
-                                    break;
-                                case $day <= 31:
-                                    $weekNum = 4;
-                                    break;
-                            }
-
-                            if ($weekNum != $weekSwitch) {
-                                $weekSwitch = $weekNum;
-                                $weekDefinition;
-                                switch ($weekSwitch) {
-                                    case 1:
-                                        $weekDefinition = 'Days 1-7';
-                                        break;
-                                    case 2:
-                                        $weekDefinition = 'Days 8-14';
-                                        break;
-                                    case 3:
-                                        $weekDefinition = 'Days 15-21';
-                                        break;
-                                    case 4:
-                                        $weekDefinition = 'Days 22-Last';
-                                        break;
-                                }
+                            if ($currentWeekNum != $weekSwitch) {
+                                $weekSwitch = $currentWeekNum;
+                                $weekDefinition = 'Week ' . $currentWeekNum;
                                 echo "
-                                    <tr class='border-b-2 border-black mt-3'>
-                                        <td class='border p-2 text-center font-semibold italic' colspan='5'>
-                                            $identifierSwitch&nbsp;Week&nbsp;$weekNum&nbsp;($weekDefinition)
-                                        </td>
-                                    </tr>
-                                    ";
+                            <tr class='border-b-2 border-black mt-3'>
+                                <td class='border p-2 text-center font-semibold italic' colspan='5'>
+                                    $identifierSwitch $weekDefinition
+                                </td>
+                            </tr>
+                            ";
                             }
                             echo "
-                                <tr class='border font-light'>
-                                    <td class='border p-2'>$transaction->id</td>
-                                    <td class='border p-2'>$transaction->firstName&nbsp;$transaction->lastName</td>
-                                    <td class='border p-2'>
-                                        ";
-                            echo $transaction->preferredService ? $transaction->preferredService : '(Onsite Purchase)';
-                            echo "
-                                    </td>
-                                    <td class='border p-2'>$transaction->grandTotal</td>
-                                    <td class='border p-2'>" .
-                                \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i A') .
+                            <tr class='border font-light'>
+                                <td class='border p-2'>$transaction->id</td>
+                                <td class='border p-2'>$transaction->firstName $transaction->lastName</td>
+                                <td class='border p-2'>
+                                    " .
+                                ($transaction->preferredService
+                                    ? $transaction->preferredService
+                                    : '(Onsite Purchase)') .
+                                "
+                                </td>
+                                <td class='border p-2'>$transaction->grandTotal</td>
+                                <td class='border p-2'>" .
+                                Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y h:i A') .
                                 "</td>
-                                </tr>";
+                            </tr>
+                            ";
                         }
                     @endphp
+
                     @if (!$transactions->hasMorePages() && $transactions->count() != 0)
                         <tr>
                             <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
@@ -151,27 +119,3 @@
         </div>
     @endif
 </div>
-<script>
-    function printReport() {
-        var table = document.getElementById('report-table').outerHTML;
-
-        var printWindow = window.open('', '_blank');
-        var printDocument = printWindow.document;
-
-        var head = printDocument.head;
-
-        var tailwindCSS = document.createElement('link');
-        tailwindCSS.rel = 'stylesheet';
-        tailwindCSS.href = 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
-        head.appendChild(tailwindCSS);
-
-        var bootstrapCSS = document.createElement('link');
-        bootstrapCSS.rel = 'stylesheet';
-        bootstrapCSS.href = 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css';
-        head.appendChild(bootstrapCSS);
-
-        printDocument.body.innerHTML = table;
-
-        printWindow.print();
-    }
-</script>

@@ -52,7 +52,7 @@ class TransactionFactory extends Factory
                 'preferredService' => fake()->randomElement(['Delivery', 'Pickup']),
                 'paymentOption' => fake()->sentence(1),
                 'proofOfPayment' => fake()->url(),
-                'status' => fake()->randomElement(['Complete', 'On Hold', 'Processing', 'In Transit', 'Ready for Pickup', 'Returned', 'Cancelled']),
+                'status' => fake()->randomElement(['Completed', 'On Hold', 'Processing', 'In Transit', 'Ready for Pickup', 'Returned', 'Cancelled']),
                 'shippingAddress' => fake()->address(),
                 'courierUsed' => fake()->sentence(2),
                 'shippingFee' => fake()->randomNumber(4, false),

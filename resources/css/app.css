@@ -22,7 +22,7 @@
 .widenWhenSelected:checked + label {
     width: 100%;
     height: 3rem;
-    border-color: gray;
+    /* border-color: gray; */
 }
 
 .widenWhenSelectedOrders:checked + label {

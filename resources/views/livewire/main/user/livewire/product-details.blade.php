@@ -5,7 +5,7 @@
             <div class="absolute inset-0 bg-black opacity-50 w-full h-full" wire:click="hideDetails"></div>
 
             <!-- Product details card -->
-            <div class="bg-gray-100 p-6 rounded-lg relative z-50 border flex flex-col items-center justify-start w-full max-w-md mx-7 overflow-y-auto"
+            <div class="bg-gray-100 p-6 rounded-lg relative z-50 border flex flex-col items-center justify-start w-full max-w-md lg:max-w-[55rem] mx-7 overflow-y-auto"
                 style="height: 37rem;">
                 <div class="w-full flex justify-end py-2 mb-2">
                     <button wire:click="hideDetails">
@@ -16,11 +16,24 @@
                         </svg>
                     </button>
                 </div>
-                <div class="mb-2">
-                    <img class="rounded-md object-cover"
-                        src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}"
-                        alt="{{ $product->name }}" style="max-height: 200px;">
-                </div>
+                <div id="productCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100 h-xl rounded-md object-cover"
+                src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}"
+                alt="{{ $product->name }}" style="max-height: 350px;">
+        </div>
+        
+    </div>
+    <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
                 <table class="w-full border-spacing-x-2">
                     <tr class="h-14">
                         <th colspan="2" class="text-center font-semibold">Product Details</th>

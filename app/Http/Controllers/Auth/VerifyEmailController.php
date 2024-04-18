@@ -27,6 +27,6 @@ class VerifyEmailController extends Controller
         }
 
         Auth::logout();
-        return redirect()->intended(RouteServiceProvider::HOME . '?verified=1');
+        return redirect()->route('login')->with('message', 'You have registered successfully!');
     }
 }

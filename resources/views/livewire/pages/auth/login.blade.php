@@ -75,7 +75,13 @@ new #[Layout('layouts.guest')] class extends Component
                         </div>
                         <x-auth-session-status class="mb-4 bg-white p-1 px-2 rounded-md text-green-500" :status="session('status')" />
                         <x-auth-session-status class="mb-4 bg-red-500 p-1 px-2 rounded-md text-white" :status="session('tncDecline')" />
+
                         <div class="w-full flex flex-col items-center">
+                            @if (session('message'))
+                            <div class="mb-4 bg-green-500 p-1 px-2 rounded-md text-white">
+                                {{ session('message') }}
+                            </div>
+                            @endif
                             <input wire:model="form.email" name="email" required class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 my-2" type="email" placeholder="E-mail" autocomplete="email" autofocus>
                             <x-input-error :messages="$errors->get('email')" />
                             <input required wire:model="form.password" name="password" autocomplete="current-password" class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3" type="password" placeholder="Password">

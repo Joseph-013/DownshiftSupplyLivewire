@@ -9,8 +9,6 @@
                 </h1>
             </div>
 
-
-
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
 
                 <livewire:search-product />

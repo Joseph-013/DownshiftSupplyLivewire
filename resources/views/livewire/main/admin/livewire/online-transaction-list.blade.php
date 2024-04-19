@@ -18,7 +18,8 @@
                         <li class="w-2/12 flex items-center text-center text-xs">
                             <span class="inline-block h-4 w-4 rounded-full mr-2 ml-2
                         ">
-            </span>{{ $transaction->id }}</li>
+                            </span>{{ $transaction->id }}
+                        </li>
                         <li class="w-2/12 text-left text-xs">
                             {{ \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y') }}
                         </li>
@@ -59,7 +60,7 @@
                 bg-black
         @endswitch
     ">
-                            
+
                             @switch($transaction->status)
                             @case('Processing')
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hourglass-split text-white" viewBox="0 0 16 16" style="filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));">

@@ -3,7 +3,8 @@
         <h4 class="text-lg font-bold font-montserrat">{{ $format ? ucfirst($format) . ' Report' : '' }}</h4>
         <div class="flex items-center">
             <button type="button" wire:click="compilePDF" {{-- onclick="printReport()" --}}
-                class="mr-2 p-2 bg-blue-500 text-white text-sm rounded-lg border border-black">Print Report</button>
+                class="mr-2 p-2 bg-blue-500 text-white text-sm rounded-lg border border-black">Print Report (only appear
+                if there are records)</button>
             Rows:
             <input type="number" min="10" max="1000" placeholder="Row Count" class="rounded-md max-w-36 ms-2"
                 value="100" wire:model="rowCount" wire:change="updateRowCount($event.target.value)" />

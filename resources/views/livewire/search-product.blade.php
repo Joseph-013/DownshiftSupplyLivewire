@@ -1,9 +1,11 @@
 <div class="flex-1">
+    
     <form wire:submit.prevent="submitSearch" class="flex flex-row">
         <div class="mx-2 flex flex-row w-full">
             <input wire:model="search"
                 class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full w-full"
                 type="text" />
+                
             <button type="button" wire:click.prevent="clearSearch"
                 class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">
                 <svg style="color: gray;" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -13,7 +15,7 @@
                 </svg>
             </button>
         </div>
-        <!-- <button
+        <button
             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                 class="svg-icon mr-2"
                 style="width: 1.2em; height: 1.2em; fill: currentColor;overflow: hidden;"
@@ -26,7 +28,7 @@
                     fill="" />
             </svg>
             <span class="hidden sm:inline">Filters</span>
-        </button> -->
+        </button>
         <button type="submit"
             class="mx-2 rounded-lg border-gray-500 border-2 px-3 text-sm hover:bg-gray-200 flex items-center"><svg
                 class="feather feather-search" fill="none" height="18" stroke="currentColor"

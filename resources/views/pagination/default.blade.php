@@ -6,7 +6,7 @@
             <div>
                 {{-- Disabled Button --}}
                 @if ($paginator->onFirstPage())
-                    <div class="cursor-not-allowed py-1 px-2 rounded-full">
+                    <div class="cursor-not-allowed py-1 px-2 rounded-full" title="Already on first page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-backward" viewBox="0 0 16 16">
                             <path
@@ -17,7 +17,7 @@
                     {{-- Functional Button --}}
                     <button class="hover:bg-slate-300 py-1 px-2 rounded-full"
                         wire:click="setPage({{ $paginator->currentPage() - 5 }})" wire:loading.attr="disabled"
-                        rel="prev">
+                        rel="prev" title="Previous 5 pages">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-backward" viewBox="0 0 16 16">
                             <path
@@ -31,7 +31,7 @@
             <div>
                 {{-- Disabled Button --}}
                 @if ($paginator->onFirstPage())
-                    <div class="cursor-not-allowed py-1 px-2 rounded-full">
+                    <div class="cursor-not-allowed py-1 px-2 rounded-full" title="Already on first page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-start" viewBox="0 0 16 16">
                             <path
@@ -41,7 +41,7 @@
                 @else
                     {{-- Functional Button --}}
                     <button class="hover:bg-slate-300 py-1 px-2 rounded-full" wire:click="previousPage"
-                        wire:loading.attr="disabled" rel="prev">
+                        wire:loading.attr="disabled" rel="prev" title="Previous page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-start" viewBox="0 0 16 16">
                             <path
@@ -54,7 +54,7 @@
             {{-- Page Location --}}
             <button
                 onclick="document.getElementById('jumpInput').style.display='block';this.style.display = 'none';document.getElementById('jumpInput').focus();"
-                class="flex flex-col justify-center items-center py-2 px-3 rounded-full bg-slate-300" id="pageStatus">
+                class="flex flex-col justify-center items-center py-2 px-3 rounded-full bg-slate-300" id="pageStatus" title="Select page">
                 {{-- <div class="-mb-1 text-xs text-gray-500">{{ $paginator->currentPage() }}/{{ $paginator->lastPage() }}
                 </div> --}}
                 <div class="">
@@ -73,7 +73,7 @@
             <div>
                 {{-- Disabled Button --}}
                 @if ($paginator->onLastPage())
-                    <div class="cursor-not-allowed py-1 px-2 rounded-full">
+                    <div class="cursor-not-allowed py-1 px-2 rounded-full" title="Already on last page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-end" viewBox="0 0 16 16">
                             <path
@@ -83,7 +83,7 @@
                 @else
                     {{-- Functional Button --}}
                     <button class="hover:bg-slate-300 py-1 px-2 rounded-full" wire:click="nextPage"
-                        wire:loading.attr="disabled" rel="prev">
+                        wire:loading.attr="disabled" rel="prev" title="Next page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-end" viewBox="0 0 16 16">
                             <path
@@ -97,7 +97,7 @@
             <div>
                 {{-- Disabled Button --}}
                 @if ($paginator->onLastPage())
-                    <div class="cursor-not-allowed py-1 px-2 rounded-full">
+                    <div class="cursor-not-allowed py-1 px-2 rounded-full" title="Already on last page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-end" viewBox="0 0 16 16">
                             <path
@@ -108,7 +108,8 @@
                     {{-- Functional Button --}}
                     <button class="hover:bg-slate-300 py-1 px-2 rounded-full"
                         wire:click="setPage({{ $paginator->currentPage() + 5 > $paginator->lastPage() ? $paginator->lastPage() : $paginator->currentPage() + 5 }})"
-                        wire:loading.attr="disabled" rel="prev">
+                        wire:loading.attr="disabled" rel="prev"
+                        title="Next 5 pages">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-skip-forward" viewBox="0 0 16 16">
                             <path

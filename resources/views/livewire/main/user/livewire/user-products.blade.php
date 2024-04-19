@@ -9,7 +9,7 @@
                     wire:click="toggleDetails({{ $product->id }})">
                     <div class="w-full relative">
                         <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}"
-                            class="w-full h-52 rounded-lg border-gray-500 border-1" style="object-fit: cover;">
+                            class="w-full h-52 rounded-lg border-gray-500 border-1" style="object-fit: cover;" title="View product details">
                         @if ($product->stockquantity <= 0)
                             <div class="absolute inset-0 flex justify-center items-center">
                                 <div
@@ -32,7 +32,7 @@
                             </li>
                             <li class="w-2/12 text-left text-sm flex justify-center">
                                 @if ($product->stockquantity > 0)
-                                    <button wire:click.stop="addToCart({{ $product->id }})">
+                                    <button wire:click.stop="addToCart({{ $product->id }})" title="Add to cart">
                                         <svg class="svg-icon mt-3 w-full h-full hover:brightness-90"
                                             style="width: 2.5em; height: 2.5em; vertical-align: middle; fill: #fb923c; overflow: hidden;"
                                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

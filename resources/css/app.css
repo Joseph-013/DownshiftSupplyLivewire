@@ -19,77 +19,79 @@
     font-family: "Montserrat", sans-serif;
 }
 
-.widenWhenSelected:checked + label {
+.widenWhenSelected:checked+label {
     width: 100%;
     height: 3rem;
     /* border-color: gray; */
 }
 
-.widenWhenSelectedOrders:checked + label {
+.widenWhenSelectedOrders:checked+label {
     width: 100%;
     height: 120%;
     border-color: gray;
 }
 
 /* FAQs */
-#questions-container{
+#questions-container {
     height: 32rem !important;
 }
 
-#transactions-container{
+#transactions-container {
     height: 24rem !important;
 }
 
-#cart-container{
+#cart-container {
     height: 22rem !important;
 }
 
 /* Edit Transactions */
-#edittransactions-container{
+#edittransactions-container {
     height: 20rem !important;
 }
 
-#onsitecreate-container{
+#onsitecreate-container {
     height: 10rem !important;
 }
 
-#orders-container{
+#orders-container {
     height: 26rem !important;
 }
 
-#online-orders-container{
+#online-orders-container {
     height: 32rem !important;
 }
 
-#faqs-container{
+#faqs-container {
     height: 9rem !important;
 }
 
-#faqs-qa-container{
+#faqs-qa-container {
     height: 13rem !important;
 }
 
-#faqs-email-container{
+#faqs-email-container {
     height: 14rem !important;
 }
 
-#faqs-map-container{
+#faqs-map-container {
     height: 26rem !important;
 }
 
-#terms-container{
+#terms-container {
     height: 22rem !important;
 }
 
 .container {
     position: relative;
-    width: 500px; /* Adjust the width as needed */
+    width: 500px;
+    /* Adjust the width as needed */
 }
 
 .fixed-width-container {
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis; /* Optional: Add ellipsis (...) for overflowed text */
+    text-overflow: ellipsis;
+    /* Optional: Add ellipsis (...) for overflowed text */
     text-align: left !important;
     padding: 0 !important;
 }
@@ -97,7 +99,8 @@
 
 .hover-text {
     position: absolute;
-    top: -50px; /* Adjust the position as needed */
+    top: -50px;
+    /* Adjust the position as needed */
     left: -50px;
     background-color: rgba(111, 111, 111, 0.8);
     padding: 5px;
@@ -113,22 +116,28 @@
 }
 
 input[type="radio"] {
-    appearance: none; /* Remove default styles */
+    appearance: none;
+    /* Remove default styles */
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 20px; /* Customize the size of the radio button */
+    width: 20px;
+    /* Customize the size of the radio button */
     height: 20px;
-    border: 2px solid orange !important; /* Default border color */
-    border-radius: 50%; /* Make it round */
+    border: 2px solid orange !important;
+    /* Default border color */
+    border-radius: 50%;
+    /* Make it round */
     outline: none;
     cursor: pointer;
     margin-right: 5px;
-    box-shadow: none; /* Remove outer outline */
+    box-shadow: none;
+    /* Remove outer outline */
 }
 
 /* Custom style when radio button is checked */
 input[type="radio"]:checked {
-    background-color: orange !important; /* Change background color */
+    background-color: orange !important;
+    /* Change background color */
 }
 
 /* Remove blue outline on focus */
@@ -136,17 +145,17 @@ input[type="radio"]:focus {
     outline: none;
 }
 
-input[type="checkbox"]:checked{
+input[type="checkbox"]:checked {
     background-color: rgb(77, 77, 77);
     border-color: orange;
 }
 
-input[type="checkbox"]:checked{
+input[type="checkbox"]:checked {
     color: rgb(93, 92, 91);
 }
 
 /* Edit Transactions */
-.widenWhenSelectedEdit:checked + label {
+.widenWhenSelectedEdit:checked+label {
     width: 100%;
     height: 6.5rem;
     border-color: gray;
@@ -154,15 +163,22 @@ input[type="checkbox"]:checked{
 
 /* Modal */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 100;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: hidden;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 
 }
 
@@ -175,10 +191,12 @@ input[type="checkbox"]:checked{
 /* Modal content */
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto; /* 10% from the top and centered */
+    margin: 5% auto;
+    /* 10% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 50%;
+    /* Could be more or less, depending on screen size */
 }
 
 /* Tabs */
@@ -244,7 +262,8 @@ input[type="checkbox"]:checked{
 }
 
 .overlay-container {
-    position: relative; /* Ensure relative positioning for absolute overlay */
+    position: relative;
+    /* Ensure relative positioning for absolute overlay */
 }
 
 .overlay {
@@ -253,11 +272,13 @@ input[type="checkbox"]:checked{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* semi-transparent black */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensure the overlay is above other content */
+    z-index: 9999;
+    /* Ensure the overlay is above other content */
 }
 
 /* Center content styles */
@@ -282,19 +303,56 @@ input[type="checkbox"]:checked{
 
     margin-top: 1rem;
     /* border: 1px solid #dfdfdf; */
-    background-color: white; /* Initial background color */
+    background-color: white;
+    /* Initial background color */
 }
 
 .timer {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 100%; /* Initially fills the .notif div */
-    background-color: #fd831f; /* Background color of the timer */
+    width: 100%;
+    /* Initially fills the .notif div */
+    background-color: #fd831f;
+    /* Background color of the timer */
     animation: unfill 1.75s linear forwards;
 }
 
 @keyframes unfill {
-    0% { width: 0; } /* Start with full width */
-    100% { width: 100%; } /* End with zero width */
+    0% {
+        width: 0;
+    }
+
+    /* Start with full width */
+    100% {
+        width: 100%;
+    }
+
+    /* End with zero width */
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    /* min-width: 160px; */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+/* .dropdown:hover .dropbtn {
+    background-color: #dbdbdb;
+} */

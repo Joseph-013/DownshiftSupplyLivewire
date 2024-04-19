@@ -25,14 +25,16 @@
         </div>
         
     </div>
-    <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+    <!-- HTML with Tailwind CSS classes -->
+<a class="carousel-control-prev absolute top-1/2 left-4 bg-black bg-opacity-60 rounded-full w-12 h-12 flex justify-center items-center" href="#productCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon text-white" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next absolute top-1/2 right-4 bg-black bg-opacity-60 rounded-full w-12 h-12 flex justify-center items-center" href="#productCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon text-white" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+</a>
+
 </div>
                 <table class="w-full border-spacing-x-2">
                     <tr class="h-14">

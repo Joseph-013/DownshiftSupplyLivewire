@@ -107,4 +107,16 @@ class ReportTable extends Component
         else
             return view('livewire.main.admin.livewire.report-table');
     }
+
+    public function compilePDF()
+    {
+        // dispatch event printPDF and send raw html: <div>test</div>
+        $html = view('livewire.main.admin.livewire.report-markup', [
+            'format' => $this->format,
+            'startDate' => $this->startDate,
+            'endDate' => $this->endDate,
+        ])->render();
+        $this->dispatch('printPDF', html: $html); // Dispatch the event with HTML
+
+    }
 }

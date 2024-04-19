@@ -54,11 +54,7 @@ class ReportMarkup extends Component
         return view('livewire.main.admin.livewire.report-markup')->with([
             'transactions' => $transactions,
             'format' => $this->format,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
         ]);
-
-
 
         // return view('livewire.main.admin.livewire.report-markup')->with([
         //     'format' => $this->format,

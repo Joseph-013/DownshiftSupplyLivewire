@@ -6,12 +6,12 @@
         </div>
     </div>
 
-    <div class="">
+    {{-- <div class="">
         Test:<br />
         Format: {{ $format }}<br />
         Start date: {{ $startDate }}<br />
         End date: {{ $endDate }}
-    </div>
+    </div> --}}
 
     <table id="report-table" class="border w-full mt-2 text-xs">
         <thead class="border">

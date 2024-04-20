@@ -10,13 +10,10 @@ class ReportMarkup extends Component
     public $format;
     public $startDate;
     public $endDate;
+    // public $transactions;
 
     public function mount($data)
     {
-        // Assign the passed data to the $foo property
-        // $this->foo = $data['test'];
-        // dd($data);
-
         $this->format = $data['format'];
         $this->startDate = $data['startDate'];
         $this->endDate = $data['endDate'];

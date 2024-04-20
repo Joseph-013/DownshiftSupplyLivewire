@@ -22,10 +22,10 @@ class UserOrdersList extends Component
     public function mount()
     {
         if (request()->has('orderId')) {
-                $checkOrderTampering = Transaction::where([
-                    'user_id' => Auth::id(),
-                    'id' => request()->query('orderId'),
-                ])->first();
+            $checkOrderTampering = Transaction::where([
+                'user_id' => Auth::id(),
+                'id' => request()->query('orderId'),
+            ])->first();
             if ($checkOrderTampering) {
                 $this->selectedOrder = $this->showDetails(request()->query('orderId'));
             } else {
@@ -34,15 +34,83 @@ class UserOrdersList extends Component
         }
     }
 
+    public $sortBy = 'created_at';
+    public $sortOrder = "desc";
+    public $filterColumn;
+
+    public function sort($by)
+    {
+        //parse to DB column
+        switch ($by) {
+            case 'date': {
+                    $by = 'created_at';
+                    break;
+                }
+            case 'total': {
+                    $by = 'grandTotal';
+                    break;
+                }
+        }
+
+
+        if ($this->sortBy === $by) {
+            $this->sortOrder = $this->sortOrder === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $by;
+            // dedicated initial order of column
+            if ($by === 'created_at')
+                $this->sortOrder = 'desc';
+            else
+                $this->sortOrder = 'asc';
+        }
+    }
+
+    public function filter($details)
+    {
+        // $details = json_decode($detailsJson);
+
+        switch ($details[0]) {
+            case 'Status': {
+                    $details[0] = 'status';
+                    break;
+                }
+            case 'Mode': {
+                    $details[0] = 'preferredService';
+                    break;
+                }
+        }
+
+        // if ($details[1] === 'All') {
+        //     $this->filterColumn = null;
+        // }
+
+        $this->filterColumn = $details;
+        // $this->filterColumn[1] = $details[1];
+    }
+
     #[On('UserOrdersListRender')]
     public function render()
     {
-        $transactionList = Transaction::where([
-            'user_id' => Auth::id(),
-            'purchaseType' => 'Online',
-        ])->paginate(10);
+        if (isset($this->filterColumn) && $this->filterColumn[1] !== 'All') {
+            $transactionList = Transaction::where([
+                'user_id' => Auth::id(),
+                'purchaseType' => 'Online',
+            ])
+                ->orderBy($this->sortBy, $this->sortOrder)
+                ->where($this->filterColumn[0], $this->filterColumn[1])
+                ->paginate(10);
+        } else {
+            $transactionList = Transaction::where([
+                'user_id' => Auth::id(),
+                'purchaseType' => 'Online',
+            ])
+                ->orderBy($this->sortBy, $this->sortOrder)
+                ->paginate(10);
+        }
+
         return view('livewire.main.user.livewire.user-orders-list')->with(['transactionList' => $transactionList]);
     }
+
 
     public function showDetails($transactionId)
     {

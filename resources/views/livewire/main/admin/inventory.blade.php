@@ -23,14 +23,7 @@
                 {{-- Right Panel border-2 border-black --}}
                 <div class="w-full lg:w-8/12 h-full px-3 text-right flex">
                     <div class="w-full h-full px-4 flex flex-col">
-                        <div class="w-full flex-row">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-7/12 text-center text-sm">Item Name</li>
-                                <li class="w-2/12 text-center text-sm ml-[-1.45rem]">Remaining</li>
-                                <li class="w-2/12 text-center text-sm ml-2">Price</li>
-                            </ul>
-                        </div>
-                        <hr class="my-1">
+
                         {{-- Products List  --}}
                         <livewire:product-list />
                     </div>

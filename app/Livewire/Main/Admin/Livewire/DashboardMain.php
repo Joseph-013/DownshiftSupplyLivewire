@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Main\Admin\Livewire;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class DashboardMain extends Component

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("dashboard.css");
 
 :root {
     /* Setting Content Heights for dynamic look */
@@ -356,3 +357,8 @@ input[type="checkbox"]:checked {
 /* .dropdown:hover .dropbtn {
     background-color: #dbdbdb;
 } */
+
+.table-dashboard th,
+td {
+    padding: 5px;
+}

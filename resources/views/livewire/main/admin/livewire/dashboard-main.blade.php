@@ -14,10 +14,18 @@
 
             {{-- Content --}}
             <div class="w-full grid grid-cols-3 gap-6">
-                <div class="border border-black">Most sold items</div>
-                <div class="border border-black">Least sold items</div>
-                <div class="border border-black">Critical level items</div>
+
+                <livewire:main.admin.livewire.components-dashboard.lowstock />
+                <livewire:main.admin.livewire.components-dashboard.outstock />
+                <livewire:main.admin.livewire.components-dashboard.most-sold />
+                <div class="col-span-2">
+                    graph to later
+                    <livewire:main.admin.livewire.components-dashboard.most-sold />
+                </div>
+                {{-- <livewire:main.admin.livewire.components-dashboard.least-sold /> --}}
+
             </div>
+
 
         </div>
     </div>

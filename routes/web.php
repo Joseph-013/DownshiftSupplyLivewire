@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified', 'checkadmin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/dashboard', function () {
-            return view('livewire.main.admin.livewire.dashboard-main');
+            return view('livewire.main.admin.livewire.dashboard-main')->render();
         })->name('dashboard');
         Route::get('/inventory', [ProductController::class, 'index'])->name('inventory');
         Route::get('/inventory/search', [ProductController::class, 'search'])->name('inventory.search');

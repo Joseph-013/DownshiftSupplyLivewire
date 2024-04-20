@@ -17,12 +17,12 @@ document.addEventListener("livewire:init", () => {
 
         switch (type) {
             case 'warning': {
-                alertDiv.style.backgroundColor = 'rgb(239 68 68)';
+                alertDiv.style.backgroundColor = 'rgb(233 99 100)';
                 alertDiv.style.color = 'white';
                 break;
             }
             case 'neutral': {
-                alertDiv.style.backgroundColor = 'rgb(115 115 115)';
+                alertDiv.style.backgroundColor = 'rgb(26 131 244)';
                 alertDiv.style.color = 'white';
                 break;
             }

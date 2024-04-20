@@ -23,6 +23,7 @@ class OnlineCreate extends Component
     public $paymentOption;
     public $preferredService;
     public $statusOptions;
+    public $preferredServiceOptions;
     public $courierUsed;
     public $shippingFee;
     public $previousShippingFee;
@@ -68,6 +69,7 @@ class OnlineCreate extends Component
             $this->status = null;
         }
 
+        $this->preferredServiceOptions = $this->getEnumValues('transactions', 'preferredService');
         $this->statusOptions = $this->getEnumValues('transactions', 'status');
     }
 
@@ -80,10 +82,17 @@ class OnlineCreate extends Component
     {
         $currentTrans = $this->transaction;
         $this->validate([
-            'status' => ['required', 'string']
+            'status' => ['required', 'string'],
+            'contact' => ['required', 'numeric', 'digits_between:1,11'],
+        ], [
+            'contact.digits_between' => 'Must be between 1 and 11 digits.'
         ]);
 
         if ($this->status) {
+            $currentTrans->firstName = $this->firstName;
+            $currentTrans->lastName = $this->lastName;
+            $currentTrans->contact = $this->contact;
+            $currentTrans->preferredService = $this->preferredService;
             $currentTrans->courierUsed = $this->courierUsed;
             $currentTrans->trackingNumber = $this->trackingNumber;
             $currentTrans->shippingAddress = $this->shippingAddress;
@@ -171,5 +180,10 @@ class OnlineCreate extends Component
         });
 
         return $filteredStatuses;
+    }
+
+    public function updatePreferredService()
+    {
+        $this->preferredService = $this->preferredService;
     }
 }

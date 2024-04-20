@@ -122,6 +122,7 @@ class OnsiteCreate extends Component
             'tempDetails.*.quantity' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
             'quantities.*' => ['required', 'numeric', 'integer', 'gt:0', 'min:1'],
         ], [
+            'contact.digits_between' => 'The contact number must be between 1 and 11 digits.',
             'tempDetails.*.quantity.required' => 'The quantity field of newly added items is required.',
             'tempDetails.*.quantity.numeric' => 'The quantity of newly added items must be a number.',
             'tempDetails.*.quantity.integer' => 'The quantity of newly added items must be an integer.',

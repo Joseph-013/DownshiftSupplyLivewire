@@ -192,24 +192,45 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Name:</td>
+                            <td>First Name:</td>
                             <td class="text-left">
-                                <div class="w-full max-w-52">
-                                    {{ $firstName }} {{ $lastName }}
-                                </div>
+                                <input id="autocomplete" wire:model="firstName" type="text"
+                                    class="rounded-lg h-9 w-full" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td class="text-left">
+                                <input id="autocomplete" wire:model="lastName" type="text"
+                                    class="rounded-lg h-9 w-full" />
                             </td>
                         </tr>
                         <tr>
                             <td>Contact #:</td>
-                            <td class="text-left">{{ $contact }}</td>
+                            <td class="text-left">
+                                <input id="autocomplete" wire:model="contact" type="number"
+                                        class="rounded-lg h-9 w-full" required/>
+                            </td>
                         </tr>
+                        @if ($errors->has('contact'))
+                        <tr>
+                            <td></td>
+                            <td><span class="text-red-500 text-left w-full">{{ $errors->first('contact') }}</span></td>
+                        </tr>
+                        @endif
                         <tr>
                             <td>Payment Opt:</td>
                             <td class="text-left">{{ $paymentOption }}</td>
                         </tr>
                         <tr>
                             <td>Preferred Service:</td>
-                            <td class="text-left">{{ $preferredService }}</td>
+                            <td class="text-left">
+                                <select wire:model="preferredService" wire:change="updatePreferredService" class="rounded-lg h-10 w-full" required>
+                                    @foreach ($preferredServiceOptions as $option)
+                                        <option value="{{ $option }}">{{ $option }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>Status:</td>

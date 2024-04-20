@@ -135,11 +135,6 @@
                                 : '' }}
                             found
                         </div>
-
-                        {{-- @if (isset($filterColumn) && $filterColumn[1] !== 'All')
-                            <div class="w-full mt-3 text-gray-400 text-center">No orders with status
-                                {{ $filterColumn[1] }} found</div>
-                        @endif --}}
                     @endif
                 </tbody>
             </table>

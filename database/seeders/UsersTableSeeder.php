@@ -26,14 +26,14 @@ class UsersTableSeeder extends Seeder
                 'usertype' => 'admin',
             ],
             // User
-            // [
-            //     'username' => 'test',
-            //     'fullname' => 'testfullname',
-            //     'email' => 'test@gmail.com',
-            //     'email_verified_at' => now(),
-            //     'password' => Hash::make('11111111'),
-            //     'usertype' => 'user',
-            // ],
+            [
+                'username' => 'test',
+                'fullname' => 'testfullname',
+                'email' => 'test@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('11111111'),
+                'usertype' => 'user',
+            ],
             // [
             //     'username' => 'test2',
             //     'fullname' => 'testfullname2',

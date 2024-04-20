@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Detail;
-use App\Models\Transaction;
+use App\Models\Product;
 use Livewire\Component;
+use App\Models\Transaction;
+use Livewire\Attributes\On;
 
 class OrderOverlay extends Component
 {
@@ -30,6 +32,7 @@ class OrderOverlay extends Component
             'negative' => 'Cancel',
             'message' => 'This action is permanent.',
             'title' => 'Confirm order \'' . $this->transactionData->id . '\' is received?',
+            'key' => 'UserOrdersDetail',
         ]);
     }
 }

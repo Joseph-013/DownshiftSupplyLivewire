@@ -46,17 +46,16 @@ class UserOrdersDetail extends Component
             'negative' => 'Cancel',
             'message' => 'This action is permanent.',
             'title' => 'Confirm order \'' . $this->transactionData->id . '\' is received?',
+            'key' => 'UserOrdersDetail',
         ]);
     }
 
-    #[On('positive')]
+    #[On('UserOrdersDetail_positive')]
     public function setOrderComplete()
     {
-        $this->transactionData->status = 'Complete';
-        if($this->transactionData->details)
-        {
-            foreach($this->transactionData->details as $detail)
-            {
+        $this->transactionData->status = 'Completed';
+        if ($this->transactionData->details) {
+            foreach ($this->transactionData->details as $detail) {
                 $product = Product::findOrFail($detail->product_id);
                 $product->stockquantity -= $detail->quantity;
                 $product->save();

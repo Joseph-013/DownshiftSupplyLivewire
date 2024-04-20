@@ -32,12 +32,11 @@
     {{-- <div class="min-h-screen bg-gray-100"> --}}
     <div class="flex flex-col h-screen">
         <div id="alertDiv"
-            class="notificationTemp default-shadow rounded-lg text-center font-bold animate-slide-out px-4 pt-1 pb-3 border max-w-96">
-            {{-- Temp Notification --}}
-            <div class="timer w-full h-1 mt-1"></div> {{-- Loading Bar --}}
-            <div class="mt-1 font-normal" id="alertMessageDiv"> {{-- Text Container --}}
+            class="notificationTemp shadow-md shadow-gray-500 rounded-lg text-center font-bold animate-slide-out px-4 py-2 mt-4 border max-w-96 border-none">
+            {{-- Text Container --}}
+            <div class="font-normal" id="alertMessageDiv">
+                {{-- message --}}
             </div>
-            {{-- Temp Notification --}}
         </div>
 
         <livewire:layout.confirmation-notification />

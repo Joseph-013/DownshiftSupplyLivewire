@@ -42,17 +42,16 @@ class OrderNotification extends Component
 
     public function completeTransaction()
     {
-        $this->transaction->status = 'Complete';
-        if($this->transaction->details)
-        {
-            foreach($this->transaction->details as $detail)
-            {
+        $this->transaction->status = 'Completed';
+        if ($this->transaction->details) {
+            foreach ($this->transaction->details as $detail) {
                 $product = Product::findOrFail($detail->product_id);
                 $product->stockquantity -= $detail->quantity;
                 $product->save();
             }
         }
         $this->transaction->save();
+        $this->dispatch('alertNotif', 'Order set to Complete');
     }
 
     public function render()

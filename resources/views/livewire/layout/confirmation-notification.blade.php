@@ -2,7 +2,7 @@
     @if ($showConfirmationOverlay)
         <div id="overlay"
             class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-20">
-            <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="bg-white p-6 rounded-lg shadow-lg" style="z-index: 99999;">
                 @isset($title)
                     <h2 class="text-xl mb-4 text-center">{{ $title }}</h2>
                 @endisset

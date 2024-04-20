@@ -14,33 +14,33 @@ class ConfirmationNotification extends Component
     public $positiveButtonName = null;
     public $title = null;
     public $message = null;
+    public $key;
 
     public function negative()
     {
         $this->showConfirmationOverlay = false;
-        $this->dispatch('negative');
+        $this->dispatch($this->key . '_negative');
         $this->dispatch('showItemTemplate');
     }
 
     public function neutral()
     {
         $this->showConfirmationOverlay = false;
-        $this->dispatch('neutral');
+        $this->dispatch($this->key . '_neutral');
     }
 
     public function positive()
     {
         $this->showConfirmationOverlay = false;
-        $this->dispatch('positive');
+        $this->dispatch($this->key . '_positive');
     }
 
     #[On('confirmationOverlay')]
     public function revealConfirmationOverlay($data)
     {
-        if (isset($data['negative'])){
+        if (isset($data['negative']))
             $this->negativeButtonName = $data['negative'];
-        }
-        
+
         if (isset($data['neutral']))
             $this->neutralButtonName = $data['neutral'];
 
@@ -53,6 +53,7 @@ class ConfirmationNotification extends Component
         if (isset($data['message']))
             $this->message = $data['message'];
 
+        $this->key = $data['key'];
         $this->showConfirmationOverlay = true;
     }
 

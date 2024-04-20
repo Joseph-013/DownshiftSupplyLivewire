@@ -7,7 +7,6 @@ use Livewire\Attributes\On;
 
 class ConfirmationNotification extends Component
 {
-
     public $showConfirmationOverlay = false;
     public $negativeButtonName = null;
     public $neutralButtonName = null;
@@ -15,24 +14,34 @@ class ConfirmationNotification extends Component
     public $title = null;
     public $message = null;
     public $key;
+    public $with;
 
     public function negative()
     {
         $this->showConfirmationOverlay = false;
-        $this->dispatch($this->key . '_negative');
+        if (isset($this->with))
+            $this->dispatch($this->key . '_negative', with: $this->with);
+        else
+            $this->dispatch($this->key . '_negative');
         $this->dispatch('showItemTemplate');
     }
 
     public function neutral()
     {
         $this->showConfirmationOverlay = false;
-        $this->dispatch($this->key . '_neutral');
+        if (isset($this->with))
+            $this->dispatch($this->key . '_neutral', with: $this->with);
+        else
+            $this->dispatch($this->key . '_neutral');
     }
 
     public function positive()
     {
         $this->showConfirmationOverlay = false;
-        $this->dispatch($this->key . '_positive');
+        if (isset($this->with))
+            $this->dispatch($this->key . '_positive', with: $this->with);
+        else
+            $this->dispatch($this->key . '_positive');
     }
 
     #[On('confirmationOverlay')]
@@ -53,7 +62,11 @@ class ConfirmationNotification extends Component
         if (isset($data['message']))
             $this->message = $data['message'];
 
-        $this->key = $data['key'];
+        if (isset($data['with']))
+            $this->with = $data['with'];
+
+        if (isset($data['key']))
+            $this->key = $data['key'];
         $this->showConfirmationOverlay = true;
     }
 

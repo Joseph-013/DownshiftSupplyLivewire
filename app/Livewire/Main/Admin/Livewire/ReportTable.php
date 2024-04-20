@@ -110,11 +110,38 @@ class ReportTable extends Component
 
     public function compilePDF()
     {
+        switch ($this->format) {
+            case 'daily':
+                $transactions = Transaction::whereBetween('created_at', [$this->startDate, $this->endDate])->orderBy('created_at')->paginate($this->rowCount);
+                foreach ($transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('F j, Y D');
+                }
+                break;
+            case 'weekly':
+                $transactions = Transaction::whereBetween('created_at', [$this->startDate, $this->endDate])->orderBy('created_at')->paginate($this->rowCount);
+                foreach ($transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('F');
+                }
+                break;
+            case 'monthly':
+                $transactions = Transaction::whereBetween('created_at', [$this->startDate, $this->endDate])->orderBy('created_at')->paginate($this->rowCount);
+                foreach ($transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('F Y');
+                }
+                break;
+            case 'annual':
+                $transactions = Transaction::whereBetween('created_at', [$this->startDate, $this->endDate])->orderBy('created_at')->paginate($this->rowCount);
+                foreach ($transactions as $transaction) {
+                    $transaction->identifier = $transaction->created_at->format('Y');
+                }
+                break;
+        }
         // dispatch event printPDF and send raw html: <div>test</div>
         $html = view('livewire.main.admin.livewire.report-markup', [
             'format' => $this->format,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
+            'transactions' => $transactions
         ])->render();
         $this->dispatch('printPDF', html: $html); // Dispatch the event with HTML
 

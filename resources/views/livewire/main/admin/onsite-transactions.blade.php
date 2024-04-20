@@ -26,15 +26,7 @@
                 {{-- Right Panel border-2 border-black --}}
                 <div class="w-full lg:w-3/5 h-full text-right flex">
                     <div class="w-full h-full flex flex-col">
-                        <div class="w-full flex-row px-5">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-3/12 text-center text-sm">ID</li>
-                                <li class="w-3/12 text-center text-sm">Date</li>
-                                <li class="w-3/12 text-center text-sm">Customer</li>
-                                <li class="w-3/12 text-center text-sm">Total</li>
-                            </ul>
-                        </div>
-                        <hr class="my-1">
+
                         {{-- Products List  --}}
                         <livewire:onsite-transaction-list />
 

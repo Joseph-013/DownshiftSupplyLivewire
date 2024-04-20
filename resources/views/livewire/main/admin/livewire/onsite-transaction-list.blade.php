@@ -7,6 +7,101 @@
             @endif
         </div>
     @endisset
+    <div class="w-full flex-row px-5">
+        <ul class="flex flex-row items-center w-full h-6">
+            <li class="w-3/12 h-full text-center text-xs">
+                <button type="button" wire:click="sort('id')"
+                    class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
+                    ID
+                    @if ($sortBy === 'id')
+                        @if ($sortOrder === 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-up-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-down-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        @endif
+                    @endif
+                </button>
+            </li>
+            <li class="w-3/12 h-full text-center text-xs">
+                <button type="button" wire:click="sort('date')"
+                    class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
+                    Date
+                    @if ($sortBy === 'created_at')
+                        @if ($sortOrder === 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-up-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-down-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        @endif
+                    @endif
+                </button>
+            </li>
+            <li class="w-3/12 h-full text-center text-xs">
+                <button type="button" wire:click="sort('customer')"
+                    class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
+                    Customer
+                    @if ($sortBy === 'firstName')
+                        @if ($sortOrder === 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-up-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-down-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        @endif
+                    @endif
+                </button>
+            </li>
+            <li class="w-3/12 h-full text-center text-xs">
+                <button type="button" wire:click="sort('total')"
+                    class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
+                    Total
+                    @if ($sortBy === 'grandTotal')
+                        @if ($sortOrder === 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-up-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                            </svg>
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                class="bi bi-caret-down-fill ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        @endif
+                    @endif
+                </button>
+            </li>
+        </ul>
+        {{-- <ul class="flex flex-row w-full">
+            <li class="w-3/12 text-center text-sm">ID</li>
+            <li class="w-3/12 text-center text-sm">Date</li>
+            <li class="w-3/12 text-center text-sm">Customer</li>
+            <li class="w-3/12 text-center text-sm">Total</li>
+        </ul> --}}
+    </div>
+    <hr class="my-1">
     <div class="w-full h-96 overflow-y-auto mb-5" id="transactions-container">
         <ul class=" w-full flex flex-col items-center">
             @foreach ($transactions as $transaction)

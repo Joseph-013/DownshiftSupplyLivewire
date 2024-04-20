@@ -23,18 +23,6 @@ class OnsiteTransactionList extends Component
         $this->toggleItemTemplate($transactionId);
     }
 
-    #[On('renderTransactionList')]
-    public function render()
-    {
-        $transactions = Transaction::where('purchaseType', 'Onsite')
-        ->where(function($query) {
-            $query->where('firstName', 'like', '%' . $this->search . '%')
-                ->orWhere('lastName', 'like', '%' . $this->search . '%');
-        })
-        ->paginate(50);
-        return view('livewire.main.admin.livewire.onsite-transaction-list')->with(['transactions' => $transactions]);
-    }
-
     #[On('searchResults')]
     public function searchResults($value)
     {
@@ -46,8 +34,7 @@ class OnsiteTransactionList extends Component
     {
         if ($transaction == null) {
             $this->itemTemplateToggle = 0;
-        }
-        else {
+        } else {
             $this->itemTemplateToggle = $transaction;
         }
     }
@@ -70,5 +57,47 @@ class OnsiteTransactionList extends Component
             $this->itemTemplateToggleRes = $value;
         }
     }
-}   
 
+
+    public $sortBy = 'created_at';
+    public $sortOrder = "desc";
+    public $filterStatus = "All";
+
+    public function sort($by)
+    {
+        //parse to column
+        if ($by === 'id') {
+            $by = 'id';
+        } elseif ($by === 'date') {
+            $by = 'created_at';
+        } elseif ($by === 'total') {
+            $by = 'grandTotal';
+        } elseif ($by === 'customer') {
+            $by = 'firstName';
+        }
+
+
+        if ($this->sortBy === $by) {
+            $this->sortOrder = $this->sortOrder === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $by;
+            if ($by === 'created_at')
+                $this->sortOrder = 'desc';
+            else
+                $this->sortOrder = 'asc';
+        }
+    }
+
+    #[On('renderTransactionList')]
+    public function render()
+    {
+        $transactions = Transaction::where('purchaseType', 'Onsite')
+            ->where(function ($query) {
+                $query->where('firstName', 'like', '%' . $this->search . '%')
+                    ->orWhere('lastName', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy($this->sortBy, $this->sortOrder)
+            ->paginate(50);
+        return view('livewire.main.admin.livewire.onsite-transaction-list')->with(['transactions' => $transactions]);
+    }
+}

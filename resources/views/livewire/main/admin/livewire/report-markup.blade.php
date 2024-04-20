@@ -55,11 +55,11 @@
                     </tr>";
                         }
                     @endphp
-                    @if (!$transactions->hasMorePages() && $transactions->count() != 0)
+                    {{-- @if (!$transactions->hasMorePages() && $transactions->count() != 0)
                         <tr>
                             <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
                         </tr>
-                    @endif
+                    @endif --}}
                 @else
                     {{-- For Weekly --}}
                     @php
@@ -101,11 +101,11 @@
                         }
                     @endphp
 
-                    @if (!$transactions->hasMorePages() && $transactions->count() != 0)
+                    {{-- @if (!$transactions->hasMorePages() && $transactions->count() != 0)
                         <tr>
                             <td colspan="5" class="text-center h-10 text-red-600">Last Row ...</td>
                         </tr>
-                    @endif
+                    @endif --}}
                 @endif
 
             @endif

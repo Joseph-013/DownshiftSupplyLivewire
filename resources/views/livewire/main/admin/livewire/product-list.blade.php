@@ -142,4 +142,19 @@
         <!-- END OF OVERLAY -->
 
     </div>
+    <style>
+        /* Select buttons inside the specified container */
+        .flex-row button {
+            cursor: pointer;
+        }
+
+        /* Additional styles for hover effects */
+        .flex-row button:hover {
+            /* Add hover effects here if needed */
+        }
+
+        li:hover{
+            cursor: pointer;
+        }
+    </style>
 </div>

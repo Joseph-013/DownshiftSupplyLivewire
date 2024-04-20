@@ -146,6 +146,21 @@
             </div>
         </div>
     </div>
+    <style>
+        /* Select buttons inside the specified container */
+        .flex-row button {
+            cursor: pointer;
+        }
+
+        /* Additional styles for hover effects */
+        .flex-row button:hover {
+            /* Add hover effects here if needed */
+        }
+
+        tr:hover{
+            cursor: pointer;
+        }
+    </style>
 </div>
 
 <script>

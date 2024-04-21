@@ -96,7 +96,7 @@ class OnsiteCreate extends Component
             $newTransaction->grandTotal = $grandTotal;
             $newTransaction->save();
 
-            $this->dispatch('alertNotif', 'Transaction successfully created');
+            $this->dispatch('alertNotif', ['message' => 'Transaction successfully created', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
             $this->tempDetails = [];
             $this->quantities = [];
@@ -180,7 +180,7 @@ class OnsiteCreate extends Component
             $currentTrans->grandTotal = $grandTotal;
             $currentTrans->save();
 
-            $this->dispatch('alertNotif', 'Transaction successfully updated');
+            $this->dispatch('alertNotif', ['message' => 'Transaction successfully updated', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
             $this->dispatch('renderTransactionList');

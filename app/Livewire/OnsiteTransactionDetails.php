@@ -41,7 +41,7 @@ class OnsiteTransactionDetails extends Component
             $this->selectedTransaction = null;
             $this->confirmDelete = false;
             $this->dispatch('renderTransactionList');
-            $this->dispatch('alertNotif', 'Transaction deleted');
+            $this->dispatch('alertNotif', ['message' => 'Transaction successfully deleted', 'type' => 'positive']);
         }
     }
 

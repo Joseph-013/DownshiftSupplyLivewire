@@ -13,23 +13,114 @@
                     </svg>
                 </button>
             </div>
-            <div id="productCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100 h-xl rounded-md object-cover" src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}" alt="{{ $product->name }}" style="max-height: 350px;">
-                    </div>
+            <div >
+                <div class="carousel" data-carousel>
+                    <button type="button" class="carousel-control-prev bg-black bg-opacity-60 rounded-full w-10 h-10 top-[50%] left-2" data-carousel-button="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button type="button" class="carousel-control-next bg-black bg-opacity-60 rounded-full w-10 h-10 top-[50%] right-2" data-carousel-button="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+                    <ul data-slides>
+                        <li class="slide" data-active>
+                            <img class="d-block w-100 h-xl rounded-md object-fill" src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}" alt="{{ $product->name }}" style="max-height: 350px;">
+                        </li>
+                        <li class="slide">
+                            <img class="d-block w-100 h-xl rounded-md object-cover text-black" src="" alt="hello" style="max-height: 350px;">
+                        </li>
+                        <li class="slide">
+                            <img class="d-block w-100 h-xl rounded-md object-cover" src="" alt="hi" style="max-height: 350px;">
+                        </li>
+                    </ul>
+
+                    <style>
+                        *, *::before, *::after{
+                            box-sizing: border-box;
+                        }
+
+                        /* .carousel{
+                            width: 50vw;
+                            height: 50vw;
+                            position: relative;
+                        } */
+
+                        .carousel > ul{
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                        }
+
+                        .slide{
+                            inset: 0;
+                            opacity: 0;
+                        }
+
+                        .slide > img{
+                            display: block;
+                            
+                        }
+
+                        .slide[data-active]{
+                            opacity: 1;
+                        }
+
+                        .carousel-button{
+                            position: absolute;
+                            background:none;
+                            border: none;
+                            font-size: 4rem;
+                            top: 50%;
+                            transform: translateY( -50% );
+                            cursor: pointer;
+                        }
+
+                        .carousel-button:hover,
+                        .carousel-button:focus{
+                            color:white;
+                            background-color: rgba(0, 0, 0, .2);
+                        }
+
+                        .carousel-button:focus{
+                            outline: 1px solid black;
+                        }
+
+                        .carousel-button.prev{
+                            left: 1rem;
+                        }
+
+                        .carousel-button.next{
+                            right: 1rem;
+                        }
+                    </style>
+
+                    <script>
+                        const buttons = document.querySelectorAll("[data-carousel-button]")
+
+                        buttons.forEach(button => {
+                            button.addEventListener("click", () => {
+                                const offset = button.dataset.carouselButton === "next" ? 1 : -1
+                                const slides = button.closest("[data-carousel]").querySelectorAll("[data-slides]")
+
+                                const activeSlide = slides.querySelector("[data-active]")
+                                let newIndex = [...slides.children].indexOf(activeSlide) + offset
+                                if (newIndex < 0 ) newIndex = slides.children.length -1
+                                if  (newIndex >= slides.children.length) newIndex=0
+
+                                slides.children[newIndex].dataset.active = true
+                                delete activeSlide.dataset.active
+                            })
+                        })
+                    </script>
+
+
 
                 </div>
-                <!-- HTML with Tailwind CSS classes -->
-                <a class="carousel-control-prev absolute top-1/2 left-4 bg-black bg-opacity-60 rounded-full w-12 h-12 flex justify-center items-center" href="#productCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon text-white" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next absolute top-1/2 right-4 bg-black bg-opacity-60 rounded-full w-12 h-12 flex justify-center items-center" href="#productCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon text-white" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
 
+
+
+                <!-- HTML with Tailwind CSS classes -->
             </div>
             <table class="w-full border-spacing-x-2">
                 <tr class="h-14">

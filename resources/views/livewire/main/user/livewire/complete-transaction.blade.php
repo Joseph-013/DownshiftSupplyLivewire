@@ -22,7 +22,7 @@
             event.preventDefault();
             alert('Please fill in all required fields.');
         } else {
-            Livewire.dispatch('alertNotif', 'Successfully checked out');
+            Livewire.dispatch('checkout');
         }
     });
 </script>

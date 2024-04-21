@@ -31,7 +31,7 @@ class UserCartCheckoutButton extends Component
         if ($this->cartEntries) {
             foreach ($this->cartEntries as $cartEntry) {
                 if ($cartEntry->quantity > $cartEntry->product->stockquantity) {
-                    $this->dispatch('alertNotif', 'Some items exceed available stocks');
+                    $this->dispatch('alertNotif', ['message' => 'Some items exceed available stocks', 'type' => 'warning']);
                     return;
                 }
             }

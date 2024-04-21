@@ -26,6 +26,7 @@ return new class extends Migration
             // $table->decimal('grandTotal', 10, 2)->unsigned(); //deploy
             $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //dev
             $table->dateTime('intransit_at')->nullable();
+            $table->boolean('viewedByAdmin')->nullable();
             $table->timestamps();
         });
     }

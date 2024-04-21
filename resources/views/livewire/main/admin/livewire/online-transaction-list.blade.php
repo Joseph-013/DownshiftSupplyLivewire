@@ -204,6 +204,15 @@
                         <li class="w-3/12 text-center text-xs">
                             {{ number_format($transaction->grandTotal, 2) }}
                         </li>
+                        @if(!$transaction->viewedByAdmin && $transaction->status === 'Completed')
+                        <span class="top-0 right-0 bg-green-500 text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-3 w-3">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </span>
+                        @elseif($transaction->status === 'Processing')
+                        <span class="top-0 right-0 bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">!</span>
+                        @endif
                     </ul>
                 </label>
             </li>

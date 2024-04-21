@@ -71,6 +71,9 @@ class OnlineTransactionDetails extends Component
         // }
         $this->selectedTransaction = Transaction::with('details')->with('user')->find($transactionId);
         $this->details = $this->selectedTransaction->details;
+        $this->selectedTransaction->viewedByAdmin = true;
+        $this->selectedTransaction->save();
+        $this->dispatch('updateBadge');
         $this->dispatch('loadMap', $this->selectedTransaction->shippingAddress);
     }
 

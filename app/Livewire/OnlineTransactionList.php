@@ -82,7 +82,13 @@ class OnlineTransactionList extends Component
     public function selectTransaction($transactionId)
     {
         $this->selectedTransactionId = $transactionId;
+        $transaction = Transaction::find($transactionId);
         $this->dispatch('transactionSelected', $transactionId);
+        if(!$transaction->viewedByAdmin && $transaction->status === 'Completed')
+        {
+            $transaction->viewedByAdmin = true;
+            $transaction->save();
+        }
         $this->toggleItemTemplate($transactionId);
     }
 

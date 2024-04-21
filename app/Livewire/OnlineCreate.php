@@ -138,7 +138,7 @@ class OnlineCreate extends Component
             $currentTrans->status = $this->status;
             $currentTrans->save();
 
-            $this->dispatch('alertNotif', 'Transaction successfully updated');
+            $this->dispatch('alertNotif', ['message' => 'Transaction successfully updated', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderTransactionDetails');
             $this->dispatch('updateBadge');

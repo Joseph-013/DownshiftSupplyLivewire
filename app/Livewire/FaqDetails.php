@@ -36,7 +36,7 @@ class FaqDetails extends Component
             $this->selectedFaq = null;
             $this->confirmDelete = false;
             $this->dispatch('renderFaqList');
-            $this->dispatch('alertNotif', 'FAQ entry deleted');
+            $this->dispatch('alertNotif', ['message' => 'FAQ entry deleted', 'type' => 'positive']);
         }
     }
 

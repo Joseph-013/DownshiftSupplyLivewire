@@ -47,7 +47,7 @@ class FaqCreate extends Component
                 'answer' => $this->answer,
             ]);
 
-            $this->dispatch('alertNotif', 'FAQ entry successfully created');
+            $this->dispatch('alertNotif', ['message' => 'FAQ entry successfully created', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
         }
     }
@@ -70,7 +70,7 @@ class FaqCreate extends Component
             $currentFaq->answer = $this->answer;
             $currentFaq->save();
 
-            $this->dispatch('alertNotif', 'FAQ entry successfully updated');
+            $this->dispatch('alertNotif', ['message' => 'FAQ entry successfully updated', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderFaqDetails');
         }
@@ -90,7 +90,6 @@ class FaqCreate extends Component
     public function deleteFaq()
     {
         $this->dispatch('deleteFaq');
-        $this->dispatch('alertNotif', 'FAQ entry successfully deleted');
         $this->cancel();
     }
 }

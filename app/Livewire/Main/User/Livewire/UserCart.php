@@ -72,6 +72,7 @@ class UserCart extends Component
         $product = Cart::where('user_id', Auth::id())->where('product_id', $productId)->first();
         if ($product) {
             $product->delete();
+            $this->dispatch('alertNotif', ['message' => 'Product removed from cart', 'type' => 'negative']);
             $this->cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();
             $this->checkCart();
         }

@@ -87,7 +87,7 @@ class InventoryCreate extends Component
                 'status' => 'Existing'
             ]);
 
-            $this->dispatch('alertNotif', 'Product successfully created');
+            $this->dispatch('alertNotif', ['message' => 'Product successfully created', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
         }
     }
@@ -138,7 +138,7 @@ class InventoryCreate extends Component
             }
             $currentProduct->save();
 
-            $this->dispatch('alertNotif', 'Product details successfully updated');
+            $this->dispatch('alertNotif', ['message' => 'Product details successfully updated', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
             $this->dispatch('renderProductDetails');
         }
@@ -164,7 +164,6 @@ class InventoryCreate extends Component
     public function deleteProduct()
     {
         $this->dispatch('deleteProduct');
-        $this->dispatch('alertNotif', 'Product successfully deleted');
         $this->cancel();
     }
 }

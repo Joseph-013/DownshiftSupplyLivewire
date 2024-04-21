@@ -49,7 +49,7 @@ class ProductDetails extends Component
             $this->selectedProduct = null;
             $this->confirmDelete = false;
             $this->dispatch('renderProductList');
-            $this->dispatch('alertNotif', 'Product successfully deleted');
+            $this->dispatch('alertNotif', ['message' => 'Product successfully deleted', 'type' => 'positive']);
         }
     }
 

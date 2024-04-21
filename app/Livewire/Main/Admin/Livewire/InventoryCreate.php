@@ -132,6 +132,10 @@ class InventoryCreate extends Component
             $currentProduct->criticallevel = $this->criticallevel;
             $currentProduct->description = $this->description;
             if ($this->temporaryImage) {
+                $imagePath = public_path('storage/assets/' . $currentProduct->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
                 $imageName = time() . '.' . $this->image->extension();
                 $this->image->storeAs('public/assets', $imageName);
                 $currentProduct->image = $imageName;

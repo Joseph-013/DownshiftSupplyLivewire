@@ -20,7 +20,7 @@
                 <livewire:main.admin.livewire.components-dashboard.most-sold />
                 <livewire:main.admin.livewire.components-dashboard.least-sold />
                 <div class="col-span-2">
-                    <livewire:main.admin.livewire.components-dashboard.least-sold />
+                    <livewire:main.admin.livewire.components-dashboard.sales-graph />
                 </div>
                 {{-- <livewire:main.admin.livewire.components-dashboard.least-sold /> --}}
 

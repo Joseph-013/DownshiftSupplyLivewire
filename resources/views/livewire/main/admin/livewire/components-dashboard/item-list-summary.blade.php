@@ -1,5 +1,5 @@
 <div class="p-3 rounded-xl text-white shadow-md shadow-gray-400" style="background-color: {{ $colorMain }};">
-    <div class="flex flex-row justify-center items-center space-x-3">
+    <div class="flex flex-row justify-center items-center space-x-3 h-16">
         {!! $icon !!}
         <section class="flex flex-col">
             <div class="flex flex-col">
@@ -8,9 +8,11 @@
                     @isset($subTitle)
                         {!! $subTitle !!}
                     @endisset
+                    &nbsp;
                 </h6>
             </div>
-            <h1 class="text-2xl font-bold">
+            <h1 class="text-2xl font-bold
+            @if (!isset($record)) -mt-1 @endif">
                 {{ !isset($items) ? '0' : count($items) }}
             </h1>
         </section>

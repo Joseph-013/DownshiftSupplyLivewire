@@ -34,6 +34,7 @@ document.addEventListener("livewire:init", () => {
             //case default:
             default: {
                 alertDiv.style.backgroundColor = 'rgb(249 115 22)';
+                alertDiv.style.color = 'white';
             }
         }
 

@@ -2,9 +2,10 @@
     <div class="w-full flex justify-between">
         <h4 class="text-lg font-bold font-montserrat">{{ $format ? ucfirst($format) . ' Report' : '' }}</h4>
         <div class="flex items-center">
-            <button type="button" wire:click="compilePDF" {{-- onclick="printReport()" --}}
-                class="mr-2 p-2 bg-blue-500 text-white text-sm rounded-lg border border-black">Print Report (only appear
-                if there are records)</button>
+            @isset($transactions)
+                <button type="button" wire:click="compilePDF"
+                    class="mr-2 p-2 bg-blue-500 text-white text-sm rounded-lg border border-black">Print Report</button>
+            @endisset
             Rows:
             <input type="number" min="10" max="1000" placeholder="Row Count" class="rounded-md max-w-36 ms-2"
                 value="100" wire:model="rowCount" wire:change="updateRowCount($event.target.value)" />
@@ -126,10 +127,6 @@
 <script>
     document.addEventListener('livewire:init', () => {
         Livewire.on('printPDF', (event) => {
-            // const htmlContent = event.html;
-            // Here, you can handle the HTML content, for example, you can send it to a print function or process it further.
-            // console.log(htmlContent);
-
 
             var table = event.html;
 
@@ -167,47 +164,3 @@
         });
     });
 </script>
-
-
-{{-- <script>
-    function printReport() {
-        var table = document.getElementById('report-table').outerHTML;
-
-        console.log(table);
-
-        // Create a hidden iframe
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-
-        // Get the document of the iframe
-        var printDocument = iframe.contentWindow || iframe.contentDocument;
-        if (printDocument.document) {
-            printDocument = printDocument.document;
-        }
-
-        // Add CSS stylesheets
-        var head = printDocument.head;
-
-        var tailwindCSS = document.createElement('link');
-        tailwindCSS.rel = 'stylesheet';
-        tailwindCSS.href = 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
-        head.appendChild(tailwindCSS);
-
-        var bootstrapCSS = document.createElement('link');
-        bootstrapCSS.rel = 'stylesheet';
-        bootstrapCSS.href = 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css';
-        head.appendChild(bootstrapCSS);
-
-        // Set the content of the iframe body
-        printDocument.body.innerHTML = table;
-
-        // Trigger print
-        iframe.contentWindow.print();
-
-        // Remove the iframe after printing
-        setTimeout(function() {
-            document.body.removeChild(iframe);
-        }, 1000); // Delay to ensure printing completes
-    }
-</script> --}}

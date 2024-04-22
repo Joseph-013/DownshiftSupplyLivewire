@@ -11,7 +11,8 @@ class Outstock extends Component
     use WithPagination;
     // public $items;
     public $title = "Out of Stock Products";
-    public $colorMain = "rgb(132, 124, 197)";
+    public $colorMain = "rgb(223, 87, 123)";
+
     public $icon = "
     <span class='text-5xl -mr-2 block'>!</span>
     <svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='currentColor' class='bi bi-box-seam-fill'

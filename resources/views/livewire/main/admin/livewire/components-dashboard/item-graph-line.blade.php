@@ -1,26 +1,20 @@
-<div class="">
-    <canvas id="myChart"></canvas>
+<div class="p-3 rounded-xl text-white shadow-md shadow-gray-400"
+    style="background-color: {{ $colorMain }}; height: 506.8px;">
+    <div class="flex flex-row justify-center items-center space-x-3 h-16">
+        {!! $icon !!}
+        <section class="flex flex-col">
+            <div class="flex flex-col">
+                <h3 class="text-base">{!! $title !!}</h3>
+                <h6 class="text-xs -mt-1">
+                    @isset($subTitle)
+                        {!! $subTitle !!}
+                    @endisset
+                    &nbsp;
+                </h6>
+            </div>
+        </section>
+    </div>
+    @isset($data)
+        {{--  --}}
+    @endisset
 </div>
-
-<script src="https://cdn.jsdeliver.net/npm/chart.js"></script>
-
-<script>
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-        type: 'bar';
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
-            datasets: [{
-                label: '# of votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                beginAtZero: true
-            }
-        }
-    });
-</script>

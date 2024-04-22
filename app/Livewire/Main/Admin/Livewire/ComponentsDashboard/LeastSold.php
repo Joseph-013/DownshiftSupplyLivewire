@@ -13,7 +13,6 @@ class LeastSold extends Component
     public $items;
     public $title = "Least Sold Items";
     public $subTitle = "(This Week)";
-    // public $colorMain = "rgb(30, 174, 144)";
     public $colorMain = "rgb(237, 167, 98)";
     public $icon = "
     <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-flame' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#ffffff' fill='none' stroke-linecap='round' stroke-linejoin='round'>

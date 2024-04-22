@@ -4,10 +4,12 @@ namespace App\Livewire\Main\Admin\Livewire\ComponentsDashboard;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Outstock extends Component
 {
-    public $items;
+    use WithPagination;
+    // public $items;
     public $title = "Out of Stock Products";
     public $colorMain = "rgb(132, 124, 197)";
     public $icon = "
@@ -21,9 +23,9 @@ class Outstock extends Component
 
     public function render()
     {
-        $this->items = Product::where('stockquantity', '==', 0)
-            ->get();
+        $items = Product::where('stockquantity', '==', 0)
+            ->paginate(10);
 
-        return view('livewire.main.admin.livewire.components-dashboard.item-list');
+        return view('livewire.main.admin.livewire.components-dashboard.item-list')->with(['items' => $items]);
     }
 }

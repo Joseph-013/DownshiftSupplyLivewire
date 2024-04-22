@@ -4,10 +4,12 @@ namespace App\Livewire\Main\Admin\Livewire\ComponentsDashboard;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Lowstock extends Component
 {
-    public $items;
+    use WithPagination;
+    // public $items;
     public $title = "Low Stock Products";
     public $colorMain = "rgb(223, 87, 123)";
     public $icon = "
@@ -21,10 +23,10 @@ class Lowstock extends Component
 
     public function render()
     {
-        $this->items = Product::whereColumn('stockquantity', '<=', 'criticallevel')
+        $items = Product::whereColumn('stockquantity', '<=', 'criticallevel')
             ->where('stockquantity', '!=', 0)
-            ->get();
+            ->paginate(10);
 
-        return view('livewire.main.admin.livewire.components-dashboard.item-list');
+        return view('livewire.main.admin.livewire.components-dashboard.item-list')->with(['items' => $items]);
     }
 }

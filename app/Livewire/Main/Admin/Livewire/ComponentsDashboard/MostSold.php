@@ -12,6 +12,7 @@ class MostSold extends Component
 {
     public $items;
     public $title = "Most Sold Items";
+    public $subTitle = "(This Week)";
     public $colorMain = "rgb(30, 174, 144)";
     public $icon = "
     <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-flame' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#ffffff' fill='none' stroke-linecap='round' stroke-linejoin='round'>
@@ -25,11 +26,19 @@ class MostSold extends Component
         $startDate = Carbon::now()->startOfWeek()->toDateString();
         $endDate = Carbon::now()->endOfWeek()->toDateString();
 
-        $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
+        // $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
+        //     ->whereBetween('created_at', [$startDate, $endDate])
+        //     ->groupBy('product_id')
+        //     ->orderByDesc('total_quantity')
+        //     ->limit(10)
+        //     ->get();
+
+        $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total'))
             ->whereBetween('created_at', [$startDate, $endDate])
             ->groupBy('product_id')
-            ->orderByDesc('total_quantity')
+            ->orderByDesc('total')
             ->limit(10)
+            ->with('products')
             ->get();
 
         return view('livewire.main.admin.livewire.components-dashboard.item-list-summary');

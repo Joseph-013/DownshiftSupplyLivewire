@@ -27,12 +27,7 @@ class InventoryCreate extends Component
     public function mount($product, $mode)
     {
         $this->product = Product::find($product);
-        // redundant ata tong part ng code
-        // if ($mode == null) {
-        //     $this->mode = 'read';
-        // } else {
         $this->mode = $mode;
-        // }
         $this->temporaryImage = null;
         if ($this->product) {
             $this->id = $this->product->id;

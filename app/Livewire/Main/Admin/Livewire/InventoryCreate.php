@@ -90,7 +90,7 @@ class InventoryCreate extends Component
             ]);
 
             foreach ($this->images as $image) {
-                $imageName = time() . '.' . $image->extension();
+                $imageName = uniqId() . '.' . $image->extension();
                 $image->storeAs('public/assets', $imageName);
     
                 ProductImages::create([

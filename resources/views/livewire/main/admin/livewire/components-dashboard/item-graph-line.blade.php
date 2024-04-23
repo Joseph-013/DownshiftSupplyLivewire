@@ -15,6 +15,32 @@
         </section>
     </div>
     @isset($data)
-        {{--  --}}
+        {{-- @dd($data) --}}
+
+        {{-- temporary viewing --}}
+        <div class="flex flex-row">
+            <button wire:click='previousPage' class="size-5 border border-black flex justify-center items-center">
+                &lt;</button>
+            <table class="h-full w-full">
+                <thead>
+                    <tr>
+                        <td>Format</td>
+                        <td>Sales</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @isset($data)
+                        @foreach ($data as $group)
+                            <tr>
+                                <td>{{ $group->week_number }}</td>
+                                <td>{{ $group->total_subtotal }}</td>
+                            </tr>
+                        @endforeach
+                    @endisset
+                </tbody>
+            </table>
+            <button wire:click='previousPage'
+                class="size-5 border border-black flex justify-center items-center">&gt;</button>
+        </div>
     @endisset
 </div>

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -18,6 +20,8 @@ class DetailFactory extends Factory
     public $transId = 0;
     public function definition(): array
     {
+        $createdAt = Carbon::createFromTimestamp(rand(Carbon::create(2020, 1, 1)->timestamp, Carbon::create(2024, 12, 31)->timestamp));
+
         ++$this->transId;
         return [
             // 'user_id' => fake()->randomNumber(2, false),
@@ -32,10 +36,11 @@ class DetailFactory extends Factory
             // 'grandTotal' => fake()->randomNumber(4, false),
             // 'trackingNumber' => fake()->randomNumber(3, false),
             // 'shippingFee' => fake()->randomNumber(3, false)
-
+            'created_at' => $createdAt,
             'transaction_id' => fake()->numberBetween(1, 50),
             'product_id' => fake()->numberBetween(1, 50),
             'quantity' => fake()->numberBetween(1, 5),
+            'subtotal' => fake()->numberBetween(1000, 100000),
         ];
     }
 }

@@ -4,22 +4,22 @@
     @if ($mode == 'read')
         <div class="bg-white z-10 p-3 rounded-lg max-w-80">
             @if($productImages)
-            <div id="inventoryCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
+            <div id="inventoryReadCarousel" class="carousel slide d-flex justify-content-center align-items-center" data-ride="carousel">
+                <div class="carousel-inner h-48 rounded-md">
                 @foreach($productImages as $key => $image)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img class="rounded-md object-cover"
+                        <img class="rounded-md object-cover max-w-72 mx-auto max-h-48"
                             src="{{ asset('storage/assets/' . $image->image) }}"
                             alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
                     </div>
                 @endforeach
                 </div>
                 @if(count($productImages) != 1)
-                    <button class="carousel-control-prev" onclick="prevSlideInv()" type="button">
+                    <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideInvRead()" type="button">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </button>
-                    <button class="carousel-control-next" onclick="nextSlideInv()" type="button">
+                    <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideInvRead()" type="button">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </button>
@@ -109,22 +109,22 @@
                 @endif --}}
                 @if($this->images)
                     @if ($temporaryImages)
-                        <div id="previewCarousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
+                        <div id="previewCarousel" class="carousel slide d-flex justify-content-center align-items-center max-w-80" data-ride="carousel">
+                            <div class="carousel-inner h-48 rounded-md">
                                 @foreach($temporaryImages as $key => $image)
                                 @if($image != null)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover" style="max-height: 200px;">
+                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover max-h-48 mx-auto max-w-80" style="max-height: 200px;">
                                 </div>
                                 @endif
                                 @endforeach
                             </div>
                             @if(count(array_filter($temporaryImages)) != 1)
-                            <button class="carousel-control-prev" onclick="prevSlidePrev()" type="button">
+                            <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlidePrev()" type="button">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </button>
-                            <button class="carousel-control-next" onclick="nextSlidePrev()" type="button">
+                            <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlidePrev()" type="button">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </button>
@@ -135,22 +135,22 @@
                             class="rounded-md object-cover" style="max-height: 200px;" />
                     @endif
                 @elseif($productImages)
-                    <div id="inventoryCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
+                    <div id="inventoryWriteCarousel" class="carousel slide d-flex justify-content-center align-items-center max-w-80" data-ride="carousel">
+                        <div class="carousel-inner h-48 rounded-md">
                         @foreach($productImages as $key => $image)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                <img class="rounded-md object-cover"
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }} ">
+                                <img class="rounded-md object-cover max-w-80 mx-auto max-h-48"
                                     src="{{ asset('storage/assets/' . $image->image) }}"
-                                    alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
+                                    alt="Product Image {{ $key + 1 }}">
                             </div>
                         @endforeach
                         </div>
                         @if(count($productImages) != 1)
-                            <button class="carousel-control-prev" onclick="prevSlideInv()" type="button">
+                            <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideInvWrite()" type="button">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </button>
-                            <button class="carousel-control-next" onclick="nextSlideInv()" type="button">
+                            <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideInvWrite()" type="button">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </button>

@@ -71,12 +71,20 @@
             $('#detailsCarousel').carousel('next');
         }
 
-        function prevSlideInv() {
-            $('#inventoryCarousel').carousel('prev');
+        function prevSlideInvRead() {
+            $('#inventoryReadCarousel').carousel('prev');
         }
 
-        function nextSlideInv() {
-            $('#inventoryCarousel').carousel('next');
+        function nextSlideInvRead() {
+            $('#inventoryReadCarousel').carousel('next');
+        }
+
+        function prevSlideInvWrite() {
+            $('#inventoryWriteCarousel').carousel('prev');
+        }
+
+        function nextSlideInvWrite() {
+            $('#inventoryWriteCarousel').carousel('next');
         }
 
         function prevSlidePrev() {

@@ -6,22 +6,22 @@
             style="max-height: 200px;">
     </div> --}}
     @if($productImages)
-    <div id="detailsCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <div id="detailsCarousel" class="carousel slide d-flex justify-content-center align-items-center" data-ride="carousel">
+        <div class="carousel-inner h-48 rounded-md">
             @foreach($productImages as $key => $image)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <img class="rounded-md object-cover"
+                <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
                     src="{{ asset('storage/assets/' . $image->image) }}"
                     alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
             </div>
             @endforeach
         </div>
         @if(count($productImages) != 1)
-        <button class="carousel-control-prev" onclick="prevSlideDet()" type="button">
+        <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideDet()" type="button">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </button>
-        <button class="carousel-control-next" onclick="nextSlideDet()" type="button">
+        <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideDet()" type="button">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </button>

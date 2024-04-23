@@ -96,17 +96,49 @@
                 @else
                     wire:submit.prevent="createProduct" @endif
                 class="h-full w-full flex flex-col">
+                <div class="overflow-y-auto max-h-[400px]">
                 <table class="w-full">
                     <tr class="h-14">
                         <th colspan="2" class="text-center font-semibold">Item Details</th>
                     </tr>
-                    <tr>
-                        <td class="h-11 mt-3" colspan="2"><input wire:model="image" type="file"
-                                @if (!$product) required @endif></td>
-                        @error('image')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
+                    @if($overwrite)
+                    @foreach($images as $index => $image)
+                    <tr class="h-11">
+                        <td class="mt-3" colspan="2">
+                            <input wire:model="images.{{ $index }}" type="file" @if (!$product) required @endif>
+                            <button wire:click="removeImage({{ $index }})" class="ml-2" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                            </button>
+                        </td>
                     </tr>
+                    @error('images.'.$index)
+                    <tr>
+                        <td colspan="2">
+                            <span class="text-red-500">{{ $message }}</span>
+                        </td>
+                    </tr>
+                    @enderror
+                    @endforeach
+                    @if(count($images) < 4)
+                    <tr class="h-11 text-center items-center justify-center">
+                        <td colspan="2">
+                            <button type="button" wire:click="addImages" class="h-10 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing px-2">
+                                Add Image +
+                            </button>
+                        </td>
+                    </tr>
+                    @endif
+                    @else
+                    <tr class="h-11 text-center items-center justify-center">
+                        <td colspan="2">
+                            <button type="button" wire:click="setOverwrite" class="h-10 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing px-2">
+                                Overwrite Images
+                            </button>
+                        </td>
+                    </tr>
+                    @endif
                     <tr class="h-11">
                         <td class="pe-3">Name:</td>
                         <td><input wire:model="name" type="text" class="rounded-lg h-9 w-full" required></td>
@@ -136,6 +168,7 @@
                         </td>
                     </tr>
                 </table>
+                </div>
                 <div>
                     @error('price')
                         <span class="text-red-500 text-center">{{ $message }}</span>

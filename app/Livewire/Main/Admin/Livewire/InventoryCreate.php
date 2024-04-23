@@ -3,6 +3,7 @@
 namespace App\Livewire\Main\Admin\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductImages;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\Attributes\On;
@@ -23,6 +24,8 @@ class InventoryCreate extends Component
     public $description;
     public $temporaryImage;
     public $confirmDelete;
+    public $images;
+    public $overwrite;
 
     public function mount($product, $mode)
     {
@@ -35,16 +38,17 @@ class InventoryCreate extends Component
             $this->price = $this->product->price;
             $this->stockquantity = $this->product->stockquantity;
             $this->criticallevel = $this->product->criticallevel;
-            $this->image = $this->product->image;
             $this->description = $this->product->description;
+            $this->overwrite = false;
         } else {
             $this->mode = 'write';
             $this->name = null;
             $this->price = null;
             $this->stockquantity = null;
             $this->criticallevel = null;
-            $this->image = null;
+            $this->images = [null];
             $this->description = null;
+            $this->overwrite = true;
         }
     }
 
@@ -65,22 +69,33 @@ class InventoryCreate extends Component
             'price' => ['required', 'numeric', 'min:0'],
             'stockquantity' => ['required', 'numeric', 'min:0'],
             'criticallevel' => ['required', 'numeric', 'min:0'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'],
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'],
+        ], [
+            'images.*.required' => 'The image field is required',
+            'images.*.image' => 'The image must be an image file.',
+            'images.*.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
+            'images.*.max' => 'The image may not be greater than 10 MB in size.',  
         ]);
 
-        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->image) {
-            $imageName = time() . '.' . $this->image->extension();
-            $this->image->storeAs('public/assets', $imageName);
-
-            Product::create([
+        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->images) {
+            $product = Product::create([
                 'name' => $this->name,
                 'price' => $this->price,
                 'stockquantity' => $this->stockquantity,
                 'criticallevel' => $this->criticallevel,
-                'image' => $imageName,
                 'description' => $this->description,
                 'status' => 'Existing'
             ]);
+
+            foreach ($this->images as $image) {
+                $imageName = time() . '.' . $image->extension();
+                $image->storeAs('public/assets', $imageName);
+    
+                ProductImages::create([
+                    'product_id' => $product->id,
+                    'image' => $imageName,
+                ]);
+            }
 
             $this->dispatch('alertNotif', ['message' => 'Product successfully created', 'type' => 'positive']);
             $this->dispatch('hideItemTemplate');
@@ -111,12 +126,13 @@ class InventoryCreate extends Component
             'criticallevel.integer' => 'The critical level must be an integer.',
             'criticallevel.min' => 'The critical level must be at least 0.',
             'description.required' => 'The description field is required.',
-            'image.image' => 'The image must be an image file.',
-            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
-            'image.max' => 'The image may not be greater than 10 MB in size.',
+            'images.*.required' => 'The image field is required',
+            'images.*.image' => 'The image must be an image file.',
+            'images.*.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
+            'images.*.max' => 'The image may not be greater than 10 MB in size.',
         ];
-        if ($this->temporaryImage) {
-            $rules['image'] = ['image', 'mimes:jpeg,png,jpg', 'max:10240'];
+        if ($this->images > 0) {
+            $rules['images.*'] = ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'];
         }
         $this->validate($rules, $customMessages);
 
@@ -126,14 +142,26 @@ class InventoryCreate extends Component
             $currentProduct->stockquantity = $this->stockquantity;
             $currentProduct->criticallevel = $this->criticallevel;
             $currentProduct->description = $this->description;
-            if ($this->temporaryImage) {
-                $imagePath = public_path('storage/assets/' . $currentProduct->image);
-                if (file_exists($imagePath)) {
-                    unlink($imagePath);
+            if ($this->overwrite) {
+                $productImages = ProductImages::where('product_id', $currentProduct->id)->get();
+
+                foreach ($productImages as $image) {
+                    $imagePath = public_path('storage/assets/' . $image->image);
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                    $image->delete();
                 }
-                $imageName = time() . '.' . $this->image->extension();
-                $this->image->storeAs('public/assets', $imageName);
-                $currentProduct->image = $imageName;
+
+                foreach ($this->images as $image) {
+                    $imageName = uniqid() . '.' . $image->extension();
+                    $image->storeAs('public/assets', $imageName);
+        
+                    ProductImages::create([
+                        'product_id' => $currentProduct->id,
+                        'image' => $imageName,
+                    ]);
+                }
             }
             $currentProduct->save();
 
@@ -145,8 +173,8 @@ class InventoryCreate extends Component
 
     public function updatedImage($value)
     {
-        $this->validate(['image' => ['image', 'mimes:jpeg,png,jpg', 'max:10240']]);
-        $this->temporaryImage = $this->image;
+        // $this->validate(['images.*' => ['image', 'mimes:jpeg,png,jpg', 'max:10240']]);
+        // $this->temporaryImage = $this->image;
     }
 
     public function cancel()
@@ -164,5 +192,23 @@ class InventoryCreate extends Component
     {
         $this->dispatch('deleteProduct');
         $this->cancel();
+    }
+
+    public function addImages()
+    {
+        if (count($this->images) < 4) {
+            $this->images[] = null;
+        }
+    }
+
+    public function removeImage($index)
+    {
+        unset($this->images[$index]); 
+    }
+
+    public function setOverwrite()
+    {
+        $this->overwrite = true;
+        $this->images = [null];
     }
 }

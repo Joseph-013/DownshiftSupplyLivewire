@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductImages;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -13,6 +14,7 @@ class ProductDetails extends Component
 
     public $selectedProduct;
     public $confirmDelete;
+    public $productImages;
 
     public function mount($productId)
     {
@@ -27,6 +29,7 @@ class ProductDetails extends Component
     public function productSelected($productId)
     {
         $this->selectedProduct = Product::find($productId);
+        $this->productImages = ProductImages::where('product_id', $productId)->get();
     }
 
     #[On('deleteConfirm')]
@@ -39,11 +42,6 @@ class ProductDetails extends Component
     public function deleteProduct()
     {
         if ($this->selectedProduct) {
-            $imagePath = public_path('storage/assets/' . $this->selectedProduct->image);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-
             $this->selectedProduct->status = 'Deleted';
             $this->selectedProduct->save();
             $this->selectedProduct = null;

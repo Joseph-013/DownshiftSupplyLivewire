@@ -1,9 +1,30 @@
 <div class="border-black border-1 w-full rounded-lg p-3">
-    <div class="flex justify-center h-52">
+    {{-- <div class="flex justify-center h-52">
         <img class="rounded-md object-cover"
             src="{{ isset($selectedProduct->image) ? (filter_var($selectedProduct->image, FILTER_VALIDATE_URL) ? $selectedProduct->image : asset('storage/assets/' . $selectedProduct->image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
             alt="{{ isset($selectedProduct->image) ? $selectedProduct->name : 'No Image Selected' }}"
             style="max-height: 200px;">
+    </div> --}}
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @if($productImages)
+            @foreach($productImages as $key => $image)
+            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                <img class="rounded-md object-cover"
+                    src="{{ asset('storage/assets/' . $image->image) }}"
+                    alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
+            </div>
+            @endforeach
+            @endif
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
     {{-- <div class="px-3"> --}}
     <table class="w-full">

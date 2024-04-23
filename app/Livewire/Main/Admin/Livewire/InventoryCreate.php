@@ -26,6 +26,7 @@ class InventoryCreate extends Component
     public $confirmDelete;
     public $images;
     public $overwrite;
+    public $productImages;
 
     public function mount($product, $mode)
     {
@@ -40,6 +41,7 @@ class InventoryCreate extends Component
             $this->criticallevel = $this->product->criticallevel;
             $this->description = $this->product->description;
             $this->overwrite = false;
+            $this->productImages = ProductImages::where('product_id', $this->product->id)->get();
         } else {
             $this->mode = 'write';
             $this->name = null;
@@ -143,9 +145,7 @@ class InventoryCreate extends Component
             $currentProduct->criticallevel = $this->criticallevel;
             $currentProduct->description = $this->description;
             if ($this->overwrite) {
-                $productImages = ProductImages::where('product_id', $currentProduct->id)->get();
-
-                foreach ($productImages as $image) {
+                foreach ($this->productImages as $image) {
                     $imagePath = public_path('storage/assets/' . $image->image);
                     if (file_exists($imagePath)) {
                         unlink($imagePath);

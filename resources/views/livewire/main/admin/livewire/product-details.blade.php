@@ -5,9 +5,9 @@
             alt="{{ isset($selectedProduct->image) ? $selectedProduct->name : 'No Image Selected' }}"
             style="max-height: 200px;">
     </div> --}}
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    @if($productImages)
+    <div id="detailsCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            @if($productImages)
             @foreach($productImages as $key => $image)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                 <img class="rounded-md object-cover"
@@ -15,17 +15,19 @@
                     alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
             </div>
             @endforeach
-            @endif
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        @if(count($productImages) != 1)
+        <button class="carousel-control-prev" onclick="prevSlideDet()" type="button">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        </button>
+        <button class="carousel-control-next" onclick="nextSlideDet()" type="button">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-        </a>
+        </button>
+        @endif
     </div>
+    @endif
     {{-- <div class="px-3"> --}}
     <table class="w-full">
         <tr class="h-14">

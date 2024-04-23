@@ -22,7 +22,7 @@ class InventoryCreate extends Component
     public $criticallevel;
     public $image;
     public $description;
-    public $temporaryImage;
+    public $temporaryImages;
     public $confirmDelete;
     public $images;
     public $overwrite;
@@ -32,7 +32,7 @@ class InventoryCreate extends Component
     {
         $this->product = Product::find($product);
         $this->mode = $mode;
-        $this->temporaryImage = null;
+        $this->temporaryImages = [];
         if ($this->product) {
             $this->id = $this->product->id;
             $this->name = $this->product->name;
@@ -171,10 +171,13 @@ class InventoryCreate extends Component
         }
     }
 
-    public function updatedImage($value)
+    public function updatedImages()
     {
-        // $this->validate(['images.*' => ['image', 'mimes:jpeg,png,jpg', 'max:10240']]);
-        // $this->temporaryImage = $this->image;
+        $this->temporaryImages = [];
+
+        foreach ($this->images as $image) {
+            $this->temporaryImages[] = $image->temporaryUrl();
+        }
     }
 
     public function cancel()
@@ -203,7 +206,9 @@ class InventoryCreate extends Component
 
     public function removeImage($index)
     {
-        unset($this->images[$index]); 
+        unset($this->temporaryImages[$index]);
+        unset($this->images[$index]);
+        $this->updatedImages();
     }
 
     public function setOverwrite()

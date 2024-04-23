@@ -82,12 +82,60 @@
     @elseif($mode == 'write')
         <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
             <div style="display:flex; justify-content: center; align-items: center;">
-                @if ($temporaryImage)
+                {{-- @if ($temporaryImage)
                     <img src="{{ $temporaryImage->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover"
                         style="max-height: 200px;" />
                 @else
                     <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
                         class="rounded-md object-cover" style="max-height: 200px;" />
+                @endif --}}
+                @if($this->images)
+                    @if ($temporaryImages)
+                        <div id="previewCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach($temporaryImages as $key => $image)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ $image }}" alt="Preview" class="rounded-md object-cover" style="max-height: 200px;">
+                                </div>
+                                @endforeach
+                            </div>
+                            @if(count($temporaryImages) != 1)
+                            <button class="carousel-control-prev" onclick="prevSlidePrev()" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" onclick="nextSlidePrev()" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </button>
+                            @endif
+                        </div>
+                    @else
+                        <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
+                            class="rounded-md object-cover" style="max-height: 200px;" />
+                    @endif
+                @elseif($productImages)
+                    <div id="inventoryCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                        @foreach($productImages as $key => $image)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                <img class="rounded-md object-cover"
+                                    src="{{ asset('storage/assets/' . $image->image) }}"
+                                    alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
+                            </div>
+                        @endforeach
+                        </div>
+                        @if(count($productImages) != 1)
+                            <button class="carousel-control-prev" onclick="prevSlideInv()" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" onclick="nextSlideInv()" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </button>
+                        @endif
+                    </div>
                 @endif
             </div>
             {{-- @if (!isset($product)) --}}

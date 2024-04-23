@@ -94,9 +94,11 @@
                         <div id="previewCarousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach($temporaryImages as $key => $image)
+                                @if($image != null)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ $image }}" alt="Preview" class="rounded-md object-cover" style="max-height: 200px;">
+                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover" style="max-height: 200px;">
                                 </div>
+                                @endif
                                 @endforeach
                             </div>
                             @if(count($temporaryImages) != 1)

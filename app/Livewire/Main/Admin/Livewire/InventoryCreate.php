@@ -176,7 +176,7 @@ class InventoryCreate extends Component
         $this->temporaryImages = [];
 
         foreach ($this->images as $image) {
-            $this->temporaryImages[] = $image->temporaryUrl();
+            $this->temporaryImages[] = $image;
         }
     }
 

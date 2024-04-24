@@ -22,7 +22,7 @@ document.addEventListener("livewire:init", () => {
                 break;
             }
             case 'neutral': {
-                alertDiv.style.backgroundColor = 'rgb(26 131 244)';
+                alertDiv.style.backgroundColor = 'rgb(34 197 94)';
                 alertDiv.style.color = 'white';
                 break;
             }
@@ -33,8 +33,12 @@ document.addEventListener("livewire:init", () => {
             }
             //case default:
             default: {
+<<<<<<< Updated upstream
                 alertDiv.style.backgroundColor = 'rgb(249 115 22)';
                 alertDiv.style.color = 'white';
+=======
+                alertDiv.style.backgroundColor = 'rgb(233 99 100)';
+>>>>>>> Stashed changes
             }
         }
 

@@ -55,7 +55,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Daily Sales This Week',
+                        text: 'Sales this Month',
                         font: {
                             size: 16,
                             weight: 'bold'

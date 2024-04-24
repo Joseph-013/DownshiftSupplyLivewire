@@ -26,15 +26,17 @@ class SalesGraph extends Component
 
     public function render()
     {
-        $currentWeek = Carbon::now()->weekOfYear;
+        $currentMonth = now()->month; // Get the current month
+        $currentYear = now()->year; // Get the current year
 
         $data = Detail::select(
-            DB::raw("DATE_FORMAT(created_at, '%W') as day_name"),
+            DB::raw("DAY(created_at) as day_number"),
             DB::raw('SUM(subtotal) as total_subtotal')
         )
-            ->whereRaw("WEEK(created_at) = $currentWeek")
-            ->groupBy('day_name')
-            ->orderByRaw("FIELD(day_name, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
+            ->whereYear('created_at', $currentYear)
+            ->whereMonth('created_at', $currentMonth)
+            ->groupBy('day_number')
+            ->orderBy('day_number')
             ->get();
         return view('livewire.main.admin.livewire.components-dashboard.item-graph-line')->with(['data' => $data]);
     }

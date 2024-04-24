@@ -39,10 +39,13 @@
         const days = @json($data->pluck('day_number')); // Array of day numbers
         const totals = @json($data->pluck('total_subtotal'));
 
+        // Map the day numbers to "Day x" format for labels
+        const dayLabels = days.map(day => `Day ${day}`);
+
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: days, // Use day numbers as labels
+                labels: dayLabels, // Use "Day x" as labels
                 datasets: [{
                     label: 'Daily Sales',
                     data: totals, // Use total_subtotal as data points

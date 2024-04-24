@@ -1,4 +1,4 @@
-<div class="p-3 rounded-xl text-black shadow-md shadow-gray-400"
+<div class="p-3 rounded-xl text-white shadow-md shadow-gray-400"
     style="background-color: {{ $colorMain }}; height: 506.8px;">
     <div class="flex flex-row justify-center items-center space-x-3 h-16">
         {!! $icon !!}
@@ -50,14 +50,36 @@
                     label: 'Daily Sales',
                     data: totals, // Use total_subtotal as data points
                     borderWidth: 1,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Example color
-                    borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // White background color with opacity
+                    borderColor: 'black', // Example border color (unchanged)
+                    // borderColor: 'rgba(54, 162, 235, 1)', // Example border color (unchanged)
                 }]
             },
             options: {
                 scales: {
                     y: {
                         beginAtZero: true,
+                        ticks: {
+                            color: 'white', // Font color for Y-axis labels
+                        },
+                        grid: {
+                            color: 'white', // Grid line color for Y-axis
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'white', // Font color for X-axis labels
+                        },
+                        grid: {
+                            color: 'white', // Grid line color for X-axis
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white', // Font color for legend labels
+                        }
                     }
                 }
             }

@@ -33,12 +33,8 @@ document.addEventListener("livewire:init", () => {
             }
             //case default:
             default: {
-<<<<<<< Updated upstream
                 alertDiv.style.backgroundColor = 'rgb(249 115 22)';
                 alertDiv.style.color = 'white';
-=======
-                alertDiv.style.backgroundColor = 'rgb(233 99 100)';
->>>>>>> Stashed changes
             }
         }
 

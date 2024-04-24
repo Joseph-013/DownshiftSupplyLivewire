@@ -65,9 +65,9 @@ class UserProducts extends Component
                 // 'subtotal' => $productSelected->price,
             ]);
             // dump("Userid $result->user_id has added productid $result->product_id to cart");
-            $this->dispatch('alertNotif', ['message' => 'Added to Cart', 'type' => 'neutral']);
+            $this->dispatch('alertNotif', ['message' => 'Added to Cart', 'type' => 'positive']);
         } else {
-            $this->dispatch('alertNotif', ['message' => 'Product already exists in your cart', 'type' => 'default']);
+            $this->dispatch('alertNotif', ['message' => 'Product already exists in your cart', 'type' => 'warning']);
         }
         $this->skipRender();
     }

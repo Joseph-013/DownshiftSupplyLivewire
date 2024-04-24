@@ -61,9 +61,11 @@
                                 <tr>
                                     <td class="w-full text-xs flex items-center justify-left">
                                         <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
-                                            <img src="{{ filter_var($order->products->image, FILTER_VALIDATE_URL) ? $order->products->image : asset('storage/assets/' . $order->products->image) }}"
+                                            @if($order->products->product_images && $order->products->product_images->isNotEmpty())
+                                            <img src="{{ filter_var($order->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $order->products->product_images->first()->image : asset('storage/assets/' . $order->products->product_images->first()->image) }}"
                                                 class="w-12 h-12 object-cover rounded"
                                                 alt="{{ $order->products->name }}">
+                                            @endif
                                             <span
                                                 class="ml-2">{{ strlen($order->products->name) > 11 ? substr($order->products->name, 0, 11) . '...' : $order->products->name }}</span>
                                         </div>

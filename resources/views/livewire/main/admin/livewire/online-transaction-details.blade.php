@@ -122,10 +122,14 @@
                                     @endphp
                                     <tr class="flex flex-row w-full px-5 my-2">
                                         <td class="w-4/12 text-xs flex items-center justify-start">
-                                            <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                                            @if($detail->products->product_images)
+                                            @if($detail->products->product_images->isNotEmpty())
+                                            <img src="{{ filter_var($detail->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $detail->products->product_images->first()->image : asset('storage/assets/' . $detail->products->product_images->first()->image) }}"
                                                 class="w-12 h-12 mr-2 object-cover rounded"
                                                 style="vertical-align: middle;">
                                             <span class="text-left">{{ $detail->products->name }}</span>
+                                            @endif
+                                            @endif
                                         </td>
                                         <td class="w-3/12 text-center text-xs items-center justify-center">₱
                                             {{ number_format($detail->products->price, 2) }}

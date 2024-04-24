@@ -28,7 +28,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $validated = $this->validate([
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'fullname' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z]/'],
+            'fullname' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'password' => ['required', 'string', 'confirmed', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\w\W]{8,}$/'],
         ]);
 
@@ -58,10 +58,11 @@ new #[Layout('layouts.guest')] class extends Component {
     <div class="h-full">
         <div class="hidden sm:block w-screen h-full">
             <div class="bg-white overflow-hidden flex flex-row h-full">
-            <div class="max-w-full flex-1 relative">
+                <div class="max-w-full flex-1 relative">
                     {{-- Left Panel --}}
                     <div class="relative h-full w-full">
-                        <img src="/assets/g567ah.jpg" class="absolute inset-0 object-cover h-full w-full z-10 opacity-90" alt="Darkened Image">
+                        <img src="/assets/g567ah.jpg" class="absolute inset-0 object-cover h-full w-full z-10 opacity-90"
+                            alt="Darkened Image">
                         <div class="absolute inset-0 bg-black opacity-40 z-20"></div>
                     </div>
                     <div class="absolute top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
@@ -99,6 +100,11 @@ new #[Layout('layouts.guest')] class extends Component {
                                 class="font-montserrat default-shadow border-none rounded-md shadow-inner sm-40 md:w-80 mt-2 mb-3"
                                 type="text" placeholder="Full Name">
                             <x-input-error :messages="$errors->get('fullname')" class="mt-2" />
+                            <div class="text-white text-sm mt-1 font-montserrat italic" style="width: 285px;">
+                                Requirements:
+                                <br />
+                                • Cannot have numbers
+                            </div>
 
                             {{-- New Pass --}}
                             <input required wire:model="password" name="password"

@@ -38,6 +38,8 @@ class SalesGraph extends Component
             ->groupBy('day_number')
             ->orderBy('day_number')
             ->get();
+
+        // dd($data);
         return view('livewire.main.admin.livewire.components-dashboard.item-graph-line')->with(['data' => $data]);
     }
 }

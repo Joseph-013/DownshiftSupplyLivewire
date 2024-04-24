@@ -36,45 +36,25 @@
 @script
     <script>
         const ctx = document.getElementById('myChart');
-        const data = @json($data->pluck('day_name'));
+        const days = @json($data->pluck('day_number')); // Array of day numbers
         const totals = @json($data->pluck('total_subtotal'));
 
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: data,
+                labels: days, // Use day numbers as labels
                 datasets: [{
-                    label: 'Sales ₱',
-                    data: totals,
+                    label: 'Daily Sales',
+                    data: totals, // Use total_subtotal as data points
                     borderWidth: 1,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Example color
+                    borderColor: 'rgba(54, 162, 235, 1)', // Example border color
                 }]
             },
             options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Sales this Month',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        }
-                    }
-                },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Sales Amount'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Day of the Week'
-                        }
                     }
                 }
             }

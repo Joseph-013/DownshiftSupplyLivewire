@@ -4,7 +4,7 @@
     @if ($mode == 'read')
         <div class="bg-white z-10 p-3 rounded-lg max-w-80">
             @if($productImages)
-            <div id="inventoryReadCarousel" class="carousel slide d-flex justify-content-center align-items-center" data-ride="carousel">
+            <div id="inventoryReadCarousel" class="carousel slide d-flex justify-content-center align-items-center w-72" data-ride="carousel">
                 <div class="carousel-inner h-48 rounded-md">
                 @foreach($productImages as $key => $image)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
@@ -109,12 +109,12 @@
                 @endif --}}
                 @if($this->images)
                     @if ($temporaryImages)
-                        <div id="previewCarousel" class="carousel slide d-flex justify-content-center align-items-center max-w-80" data-ride="carousel">
+                        <div id="previewCarousel" class="carousel slide d-flex justify-content-center align-items-center w-96" data-ride="carousel">
                             <div class="carousel-inner h-48 rounded-md">
                                 @foreach($temporaryImages as $key => $image)
                                 @if($image != null)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover max-h-48 mx-auto max-w-80" style="max-height: 200px;">
+                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover max-h-48 mx-auto max-w-96">
                                 </div>
                                 @endif
                                 @endforeach
@@ -131,15 +131,15 @@
                             @endif
                         </div>
                     @else
-                        <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
+                        <img src="https://via.placeholder.com/350x200.png/000000?text=..."
                             class="rounded-md object-cover" style="max-height: 200px;" />
                     @endif
                 @elseif($productImages)
-                    <div id="inventoryWriteCarousel" class="carousel slide d-flex justify-content-center align-items-center max-w-80" data-ride="carousel">
+                    <div id="inventoryWriteCarousel" class="carousel slide d-flex justify-content-center align-items-center w-96" data-ride="carousel">
                         <div class="carousel-inner h-48 rounded-md">
                         @foreach($productImages as $key => $image)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }} ">
-                                <img class="rounded-md object-cover max-w-80 mx-auto max-h-48"
+                                <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
                                     src="{{ asset('storage/assets/' . $image->image) }}"
                                     alt="Product Image {{ $key + 1 }}">
                             </div>

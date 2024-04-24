@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(CartsTableSeeder::class);
         \App\Models\Cart::factory(100)->create();
 
+        // \App\Models\Detail::factory(1000)->create();
         \App\Models\Detail::factory(150)->create();
         // $this->call(DetailsTableSeeder::class);
 

@@ -46,6 +46,10 @@
             <td>{{ isset($selectedProduct) ? '₱ ' . $selectedProduct->price : '--' }}</td>
         </tr>
         <tr class="h-9">
+            <td>Category:</td>
+            <td>{{ isset($selectedProduct) ? $selectedProduct->category : '--' }}</td>
+        </tr>
+        <tr class="h-9">
             <td>Stocks:</td>
             <td
                 class="{{ isset($selectedProduct) ? ($selectedProduct->stockquantity <= $selectedProduct->criticallevel ? 'text-red-600 font-semibold' : '') : '' }}">

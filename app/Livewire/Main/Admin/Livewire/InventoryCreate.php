@@ -4,6 +4,7 @@ namespace App\Livewire\Main\Admin\Livewire;
 
 use App\Models\Product;
 use App\Models\ProductImages;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\Attributes\On;
@@ -27,12 +28,15 @@ class InventoryCreate extends Component
     public $images;
     public $overwrite;
     public $productImages;
+    public $category;
+    public $categoryOptions;
 
     public function mount($product, $mode)
     {
         $this->product = Product::find($product);
         $this->mode = $mode;
         $this->temporaryImages = [];
+        $this->categoryOptions = $this->getCategoryValues('products', 'category');
         if ($this->product) {
             $this->id = $this->product->id;
             $this->name = $this->product->name;
@@ -42,6 +46,7 @@ class InventoryCreate extends Component
             $this->description = $this->product->description;
             $this->overwrite = false;
             $this->productImages = ProductImages::where('product_id', $this->product->id)->get();
+            $this->category = $this->product->category;
         } else {
             $this->mode = 'write';
             $this->name = null;
@@ -86,7 +91,8 @@ class InventoryCreate extends Component
                 'stockquantity' => $this->stockquantity,
                 'criticallevel' => $this->criticallevel,
                 'description' => $this->description,
-                'status' => 'Existing'
+                'status' => 'Existing',
+                'category' => $this->category
             ]);
 
             foreach ($this->images as $image) {
@@ -112,7 +118,8 @@ class InventoryCreate extends Component
             'price' => ['required', 'numeric', 'min:0'],
             'stockquantity' => ['required', 'numeric', 'integer', 'min:0'],
             'criticallevel' => ['required', 'numeric', 'integer', 'min:0'],
-            'description' => ['required', 'string']
+            'description' => ['required', 'string'],
+            'category' => ['required', 'string']
         ];
         $customMessages = [
             'name.required' => 'The name field is required.',
@@ -132,6 +139,7 @@ class InventoryCreate extends Component
             'images.*.image' => 'The image must be an image file.',
             'images.*.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
             'images.*.max' => 'The image may not be greater than 10 MB in size.',
+            'category.required' => 'The category field is required.',
         ];
         if ($this->images > 0) {
             $rules['images.*'] = ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'];
@@ -144,6 +152,7 @@ class InventoryCreate extends Component
             $currentProduct->stockquantity = $this->stockquantity;
             $currentProduct->criticallevel = $this->criticallevel;
             $currentProduct->description = $this->description;
+            $currentProduct->category = $this->category;
             if ($this->overwrite) {
                 foreach ($this->productImages as $image) {
                     $imagePath = public_path('storage/assets/' . $image->image);
@@ -215,5 +224,14 @@ class InventoryCreate extends Component
     {
         $this->overwrite = true;
         $this->images = [null];
+    }
+
+    public function getCategoryValues($table, $column)
+    {
+        $columnInfo = DB::select("SHOW COLUMNS FROM $table WHERE Field = ?", [$column])[0]->Type;
+        preg_match('/^enum\((.*)\)$/', $columnInfo, $matches);
+        $categories = explode(',', str_replace("'", '', $matches[1]));
+
+        return $categories;
     }
 }

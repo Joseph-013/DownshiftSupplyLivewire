@@ -33,7 +33,7 @@
                 </button>
             </li>
             <li class="w-2/12 h-full text-center text-xs dropdown">
-                <button class="w-full h-full dropbtn hover:bg-gray-200">Category</button>
+                <button type="button" class="w-full h-full dropbtn hover:bg-gray-200">Category</button>
                 <div class="dropdown-content flex-col w-36">
                     <button wire:click="filter('All')"
                         class="hover:bg-gray-200 h-7 {{ $filterStatus === 'All' ? 'underline' : '' }}">All</button>

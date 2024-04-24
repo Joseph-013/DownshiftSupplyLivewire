@@ -4,7 +4,7 @@
         <div class="flex items-center">
             @isset($transactions)
                 <button type="button" wire:click="compilePDF"
-                    class="mr-2 p-2 bg-blue-500 text-white text-sm rounded-lg border border-black">Print Report</button>
+                    class="mr-2 p-2 bg-blue-500 text-white text-sm rounded-lg border border-black">Export Report PDF</button>
             @endisset
             Rows:
             <input type="number" min="10" max="1000" placeholder="Row Count" class="rounded-md max-w-36 ms-2"

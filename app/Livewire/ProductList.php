@@ -37,13 +37,29 @@ class ProductList extends Component
         }
     }
 
+    public function filter($by)
+    {
+        $this->filterStatus = $by;
+    }
+
     #[On('renderProductList')]
     public function render()
     {
-        $products = Product::where('status', 'Existing')
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->orderBy($this->sortBy, $this->sortOrder)
-            ->paginate(50);
+        if ($this->filterStatus === "All") {
+            $products = Product::where('status', 'Existing')
+                ->where('name', 'like', '%' . $this->search . '%')
+                ->orderBy($this->sortBy, $this->sortOrder)
+                ->paginate(50);
+        } else {
+            $products = Product::where('status', 'Existing')
+                ->where('name', 'like', '%' . $this->search . '%')
+                ->where('category', $this->filterStatus)
+                ->orderBy($this->sortBy, $this->sortOrder)
+                ->paginate(50);
+        }
+
+
+
         return view('livewire.main.admin.livewire.product-list')->with(['products' => $products]);
     }
 

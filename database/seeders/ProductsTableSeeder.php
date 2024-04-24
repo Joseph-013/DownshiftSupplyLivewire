@@ -16,14 +16,15 @@ class ProductsTableSeeder extends Seeder
 
         DB::table('products')->insert([
             [
+                'id' => 1,
                 'name' => 'AMSOIL PREMIUM PROTECTION 10W-40 100% SYNTHETIC MOTOR OIL',
                 'description' => 'Sold per Liter. AMSOIL Premium Protection Synthetic Motor Oil is formulated to provide superior protection and performance in a wide variety of demanding applications. Its unique combination of synthetic base oils and a superior additive package results in a formulation that exceeds the requirements of most gasoline or diesel applications that call for 10W-40 or 20W-50 motor oil. Premium Protection Synthetic Motor Oil is ideal for high-mileage vehicles and high-stress vehicles subject to hot temperatures, heavy hauling, trailer pulling or off-road use. It provides the extra anti-wear protection required by engines with flat-tappet cams and high-tension valve springs. AMSOIL Premium Protection Synthetic Motor Oil offers flexibility and performance beyond conventional oils.',
                 'price' => 650,
                 'stockquantity' => 999,
                 'criticallevel' => 24,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihag-wAvZDMfbayIpM2vaIbYBbCArkXGfeU1CjGs-mwmLRRAOT_OFedICwry_3nWFpBTcxmxRcg5-Um5RQToVXFQo2_5Vw=s1600-v0',
             ],
             [
+                'id' => 2,
                 'name' => 'BC Racing BR Series Coilovers for FD',
                 'description' => 'Sold per Set.
                 - Front: With Rubber Top Mount
@@ -41,9 +42,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 49000,
                 'stockquantity' => 999,
                 'criticallevel' => 3,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihZUJACLJoqR1u5SCZNmu_uY19YH-aO43dNttK5CDBqIu4Oy8QcfDp0pYYdGcGB5r1iqkzrn9cOtfegZlgpup-Lq08ao8A=s1600-v0',
             ],
             [
+                'id' => 3,
                 'name' => 'BC Racing V1 Series Coilovers for EG and EK',
                 'description' => 'Sold per Set.
                 - Front: Rubber Top Mount
@@ -58,9 +59,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 38000,
                 'stockquantity' => 999,
                 'criticallevel' => 5,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihYzh3OLS4O4aCfFF1QC98w7UgNcKNDLaaVB0lK1FkfUun6r9jzQPAmwe3EeJBILN9yTKqxyXJZperNjSq9VuYJIf2pDoA=s1600-v0',
             ],
             [
+                'id' => 4,
                 'name' => 'DriveTech USA Axles for B-Series',
                 'description' => 'Sold per Set.
                 DTA axles are designed & engineered to match the OEM design.
@@ -69,9 +70,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 24500,
                 'stockquantity' => 999,
                 'criticallevel' => 3,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihZc5aQa_nhGvQ19fq9yTvuNgn5VtwDaByJearOabobUvY1p3sLQZbhkKqJqs5C4mAQOB9MH4Q6Yi4Ne04QlrlZl7XuSeg=s1600-v0',
             ],
             [
+                'id' => 5,
                 'name' => 'Skunk2 Alpha Series 66mm Throttle Body',
                 'description' => 'Sold per Set.
                 Precision Die-Cast Aluminum
@@ -84,9 +85,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 11500,
                 'stockquantity' => 999,
                 'criticallevel' => 2,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihaFMzM_TJ5gFmPkyyPYCZeDRsAICOD1OphY8Fs_zRr0SVzhp27xvSFCrCveAsFgYLW-fl-Uis6BqQqODDmg-GDAqR5xvQ=s1600-v0',
             ],
             [
+                'id' => 6,
                 'name' => 'Skunk2 Alpha Series 70mm Throttle Body',
                 'description' => 'Sold per Set.
                 Precision Die-Cast Aluminum
@@ -99,9 +100,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 11500,
                 'stockquantity' => 999,
                 'criticallevel' => 2,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihYkXnUwM_6incB0OfUcgsksG0X17QES95ZTzHFdtevt6iBfoJqJ4TQZaEXt7EvgNnPnYpH5VectE1zkf1Wm9T_fDpx2=s1600-v0',
             ],
             [
+                'id' => 7,
                 'name' => 'Yellow Speed Racing Coilovers for EG and EK',
                 'description' => 'Sold per Set.
                 Coilovers are designed and developed for motoring enthusiasts desiring excellent handling without sacrificing ride comfort. This suspension system features 33-way adjustable dampening settings and full length ride height adjustment to meet every driver’s handling desires. Pillowball mounts and adjustable camber plates are included for front and rear on most kits to increase steering response, while aluminum upper mounts with hardened rubber bushings are used on some applications for noise reduction. This suspension system is ideal for daily driving and occasional track use. Vehicle ride height can be lowered at least 2.5" or more on most application.
@@ -110,9 +111,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 34000,
                 'stockquantity' => 999,
                 'criticallevel' => 5,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihZIfb19ABkKGiTttfJdzHkpcqkYw2EEVh8GyQpSLwQsLnW0FmH9vCA4GIsNiyX6rIjxQUBDO8Mw4ONeEqrZvBwctTXSGYtS4kk=s1600-rw-v1',
             ],
             [
+                'id' => 8,
                 'name' => 'Yellow Speed Racing Coilovers for FD',
                 'description' => 'Sold per Set.
                 Coilovers are designed and developed for motoring enthusiasts desiring excellent handling without sacrificing ride comfort. This suspension system features 33-way adjustable dampening settings and full length ride height adjustment to meet every driver’s handling desires. Pillowball mounts and adjustable camber plates are included for front and rear on most kits to increase steering response, while aluminum upper mounts with hardened rubber bushings are used on some applications for noise reduction. This suspension system is ideal for daily driving and occasional track use. Vehicle ride height can be lowered at least 2.5" or more on most application.
@@ -121,9 +122,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 45000,
                 'stockquantity' => 999,
                 'criticallevel' => 3,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihZUJACLJoqR1u5SCZNmu_uY19YH-aO43dNttK5CDBqIu4Oy8QcfDp0pYYdGcGB5r1iqkzrn9cOtfegZlgpup-Lq08ao8A=s1600-v0',
             ],
             [
+                'id' => 9,
                 'name' => 'Yonaka Intermediate Half Shaft for B-Series',
                 'description' => 'Sold per Set.
                 The Yonaka half shaft is an upgraded intermediate shaft (half shaft) designed for the 1994 to 2001 Acura Integra hydraulic manual transmission.
@@ -132,9 +133,9 @@ class ProductsTableSeeder extends Seeder
                 'price' => 8000,
                 'stockquantity' => 999,
                 'criticallevel' => 3,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihaCZ2qesEGDgXB0kEr2Eln8F1KON7zG2yR5Zc-g3xjZEW9_8D6Ym4fBJP64cciQXtD3MVww6-u1mSIAY3HrYU4E1U23WQ=s1600-v0',
             ],
             [
+                'id' => 10,
                 'name' => 'AmsOil Signature Series 5W30 Engine Oil',
                 'description' => 'Sold per Liter.
                 Engineered for enthusiasts seeking maximum protection and performance. Precision-formulated with cutting-edge technology and a longstanding devotion to making the world’s best motor oil. The result: engine protection that blows the doors off the highest industry standards.
@@ -144,7 +145,6 @@ class ProductsTableSeeder extends Seeder
                 'price' => 750,
                 'stockquantity' => 999,
                 'criticallevel' => 24,
-                'image' => 'https://lh3.googleusercontent.com/drive-viewer/AKGpihY_IM-AZ83Adadb2RbRhSvV8Asg-e9kf1f9bh_5iZA9kfHoaGu-N4rLLt77Pd09PpEYYykFdYxsA-pfC-ti8pm9btGJ=s1600-v0',
             ],
         ]);
     }

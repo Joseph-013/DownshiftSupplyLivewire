@@ -15,9 +15,20 @@ class LeastSold extends Component
     public $subTitle = "(This Week)";
     public $colorMain = "rgb(237, 167, 98)";
     public $icon = "
-    <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-flame' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#ffffff' fill='none' stroke-linecap='round' stroke-linejoin='round'>
+    <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-snowflake' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#ffffff' fill='none' stroke-linecap='round' stroke-linejoin='round'>
     <path stroke='none' d='M0 0h24v24H0z' fill='none'/>
-    <path d='M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z' />
+    <path d='M10 4l2 1l2 -1' />
+    <path d='M12 2v6.5l3 1.72' />
+    <path d='M17.928 6.268l.134 2.232l1.866 1.232' />
+    <path d='M20.66 7l-5.629 3.25l.01 3.458' />
+    <path d='M19.928 14.268l-1.866 1.232l-.134 2.232' />
+    <path d='M20.66 17l-5.629 -3.25l-2.99 1.738' />
+    <path d='M14 20l-2 -1l-2 1' />
+    <path d='M12 22v-6.5l-3 -1.72' />
+    <path d='M6.072 17.732l-.134 -2.232l-1.866 -1.232' />
+    <path d='M3.34 17l5.629 -3.25l-.01 -3.458' />
+    <path d='M4.072 9.732l1.866 -1.232l.134 -2.232' />
+    <path d='M3.34 7l5.629 3.25l2.99 -1.738' />
     </svg>
     ";
 
@@ -25,13 +36,6 @@ class LeastSold extends Component
     {
         $startDate = Carbon::now()->startOfWeek()->toDateString();
         $endDate = Carbon::now()->endOfWeek()->toDateString();
-
-        // $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
-        //     ->whereBetween('created_at', [$startDate, $endDate])
-        //     ->groupBy('product_id')
-        //     ->orderByDesc('total_quantity')
-        //     ->limit(10)
-        //     ->get();
 
         $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total'))
             ->whereBetween('created_at', [$startDate, $endDate])

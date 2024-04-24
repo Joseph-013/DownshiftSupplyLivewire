@@ -11,7 +11,7 @@
     <div class="w-full flex-row">
         <ul class="flex flex-row items-center w-full h-6">
             <li class="w-1/12 text-center text-sm"></li>
-            <li class="w-7/12 h-full text-center text-xs">
+            <li class="w-5/12 h-full text-center text-xs">
                 <button type="button" wire:click="sort('itemName')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Item Name
@@ -31,6 +31,19 @@
                         @endif
                     @endif
                 </button>
+            </li>
+            <li class="w-2/12 h-full text-center text-xs dropdown">
+                <button type="button" class="w-full h-full dropbtn hover:bg-gray-200">Category</button>
+                <div class="dropdown-content flex-col w-36">
+                    <button wire:click="filter('All')"
+                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'All' ? 'underline' : '' }}">All</button>
+                    <button wire:click="filter('Engine')"
+                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Engine' ? 'underline' : '' }}">Engine</button>
+                    <button wire:click="filter('Fluids')"
+                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Fluids' ? 'underline' : '' }}">Fluids</button>
+                    <button wire:click="filter('Suspension')"
+                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Suspension' ? 'underline' : '' }}">Suspension</button>
+                </div>
             </li>
             <li class="w-2/12 h-full text-center text-xs">
                 <button type="button" wire:click="sort('remaining')"
@@ -99,9 +112,10 @@
                             for="productId{{ $product->id }}">
                             <ul class="flex flex-row w-full">
                                 <li class="w-1/12 text-center text-sm">{{ $product->id }}</li>
-                                <li class="w-8/12 text-center text-sm">{{ $product->name }}</li>
+                                <li class="w-5/12 text-center text-sm">{{ $product->name }}</li>
+                                <li class="w-2/12 text-center text-sm">{{ $product->category }}</li>
                                 <li class="w-2/12 text-center text-sm">{{ $product->stockquantity }}</li>
-                                <li class="w-4/12 text-center text-sm">₱&nbsp;{{ number_format($product->price, 2) }}
+                                <li class="w-2/12 text-center text-sm">₱&nbsp;{{ number_format($product->price, 2) }}
                                 </li>
                             </ul>
                         </label>
@@ -153,7 +167,7 @@
             /* Add hover effects here if needed */
         }
 
-        li:hover{
+        li:hover {
             cursor: pointer;
         }
     </style>

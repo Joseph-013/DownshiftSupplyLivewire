@@ -1,4 +1,4 @@
-<div class="p-3 rounded-xl text-black shadow-md shadow-gray-400"
+<div class="p-3 rounded-xl text-white shadow-md shadow-gray-400"
     style="background-color: {{ $colorMain }}; height: 506.8px;">
     <div class="flex flex-row justify-center items-center space-x-3 h-16">
         {!! $icon !!}
@@ -36,44 +36,47 @@
 @script
     <script>
         const ctx = document.getElementById('myChart');
-        const data = @json($data->pluck('day_name'));
+        const days = @json($data->pluck('day_number'));
         const totals = @json($data->pluck('total_subtotal'));
+
+        const dayLabels = days.map(day => `Day ${day}`);
 
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: data,
+                labels: dayLabels,
                 datasets: [{
-                    label: 'Sales ₱',
+                    label: 'Daily Sales',
                     data: totals,
-                    borderWidth: 1,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    borderColor: 'white',
                 }]
             },
             options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Sales this Month',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        }
-                    }
-                },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Sales Amount'
+                        ticks: {
+                            color: 'white',
+                        },
+                        grid: {
+                            color: 'white',
                         }
                     },
                     x: {
-                        title: {
-                            display: true,
-                            text: 'Day of the Week'
+                        ticks: {
+                            color: 'white',
+                        },
+                        grid: {
+                            color: 'white',
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white',
                         }
                     }
                 }

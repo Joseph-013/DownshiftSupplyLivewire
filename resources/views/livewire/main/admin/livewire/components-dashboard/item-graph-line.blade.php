@@ -44,7 +44,7 @@
             data: {
                 labels: data,
                 datasets: [{
-                    label: 'Sales',
+                    label: 'Sales ₱',
                     data: totals,
                     borderWidth: 1,
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',

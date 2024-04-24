@@ -5,8 +5,12 @@
                 {{-- Order Details --}}
                 <ul class="flex flex-row w-full">
                     <li class="w-6/12 flex items-center text-sm text-left">
-                        <img src="{{ filter_var($entry->product->image, FILTER_VALIDATE_URL) ? $entry->product->image : asset('storage/assets/' . $entry->product->image) }}"
-                            class="w-20 h-20 border-2 border-gray rounded object-cover">
+                        @if($entry->product_images)
+                            @if($entry->product_images->isNotEmpty())
+                            <img src="{{ filter_var($entry->product_images->first()->image, FILTER_VALIDATE_URL) ? $entry->product_images->first()->image : asset('storage/assets/' . $entry->product_images->first()->image) }}"
+                                class="w-20 h-20 border-2 border-gray rounded object-cover">
+                            @endif
+                        @endif
                         <div class="container">
                             <div class="fixed-width-container text-left px-0">
                                 <span class="flex-grow text-left">{{ Str::limit($entry->product->name, 40) }}</span>

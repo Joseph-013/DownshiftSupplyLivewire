@@ -29,7 +29,7 @@ class UserCart extends Component
 
     public function render()
     {
-        $this->cartEntries = Cart::where('user_id', Auth::id())->with('product')->get();
+        $this->cartEntries = Cart::where('user_id', Auth::id())->with('product.product_images')->get();
         $this->dispatch('cartUpdate');
         return view('livewire.main.user.livewire.user-cart');
     }

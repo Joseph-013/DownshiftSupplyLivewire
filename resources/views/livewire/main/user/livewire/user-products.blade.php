@@ -8,8 +8,12 @@
                 <li wire:key="{{ $product->id }}" class="px-2 text-left text-sm relative cursor-pointer"
                     wire:click="toggleDetails({{ $product->id }})">
                     <div class="w-full relative">
-                        <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}"
-                            class="w-full h-52 rounded-lg border-gray-500 border-1" style="object-fit: cover;" title="View product details">
+                        @if($product->product_images)
+                            @if($product->product_images->isNotEmpty())
+                                <img src="{{ filter_var($product->product_images->first()->image, FILTER_VALIDATE_URL) ? $product->product_images->first()->image : asset('storage/assets/' . $product->product_images->first()->image) }}"
+                                class="w-full h-52 rounded-lg border-gray-500 border-1" style="object-fit: cover;" title="View product details">
+                            @endif
+                        @endif
                         @if ($product->stockquantity <= 0)
                             <div class="absolute inset-0 flex justify-center items-center">
                                 <div

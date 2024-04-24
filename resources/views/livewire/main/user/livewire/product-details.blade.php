@@ -13,7 +13,7 @@
                     </svg>
                 </button>
             </div>
-            <div id="productCarousel" class="carousel slide" data-ride="carousel">
+            {{-- <div id="productCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100 h-xl rounded-md object-cover" src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}" alt="{{ $product->name }}" style="max-height: 350px;">
@@ -30,13 +30,36 @@
                     <span class="sr-only">Next</span>
                 </a>
 
+            </div> --}}
+            @if($productImages)
+            <div id="detailsCarousel" class="carousel slide d-flex justify-content-center align-items-center w-[350px]" data-ride="carousel">
+                <div class="carousel-inner h-60 rounded-md">
+                @foreach($productImages as $key => $image)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img class="rounded-md object-cover mx-auto max-h-60 max-w-[350px]"
+                            src="{{ asset('storage/assets/' . $image->image) }}"
+                            alt="Product Image {{ $key + 1 }}">
+                    </div>
+                @endforeach
+                </div>
+                @if(count($productImages) != 1)
+                    <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideDet()" type="button">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </button>
+                    <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideDet()" type="button">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </button>
+                @endif
             </div>
+            @endif
             <table class="w-full border-spacing-x-2">
                 <tr class="h-14">
                     <th colspan="2" class="text-center font-semibold">Product Details</th>
                 </tr>
                 <tr class="h-9">
-                    <td class="w-1/3 text-left text-gray-500 flex h-full">Name:</td>
+                    <td class="w-1/2 text-left text-gray-500 flex h-full">Name:</td>
                     <td class="w-2/3 text-left">
                         {{ $product->name }}
                     </td>

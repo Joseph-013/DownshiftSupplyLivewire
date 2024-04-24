@@ -13,7 +13,7 @@ class UserCheckoutList extends Component
 
     public function render()
     {
-        $this->cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        $this->cartItems = Cart::where('user_id', Auth::id())->with('product.product_images')->get();
         if (!$this->cartItems) {
             $this->redirect(route('user.cart'));
         } else {

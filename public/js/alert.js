@@ -22,7 +22,7 @@ document.addEventListener("livewire:init", () => {
                 break;
             }
             case 'neutral': {
-                alertDiv.style.backgroundColor = 'rgb(26 131 244)';
+                alertDiv.style.backgroundColor = 'rgb(34 197 94)';
                 alertDiv.style.color = 'white';
                 break;
             }

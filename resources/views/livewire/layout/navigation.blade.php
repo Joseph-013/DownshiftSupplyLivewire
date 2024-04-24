@@ -46,7 +46,7 @@ new class extends Component {
                 <div class="h-8 w-8 me-6">
                     @if (!auth()->check() || auth()->user()->usertype === 'user')
                         <a href="{{ route('user.cart') }}" class="h-full w-full">
-                            <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" />
+                            <img class="" src="{{ asset('assets/cart.png') }}" alt="cart" title="View cart"/>
                         </a>
                     @elseif (!auth()->check() || auth()->user()->usertype === 'admin')
                         <div class="h-full flex items-center italic text-sm font-bold text-orange-500">
@@ -56,7 +56,7 @@ new class extends Component {
 
                 </div>
 
-                <div class="hidden md:flex sm:items-center">
+                <div class="hidden md:flex sm:items-center" title="Profile">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button

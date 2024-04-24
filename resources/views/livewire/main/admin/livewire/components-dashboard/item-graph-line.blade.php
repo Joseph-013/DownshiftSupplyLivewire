@@ -1,4 +1,4 @@
-<div class="p-3 rounded-xl text-white shadow-md shadow-gray-400"
+<div class="p-3 rounded-xl text-black shadow-md shadow-gray-400"
     style="background-color: {{ $colorMain }}; height: 506.8px;">
     <div class="flex flex-row justify-center items-center space-x-3 h-16">
         {!! $icon !!}
@@ -15,32 +15,69 @@
         </section>
     </div>
     @isset($data)
-        {{-- @dd($data) --}}
-
-        {{-- temporary viewing --}}
-        <div class="flex flex-row">
-            <button wire:click='previousPage' class="size-5 border border-black flex justify-center items-center">
-                &lt;</button>
-            <table class="h-full w-full">
-                <thead>
-                    <tr>
-                        <td>Format</td>
-                        <td>Sales</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @isset($data)
-                        @foreach ($data as $group)
-                            <tr>
-                                <td>{{ $group->week_number }}</td>
-                                <td>{{ $group->total_subtotal }}</td>
-                            </tr>
-                        @endforeach
-                    @endisset
-                </tbody>
-            </table>
-            <button wire:click='previousPage'
-                class="size-5 border border-black flex justify-center items-center">&gt;</button>
+        <div class="flex flex-col">
+            <div class="h-full w-full">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="flex justify-center items-center space-x-3 mt-1">
+                {{-- <button class="size-7 rounded-md bg-red-50 flex justify-center items-center"
+                    id="next">{{ '<' }}</button>
+                <button class="size-7 rounded-md bg-red-50 flex justify-center items-center"
+                    id="prev">{{ '>' }}</button> --}}
+            </div>
         </div>
     @endisset
 </div>
+
+@assets
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@endassets
+
+@script
+    <script>
+        const ctx = document.getElementById('myChart');
+        const data = @json($data->pluck('day_name'));
+        const totals = @json($data->pluck('total_subtotal'));
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data,
+                datasets: [{
+                    label: 'Sales ₱',
+                    data: totals,
+                    borderWidth: 1,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Sales this Month',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Sales Amount'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Day of the Week'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+@endscript

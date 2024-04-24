@@ -20,7 +20,8 @@ class DetailFactory extends Factory
     public $transId = 0;
     public function definition(): array
     {
-        $createdAt = Carbon::createFromTimestamp(rand(Carbon::create(2020, 1, 1)->timestamp, Carbon::create(2024, 12, 31)->timestamp));
+        // $createdAt = Carbon::createFromTimestamp(rand(Carbon::create(2020, 1, 1)->timestamp, Carbon::create(2024, 12, 31)->timestamp));
+        $createdAt = Carbon::createFromTimestamp(rand(Carbon::create(2024, 1, 1)->timestamp, Carbon::now()->timestamp));
 
         ++$this->transId;
         return [

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('criticallevel')->unsigned();
             $table->text('image')->nullable();
             $table->enum('status', ['Existing', 'Deleted'])->default('Existing')->nullable();
+            $table->enum('category', ['Engine', 'Fluids', 'Suspension'])->nullable();
             $table->timestamps();
         });
     }

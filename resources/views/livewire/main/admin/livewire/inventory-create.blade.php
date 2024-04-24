@@ -44,6 +44,10 @@
                     <td>{{ $price }}</td>
                 </tr>
                 <tr class="h-9">
+                    <td>Category</td>
+                    <td>{{ $category }}</td>
+                </tr>
+                <tr class="h-9">
                     <td>Stocks:</td>
                     <td class="{{ $stockquantity <= $criticallevel ? 'text-red-600 font-semibold' : '' }}">
                         {{ $stockquantity }}
@@ -223,6 +227,19 @@
                         <td class="pe-3">Price:</td>
                         <td><input wire:model="price" type="number" step="any" class="rounded-lg h-9 w-full"
                                 required>
+                        </td>
+                    </tr>
+                    <tr class="h-11">
+                        <td class="pe-3">Category:</td>
+                        <td>
+                            <select wire:model="category" class="rounded-lg h-10 w-full" required>
+                                @if($category === null)
+                                <option></option>
+                                @endif
+                                @foreach ($categoryOptions as $value)
+                                <option value="{{ $value }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </td>
                     </tr>
                     <tr class="h-11">

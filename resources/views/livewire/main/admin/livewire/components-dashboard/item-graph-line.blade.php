@@ -36,23 +36,21 @@
 @script
     <script>
         const ctx = document.getElementById('myChart');
-        const days = @json($data->pluck('day_number')); // Array of day numbers
+        const days = @json($data->pluck('day_number'));
         const totals = @json($data->pluck('total_subtotal'));
 
-        // Map the day numbers to "Day x" format for labels
         const dayLabels = days.map(day => `Day ${day}`);
 
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: dayLabels, // Use "Day x" as labels
+                labels: dayLabels,
                 datasets: [{
                     label: 'Daily Sales',
-                    data: totals, // Use total_subtotal as data points
-                    borderWidth: 1,
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // White background color with opacity
-                    borderColor: 'black', // Example border color (unchanged)
-                    // borderColor: 'rgba(54, 162, 235, 1)', // Example border color (unchanged)
+                    data: totals,
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    borderColor: 'white',
                 }]
             },
             options: {
@@ -60,25 +58,25 @@
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'white', // Font color for Y-axis labels
+                            color: 'white',
                         },
                         grid: {
-                            color: 'white', // Grid line color for Y-axis
+                            color: 'white',
                         }
                     },
                     x: {
                         ticks: {
-                            color: 'white', // Font color for X-axis labels
+                            color: 'white',
                         },
                         grid: {
-                            color: 'white', // Grid line color for X-axis
+                            color: 'white',
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'white', // Font color for legend labels
+                            color: 'white',
                         }
                     }
                 }

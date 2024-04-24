@@ -14,7 +14,7 @@ class SalesGraph extends Component
 {
     use WithPagination;
     public $title = "Daily Sales Graph";
-    public $subTitle = "(This Week)";
+    public $subTitle = "(This Month)";
     public $colorMain = "rgb(30, 174, 144)";
     // public $colorMain = "rgb(226 232 240)";
     public $icon = "

@@ -85,7 +85,7 @@ class InventoryCreate extends Component
             'images.*.max' => 'The image may not be greater than 10 MB in size.',  
         ]);
 
-        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->images && $this->category) {
+        if ($this->name && $this->price && $this->images && $this->description && $this->category) {
             $categoryId = DB::table('product_categories')
                 ->where('category', $this->category)
                 ->value('id');
@@ -150,7 +150,7 @@ class InventoryCreate extends Component
         }
         $this->validate($rules, $customMessages);
 
-        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel) {
+        if ($this->name && $this->price && $this->description && $this->category) {
             $categoryId = DB::table('product_categories')
                 ->where('category', $this->category)
                 ->value('id');

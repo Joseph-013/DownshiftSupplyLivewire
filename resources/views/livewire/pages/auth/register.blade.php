@@ -28,7 +28,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $validated = $this->validate([
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'fullname' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z.]+$/'],
+            'fullname' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z .]+$/'],
             'password' => ['required', 'string', 'confirmed', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\w\W]{8,}$/'],
         ]);
 

@@ -21,6 +21,9 @@
                     <td>{{ $contact }}</td>
                 </tr>
             </table>
+            @error('contact')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
             @if ($details)
                 <hr class="my-3" />
                 <table class="w-full text-xs text-center font-bold">
@@ -257,6 +260,9 @@
             </div>
             <div>
             @error('tempDetails.*.quantity')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+            @error('contact')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
             </div>

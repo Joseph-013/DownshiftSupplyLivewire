@@ -70,6 +70,8 @@ class OnsiteCreate extends Component
             'lastName' => ['required', 'string'],
             'contact' => ['required', 'numeric', 'digits_between:1,11'],
             'tempDetails' => ['required', 'array', 'min:1'],
+        ],[
+            'contact.digits_between' => 'The contact number must be between 1 and 11 digits.',
         ]);
 
         if ($this->firstName && $this->lastName && $this->contact && $this->tempDetails) {

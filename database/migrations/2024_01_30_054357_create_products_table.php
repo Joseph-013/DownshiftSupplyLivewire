@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('criticallevel')->unsigned();
             $table->enum('status', ['Existing', 'Deleted'])->default('Existing')->nullable();
             $table->enum('category', ['Engine', 'Fluids', 'Suspension'])->nullable();
+            $table->foreignId('category_id')->constrained('product_categories');
             $table->timestamps();
         });
     }

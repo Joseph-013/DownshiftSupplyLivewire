@@ -12,7 +12,7 @@ class MostSold extends Component
 {
     public $items;
     public $title = "Most Sold Items";
-    public $subTitle = "(This Week)";
+    public $subTitle = "(This Month)";
     public $colorMain = "rgb(132, 124, 197)";
 
     public $icon = "

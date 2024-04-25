@@ -3,28 +3,33 @@
 
     @if ($mode == 'read')
         <div class="bg-white z-10 p-3 rounded-lg max-w-80">
-            @if($productImages)
-            <div id="inventoryReadCarousel" class="carousel slide d-flex justify-content-center align-items-center w-72" data-ride="carousel">
-                <div class="carousel-inner h-48 rounded-md">
-                @foreach($productImages as $key => $image)
-                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img class="rounded-md object-cover max-w-72 mx-auto max-h-48"
-                        src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
-                            alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
+            @if ($productImages)
+                <div id="inventoryReadCarousel"
+                    class="carousel slide d-flex justify-content-center align-items-center w-72" data-ride="carousel">
+                    <div class="carousel-inner h-48 rounded-md">
+                        @foreach ($productImages as $key => $image)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                <img class="rounded-md object-cover max-w-72 mx-auto max-h-48"
+                                    src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
+                                    alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                    @if (count($productImages) != 1)
+                        <button
+                            class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                            onclick="prevSlideInvRead()" type="button">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </button>
+                        <button
+                            class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                            onclick="nextSlideInvRead()" type="button">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </button>
+                    @endif
                 </div>
-                @if(count($productImages) != 1)
-                    <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideInvRead()" type="button">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </button>
-                    <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideInvRead()" type="button">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </button>
-                @endif
-            </div>
             @endif
             {{-- <div class="px-3"> --}}
             <table class="w-full text-left">
@@ -111,27 +116,34 @@
                     <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
                         class="rounded-md object-cover" style="max-height: 200px;" />
                 @endif --}}
-                @if($this->images)
+                @if ($this->images)
                     @if ($temporaryImages)
-                        <div id="previewCarousel" class="carousel slide d-flex justify-content-center align-items-center w-96" data-ride="carousel">
+                        <div id="previewCarousel"
+                            class="carousel slide d-flex justify-content-center align-items-center w-96"
+                            data-ride="carousel">
                             <div class="carousel-inner h-48 rounded-md">
-                                @foreach($temporaryImages as $key => $image)
-                                @if($image != null)
-                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover max-h-48 mx-auto max-w-96">
-                                </div>
-                                @endif
+                                @foreach ($temporaryImages as $key => $image)
+                                    @if ($image != null)
+                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                            <img src="{{ $image->temporaryUrl() }}" alt="Preview"
+                                                class="rounded-md object-cover max-h-48 mx-auto max-w-96">
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
-                            @if(count(array_filter($temporaryImages)) != 1)
-                            <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlidePrev()" type="button">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </button>
-                            <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlidePrev()" type="button">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </button>
+                            @if (count(array_filter($temporaryImages)) != 1)
+                                <button
+                                    class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                                    onclick="prevSlidePrev()" type="button">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </button>
+                                <button
+                                    class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                                    onclick="nextSlidePrev()" type="button">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </button>
                             @endif
                         </div>
                     @else
@@ -139,22 +151,28 @@
                             class="rounded-md object-cover" style="max-height: 200px;" />
                     @endif
                 @elseif($productImages)
-                    <div id="inventoryWriteCarousel" class="carousel slide d-flex justify-content-center align-items-center w-96" data-ride="carousel">
+                    <div id="inventoryWriteCarousel"
+                        class="carousel slide d-flex justify-content-center align-items-center w-96"
+                        data-ride="carousel">
                         <div class="carousel-inner h-48 rounded-md">
-                        @foreach($productImages as $key => $image)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }} ">
-                                <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
-                                src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
-                                    alt="Product Image {{ $key + 1 }}">
-                            </div>
-                        @endforeach
+                            @foreach ($productImages as $key => $image)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }} ">
+                                    <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
+                                        src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
+                                        alt="Product Image {{ $key + 1 }}">
+                                </div>
+                            @endforeach
                         </div>
-                        @if(count($productImages) != 1)
-                            <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideInvWrite()" type="button">
+                        @if (count($productImages) != 1)
+                            <button
+                                class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                                onclick="prevSlideInvWrite()" type="button">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </button>
-                            <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideInvWrite()" type="button">
+                            <button
+                                class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                                onclick="nextSlideInvWrite()" type="button">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </button>
@@ -169,90 +187,98 @@
                     wire:submit.prevent="createProduct" @endif
                 class="h-full w-full flex flex-col">
                 <div class="overflow-y-auto max-h-[400px]">
-                <table class="w-full">
-                    <tr class="h-14">
-                        <th colspan="2" class="text-center font-semibold">Item Details</th>
-                    </tr>
-                    @if($overwrite)
-                    @foreach($images as $index => $image)
-                    <tr class="h-11">
-                        <td class="mt-3" colspan="2">
-                            <input wire:model="images.{{ $index }}" type="file" @if (!$product) required @endif>
-                            <button wire:click="removeImage({{ $index }})" class="ml-2" type="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                    @error('images.'.$index)
-                    <tr>
-                        <td colspan="2">
-                            <span class="text-red-500">{{ $message }}</span>
-                        </td>
-                    </tr>
-                    @enderror
-                    @endforeach
-                    @if(count($images) < 4)
-                    <tr class="h-11 text-center items-center justify-center">
-                        <td colspan="2">
-                            <button type="button" wire:click="addImages" class="h-10 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing px-2">
-                                Add Image +
-                            </button>
-                        </td>
-                    </tr>
-                    @endif
-                    @else
-                    <tr class="h-11 text-center items-center justify-center">
-                        <td colspan="2">
-                            <button type="button" wire:click="setOverwrite" class="h-10 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing px-2">
-                                Overwrite Images
-                            </button>
-                        </td>
-                    </tr>
-                    @endif
-                    <tr class="h-11">
-                        <td class="pe-3">Name:</td>
-                        <td><input wire:model="name" type="text" class="rounded-lg h-9 w-full" required></td>
-                    </tr>
-                    <tr class="h-11">
-                        <td class="pe-3">Description:</td>
-                        <td>
-                            <textarea wire:model="description" name="" id="" rows="5" class="rounded-lg w-full"
-                                style="resize: none;"></textarea>
-                            {{-- <input wire:model="name" type="text" class="rounded-lg h-9" required> --}}
-                        </td>
-                    </tr>
-                    <tr class="h-11">
-                        <td class="pe-3">Price:</td>
-                        <td><input wire:model="price" type="number" step="any" class="rounded-lg h-9 w-full"
-                                required>
-                        </td>
-                    </tr>
-                    <tr class="h-11">
-                        <td class="pe-3">Category:</td>
-                        <td>
-                            <select wire:model="category" class="rounded-lg h-10 w-full" required>
-                                @if($category === null)
-                                <option></option>
-                                @endif
-                                @foreach ($categoryOptions as $value)
-                                <option value="{{ $value }}">{{ $value }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="h-11">
-                        <td class="pe-3">Stocks:</td>
-                        <td><input wire:model="stockquantity" type="number" class="rounded-lg h-9 w-full" required>
-                        </td>
-                    </tr>
-                    <tr class="h-11">
-                        <td class="pe-3">Critical Level:</td>
-                        <td><input wire:model="criticallevel" type="number" class="rounded-lg h-9 w-full" required>
-                        </td>
-                    </tr>
-                </table>
+                    <table class="w-full">
+                        <tr class="h-14">
+                            <th colspan="2" class="text-center font-semibold">Item Details</th>
+                        </tr>
+                        @if ($overwrite)
+                            @foreach ($images as $index => $image)
+                                <tr class="h-11">
+                                    <td class="mt-3" colspan="2">
+                                        <input wire:model="images.{{ $index }}" type="file"
+                                            @if (!$product) required @endif>
+                                        <button wire:click="removeImage({{ $index }})" class="ml-2"
+                                            type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                @error('images.' . $index)
+                                    <tr>
+                                        <td colspan="2">
+                                            <span class="text-red-500">{{ $message }}</span>
+                                        </td>
+                                    </tr>
+                                @enderror
+                            @endforeach
+                            @if (count($images) < 4)
+                                <tr class="h-11 text-center items-center justify-center">
+                                    <td colspan="2">
+                                        <button type="button" wire:click="addImages"
+                                            class="h-10 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing px-2">
+                                            Add Image +
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endif
+                        @else
+                            <tr class="h-11 text-center items-center justify-center">
+                                <td colspan="2">
+                                    <button type="button" wire:click="setOverwrite"
+                                        class="h-10 items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing px-2">
+                                        Overwrite Images
+                                    </button>
+                                </td>
+                            </tr>
+                        @endif
+                        <tr class="h-11">
+                            <td class="pe-3">Name:</td>
+                            <td><input wire:model="name" type="text" class="rounded-lg h-9 w-full" required></td>
+                        </tr>
+                        <tr class="h-11">
+                            <td class="pe-3">Description:</td>
+                            <td>
+                                <textarea wire:model="description" name="" id="" rows="5" class="rounded-lg w-full"
+                                    style="resize: none;"></textarea>
+                                {{-- <input wire:model="name" type="text" class="rounded-lg h-9" required> --}}
+                            </td>
+                        </tr>
+                        <tr class="h-11">
+                            <td class="pe-3">Price:</td>
+                            <td><input wire:model="price" type="number" step="any"
+                                    class="rounded-lg h-9 w-full" required>
+                            </td>
+                        </tr>
+                        <tr class="h-11">
+                            <td class="pe-3">Category:</td>
+                            <td>
+                                <select wire:model="category" class="rounded-lg h-10 w-full" required>
+                                    @if ($category === null)
+                                        <option></option>
+                                    @endif
+                                    @foreach ($categoryOptions as $value)
+                                        <option value="{{ $value }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="h-11">
+                            <td class="pe-3">Stocks:</td>
+                            <td><input wire:model="stockquantity" type="number" class="rounded-lg h-9 w-full"
+                                    min="0" max="999" required>
+                            </td>
+                        </tr>
+                        <tr class="h-11">
+                            <td class="pe-3">Critical Level:</td>
+                            <td><input wire:model="criticallevel" type="number" class="rounded-lg h-9 w-full"
+                                    required>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div>
                     @error('price')

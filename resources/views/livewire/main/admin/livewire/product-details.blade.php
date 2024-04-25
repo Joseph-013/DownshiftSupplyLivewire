@@ -47,7 +47,7 @@
         </tr>
         <tr class="h-9">
             <td>Category:</td>
-            <td>{{ isset($selectedProduct) ? $selectedProduct->category : '--' }}</td>
+            <td>{{ isset($selectedProduct) ? $selectedProduct->product_categories->category : '--' }}</td>
         </tr>
         <tr class="h-9">
             <td>Stocks:</td>

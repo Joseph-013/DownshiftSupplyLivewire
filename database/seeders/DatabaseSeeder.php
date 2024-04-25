@@ -43,9 +43,9 @@ class DatabaseSeeder extends Seeder
         // Deployment:
 
         $this->call(UsersTableSeeder::class);
+        $this->call(ProductCategoriesSeeder::class);
         $this->call(ProductsTableSeeder::class);
         $this->call(FAQsTableSeeder::class);
         $this->call(ProductImagesSeeder::class);
-        $this->call(ProductCategoriesSeeder::class);
     }
 }

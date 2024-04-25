@@ -36,7 +36,7 @@ class InventoryCreate extends Component
         $this->product = Product::find($product);
         $this->mode = $mode;
         $this->temporaryImages = [];
-        $this->categoryOptions = $this->getCategoryValues('products', 'category');
+        $this->categoryOptions = $this->getCategoryValues('product_categories', 'category');
         if ($this->product) {
             $this->id = $this->product->id;
             $this->name = $this->product->name;
@@ -46,7 +46,7 @@ class InventoryCreate extends Component
             $this->description = $this->product->description;
             $this->overwrite = false;
             $this->productImages = ProductImages::where('product_id', $this->product->id)->get();
-            $this->category = $this->product->category;
+            $this->category = $this->product->product_categories->category;
         } else {
             $this->mode = 'write';
             $this->name = null;
@@ -147,12 +147,16 @@ class InventoryCreate extends Component
         $this->validate($rules, $customMessages);
 
         if ($this->name && $this->price && $this->stockquantity && $this->criticallevel) {
+            $categoryId = DB::table('product_categories')
+                ->where('category', $this->category)
+                ->value('id');
+
             $currentProduct->name = $this->name;
             $currentProduct->price = $this->price;
             $currentProduct->stockquantity = $this->stockquantity;
             $currentProduct->criticallevel = $this->criticallevel;
             $currentProduct->description = $this->description;
-            $currentProduct->category = $this->category;
+            $currentProduct->category_id = $categoryId;
             if ($this->overwrite) {
                 foreach ($this->productImages as $image) {
                     $imagePath = public_path('storage/assets/' . $image->image);
@@ -228,9 +232,7 @@ class InventoryCreate extends Component
 
     public function getCategoryValues($table, $column)
     {
-        $columnInfo = DB::select("SHOW COLUMNS FROM $table WHERE Field = ?", [$column])[0]->Type;
-        preg_match('/^enum\((.*)\)$/', $columnInfo, $matches);
-        $categories = explode(',', str_replace("'", '', $matches[1]));
+        $categories = DB::table('product_categories')->distinct()->pluck('category')->toArray();
 
         return $categories;
     }

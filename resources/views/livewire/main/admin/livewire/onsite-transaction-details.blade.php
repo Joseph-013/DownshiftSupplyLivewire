@@ -31,8 +31,10 @@
     <table class="w-full text-xs text-center">
         @foreach($details as $detail)
         <tr class="h-full">
-            <td class="w-2/12"><img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+            @if($detail->products->product_images && $detail->products->product_images->isNotEmpty())
+            <td class="w-2/12"><img src="{{ filter_var($detail->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $detail->products->product_images->first()->image : asset('storage/assets/' . $detail->products->product_images->first()->image) }}"
                 class="w-14 h-14 rounded"></td>
+            @endif
             <td class="w-3/12 text-left">{{ $detail->products->name }}</td>
             <td class="w-3/12">{{ number_format($detail->products->price, 2) }}</td>
             <td class="w-1/12">{{ $detail->quantity }}</td>

@@ -11,7 +11,7 @@
             @foreach($productImages as $key => $image)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                 <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
-                    src="{{ asset('storage/assets/' . $image->image) }}"
+                    src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
                     alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
             </div>
             @endforeach

@@ -260,7 +260,7 @@ class OnsiteCreate extends Component
                     'price' => $product->price,
                     'quantity' => $this->quantity,
                     'subtotal' => $product->price * $this->quantity,
-                    'image' => $product->image
+                    'image' => $product->product_images->first()->image
                 ];
             }
         }

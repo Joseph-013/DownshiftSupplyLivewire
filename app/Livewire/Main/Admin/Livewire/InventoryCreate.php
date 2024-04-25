@@ -46,7 +46,8 @@ class InventoryCreate extends Component
             $this->description = $this->product->description;
             $this->overwrite = false;
             $this->productImages = ProductImages::where('product_id', $this->product->id)->get();
-            $this->category = $this->product->product_categories->category;
+            if($this->product->category_id)
+                $this->category = $this->product->product_categories->category;
         } else {
             $this->mode = 'write';
             $this->name = null;

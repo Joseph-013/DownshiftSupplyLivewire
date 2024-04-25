@@ -113,7 +113,11 @@
                             <ul class="flex flex-row w-full">
                                 <li class="w-1/12 text-center text-sm">{{ $product->id }}</li>
                                 <li class="w-5/12 text-center text-sm">{{ $product->name }}</li>
-                                <li class="w-2/12 text-center text-sm">{{ $product->product_categories->category }}</li>
+                                <li class="w-2/12 text-center text-sm">
+                                    @if($product->category_id)
+                                    {{ $product->product_categories->category }}
+                                    @endif
+                                </li>
                                 <li class="w-2/12 text-center text-sm">{{ $product->stockquantity }}</li>
                                 <li class="w-2/12 text-center text-sm">₱&nbsp;{{ number_format($product->price, 2) }}
                                 </li>

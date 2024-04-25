@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Main\Admin\Livewire;
 
+use App\Models\Product;
 use App\Models\ProductCategories;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -10,7 +11,7 @@ class InventoryCategories extends Component
 {
     public $categories = [];
     public $editingCategory = null;
-    public $confirmDelete;
+    public $confirmDeleteCategory;
     public $newCategory;
 
     public function fetchCategories()
@@ -46,14 +47,21 @@ class InventoryCategories extends Component
 
     public function deleteCategory($category)
     {
+        $categoryId = ProductCategories::where('category', $category)->value('id');
+
+        Product::where('category_id', $categoryId)->update(['category_id' => null]);
+
         ProductCategories::where('category', $category)->delete();
+
+        $this->confirmDeleteCategory = false;
         $this->dispatch('alertNotif', ['message' => 'Category successfully deleted', 'type' => 'positive']);
+        $this->dispatch('renderProductList');
     }
 
-    #[On('deleteConfirm')]
-    public function deleteConfirm()
+
+    public function deleteConfirmCategories()
     {
-        $this->confirmDelete = true;
+        $this->confirmDeleteCategory = true;
     }
 
     public function addCategory()

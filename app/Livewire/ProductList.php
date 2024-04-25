@@ -16,6 +16,8 @@ class ProductList extends Component
     public $itemTemplateToggleRes;
     public $search;
 
+    public $showCategoriesWindow = false;
+
     public $sortBy = 'name';
     public $sortOrder = "asc";
     public $filterStatus = "All";
@@ -35,6 +37,12 @@ class ProductList extends Component
             $this->sortBy = $by;
             $this->sortOrder = 'asc';
         }
+    }
+
+    #[On('setCategoriesWindow')]
+    public function setCategoriesWindow($visibility)
+    {
+        $this->showCategoriesWindow = $visibility;
     }
 
     public function filter($by)

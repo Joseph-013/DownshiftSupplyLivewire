@@ -366,3 +366,7 @@ input[type="checkbox"]:checked {
 td {
     padding: 5px;
 }
+
+.tborder {
+    border: 1px solid black;
+}

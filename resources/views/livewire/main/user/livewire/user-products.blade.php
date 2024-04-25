@@ -6,12 +6,13 @@
         @if ($products)
             @foreach ($products as $product)
                 <li wire:key="{{ $product->id }}" class="px-2 text-left text-sm relative cursor-pointer"
-                    wire:click="toggleDetails({{ $product->id }})">
+                    wire:click="toggleDetails({{ $product->id }})" style="max-height: 248px;">
                     <div class="w-full relative">
-                        @if($product->product_images)
-                            @if($product->product_images->isNotEmpty())
+                        @if ($product->product_images)
+                            @if ($product->product_images->isNotEmpty())
                                 <img src="{{ filter_var($product->product_images->first()->image, FILTER_VALIDATE_URL) ? $product->product_images->first()->image : asset('storage/assets/' . $product->product_images->first()->image) }}"
-                                class="w-full h-52 rounded-lg border-gray-500 border-1" style="object-fit: cover;" title="View product details">
+                                    class="w-full h-52 rounded-lg border-gray-500 border-1" style="object-fit: cover;"
+                                    title="View product details">
                             @endif
                         @endif
                         @if ($product->stockquantity <= 0)

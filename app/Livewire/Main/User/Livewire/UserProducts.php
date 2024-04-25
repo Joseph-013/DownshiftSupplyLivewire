@@ -4,6 +4,7 @@ namespace App\Livewire\Main\User\Livewire;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ProductCategories;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
@@ -84,7 +85,8 @@ class UserProducts extends Component
         if ($this->filterStatus === "All") {
             $products = Product::with('product_images')->where('status', 'Existing')->where('name', 'like', '%' . $this->search . '%')->inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
         } else {
-            $products = Product::with('product_images')->where('status', 'Existing')->where('name', 'like', '%' . $this->search . '%')->where('category', $this->filterStatus)->inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
+            $categoryId = ProductCategories::where('category', $this->filterStatus)->value('id');
+            $products = Product::with('product_images')->where('status', 'Existing')->where('name', 'like', '%' . $this->search . '%')->where('category_id', $categoryId)->inRandomOrder()->paginate(30); //pagination links will disappear if total product number is less than specified to paginate
 
         }
         return view('livewire.main.user.livewire.user-products')->with(['products' => $products]);

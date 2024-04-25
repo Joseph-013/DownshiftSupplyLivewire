@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\ProductCategories;
 use Livewire\Component;
 
 class SearchProduct extends Component
 {
     public $search;
     public $filterStatus = 'All';
+    public $categories;
 
     public function filter($by)
     {
@@ -17,6 +19,7 @@ class SearchProduct extends Component
 
     public function render()
     {
+        $this->fetchCategories();
         return view('livewire.search-product');
     }
 
@@ -29,5 +32,10 @@ class SearchProduct extends Component
     public function submitSearch()
     {
         $this->dispatch('searchResults', $this->search);
+    }
+
+    public function fetchCategories()
+    {
+        $this->categories = ProductCategories::pluck('category')->toArray();
     }
 }

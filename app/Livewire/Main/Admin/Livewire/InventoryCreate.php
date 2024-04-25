@@ -84,7 +84,10 @@ class InventoryCreate extends Component
             'images.*.max' => 'The image may not be greater than 10 MB in size.',  
         ]);
 
-        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->images) {
+        if ($this->name && $this->price && $this->stockquantity && $this->criticallevel && $this->images && $this->category) {
+            $categoryId = DB::table('product_categories')
+                ->where('category', $this->category)
+                ->value('id');
             $product = Product::create([
                 'name' => $this->name,
                 'price' => $this->price,
@@ -92,7 +95,7 @@ class InventoryCreate extends Component
                 'criticallevel' => $this->criticallevel,
                 'description' => $this->description,
                 'status' => 'Existing',
-                'category' => $this->category
+                'category_id' => $categoryId
             ]);
 
             foreach ($this->images as $image) {

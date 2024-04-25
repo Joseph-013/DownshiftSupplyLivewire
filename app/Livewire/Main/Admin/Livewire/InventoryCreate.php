@@ -77,12 +77,12 @@ class InventoryCreate extends Component
             'price' => ['required', 'numeric', 'min:0'],
             'stockquantity' => ['required', 'numeric', 'min:0'],
             'criticallevel' => ['required', 'numeric', 'min:0'],
-            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'],
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5120'],
         ], [
             'images.*.required' => 'The image field is required',
             'images.*.image' => 'The image must be an image file.',
             'images.*.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
-            'images.*.max' => 'The image may not be greater than 10 MB in size.',  
+            'images.*.max' => 'The image may not be greater than 5 MB in size.',  
         ]);
 
         if ($this->name && $this->price && $this->images && $this->description && $this->category) {
@@ -142,11 +142,11 @@ class InventoryCreate extends Component
             'images.*.required' => 'The image field is required',
             'images.*.image' => 'The image must be an image file.',
             'images.*.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
-            'images.*.max' => 'The image may not be greater than 10 MB in size.',
+            'images.*.max' => 'The image may not be greater than 5 MB in size.',
             'category.required' => 'The category field is required.',
         ];
         if ($this->images > 0) {
-            $rules['images.*'] = ['required', 'image', 'mimes:jpeg,png,jpg', 'max:10240'];
+            $rules['images.*'] = ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5120'];
         }
         $this->validate($rules, $customMessages);
 

@@ -10,11 +10,23 @@
     document.addEventListener('submit', (event) => {
         const formInputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="file"], select');
         let isEmpty = false;
+        let isFileTooLarge = false;
 
         formInputs.forEach(input => {
             if (input.required && input.value.trim() === '') {
                 isEmpty = true;
                 return;
+            }
+
+            if (input.type === 'file' && input.files.length > 0) {
+                const file = input.files[0];
+                const fileSizeInBytes = file.size;
+                const maxSizeInBytes = 5242880;
+
+                if (fileSizeInBytes > maxSizeInBytes) {
+                    isFileTooLarge = true;
+                    return;
+                }
             }
         });
 
@@ -22,7 +34,13 @@
             event.preventDefault();
             alert('Please fill in all required fields.');
         } else {
-            Livewire.dispatch('checkout');
+            if (isFileTooLarge) {
+                event.preventDefault();
+                Livewire.dispatch('renderAlert');
+            }
+            else {
+                Livewire.dispatch('checkout');
+            }
         }
     });
 </script>

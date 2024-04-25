@@ -17,4 +17,10 @@ class CompleteTransaction extends Component
     {
         $this->dispatch('alertNotif', ['message' => 'Successfully checked out', 'type' => 'positive']);
     }
+
+    #[On('renderAlert')]
+    public function renderAlert()
+    {
+        $this->dispatch('alertNotif', ['message' => 'Uploaded proof is greater than 5 MB', 'type' => 'negative']);
+    }
 }

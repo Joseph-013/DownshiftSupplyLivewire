@@ -34,8 +34,8 @@ class LeastSold extends Component
 
     public function render()
     {
-        $startDate = Carbon::now()->startOfWeek()->toDateString();
-        $endDate = Carbon::now()->endOfWeek()->toDateString();
+        $startDate = Carbon::now()->startOfMonth()->toDateString();
+        $endDate = Carbon::now()->endOfMonth()->toDateString();
 
         $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total'))
             ->whereBetween('created_at', [$startDate, $endDate])

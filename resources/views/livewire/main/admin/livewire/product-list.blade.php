@@ -37,12 +37,10 @@
                 <div class="dropdown-content flex-col w-36">
                     <button wire:click="filter('All')"
                         class="hover:bg-gray-200 h-7 {{ $filterStatus === 'All' ? 'underline' : '' }}">All</button>
-                    <button wire:click="filter('Engine')"
-                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Engine' ? 'underline' : '' }}">Engine</button>
-                    <button wire:click="filter('Fluids')"
-                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Fluids' ? 'underline' : '' }}">Fluids</button>
-                    <button wire:click="filter('Suspension')"
-                        class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Suspension' ? 'underline' : '' }}">Suspension</button>
+                    @foreach($categories as $category)
+                    <button wire:click="filter('{{ $category }}')"
+                        class="hover:bg-gray-200 h-7 {{ $filterStatus === $category ? 'underline' : '' }}">{{ $category }}</button>
+                    @endforeach
                     <button wire:click="setCategoriesWindow(true)"
                         class="hover:bg-gray-200 h-7 bg-gray-300 flex flex-row justify-center items-center">Edit
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
@@ -115,7 +113,11 @@
                             <ul class="flex flex-row w-full">
                                 <li class="w-1/12 text-center text-sm">{{ $product->id }}</li>
                                 <li class="w-5/12 text-center text-sm">{{ $product->name }}</li>
-                                <li class="w-2/12 text-center text-sm">{{ $product->category }}</li>
+                                <li class="w-2/12 text-center text-sm">
+                                    @if($product->category_id)
+                                    {{ $product->product_categories->category }}
+                                    @endif
+                                </li>
                                 <li class="w-2/12 text-center text-sm">{{ $product->stockquantity }}</li>
                                 <li class="w-2/12 text-center text-sm">₱&nbsp;{{ number_format($product->price, 2) }}
                                 </li>

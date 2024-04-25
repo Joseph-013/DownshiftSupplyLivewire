@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductCategories;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
@@ -21,6 +23,12 @@ class ProductList extends Component
     public $sortBy = 'name';
     public $sortOrder = "asc";
     public $filterStatus = "All";
+    public $categories = [];
+
+    public function fetchCategories()
+    {
+        $this->categories = ProductCategories::pluck('category')->toArray();
+    }
 
     public function sort($by)
     {
@@ -53,6 +61,8 @@ class ProductList extends Component
     #[On('renderProductList')]
     public function render()
     {
+        $this->fetchCategories();
+
         if ($this->filterStatus === "All") {
             $products = Product::where('status', 'Existing')
                 ->where('name', 'like', '%' . $this->search . '%')
@@ -61,7 +71,9 @@ class ProductList extends Component
         } else {
             $products = Product::where('status', 'Existing')
                 ->where('name', 'like', '%' . $this->search . '%')
-                ->where('category', $this->filterStatus)
+                ->whereHas('product_categories', function ($query) {
+                    $query->where('category', $this->filterStatus);
+                })
                 ->orderBy($this->sortBy, $this->sortOrder)
                 ->paginate(50);
         }

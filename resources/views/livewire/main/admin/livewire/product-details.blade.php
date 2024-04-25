@@ -7,6 +7,7 @@
     </div> --}}
     @if($productImages)
     <div id="detailsCarousel" class="carousel slide d-flex justify-content-center align-items-center" data-ride="carousel">
+        @isset($selectedProduct)
         <div class="carousel-inner h-48 rounded-md">
             @foreach($productImages as $key => $image)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
@@ -16,6 +17,7 @@
             </div>
             @endforeach
         </div>
+        @endisset
         @if(count($productImages) != 1)
         <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideDet()" type="button">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -47,7 +49,7 @@
         </tr>
         <tr class="h-9">
             <td>Category:</td>
-            <td>{{ isset($selectedProduct) ? $selectedProduct->category : '--' }}</td>
+            <td>{{ isset($selectedProduct) && isset($selectedProduct->category_id) ? $selectedProduct->product_categories->category : '--' }}</td>
         </tr>
         <tr class="h-9">
             <td>Stocks:</td>

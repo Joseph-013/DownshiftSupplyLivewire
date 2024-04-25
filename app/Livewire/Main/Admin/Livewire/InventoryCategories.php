@@ -42,6 +42,7 @@ class InventoryCategories extends Component
                              ->update(['category' => $this->editingCategory]);
             $this->editingCategory = null;
             $this->dispatch('alertNotif', ['message' => 'Category successfully updated', 'type' => 'positive']);
+            $this->dispatch('renderProductList');
         }
     }
 

@@ -10,19 +10,19 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName')->nullable();
-            $table->string('lastName')->nullable()->nullable();
+            $table->string('firstName', 100)->nullable();
+            $table->string('lastName', 100)->nullable()->nullable();
             $table->bigInteger('contact')->unsigned()->nullable();
             $table->enum('purchaseType', ['Onsite', 'Online'])->nullable();
-            $table->foreignId('user_id')->nullable(); //nullable
+            $table->foreignId('user_id')->nullable()->constrained('users'); //nullable
             $table->enum('preferredService', ['Delivery', 'Pickup'])->nullable(); //nullable
-            $table->string('paymentOption')->nullable(); //nullable
+            $table->string('paymentOption', 50)->nullable(); //nullable
             $table->text('proofOfPayment')->nullable(); //nullable
             $table->enum('status', ['Processing', 'On Hold', 'Cancelled', 'Returned', 'In Transit', 'Ready for Pickup', 'Completed'])->nullable(); //nullable
-            $table->string('shippingAddress')->nullable(); //nullable
-            $table->string('courierUsed')->nullable(); //nullable
+            $table->string('shippingAddress', 100)->nullable(); //nullable
+            $table->string('courierUsed', 50)->nullable(); //nullable
             $table->decimal('shippingFee', 10, 2)->unsigned()->nullable(); //nullable
-            $table->string('trackingNumber')->nullable(); //nullable
+            $table->string('trackingNumber', 50)->nullable(); //nullable
             // $table->decimal('grandTotal', 10, 2)->unsigned(); //deploy
             $table->decimal('grandTotal', 10, 2)->unsigned()->nullable(); //dev
             $table->dateTime('intransit_at')->nullable();

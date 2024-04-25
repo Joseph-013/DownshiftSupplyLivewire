@@ -70,6 +70,7 @@ class InventoryCategories extends Component
         if (!empty($this->newCategory)) {
             ProductCategories::create(['category' => $this->newCategory]);
             $this->newCategory = '';
+            $this->dispatch('alertNotif', ['message' => 'Category successfully added', 'type' => 'positive']);
         }
     }
 }

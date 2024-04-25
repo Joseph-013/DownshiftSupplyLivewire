@@ -94,8 +94,10 @@
                 {{-- Order Details --}}
                 <div class="flex w-full gap-4 items-center justify-center"> <!-- Updated: Added justify-center -->
                     <div class="flex items-center text-xs w-2/5 justify-center"> <!-- Adjusted width and alignment -->
-                        <img src="{{ filter_var($entry->product->image, FILTER_VALIDATE_URL) ? $entry->product->image : asset('storage/assets/' . $entry->product->image) }}"
+                        @if($entry->product_images->isNotEmpty())
+                        <img src="{{ filter_var($entry->product_images->first()->image, FILTER_VALIDATE_URL) ? $entry->product_images->first()->image : asset('storage/assets/' . $entry->product_images->first()->image) }}"
                             class="w-20 h-20 border-2 border-gray rounded object-cover mr-2">
+                        @endif
                         <div class="fixed-width-container" style="max-height: 3rem;">
                             <!-- Adjust max-height to allow for two lines -->
                             <span>{{ Str::limit($entry->product->name, 60) }}</span>

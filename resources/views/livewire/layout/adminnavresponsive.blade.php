@@ -1,3 +1,6 @@
+<x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" wire:navigate>
+    Dashboard
+</x-responsive-nav-link>
 <x-responsive-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
     Inventory
 </x-responsive-nav-link>

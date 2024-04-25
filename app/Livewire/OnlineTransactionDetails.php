@@ -69,7 +69,7 @@ class OnlineTransactionDetails extends Component
         //     $this->previousStatus = $this->transactions->status;
         //     $this->dispatch('loadMap', $this->shippingAddress, $this->selectedTransaction);
         // }
-        $this->selectedTransaction = Transaction::with('details')->with('user')->find($transactionId);
+        $this->selectedTransaction = Transaction::with('details')->with('users')->find($transactionId);
         $this->details = $this->selectedTransaction->details;
         $this->selectedTransaction->viewedByAdmin = true;
         $this->selectedTransaction->save();

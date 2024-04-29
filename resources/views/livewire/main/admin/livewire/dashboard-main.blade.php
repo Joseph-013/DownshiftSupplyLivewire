@@ -13,13 +13,13 @@
             </div>
 
             {{-- Content --}}
-            <div class="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <livewire:main.admin.livewire.components-dashboard.lowstock />
                 <livewire:main.admin.livewire.components-dashboard.outstock />
                 <livewire:main.admin.livewire.components-dashboard.most-sold />
                 <livewire:main.admin.livewire.components-dashboard.least-sold />
-                <div class="col-span-2">
+                <div class="md:col-span-2">
                     <livewire:main.admin.livewire.components-dashboard.sales-graph />
                 </div>
                 {{-- <livewire:main.admin.livewire.components-dashboard.least-sold /> --}}

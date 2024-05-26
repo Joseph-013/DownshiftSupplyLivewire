@@ -17,18 +17,18 @@ class DatabaseSeeder extends Seeder
         // Development:
 
         // $this->call(UsersTableSeeder::class);
-        // \App\Models\User::factory(18)->create();
+        // \App\Models\User::factory(48)->create();
 
-        // // $this->call(ProductsTableSeeder::class);
-        // \App\Models\Product::factory(500)->create();
+        // $this->call(ProductsTableSeeder::class);
+        // // \App\Models\Product::factory(500)->create();
 
-        // // $this->call(FAQsTableSeeder::class);
-        // \App\Models\FAQ::factory(20)->create();
+        // $this->call(FAQsTableSeeder::class);
+        // // \App\Models\FAQ::factory(20)->create();
 
         // // $this->call(CartsTableSeeder::class);
-        // \App\Models\Cart::factory(100)->create();
+        // \App\Models\Cart::factory(300)->create();
 
-        // \App\Models\Detail::factory(1000)->create();
+        // \App\Models\Detail::factory(500)->create();
         // // \App\Models\Detail::factory(150)->create();
         // // $this->call(DetailsTableSeeder::class);
 

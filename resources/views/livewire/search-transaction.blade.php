@@ -2,7 +2,7 @@
     <form id="searchForm" wire:submit.prevent="submitSearch" class="flex flex-row">
         <div class="mx-2 flex flex-row w-full">
             <input wire:model="search" name="search" id="searchInput"
-                class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full"
+            class="flex-1 focus:border-orange-500 outline-none rounded-s-lg border-gray-500 border-l-2 border-t-2 border-b-2 border-e-0 h-full w-full"
                 type="text" />
             <button type="button" wire:click.prevent="clearSearch"
                 class="rounded-e-lg border-gray-500 border-r-2 border-t-2 border-b-2 h-full w-10 flex items-center justify-center">

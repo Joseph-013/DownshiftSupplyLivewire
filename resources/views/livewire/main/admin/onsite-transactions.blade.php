@@ -12,9 +12,9 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3">
+            <div class="flex flex-1 w-full mx-3">
                 {{-- Left Panel --}}
-                <div class="wifull lg:w-2/5 h-full px-3 hidden lg:block">
+                <div class="w-full lg:w-2/5 h-full px-2 hidden lg:block">
                     {{-- <div class="w-full h-full text-right flex flex-col"> --}}
                     <div class="w-full h-full text-right flex flex-col">
                         {{-- Products List  --}}

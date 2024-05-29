@@ -7,9 +7,9 @@
             @endif
         </div>
     @endisset
-    <div class="w-full flex-row px-5">
+    <div class="w-full flex-row">
         <ul class="flex flex-row items-center w-full h-6">
-            <li class="w-3/12 h-full text-center text-xs">
+            <li class="w-3/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('id')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     ID
@@ -30,7 +30,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-3/12 h-full text-center text-xs">
+            <li class="w-3/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('date')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Date
@@ -51,7 +51,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-3/12 h-full text-center text-xs">
+            <li class="w-3/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('customer')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Customer
@@ -72,7 +72,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-3/12 h-full text-center text-xs">
+            <li class="w-3/12 h-full text-center sm:text-xs text-xxs ">
                 <button type="button" wire:click="sort('total')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Total
@@ -94,12 +94,12 @@
                 </button>
             </li>
         </ul>
-        {{-- <ul class="flex flex-row w-full">
+        <!-- {{-- <ul class="flex flex-row w-full">
             <li class="w-3/12 text-center text-sm">ID</li>
             <li class="w-3/12 text-center text-sm">Date</li>
             <li class="w-3/12 text-center text-sm">Customer</li>
             <li class="w-3/12 text-center text-sm">Total</li>
-        </ul> --}}
+        </ul> --}} -->
     </div>
     <hr class="my-1">
     <div class="w-full h-96 overflow-y-auto mb-5" id="transactions-container">
@@ -108,23 +108,23 @@
                 @if ($transaction->purchaseType === 'Onsite')
                     {{-- Single Unit of Product --}}
 
-                    <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none px-2">
+                    <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none">
                         {{-- Product Details --}}
 
-                        <input wire:click="selectTransaction({{ $transaction->id }})" class="widenWhenSelected" hidden
+                        <input wire:click="selectTransaction({{ $transaction->id }})" hidden
                             type="radio" id="transactionId{{ $transaction->id }}" name="productList">
                         <label
-                            class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center"
+                            class="w-full py-2 my-1  border-t-2 border-b-2 border-gray shadow-sm text-sm flex items-center"
                             for="transactionId{{ $transaction->id }}">
                             <ul class="flex flex-row w-full">
-                                <li class="w-3/12 text-center text-sm">{{ $transaction->id }}</li>
-                                <li class="w-3/12 text-center text-sm">
+                                <li class="w-3/12 text-center sm:text-sm text-xxs">{{ $transaction->id }}</li>
+                                <li class="w-3/12 text-center sm:text-sm text-xxs">
                                     {{ \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y') }}
                                 </li>
-                                <li class="w-3/12 text-center text-sm">{{ $transaction->firstName }}
+                                <li class="w-3/12 text-center sm:text-sm text-xxs">{{ $transaction->firstName }}
                                     {{ $transaction->lastName }}
                                 </li>
-                                <li class="w-3/12 text-center text-sm">₱
+                                <li class="w-3/12 text-center sm:text-sm text-xxs">₱
                                     {{ number_format($transaction->grandTotal, 2) }}
                                 </li>
                             </ul>
@@ -196,6 +196,13 @@
 
         li:hover{
             cursor: pointer;
+        }
+
+        @media (max-width: 600px){
+            .text-xxs
+            {
+            font-size: 0.5rem;
+            }
         }
     </style>
 </div>

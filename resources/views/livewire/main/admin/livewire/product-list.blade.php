@@ -1,4 +1,4 @@
-<div class="w-full h-full">
+<div class="w-full h-full ">
 
     @isset($itemTemplateToggleRes)
         <div
@@ -8,10 +8,10 @@
             @endif
         </div>
     @endisset
-    <div class="w-full flex-row">
-        <ul class="flex flex-row items-center w-full h-6">
-            <li class="w-1/12 text-center text-sm"></li>
-            <li class="w-5/12 h-full text-center text-xs">
+    <div class="w-full flex-row ">
+        <ul class="flex flex-row items-center w-full h-6 ">
+            <li class="w-1/12 text-center"></li>
+            <li class="sm:w-5/12 w-4/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('itemName')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Item Name
@@ -32,7 +32,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-2/12 h-full text-center text-xs dropdown">
+            <li class="sm:w-2/12 w-3/12 h-full text-center text-xs dropdown sm:text-xs text-xxs">
                 <button type="button" class="w-full h-full dropbtn hover:bg-gray-200">Category</button>
                 <div class="dropdown-content flex-col w-36">
                     <button wire:click="filter('All')"
@@ -51,7 +51,7 @@
                     </button>
                 </div>
             </li>
-            <li class="w-2/12 h-full text-center text-xs">
+            <li class="w-2/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('remaining')"
                     class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Remaining
@@ -72,9 +72,9 @@
                     @endif
                 </button>
             </li>
-            <li class="w-2/12 h-full text-center text-xs">
+            <li class="w-2/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('price')"
-                    class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
+                    class="w-full h-full flex flex-row items-center justify-center ml-2 hover:bg-gray-200">
                     Price
                     @if ($sortBy === 'price')
                         @if ($sortOrder === 'asc')
@@ -100,26 +100,26 @@
         <ul class="w-full flex flex-col items-center">
             @if ($products)
                 @foreach ($products as $product)
-                    <li wire:key='{{ $product->id }}' class="w-full flex justify-center select-none px-2">
-                        <input wire:click="selectProduct({{ $product->id }})" class="widenWhenSelected" hidden
+                    <li wire:key='{{ $product->id }}' class="w-full flex justify-center select-none ">
+                        <input wire:click="selectProduct({{ $product->id }})"  hidden
                             type="radio" id="productId{{ $product->id }}" name="productList">
                         <label
                             class="
                     @if ($product->stockquantity <= 0) bg-gray-400
                     @elseif ($product->stockquantity <= $product->criticallevel) bg-red-400 @endif
-                    w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center
+                    w-full py-1 border-t-2 border-b-2 border-gray shadow-sm text-sm flex items-center
                     {{ $product->stockquantity <= $product->criticallevel ? 'text-white' : '' }}"
                             for="productId{{ $product->id }}">
                             <ul class="flex flex-row w-full">
-                                <li class="w-1/12 text-center text-sm">{{ $product->id }}</li>
-                                <li class="w-5/12 text-center text-sm">{{ $product->name }}</li>
-                                <li class="w-2/12 text-center text-sm">
-                                    @if($product->category_id)
+                                <li class="w-1/12 text-center sm:text-sm text-xxs">{{ $product->id }}</li>
+                                <li class="sm:w-5/12 w-4/12 text-center sm:text-sm text-xxs">{{ $product->name }}</li>
+                                <li class="sm:w-2/12 w-3/12 text-center sm:text-sm text-xxs ">
+                                    @if($product->category_id) 
                                     {{ $product->product_categories->category }}
                                     @endif
                                 </li>
-                                <li class="w-2/12 text-center text-sm">{{ $product->stockquantity }}</li>
-                                <li class="w-2/12 text-center text-sm">₱&nbsp;{{ number_format($product->price, 2) }}
+                                <li class="w-2/12 text-center sm:text-sm text-xxs ">{{ $product->stockquantity }}</li>
+                                <li class="w-2/12 text-center sm:text-sm text-xxs ">₱&nbsp;{{ number_format($product->price, 2) }}
                                 </li>
                             </ul>
                         </label>
@@ -132,13 +132,13 @@
     </div>
 
     <div class="flex flex-row items-center mt-4">
-        <div class="w-1/2 text-center px-3">
+        <div class="w-1/2 text-center px-0 sm:px-4">
             {{ $products->links('pagination.default') }}
         </div>
 
         <div class="w-1/2 flex justify-center">
             <button wire:click="itemTemplate(null)"
-                class="h-10 px-4 flex flex-row items-center justify-center rounded-lg bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
+                class="h-10 px-4 flex flex-row items-center justify-center  bg-orange-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing mb-2">
                 Create Item
                 <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                     fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
@@ -179,5 +179,13 @@
         li:hover {
             cursor: pointer;
         }
+
+        @media (max-width: 600px){
+            .text-xxs
+        {
+            font-size: 0.5rem;
+        }
+        }
+        
     </style>
 </div>

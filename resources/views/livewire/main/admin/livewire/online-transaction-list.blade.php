@@ -1,8 +1,8 @@
 <div>
 
     <div class="w-full flex-row px-3">
-        <ul class="flex flex-row items-center w-full h-6">
-            <li class="w-2/12 h-full text-center text-xs">
+        <ul class="flex flex-row items-center w-full h-6 mr-2">
+            <li class="w-2/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('id')" class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     ID
                     @if ($sortBy === 'id')
@@ -18,7 +18,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-2/12 h-full text-center text-xs">
+            <li class="w-2/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('date')" class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Date
                     @if ($sortBy === 'created_at')
@@ -34,7 +34,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-2/12 h-full text-center text-xs">
+            <li class="w-3/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('firstName')" class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Customer
                     @if ($sortBy === 'firstName')
@@ -50,7 +50,7 @@
                     @endif
                 </button>
             </li>
-            <li class="w-2/12 h-full text-center text-xs dropdown">
+            <li class="w-2/12 h-full text-center sm:text-xs text-xxs dropdown">
                 <button class="w-full h-full dropbtn hover:bg-gray-200">Status</button>
                 <div class="dropdown-content flex-col w-36">
                     <button wire:click="filter('All')" class="hover:bg-gray-200 h-7 {{ $filterStatus === 'All' ? 'underline' : '' }}">All</button>
@@ -67,7 +67,7 @@
                     <button wire:click="filter('Completed')" class="hover:bg-gray-200 h-7 {{ $filterStatus === 'Completed' ? 'underline' : '' }}">Completed</button>
                 </div>
             </li>
-            <li class="w-2/12 h-full text-center text-xs">
+            <li class="w-3/12 h-full text-center sm:text-xs text-xxs">
                 <button type="button" wire:click="sort('total')" class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                     Total
                     @if ($sortBy === 'grandTotal')
@@ -94,26 +94,26 @@
     </div>
     @endisset
     <div class="w-full h-96 overflow-y-auto mb-5" id="orders-container">
-        <ul class=" w-full flex flex-col items-center">
+        <ul class=" w-full flex flex-col items-center px-3">
             @foreach ($transactions as $transaction)
             @if ($transaction->purchaseType === 'Online')
             <li class="w-full flex justify-center select-none px-2" wire:key="{{ $transaction->id }}">
                 {{-- Product Details --}}
-                <input wire:click="selectTransaction({{ $transaction->id }})" class="widenWhenSelected" hidden type="radio" id="transactionId{{ $transaction->id }}" name="productList">
-                <label class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm flex items-center" for="transactionId{{ $transaction->id }}">
+                <input wire:click="selectTransaction({{ $transaction->id }})"  hidden type="radio" id="transactionId{{ $transaction->id }}" name="productList">
+                <label class="w-full py-2 my-1  border-t-2 border-b-2 border-gray shadow-sm text-sm flex items-center" for="transactionId{{ $transaction->id }}">
                     <ul class="flex flex-row w-full">
-                        <li class="w-2/12 flex items-center text-center text-xs">
+                        <li class="w-2/12 flex items-center text-center sm:text-xs text-xxs">
                             <span class="inline-block h-4 w-4 rounded-full mr-2 ml-2
                         ">
                             </span>{{ $transaction->id }}
                         </li>
-                        <li class="w-2/12 text-left text-xs">
+                        <li class="w-2/12 text-center sm:text-xs text-xxs">
                             {{ \Carbon\Carbon::parse($transaction->created_at)->format('m-d-Y') }}
                         </li>
-                        <li class="w-3/12 text-left text-xs">{{ $transaction->firstName }}
+                        <li class="w-3/12 text-center sm:text-xs text-xxs">{{ $transaction->firstName }}
                             {{ $transaction->lastName }}
                         </li>
-                        <li class="w-2/12 text-center text-xs flex justify-center items-center rounded-full h-7 w-7 ml-1 shadow-md
+                        <li class="w-2/12 mx-4 sm:ml-4 text-center sm:text-xs text-xxs flex justify-center items-center rounded-full h-7 w-7 shadow-md
                         @switch($transaction->status)
             @case('Processing')
                 bg-black
@@ -201,7 +201,7 @@
                             @break
                             @endswitch
                         </li>
-                        <li class="w-3/12 text-center text-xs">
+                        <li class="w-3/12 text-center sm:text-xs text-xxs">
                             {{ number_format($transaction->grandTotal, 2) }}
                         </li>
                         @if(!$transaction->viewedByAdmin && $transaction->status === 'Completed')
@@ -256,6 +256,13 @@
 
         li:hover{
             cursor: pointer;
+        }
+
+        @media (max-width: 600px){
+            .text-xxs
+            {
+            font-size: 0.5rem;
+            }
         }
     </style>
 </div>

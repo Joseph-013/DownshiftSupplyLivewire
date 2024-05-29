@@ -8,9 +8,9 @@
         </div>
     @endisset
     <div class="w-full h-full flex flex-col">
-        <div class="w-full flex-row ml-9">
-            <ul class="flex flex-row items-center w-full h-6">
-                <li class="w-4/12 h-full text-center text-xs">
+        <div class="w-full flex-row ml-6 sm:ml-12">
+            <ul class="flex flex-row items-center w-full h-6 pr-2">
+                <li class="w-3/12 h-full text-center text-xxs sm:text-xs">
                     <button type="button" wire:click="sort('date')"
                         class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                         Date
@@ -31,7 +31,7 @@
                         @endif
                     </button>
                 </li>
-                <li class="w-3/12 h-full text-center text-xs dropdown">
+                <li class="w-3/12 h-full text-center text-xxs sm:text-xs dropdown">
                     <button class="w-full h-full dropbtn hover:bg-gray-200">Mode</button>
                     <div class="dropdown-content flex-col w-36">
                         <button wire:click="filter(['Mode', 'All'])"
@@ -42,7 +42,7 @@
                             class="hover:bg-gray-200 h-7 {{ isset($filterColumn) && $filterColumn[0] === 'preferredService' && $filterColumn[1] === 'Pickup' ? 'underline' : '' }}">Pickup</button>
                     </div>
                 </li>
-                <li class="w-3/12 h-full text-center text-xs dropdown">
+                <li class="w-3/12 h-full text-center text-xxs sm:text-xs dropdown">
                     <button class="w-full h-full dropbtn hover:bg-gray-200">Status</button>
                     <div class="dropdown-content flex-col w-36">
                         <button wire:click="filter(['Status', 'All'])"
@@ -66,7 +66,7 @@
                             class="hover:bg-gray-200 h-7 {{ isset($filterColumn) && $filterColumn[0] === 'status' && $filterColumn[1] === 'Completed' ? 'underline' : '' }}">Completed</button>
                     </div>
                 </li>
-                <li class="w-2/12 h-full text-center text-xs">
+                <li class="w-2/12 h-full text-center text-xxs sm:text-xs">
                     <button type="button" wire:click="sort('total')"
                         class="w-full h-full flex flex-row items-center justify-center hover:bg-gray-200">
                         Total
@@ -92,12 +92,12 @@
                 <li class="w-4/12 text-center text-sm">Date</li>
                 <li class="w-3/12 text-center text-sm">Mode</li>
                 <li class="w-3/12 text-center text-sm">Status</li>
-                <li class="w-2/12 text-left text-sm">Total&nbsp;(₱)</li>
+                <li class="w-2/12 text-center text-sm">Total&nbsp;(₱)</li>
             </ul> --}}
         </div>
         <hr class="my-1">
 
-        <div class="w-full h-full px-3 overflow-y-auto" id="questions-container">
+        <div class="w-full h-full sm:px-3 px-0 overflow-y-auto" id="questions-container">
             <table class="w-full">
                 <tbody>
                     @if ($transactionList && count($transactionList) != 0)
@@ -106,14 +106,14 @@
                                 <td class="w-full flex justify-center select-none px-2"
                                     id="transactionRowLi-{{ $transaction->id }}">
                                     <input wire:click="showDetails({{ $transaction->id }})"
-                                        class="widenWhenSelectedOrders" hidden type="radio"
+                                        hidden type="radio"
                                         id="productId{{ $transaction->id }}" name="productList" {{-- onchange="toggleListRow({{ $transaction->id }})" --}}
                                         @if (request()->query('orderId') == $transaction->id) checked @endif>
                                     <label
-                                        class="w-11/12 py-2 my-1 rounded-full border-2 border-gray shadow-sm text-sm items-center"
+                                        class="w-full py-2 my-1 border-t-2 border-b-2 border-gray shadow-sm text-sm items-center"
                                         for="productId{{ $transaction->id }}">
                                         <table class="w-full py-1">
-                                            <tr class="flex flex-row w-full text-xs md:text-sm items-center">
+                                            <tr class="flex flex-row w-full text-xxs md:text-sm items-center">
                                                 <td class="w-4/12 text-center">
                                                     {{ $transaction->created_at->format('m-d-Y h:i A') }}</td>
                                                 <td class="w-3/12 text-center">{{ $transaction->preferredService }}
@@ -159,6 +159,13 @@
 
         tr:hover{
             cursor: pointer;
+        }
+
+        @media (max-width: 600px){
+            .text-xxs
+            {
+            font-size: 0.5rem;
+            }
         }
     </style>
 </div>

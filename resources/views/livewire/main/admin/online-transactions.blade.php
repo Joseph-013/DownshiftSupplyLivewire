@@ -11,15 +11,15 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3">
+            <div class="flex flex-1 w-full mx-3">
                 {{-- Left Panel --}}
-                <div class="hidden lg:block w-4/5 h-full px-3">
+                <div class="hidden lg:block lg:w-3/5 h-full px-2 w-full">
                     <livewire:online-transaction-details />
                 </div>
 
             </div>
             {{-- Right Panel border-2 border-black --}}
-            <div class="w-full lg:w-2/4 h-full text-right flex">
+            <div class="w-full lg:w-2/4 h-full text-right flex pr-2">
                 <div class="w-full h-full flex flex-col">
 
                     {{-- Products List  --}}

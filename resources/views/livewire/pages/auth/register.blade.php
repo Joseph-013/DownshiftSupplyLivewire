@@ -251,7 +251,7 @@ new #[Layout('layouts.guest')] class extends Component {
                     <div class="my-2 text-sm">
                         <span style="color: #666; ">These terms and conditions outline the rules and regulations for
                             the
-                            use of Downshift Supply's Website, located at https://www.downshiftsupply.store <br> <br>
+                            use of Downshift Supply's Website, located at https://downshiftsupply.org <br> <br>
 
                             By accessing this website, we assume you accept these terms and conditions. Do not continue
                             to use Downshift Supply if you do not agree to take all of the terms and conditions stated

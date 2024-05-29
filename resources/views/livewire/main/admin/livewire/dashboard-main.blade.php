@@ -13,7 +13,7 @@
             </div>
 
             {{-- Content --}}
-            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:m-0 p-2">
 
                 <livewire:main.admin.livewire.components-dashboard.lowstock />
                 <livewire:main.admin.livewire.components-dashboard.outstock />

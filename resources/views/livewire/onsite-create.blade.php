@@ -1,5 +1,5 @@
-<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-    <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
+<div class="absolute top-0 left-0 right-0 bottom-0 w-full h-full flex items-center justify-center">
+    <div class="absolute inset-0 bg-black opacity-50 m-0" wire:click="dispatch('hideItemTemplate')"></div>
 
     <div class="bg-gray-100 p-3 rounded-lg relative z-10 border m-2 sm:m-0" id="itemTemplate">
         @if ($mode == 'read')
@@ -79,7 +79,7 @@
                 </div>
             </div>
         @elseif ($mode == 'write')
-            <div class="lg:w-[37rem] w-full">
+            <div class=" w-full ">
                 <form
                     @if ($transaction) wire:submit.prevent="editTrans"
                 @else
@@ -90,7 +90,7 @@
             Item Details
         </th>
     </tr>
-    <tr class="h-11 sm:hidden"> <!-- This row is only visible on small screens -->
+    <tr class="h-11 sm:hidden"> 
         <td colspan="2">
             <div class="flex flex-col w-full">
                 <div>First Name:</div>
@@ -98,7 +98,7 @@
             </div>
         </td>
     </tr>
-    <tr class="h-11 sm:hidden"> <!-- This row is only visible on small screens -->
+    <tr class="h-11 sm:hidden"> 
         <td colspan="2">
             <div class="flex flex-col w-full">
                 <div>Last Name:</div>
@@ -106,7 +106,7 @@
             </div>
         </td>
     </tr>
-    <tr class="h-11 hidden sm:table-row"> <!-- This row is only visible on larger screens -->
+    <tr class="h-11 hidden sm:table-row"> 
         <td class="w-full sm:w-1/2">
             <div class="flex flex-col w-full">
                 <div>First Name:</div>

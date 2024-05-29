@@ -8,6 +8,10 @@
                         <span class="font-medium">ID:&nbsp;</span>{{ $transactionData ? $transactionData->id : '--' }}
                     </div>
                     <div class="my-1">
+                        <span class="font-medium">Status:
+                            &nbsp;</span><br>{{ $transactionData ? $transactionData->status : '--' }}
+                    </div>
+                    <div class="my-1">
                         <span class="font-medium">Payment
                             Option:&nbsp;</span><br>{{ $transactionData ? $transactionData->paymentOption : '--' }}
                     </div>
@@ -61,10 +65,10 @@
                                 <tr>
                                     <td class="w-full text-xs flex items-center justify-left">
                                         <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
-                                            @if($order->products->product_images && $order->products->product_images->isNotEmpty())
-                                            <img src="{{ filter_var($order->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $order->products->product_images->first()->image : asset('storage/assets/' . $order->products->product_images->first()->image) }}"
-                                                class="w-12 h-12 object-cover rounded"
-                                                alt="{{ $order->products->name }}">
+                                            @if ($order->products->product_images && $order->products->product_images->isNotEmpty())
+                                                <img src="{{ filter_var($order->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $order->products->product_images->first()->image : asset('storage/assets/' . $order->products->product_images->first()->image) }}"
+                                                    class="w-12 h-12 object-cover rounded"
+                                                    alt="{{ $order->products->name }}">
                                             @endif
                                             <span
                                                 class="ml-2">{{ strlen($order->products->name) > 11 ? substr($order->products->name, 0, 11) . '...' : $order->products->name }}</span>

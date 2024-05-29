@@ -84,57 +84,67 @@
                     @if ($transaction) wire:submit.prevent="editTrans"
                 @else
                     wire:submit.prevent="createTrans" @endif>
-                    <table class="text-left border-spacing-x-2">
-                        <tr>
-                            <th colspan="2">
-                                Item Details
-                            </th>
-                        </tr>
-                        <tr class="h-11">
-                            <td>
-                                <div class="flex flex-col lg:w-[18rem] w-full">
-                                    <div class="">
-                                        First Name:
-                                    </div>
-                                    <input wire:model="firstName" type="text" class="rounded" required>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="flex flex-col lg:w-[18rem] w-full">
-                                    <div class="">
-                                        Last Name:
-                                    </div>
-                                    <input wire:model="lastName" type="text" class="rounded" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="h-11">
-                            <td>
-                                <div class="flex flex-col w-full">
-                                    <div class="">
-                                        Contact Number:
-                                    </div>
-                                    <input wire:model="contact" type="number" inputmode="numeric" class="rounded" required>
-                                    <style>
-                                        /* Hide spinner arrows for Chrome, Edge, and Safari */
-                                        input[type=number]::-webkit-inner-spin-button,
-                                        input[type=number]::-webkit-outer-spin-button {
-                                            -webkit-appearance: none;
-                                            margin: 0;
-                                        }
+                    <table class="text-left border-spacing-x-2 w-full">
+    <tr>
+        <th colspan="2">
+            Item Details
+        </th>
+    </tr>
+    <tr class="h-11 sm:hidden"> <!-- This row is only visible on small screens -->
+        <td colspan="2">
+            <div class="flex flex-col w-full">
+                <div>First Name:</div>
+                <input wire:model="firstName" type="text" class="rounded" required>
+            </div>
+        </td>
+    </tr>
+    <tr class="h-11 sm:hidden"> <!-- This row is only visible on small screens -->
+        <td colspan="2">
+            <div class="flex flex-col w-full">
+                <div>Last Name:</div>
+                <input wire:model="lastName" type="text" class="rounded" required>
+            </div>
+        </td>
+    </tr>
+    <tr class="h-11 hidden sm:table-row"> <!-- This row is only visible on larger screens -->
+        <td class="w-full sm:w-1/2">
+            <div class="flex flex-col w-full">
+                <div>First Name:</div>
+                <input wire:model="firstName" type="text" class="rounded" required>
+            </div>
+        </td>
+        <td class="w-full sm:w-1/2">
+            <div class="flex flex-col w-full">
+                <div>Last Name:</div>
+                <input wire:model="lastName" type="text" class="rounded" required>
+            </div>
+        </td>
+    </tr>
+    <tr class="h-11">
+        <td class="w-full sm:w-1/2">
+            <div class="flex flex-col w-full">
+                <div>Contact Number:</div>
+                <input wire:model="contact" type="number" inputmode="numeric" class="rounded" required>
+                <style>
+                    /* Hide spinner arrows for Chrome, Edge, and Safari */
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
 
-                                        /* Hide spinner arrows for Firefox */
-                                        input[type=number] {
-                                            -moz-appearance: textfield;
-                                        }
-                                    </style>
+                    /* Hide spinner arrows for Firefox */
+                    input[type=number] {
+                        -moz-appearance: textfield;
+                    }
+                </style>
+            </div>
+        </td>
+        <td class="hidden sm:table-cell"></td> <!-- Placeholder cell for alignment on larger screens -->
+    </tr>
+</table>
 
 
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </table>
                     <div class="flex flex-row">
                         <div class="flex flex-col text-left lg:w-[18rem] w-full">
                             Item:
@@ -192,21 +202,21 @@
             <div class="h-auto max-h-40 overflow-y-auto md:max-w-[38rem] ">
                 <table class="w-full text-center ">
                     <tr>
-                        <th class="w-4/12 text-left">Item Name</th>
-                        <th class="w-3/12">Price</th>
-                        <th class="w-2/12">Qty</th>
-                        <th class="w-3/12">Subtotal</th>
+                        <th class="w-4/12 text-left text-xxs">Item Name</th>
+                        <th class="w-3/12 text-xxs">Price</th>
+                        <th class="w-2/12 text-xxs">Qty</th>
+                        <th class="w-3/12 text-xxs">Subtotal</th>
                     </tr>
                     @if ($details)
                         @foreach ($details as $detail)
                             <tr>
-                                <td class="hidden lg:block">
+                                <td class="hidden lg:block text-xxs">
                                     @if($detail->products->product_images && $detail->products->product_images->isNotEmpty())
                                     <img src="{{ filter_var($detail->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $detail->products->product_images->first()->image : asset('storage/assets/' . $detail->products->product_images->first()->image) }}"
                                         class="w-14 h-14 rounded ">
                                     @endif
                                 </td>
-                                <td class="line-clamp-3 text-left">{{ $detail->products->name }}</td>
+                                <td class="line-clamp-3 text-left text-xxs">{{ $detail->products->name }}</td>
                                 <td>{{ $detail->products->price }}</td>
                                 <td><input class="w-11/12" type="number" value="{{ $detail->quantity }}" wire:model="quantities.{{ $detail->id }}" wire:change="updateExistingQuantity({{ $detail->id }}, $event.target.value)">
                                 </td>
@@ -225,8 +235,8 @@
                     @endif
                     @if ($tempDetails)
                         @foreach ($tempDetails as $index => $tempDetail)
-                            <tr>
-                                <td class="hidden lg:block">
+                            <tr class="text-xxs">
+                                <td class="hidden lg:block ">
                                     @if($tempDetail['image'])
                                     <img src="{{ filter_var($tempDetail['image'], FILTER_VALIDATE_URL) ? $tempDetail['image'] : asset('storage/assets/' . $tempDetail['image']) }}"
                                         class="w-14 h-14 rounded">
@@ -318,6 +328,15 @@
         </tr>
     @endforeach
 </table>
+
+<style>
+    @media (max-width: 600px){
+            .text-xxs
+            {
+            font-size: 0.5rem;
+            }
+        }
+</style>
 
 
 </div>

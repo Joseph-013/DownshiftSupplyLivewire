@@ -113,7 +113,8 @@
                         <li class="w-3/12 text-center sm:text-xs text-xxs">{{ $transaction->firstName }}
                             {{ $transaction->lastName }}
                         </li>
-                        <li class="w-2/12 mx-4 sm:ml-4 text-center sm:text-xs text-xxs flex justify-center items-center rounded-full h-7 w-7 shadow-md
+                        <li class="w-2/12 text-center sm:text-xs text-xxs flex justify-center items-center">
+                        <div class="flex justify-center items-center rounded-full h-7 w-7 shadow-md
                         @switch($transaction->status)
             @case('Processing')
                 bg-black
@@ -200,7 +201,9 @@
                             </svg>
                             @break
                             @endswitch
+                        </div>
                         </li>
+                        
                         <li class="w-3/12 text-center sm:text-xs text-xxs">
                             {{ number_format($transaction->grandTotal, 2) }}
                         </li>

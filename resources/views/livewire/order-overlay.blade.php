@@ -3,10 +3,12 @@
     {{-- Left Main Container --}}
     <div class="border-black border-1 w-full mx-10 my-10 rounded-lg p-1 bg-white my-10 z-10">
         <button class="top-0 right-0 m-3 text-lg font-bold cursor-pointer" wire:click="dispatch('hideItemTemplate')">
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-              </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle"
+                viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                <path
+                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+            </svg>
         </button>
         <p class="font-semibold text-center mb-3" style="margin-top: -50px;">Order Details</p>
         <div class="w-full h-96 overflow-y-auto flex-row" id="questions-container">
@@ -14,6 +16,10 @@
                 <li class="w-2/4 text-left text-sm px-3">
                     <div class="my-1 mt-2">
                         <span class="font-medium">ID:&nbsp;</span>{{ $transactionData ? $transactionData->id : '--' }}
+                    </div>
+                    <div class="my-1">
+                        <span
+                            class="font-medium">Status:&nbsp;</span><br>{{ $transactionData ? $transactionData->status : '--' }}
                     </div>
                     <div class="my-1">
                         <span class="font-medium">Payment
@@ -66,10 +72,10 @@
                                 <tr>
                                     <td class="w-full text-xs flex items-center justify-left">
                                         <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
-                                            @if($order->products->product_images && $order->products->product_images->isNotEmpty())
-                                            <img src="{{ filter_var($order->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $order->products->product_images->first()->image : asset('storage/assets/' . $order->products->product_images->first()->image) }}"
-                                                class="w-12 h-12 object-cover rounded"
-                                                alt="{{ $order->products->name }}">
+                                            @if ($order->products->product_images && $order->products->product_images->isNotEmpty())
+                                                <img src="{{ filter_var($order->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $order->products->product_images->first()->image : asset('storage/assets/' . $order->products->product_images->first()->image) }}"
+                                                    class="w-12 h-12 object-cover rounded"
+                                                    alt="{{ $order->products->name }}">
                                             @endif
                                             <span
                                                 class="ml-2">{{ strlen($order->products->name) > 11 ? substr($order->products->name, 0, 11) . '...' : $order->products->name }}</span>

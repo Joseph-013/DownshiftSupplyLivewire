@@ -23,6 +23,7 @@ new class extends Component {
         $userId = Auth::id();
         Auth::logout();
 
+        $user->username = '(deleted' . $userId . ')';
         $user->fullname = '(deleted' . $userId . ')';
         $user->email = '(deleted' . $userId . ')';
         $user->status = 'deleted';

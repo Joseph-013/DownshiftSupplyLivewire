@@ -1,7 +1,7 @@
 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
 
-    <div class="bg-gray-100 p-3 rounded-lg relative z-10 border" id="itemTemplate">
+    <div class="bg-gray-100 p-3 rounded-lg relative z-10 border m-2 sm:m-0" id="itemTemplate">
         @if ($mode == 'read')
             <table class="w-full text-left">
                 <tr class="h-9">

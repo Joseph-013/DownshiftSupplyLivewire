@@ -88,12 +88,6 @@
                     </button>
                 </li>
             </ul>
-            {{-- <ul class="flex flex-row w-full">
-                <li class="w-4/12 text-center text-sm">Date</li>
-                <li class="w-3/12 text-center text-sm">Mode</li>
-                <li class="w-3/12 text-center text-sm">Status</li>
-                <li class="w-2/12 text-center text-sm">Total&nbsp;(₱)</li>
-            </ul> --}}
         </div>
         <hr class="my-1">
 

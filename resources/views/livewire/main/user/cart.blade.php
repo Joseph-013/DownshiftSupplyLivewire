@@ -4,7 +4,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col h-full">
 
             <div class="w-full flex flex-row items-center justify-between mt-3 mb-4">
-                <h1 class="lg:me-10 ml-5 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
+                <h1
+                    class="lg:me-10 ml-5 font-montserrat text-spacing font-semibold text-xl default-shadow text-orange-400 ">
                     Shopping Cart
                 </h1>
             </div>
@@ -67,7 +68,7 @@
                         @endif
 
                         <div class="w-full mt-3 flex justify-end px-5">
-                                <livewire:main.user.livewire.user-cart-checkout-button class="min-w-max"/>
+                            <livewire:main.user.livewire.user-cart-checkout-button class="min-w-max" />
                             {{-- @else
                                 <button disabled id="checkoutButton"
                                     class="h-10 w-35 px-20 mr-10 flex flex-row items-center justify-center rounded-lg bg-gray-300 ml-3 border-1 border-gray-400 text-gray-600 text-sm font-semibold text-spacing cursor-not-allowed">
@@ -84,31 +85,5 @@
 
         </div>
         @livewireScripts
-        <script>
-            // Livewire.on('cartCheck', (isEmpty) => {
-            //     const empty = isEmpty[0];
-            //     const checkoutButton = document.getElementById('checkoutButton');
-            //     if (checkoutButton) {
-            //         checkoutButton.disabled = isEmpty;
-            //         if (empty) {
-            //             checkoutButton.removeAttribute('href');
-            //             checkoutButton.disabled = true;
-            //             checkoutButton.classList.remove('bg-orange-500');
-            //             checkoutButton.classList.remove('border-black');
-            //             checkoutButton.classList.add('border-gray-400')
-            //             checkoutButton.classList.add('bg-gray-300');
-            //             checkoutButton.classList.add('text-gray-600');
-            //             checkoutButton.classList.add('cursor-not-allowed');
-            //         } else {
-            //             checkoutButton.classList.remove('border-gray-400')
-            //             checkoutButton.classList.remove('bg-gray-300');
-            //             checkoutButton.classList.remove('text-gray-600');
-            //             checkoutButton.classList.remove('cursor-not-allowed');
-            //             checkoutButton.classList.add('bg-orange-500');
-            //             checkoutButton.classList.add('border-black');
-            //         }
-            //     }
-            // });
-        </script>
     </div>
 </x-app-layout>

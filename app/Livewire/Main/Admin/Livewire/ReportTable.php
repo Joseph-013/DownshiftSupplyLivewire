@@ -17,11 +17,6 @@ class ReportTable extends Component
     public $endDate;
     public $rowCount = 100;
 
-    // public function mount()
-    // {
-    //     $this->renderReportTable('2023-W1', '2023-W12', 'weekly');
-    // }
-
     #[On('renderReportTable')]
     public function renderReportTable($startDate, $endDate, $format)
     {
@@ -33,7 +28,6 @@ class ReportTable extends Component
                     $realFormat = "Date";
                     $this->startDate = Carbon::parse($startDate)->startOfDay();
                     $this->endDate = Carbon::parse($endDate)->endOfDay();
-                    // dd('Start: ' . $this->startDate . ' End: ' . $this->endDate);
                     break;
                 }
 
@@ -66,7 +60,6 @@ class ReportTable extends Component
         if ($this->endDate < $this->startDate) {
             $this->dispatch('reportSetupError', message: 'End ' . $realFormat . " is earlier than the Start " . $realFormat);
         }
-        // dd('Start Date: ' . $this->startDate . ' End Date: ' . $this->endDate);
     }
 
     public function updateRowCount($count)

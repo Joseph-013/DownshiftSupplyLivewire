@@ -26,14 +26,6 @@ class MostSold extends Component
     {
         $startDate = Carbon::now()->startOfMonth()->toDateString();
         $endDate = Carbon::now()->endOfMonth()->toDateString();
-
-        // $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
-        //     ->whereBetween('created_at', [$startDate, $endDate])
-        //     ->groupBy('product_id')
-        //     ->orderByDesc('total_quantity')
-        //     ->limit(10)
-        //     ->get();
-
         $this->items = Detail::select('product_id', DB::raw('SUM(quantity) as total'))
             ->whereBetween('created_at', [$startDate, $endDate])
             ->groupBy('product_id')

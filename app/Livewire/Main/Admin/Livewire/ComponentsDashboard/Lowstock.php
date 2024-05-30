@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 class Lowstock extends Component
 {
     use WithPagination;
-    // public $items;
     public $title = "Low Stock Products";
     public $colorMain = "rgb(242, 123, 83)";
     public $icon = "

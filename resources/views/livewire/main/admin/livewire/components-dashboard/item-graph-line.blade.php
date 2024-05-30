@@ -20,10 +20,6 @@
                 <canvas id="myChart"></canvas>
             </div>
             <div class="flex justify-center items-center space-x-3 mt-1">
-                {{-- <button class="size-7 rounded-md bg-red-50 flex justify-center items-center"
-                    id="next">{{ '<' }}</button>
-                <button class="size-7 rounded-md bg-red-50 flex justify-center items-center"
-                    id="prev">{{ '>' }}</button> --}}
             </div>
         </div>
     @endisset

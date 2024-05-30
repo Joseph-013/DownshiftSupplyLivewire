@@ -67,7 +67,6 @@ class UserOrdersList extends Component
 
     public function filter($details)
     {
-        // $details = json_decode($detailsJson);
 
         switch ($details[0]) {
             case 'Status': {
@@ -80,12 +79,7 @@ class UserOrdersList extends Component
                 }
         }
 
-        // if ($details[1] === 'All') {
-        //     $this->filterColumn = null;
-        // }
-
         $this->filterColumn = $details;
-        // $this->filterColumn[1] = $details[1];
     }
 
     #[On('UserOrdersListRender')]

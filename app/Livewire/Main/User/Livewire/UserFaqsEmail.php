@@ -66,15 +66,5 @@ class UserFaqsEmail extends Component
                 session()->flash('sendStatus', 'Failed to send your inquiry. Please try again later.');
             }
         }
-        // Validation
-        // try {
-        //     Mail::to('downshiftsupply.store@gmail.com')
-        //         ->send(new InquiryMail(Auth::user()->fullname, Auth::user()->email, $this->inquiry));
-        //     session()->flash('sendStatus', 'Success! Your inquiry has been sent.');
-        // } catch (\Exception $e) {
-        //     session()->flash('sendStatus', 'Failed to send your inquiry. Please try again later.');
-        // }
-
-
     }
 }

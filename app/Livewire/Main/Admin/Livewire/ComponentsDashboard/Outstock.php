@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 class Outstock extends Component
 {
     use WithPagination;
-    // public $items;
     public $title = "Out of Stock Products";
     public $colorMain = "rgb(223, 87, 123)";
 

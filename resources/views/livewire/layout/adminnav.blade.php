@@ -20,11 +20,6 @@
             </svg>
         </x-nav-link>
     </div>
-    {{-- <div class="hidden sm:-my-px sm:ms-2 lg:ms-8 md:flex gap-10">
-        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" wire:navigate>
-            DB
-        </x-nav-link>
-    </div> --}}
     <div class="hidden sm:-my-px sm:ms-2 lg:ms-8 md:flex gap-10">
         <x-nav-link :href="route('admin.inventory')" :active="request()->routeIs('admin.inventory')" wire:navigate>
             Inventory

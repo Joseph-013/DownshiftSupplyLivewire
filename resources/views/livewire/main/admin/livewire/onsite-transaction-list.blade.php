@@ -94,12 +94,6 @@
                 </button>
             </li>
         </ul>
-        <!-- {{-- <ul class="flex flex-row w-full">
-            <li class="w-3/12 text-center text-sm">ID</li>
-            <li class="w-3/12 text-center text-sm">Date</li>
-            <li class="w-3/12 text-center text-sm">Customer</li>
-            <li class="w-3/12 text-center text-sm">Total</li>
-        </ul> --}} -->
     </div>
     <hr class="my-1">
     <div class="w-full h-96 overflow-y-auto mb-5" id="transactions-container">
@@ -111,8 +105,8 @@
                     <li wire:key="{{ $transaction->id }}" class="w-full flex justify-center select-none">
                         {{-- Product Details --}}
 
-                        <input wire:click="selectTransaction({{ $transaction->id }})" hidden
-                            type="radio" id="transactionId{{ $transaction->id }}" name="productList">
+                        <input wire:click="selectTransaction({{ $transaction->id }})" hidden type="radio"
+                            id="transactionId{{ $transaction->id }}" name="productList">
                         <label
                             class="w-full py-2 my-1  border-t-2 border-b-2 border-gray shadow-sm text-sm flex items-center"
                             for="transactionId{{ $transaction->id }}">
@@ -194,14 +188,13 @@
             /* Add hover effects here if needed */
         }
 
-        li:hover{
+        li:hover {
             cursor: pointer;
         }
 
-        @media (max-width: 600px){
-            .text-xxs
-            {
-            font-size: 0.5rem;
+        @media (max-width: 600px) {
+            .text-xxs {
+                font-size: 0.5rem;
             }
         }
     </style>

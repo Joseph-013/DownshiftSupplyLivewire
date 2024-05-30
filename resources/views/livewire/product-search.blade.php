@@ -4,46 +4,54 @@
             <div class="flex items-center"> <!-- Wrapping content in a flex container -->
                 <div class="w-full"> <!-- Adding margin to separate image and text -->
                     <label class="w-full h-10 flex items-center font-semibold">Item ID/Name:</label>
-                    <input wire:model.live="search" class="w-4/6 h-10 flex items-center text-xs" type="text" id="searchInput">
+                    <input wire:model.live="search" class="w-4/6 h-10 flex items-center text-xs" type="text"
+                        id="searchInput">
                     <ul id="searchResults" class="list-group absolute z-10" style="bottom: calc(50%);">
-                        @foreach($results as $result)
-                        <li class="list-group-item w-28" onclick="fillInputAndHide('{{ $result->id }}', '{{ $result->name }}', '{{ $result->image }}')">{{ $result->name }}</li>
+                        @foreach ($results as $result)
+                            <li class="list-group-item w-28"
+                                onclick="fillInputAndHide('{{ $result->id }}', '{{ $result->name }}', '{{ $result->image }}')">
+                                {{ $result->name }}</li>
                         @endforeach
                     </ul>
                 </div>
-                <img id="displayImage" src=""
-                    class="w-24 h-20 ml-[-2.5rem]">
+                <img id="displayImage" src="" class="w-24 h-20 ml-[-2.5rem]">
             </div>
         </li>
         <li id="displayName" class="w-2/12 text-center flex items-center justify-center text-xs ">
         </li>
         <li class="w-4/12 text-center flex items-center justify-center text-xs mr-2">
             <div class=""> <!-- Adding margin to separate image and text -->
-                <label
-                    class="w-full h-10 flex items-center font-semibold text-xs">Quantity:</label>
+                <label class="w-full h-10 flex items-center font-semibold text-xs">Quantity:</label>
                 <div class="relative flex items-center max-w-[6rem]">
-                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="decrement-button bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                        <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input"
+                        class="decrement-button bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                        <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h16" />
                         </svg>
                     </button>
-                    <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-white border-gray-300 h-8 text-center text-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value="1" required>
-                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="increment-button bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                        <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                    <input type="text" id="quantity-input" data-input-counter
+                        aria-describedby="helper-text-explanation"
+                        class="bg-white border-gray-300 h-8 text-center text-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="1" required>
+                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input"
+                        class="increment-button bg-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-sm p-2 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                        <svg class="w-2 h-2 text-gray-900 dark:text-black" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 1v16M1 9h16" />
                         </svg>
                     </button>
                 </div>
             </div>
         </li>
         <li class="w-3/12 text-center flex items-center justify-center pr-2 ">
-            <button type="button"
-                onclick="addItem()"
+            <button type="button" onclick="addItem()"
                 class="h-9 w-60 text-xs items-center justify-center rounded-lg bg-orange-500  border-1 border-black text-white text-xs  font-semibold text-spacing flex flex-row">
                 Add Item
-                <svg fill="#FFFFFF" height="20px" width="20px" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                <svg fill="#FFFFFF" height="20px" width="20px" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"
                     enable-background="new 0 0 512 512">
                     <g>
                         <g>
@@ -60,57 +68,4 @@
 </div>
 
 @livewireScripts
-<script>
-    // var selectedProductId;
-
-    // function fillInputAndHide(id, name, image) {
-    //     var imageUrl;
-
-    //     if (image.startsWith('http://') || image.startsWith('https://')) {
-    //         // If it starts with 'http://' or 'https://', consider it as a URL
-    //         imageUrl = image;
-    //     } else {
-    //         // Otherwise, assume it's a file path and append it to the assets directory
-    //         imageUrl = "{{ asset('storage/assets/') }}" + '/' + image;
-
-    //         // Check if the file extension corresponds to an image type
-    //         var extension = image.split('.').pop().toLowerCase();
-    //         var validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-    //         if (!validExtensions.includes(extension)) {
-    //             // If the file extension is not in the list of valid image extensions, set imageUrl to an empty string
-    //             imageUrl = "";
-    //         }
-    //     }
-
-    //     document.getElementById('searchInput').value = name;
-    //     document.getElementById('displayName').textContent = name;
-    //     document.getElementById('searchResults').style.display = 'none';
-    //     document.getElementById('displayImage').src = imageUrl;
-
-    //     selectedProductId = id;
-    // }
-
-    // function addItem() {
-    //     if(selectedProductId != null)
-    //     {
-    //         var productId = selectedProductId;
-    //         var quantity = document.getElementById('quantity-input').value;
-    //         Livewire.dispatch('itemAdded', {
-    //             productId: productId, 
-    //             quantity: quantity
-    //         });
-    //         document.getElementById('searchInput').value = '';
-    //         document.getElementById('displayName').textContent = '';
-    //         document.getElementById('displayImage').src = '';
-    //         selectedProductId = null;
-    //     }
-    // }
-
-    // document.getElementById('searchInput').addEventListener('keydown', function(event) {
-    //     // Check if the pressed key is Enter (key code 13)
-    //     if (event.keyCode === 13) {
-    //         // Prevent the default behavior (form submission)
-    //         event.preventDefault();
-    //     }
-    // });
 </script>

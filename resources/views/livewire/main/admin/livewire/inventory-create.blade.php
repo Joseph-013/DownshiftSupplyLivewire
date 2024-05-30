@@ -109,13 +109,6 @@
     @elseif($mode == 'write')
         <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate" style="width: 500px;">
             <div style="display:flex; justify-content: center; align-items: center;">
-                {{-- @if ($temporaryImage)
-                    <img src="{{ $temporaryImage->temporaryUrl() }}" alt="Preview" class="rounded-md object-cover"
-                        style="max-height: 200px;" />
-                @else
-                    <img src="{{ isset($image) ? (filter_var($image, FILTER_VALIDATE_URL) ? $image : asset('storage/assets/' . $image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
-                        class="rounded-md object-cover" style="max-height: 200px;" />
-                @endif --}}
                 @if ($this->images)
                     @if ($temporaryImages)
                         <div id="previewCarousel"

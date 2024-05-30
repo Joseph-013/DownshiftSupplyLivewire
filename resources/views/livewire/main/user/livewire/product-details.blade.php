@@ -16,24 +16,6 @@
                         </svg>
                     </button>
                 </div>
-                {{-- <div id="productCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100 h-xl rounded-md object-cover" src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : asset('storage/assets/' . $product->image) }}" alt="{{ $product->name }}" style="max-height: 350px;">
-                    </div>
-
-                </div>
-                <!-- HTML with Tailwind CSS classes -->
-                <a class="carousel-control-prev absolute top-1/2 left-4 bg-black bg-opacity-60 rounded-full w-12 h-12 flex justify-center items-center" href="#productCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon text-white" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next absolute top-1/2 right-4 bg-black bg-opacity-60 rounded-full w-12 h-12 flex justify-center items-center" href="#productCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon text-white" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-
-            </div> --}}
                 @if ($productImages)
                     <div id="detailsCarousel"
                         class="carousel slide d-flex justify-content-center align-items-center w-[350px]"

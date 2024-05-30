@@ -52,18 +52,6 @@
                             </tbody>
                         </table>
 
-
-
-
-                        {{-- <div class="w-full flex-row px-5 my-2">
-                            <ul class="flex flex-row w-full">
-                                <li class="w-full text-right text-xs mr-5">
-                                    <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
-                                    <span class="italic">{{ 'TBD' }}</span>
-                                </li>
-                            </ul>
-                        </div> --}}
-
                     </div>
                 </ul>
             </div>

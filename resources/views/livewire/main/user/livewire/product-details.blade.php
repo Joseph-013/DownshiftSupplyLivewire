@@ -64,7 +64,7 @@
                     <tr class="mb-10 h-9">
                         <td class="text-left text-gray-500 flex h-full">Category:</td>
                         <td class="text-left italic">
-                            {{ $product->category }}
+                            {{ $productCategory }}
                         </td>
                     </tr>
                     <tr class="mb-10 h-9">

@@ -1,7 +1,7 @@
 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
     {{-- Left Main Container --}}
-    <div class="border-black border-1 w-full mx-10 my-10 rounded-lg p-1 bg-white my-10 z-10">
+    <div class="border-black border-1 w-full mx-10 my-10 rounded-lg p-1 bg-white z-10">
         <button class="top-0 right-0 m-3 text-lg font-bold cursor-pointer" wire:click="dispatch('hideItemTemplate')">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle"
                 viewBox="0 0 16 16">
@@ -18,6 +18,10 @@
                         <span class="font-medium">ID:&nbsp;</span>{{ $transactionData ? $transactionData->id : '--' }}
                     </div>
                     <div class="my-1">
+                        <span class="font-medium">Date:&nbsp;</span>
+                        {{ $transactionData ? $transactionData->created_at->format('m-d-Y') : '--' }}
+                    </div>
+                    <div class="my-1">
                         <span
                             class="font-medium">Status:&nbsp;</span><br>{{ $transactionData ? $transactionData->status : '--' }}
                     </div>
@@ -28,12 +32,6 @@
                     <div class="my-1">
                         <span class="font-medium">Shipping
                             Address:&nbsp;</span><br>{{ $transactionData ? $transactionData->shippingAddress : '--' }}
-                    </div>
-                </li>
-                <li class="w-2/4 text-left text-sm px-3">
-                    <div class="my-1 mt-2">
-                        <span class="font-medium">Date:&nbsp;</span>
-                        {{ $transactionData ? $transactionData->created_at->format('m-d-Y') : '--' }}
                     </div>
                     <div class="my-1">
                         <span class="font-medium">Preferred
@@ -47,6 +45,11 @@
                         <span class="font-medium">Tracking
                             Number:&nbsp;</span><br>{{ $transactionData ? $transactionData->trackingNumber : '--' }}
                     </div>
+                </li>
+                <li class="w-2/4 text-left text-sm px-3">
+                    <img class="rounded-md object-cover"
+                        src="{{ isset($transactionData) ? (filter_var($transactionData->proofOfPayment, FILTER_VALIDATE_URL) ? $transactionData->proofOfPayment : asset('storage/assets/' . $transactionData->proofOfPayment)) : 'https://via.placeholder.com/350x500.png/000000?text=...' }}"
+                        class="h-auto w-full object-cover" alt="Proof of Payment" style="max-height: 1000px">
                 </li>
             </ul>
 

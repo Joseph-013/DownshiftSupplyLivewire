@@ -370,3 +370,11 @@ td {
 .tborder {
     border: 1px solid black;
 }
+
+.b {
+    border: red 1px solid;
+}
+
+.bc * {
+    border: red 1px solid;
+}

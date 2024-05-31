@@ -12,7 +12,7 @@
 
             {{-- Content --}}
 
-            <div class="flex flex-1 w-full -mx-3">
+            <div class="flex flex-1 w-full mx-3">
 
                 {{-- Left Panel --}}
                 <div class="hidden lg:block w-2/5 h-full">

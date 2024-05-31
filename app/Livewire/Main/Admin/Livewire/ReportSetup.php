@@ -8,13 +8,11 @@ use Livewire\Attributes\On;
 
 class ReportSetup extends Component
 {
-    // public $year;
     public $startDate;
     public $endDate;
     public $startYear;
     public $endYear;
     public $format;
-    // public $currentYear;
 
     public function changeDateSelector($format)
     {
@@ -23,15 +21,12 @@ class ReportSetup extends Component
             $this->endDate;
             $this->render();
         }
-        // dump($format);
     }
 
     public function mount()
     {
         $this->startYear = $this->endYear = (int) Carbon::now()->year;
     }
-    // Objectives
-    // set all start to now()
 
     public function submitSetup()
     {
@@ -51,7 +46,6 @@ class ReportSetup extends Component
     #[On('reportSetupError')]
     public function errorSession($message)
     {
-        // dd('Start Date should be later than End Date');
         session()->flash('reportSetupError', (string) $message);
     }
 }

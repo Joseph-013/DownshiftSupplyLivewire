@@ -1,34 +1,33 @@
 <div class="border-black border-1 w-full rounded-lg p-3">
-    {{-- <div class="flex justify-center h-52">
-        <img class="rounded-md object-cover"
-            src="{{ isset($selectedProduct->image) ? (filter_var($selectedProduct->image, FILTER_VALIDATE_URL) ? $selectedProduct->image : asset('storage/assets/' . $selectedProduct->image)) : 'https://via.placeholder.com/350x200.png/000000?text=...' }}"
-            alt="{{ isset($selectedProduct->image) ? $selectedProduct->name : 'No Image Selected' }}"
-            style="max-height: 200px;">
-    </div> --}}
-    @if($productImages)
-    <div id="detailsCarousel" class="carousel slide d-flex justify-content-center align-items-center" data-ride="carousel">
-        @isset($selectedProduct)
-        <div class="carousel-inner h-48 rounded-md">
-            @foreach($productImages as $key => $image)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
-                    src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
-                    alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
-            </div>
-            @endforeach
+    @if ($productImages)
+        <div id="detailsCarousel" class="carousel slide d-flex justify-content-center align-items-center"
+            data-ride="carousel">
+            @isset($selectedProduct)
+                <div class="carousel-inner h-48 rounded-md">
+                    @foreach ($productImages as $key => $image)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <img class="rounded-md object-cover max-w-96 mx-auto max-h-48"
+                                src="{{ filter_var($image->image, FILTER_VALIDATE_URL) ? $image->image : asset('storage/assets/' . $image->image) }}"
+                                alt="Product Image {{ $key + 1 }}" style="max-height: 200px;">
+                        </div>
+                    @endforeach
+                </div>
+            @endisset
+            @if (count($productImages) != 1)
+                <button
+                    class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                    onclick="prevSlideDet()" type="button">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center"
+                    onclick="nextSlideDet()" type="button">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
+            @endif
         </div>
-        @endisset
-        @if(count($productImages) != 1)
-        <button class="carousel-control-prev my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="prevSlideDet()" type="button">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </button>
-        <button class="carousel-control-next my-auto h-12 bg-black rounded-full flex justify-center items-center" onclick="nextSlideDet()" type="button">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </button>
-        @endif
-    </div>
     @endif
     {{-- <div class="px-3"> --}}
     <table class="w-full">
@@ -49,7 +48,8 @@
         </tr>
         <tr class="h-9">
             <td>Category:</td>
-            <td>{{ isset($selectedProduct) && isset($selectedProduct->category_id) ? $selectedProduct->product_categories->category : '--' }}</td>
+            <td>{{ isset($selectedProduct) && isset($selectedProduct->category_id) ? $selectedProduct->product_categories->category : '--' }}
+            </td>
         </tr>
         <tr class="h-9">
             <td>Stocks:</td>

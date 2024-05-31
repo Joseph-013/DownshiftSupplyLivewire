@@ -52,12 +52,6 @@
                 @endif
                 <x-input-error :messages="$errors->get('subject')" class="mt-2 w-fit" />
             </div>
-            {{-- @if ($subject == 'return')
-                <div class="w-full flex justify-start text-sm items-center">
-                    <label for="inputOrderId" class="mr-2">Order Id:</label>
-                    <input id="inputOrderId" class="rounded-lg" type="text">
-                </div>
-            @endif --}}
             <div>
                 <textarea name="inquiry" required wire:model="inquiry"
                     placeholder="{{ $subject == 'return' ? 'Your return inquiry' : 'Your inquiry' }} (Max: 500)"

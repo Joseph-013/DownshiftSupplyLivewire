@@ -21,12 +21,6 @@
                         <span class="font-semibold">Name:</span>
                         {{ isset($selectedTransaction) ? $selectedTransaction->firstName . ' ' . $selectedTransaction->lastName : '--' }}
                     </div>
-                    {{-- <div class="text-left text-xs my-2">
-                            <span class="font-semibold">Username:</span> {{ $selectedTransaction->user->username }}
-                </div>
-                <div class="text-left text-xs my-2">
-                    <span class="font-semibold">Email:</span> {{ $selectedTransaction->user->email }}
-                </div> --}}
                     <div class="text-left text-xs my-2">
                         <span class="font-semibold">Contact #:</span>
                         {{ isset($selectedTransaction) ? $selectedTransaction->contact : '--' }}

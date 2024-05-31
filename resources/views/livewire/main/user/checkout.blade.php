@@ -336,30 +336,6 @@
                     draggable: false
                 });
 
-                // map.addListener('drag', function() {
-                //     clearTimeout(debounceTimer);
-                //     marker.setPosition(map.getCenter());
-                //     debounceTimer = setTimeout(function() {
-                //         updateAddress(marker.getPosition());
-                //     }, 200);
-                // });
-
-                // map.addListener('zoom_changed', function() {
-                //     clearTimeout(debounceTimer);
-                //     marker.setPosition(map.getCenter());
-                //     debounceTimer = setTimeout(function() {
-                //         updateAddress(marker.getPosition());
-                //     }, 200);
-                // });
-
-                // marker.addListener('dragend', function() {
-                //     clearTimeout(debounceTimer);
-                //     debounceTimer = setTimeout(function() {
-                //         map.panTo(marker.getPosition());
-                //         updateAddress(marker.getPosition());
-                //     }, 200);
-                // });
-
                 var autocomplete = new google.maps.places.Autocomplete(searchInput, {
                     types: ['address'],
                     componentRestrictions: {

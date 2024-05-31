@@ -64,9 +64,7 @@ class UserProducts extends Component
             $result = Cart::create([
                 'user_id' => $userId,
                 'product_id' => $productId,
-                // 'subtotal' => $productSelected->price,
             ]);
-            // dump("Userid $result->user_id has added productid $result->product_id to cart");
             $this->dispatch('alertNotif', ['message' => 'Added to Cart', 'type' => 'positive']);
         } else {
             $this->dispatch('alertNotif', ['message' => 'Product already exists in your cart', 'type' => 'warning']);

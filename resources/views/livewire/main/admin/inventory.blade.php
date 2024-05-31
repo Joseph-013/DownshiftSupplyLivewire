@@ -12,9 +12,9 @@
             </div>
 
             {{-- Content --}}
-            <div class="flex flex-1 w-full -mx-3">
+            <div class="flex flex-1 w-full mx-2">
                 {{-- Left Panel --}}
-                <div class="hidden lg:block w-4/12 h-full px-3">
+                <div class="hidden lg:block w-4/12 h-full px-1">
                     <div class="w-full h-full">
                         {{-- Left Main Container --}}
                         <livewire:product-details productId="0" />
@@ -22,7 +22,7 @@
                 </div>
                 {{-- Right Panel border-2 border-black --}}
                 <div class="w-full lg:w-8/12 h-full px-3 text-right flex">
-                    <div class="w-full h-full px-4 flex flex-col">
+                    <div class="w-full h-full px-2 flex flex-col">
 
                         {{-- Products List  --}}
                         <livewire:product-list />

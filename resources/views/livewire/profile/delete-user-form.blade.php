@@ -20,15 +20,17 @@ new class extends Component {
 
         // tap(Auth::user(), $logout(...))->delete();
         $user = User::find(Auth::id());
-
+        $userId = Auth::id();
         Auth::logout();
 
-        $user->fullname = '(deleted)';
-        $user->email = '(deleted)';
+        $user->username = '(deleted' . $userId . ')';
+        $user->fullname = '(deleted' . $userId . ')';
+        $user->email = '(deleted' . $userId . ')';
         $user->status = 'deleted';
         Cart::where('user_id', $user->id)->delete();
         $user->save();
         $user = null;
+        $userId = null;
 
         $this->redirect('login', navigate: true);
     }

@@ -186,4 +186,9 @@ class OnlineCreate extends Component
     {
         $this->preferredService = $this->preferredService;
     }
+
+    public function updatedPreferredService()
+    {
+        $this->statusOptions = $this->getEnumValues('transactions', 'status');
+    }
 }

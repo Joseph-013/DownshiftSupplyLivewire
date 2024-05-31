@@ -22,7 +22,7 @@
 
 
         @if ($mode == 'read')
-            <table class="w-96 text-left border-separate border-spacing-5">
+            <table class="w-80 text-left border-separate border-spacing-5">
                 <tr>
                     <td class="flex flex-col space-y-2">
                         <div class="font-semibold">
@@ -75,7 +75,7 @@
                 @else
             wire:submit.prevent="createFaq" @endif
                 class="h-full w-full flex flex-col">
-                <table class="w-96">
+                <table class="w-80">
                     <tr class="h-14">
                         <th colspan="2" class="text-center font-semibold">FAQ Details</th>
                     </tr>

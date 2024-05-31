@@ -134,7 +134,7 @@
                         @foreach ($details as $detail)
                             <tr>
                                 <td class="w-2/12">
-                                    <img src="{{ filter_var($detail->products->image, FILTER_VALIDATE_URL) ? $detail->products->image : asset('storage/assets/' . $detail->products->image) }}"
+                                    <img src="{{ filter_var($detail->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $detail->products->product_images->first()->image : asset('storage/assets/' . $detail->products->product_images->first()->image) }}"
                                         class="w-12 h-12 object-cover rounded" style="vertical-align: middle;">
                                 </td>
                                 <td class="w-6/12 text-left">

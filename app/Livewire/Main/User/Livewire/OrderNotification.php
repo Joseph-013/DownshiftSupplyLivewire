@@ -51,7 +51,8 @@ class OrderNotification extends Component
             }
         }
         $this->transaction->save();
-        $this->dispatch('alertNotif', 'Order set to Complete');
+        // $this->dispatch('alertNotif', 'Order set to Complete');
+        $this->dispatch('alertNotif', ['message' => 'Order set to Complete', 'type' => 'positive']);
     }
 
     public function render()

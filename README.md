@@ -32,11 +32,22 @@ Creating fresh database
 
 php artisan migrate:fresh --seed
 
-Routing issue: Second time trigger
+Routing issue: (Second time trigger)
 php artisan route:clear
 php artisan route:cache
 php artisan config:cache
 php artisan cache:clear
+
+
+
+Production:
+APP_DEBUG=true
+npm run build
+php artisan route:clear
+php artisan route:cache
+php artisan config:cache
+php artisan cache:clear
+
 
 Storage/Picture issue:
 php artisan storage:link

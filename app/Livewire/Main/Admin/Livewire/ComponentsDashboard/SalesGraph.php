@@ -28,12 +28,14 @@ class SalesGraph extends Component
         $endOfWeek = Carbon::now()->endOfWeek();
 
         $data = Detail::select(
-            DB::raw("DAYOFWEEK(created_at) as day_number"),
-            DB::raw('SUM(subtotal) as total_subtotal')
+            DB::raw("DAYOFWEEK(details.created_at) as day_number"),
+            DB::raw('SUM(details.subtotal) as total_subtotal')
         )
-            ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->groupBy('day_number')
-            ->orderBy('day_number')
+            ->join('transactions', 'details.transaction_id', '=', 'transactions.id')
+            ->where('transactions.status', 'Completed')
+            ->whereBetween('details.created_at', [$startOfWeek, $endOfWeek])
+            ->groupBy(DB::raw("DAYOFWEEK(details.created_at)"))
+            ->orderBy(DB::raw("DAYOFWEEK(details.created_at)"))
             ->get();
 
         return view('livewire.main.admin.livewire.components-dashboard.item-graph-line')->with(['data' => $data]);

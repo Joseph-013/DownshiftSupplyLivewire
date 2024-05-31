@@ -107,7 +107,7 @@
             @endif
         </div>
     @elseif($mode == 'write')
-        <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate" style="width: 500px;">
+        <div class="bg-white z-10 p-3 rounded-lg max-w-80" id="itemTemplate" >
             <div style="display:flex; justify-content: center; align-items: center;">
                 @if ($this->images)
                     @if ($temporaryImages)
@@ -179,14 +179,14 @@
                 @else
                     wire:submit.prevent="createProduct" @endif
                 class="h-full w-full flex flex-col">
-                <div class="overflow-y-auto max-h-[400px]">
+                <div class="overflow-y-auto max-w-80">
                     <table class="w-full">
                         <tr class="h-14">
                             <th colspan="2" class="text-center font-semibold">Item Details</th>
                         </tr>
                         @if ($overwrite)
                             @foreach ($images as $index => $image)
-                                <tr class="h-11">
+                                <tr class="h-11 text-xxs">
                                     <td class="mt-3" colspan="2">
                                         <input wire:model="images.{{ $index }}" type="file"
                                             @if (!$product) required @endif>
@@ -318,5 +318,11 @@
         </div>
     @endif
 
-
+<style>
+    @media (max-width: 600px) {
+            .text-xxs {
+                font-size: 0.8rem;
+            }
+        }
+</style>
 </div>

@@ -99,8 +99,7 @@
                             <tr class="w-full" id="transaction{{ $transaction->id }}">
                                 <td class="w-full flex justify-center select-none px-2"
                                     id="transactionRowLi-{{ $transaction->id }}">
-                                    <input wire:click="showDetails({{ $transaction->id }})"
-                                        hidden type="radio"
+                                    <input wire:click="showDetails({{ $transaction->id }})" hidden type="radio"
                                         id="productId{{ $transaction->id }}" name="productList" {{-- onchange="toggleListRow({{ $transaction->id }})" --}}
                                         @if (request()->query('orderId') == $transaction->id) checked @endif>
                                     <label
@@ -151,14 +150,13 @@
             /* Add hover effects here if needed */
         }
 
-        tr:hover{
+        tr:hover {
             cursor: pointer;
         }
 
-        @media (max-width: 600px){
-            .text-xxs
-            {
-            font-size: 0.5rem;
+        @media (max-width: 600px) {
+            .text-xxs {
+                font-size: 0.5rem;
             }
         }
     </style>

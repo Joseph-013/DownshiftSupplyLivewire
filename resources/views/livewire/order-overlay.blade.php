@@ -63,21 +63,21 @@
                 <table class="w-full">
                     <thead>
                         <tr>
-                            <th class="w-4/12 text-center text-xs font-semibold">Item</th>
-                            <th class="w-3/12 text-center text-xs font-semibold">Unit Price (₱)</th>
-                            <th class="w-2/12 text-center text-xs font-semibold">Quantity</th>
-                            <th class="w-3/12 text-center text-xs font-semibold">Subtotal (₱)</th>
+                            <th class="w-4/12 text-center sm:text-xs text-xxs font-semibold">Item</th>
+                            <th class="w-3/12 text-center sm:text-xs text-xxs font-semibold">Unit Price (₱)</th>
+                            <th class="w-2/12 text-center sm:text-xs text-xxs font-semibold">Quantity</th>
+                            <th class="w-3/12 text-center sm:text-xs text-xxs font-semibold">Subtotal (₱)</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if ($orderList)
                             @foreach ($orderList as $order)
                                 <tr>
-                                    <td class="w-full text-xs flex items-center justify-left">
+                                    <td class="w-full sm:text-xs text-xxs flex items-center justify-left">
                                         <div class="flex items-center"> <!-- Wrap image and name in a flex container -->
                                             @if ($order->products->product_images && $order->products->product_images->isNotEmpty())
                                                 <img src="{{ filter_var($order->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $order->products->product_images->first()->image : asset('storage/assets/' . $order->products->product_images->first()->image) }}"
-                                                    class="w-12 h-12 object-cover rounded"
+                                                    class="sm:w-12 sm:h-12 w-9 h-9 object-cover rounded"
                                                     alt="{{ $order->products->name }}">
                                             @endif
                                             <span
@@ -87,23 +87,23 @@
 
 
 
-                                    <td class="w-3/12 text-center text-xs items-center justify-center">
+                                    <td class="w-3/12 text-center sm:text-xs text-xxs items-center justify-center">
                                         {{ number_format($order->products->price, 2) }}
                                     </td>
-                                    <td class="w-2/12 text-center text-xs items-center justify-center">
+                                    <td class="w-2/12 text-center sm:text-xs text-xxs items-center justify-center">
                                         {{ $order->quantity }}
                                     </td>
-                                    <td class="w-3/12 text-center text-xs items-center justify-center">
+                                    <td class="w-3/12 text-center sm:text-xs text-xxs items-center justify-center">
                                         {{ $order->quantity * $order->products->price }}
                                     </td>
                                 </tr>
                             @endforeach
                             <tr>
-                                <td colspan="3" class="text-right text-xs">
+                                <td colspan="3" class="text-right sm:text-xs text-xxs">
                                     <span class="font-semibold mr-5">Shipping Fee:&nbsp;</span>
                                     {{ $transactionData ? $transactionData->shippingFee : '--' }}
                                 </td>
-                                <td class="text-center text-xs">
+                                <td class="text-center sm:text-xs text-xxs">
                                     ₱&nbsp;{{ $transactionData ? $transactionData->shippingFee : '--' }}
                                 </td>
                             </tr>
@@ -129,5 +129,11 @@
             </div>
         </div>
     </div>
-
+    <style>
+        @media (max-width: 600px) {
+            .text-xxs {
+                font-size: 0.5rem;
+            }
+        }
+    </style>
 </div>

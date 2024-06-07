@@ -143,4 +143,9 @@ class UserOrdersList extends Component
     {
         $this->itemTemplateToggleRes = $this->previousRes;
     }
+
+    // #[On('UserOrdersDetail_positive')]
+    // public function test() {
+    //     $this->dispatch('alertNotif')
+    // }
 }

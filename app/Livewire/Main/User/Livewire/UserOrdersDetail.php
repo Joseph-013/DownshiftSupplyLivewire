@@ -62,7 +62,7 @@ class UserOrdersDetail extends Component
             }
         }
         $this->transactionData->save();
-        $this->dispatch('alertNotif', 'Order \'' . $this->transactionData->id . '\' is now completed');
+        $this->dispatch('alertNotif', ['message' => 'Order \'' . $this->transactionData->id . '\' is now completed', 'type' => 'positive']);
         $this->dispatch('UserOrdersListRender');
     }
 }

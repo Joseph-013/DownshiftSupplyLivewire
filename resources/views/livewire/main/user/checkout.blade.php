@@ -179,8 +179,8 @@
                                     <li class="w-3/4 text-left">
                                         <div class="my-1 flex items-center ">
                                             <select name="paymentOption" class="w-full h-10 text-xs bg-gray-200 rounded-lg border-none" required>
-                                                <option value="Credit Card">Credit Card</option>
-                                                <option value="Paypal">PayPal</option>
+                                                <option value="GCash">GCash</option>
+                                                <option value="Maya">Maya</option>
                                                 <option value="Bank Transfer">Bank Transfer</option>
                                                 <!-- Add more options as needed -->
                                             </select>
@@ -191,35 +191,17 @@
                                 </ul>
                                 <div class="text-left mb-3">
                                     <div class="ml-10 font-medium">Payment Details</div>
-                                    <div class="ml-12 flex items-center">
-                                        <div class="w-full font-medium">• Bank Transfer/Credit Card</div>
-                                    </div>
                                     <div class="ml-14 flex items-center">
-                                        <div class="w-2/5">GCash Number:</div>
-                                        <div class="w-3/5"><span class="font-medium">0912 345 6789</span></div>
+                                        <div class="w-2/5">GCash/Maya Number:</div>
+                                        <div class="w-3/5"><span class="font-medium">0917-7142631</span></div>
                                     </div>
                                     <div class="ml-14 flex items-center">
                                         <div class="w-2/5">BDO Number:</div>
-                                        <div class="w-3/5"><span class="font-medium">012345678901</span></div>
+                                        <div class="w-3/5"><span class="font-medium">011 690 015 630</span></div>
                                     </div>
                                     <div class="ml-14 flex items-center">
-                                        <div class="w-2/5">Metrobank Number:</div>
-                                        <div class="w-3/5"><span class="font-medium">012345678901</span></div>
-                                    </div>
-                                    <div class="ml-12 flex items-center">
-                                        <div class="w-full font-medium">• Paypal</div>
-                                    </div>
-                                    <div class="ml-14 flex items-center">
-                                        <div class="w-2/5">Paypal Name:</div>
-                                        <div class="w-3/5"><span class="font-medium">Carlo Capuno</span></div>
-                                    </div>
-                                    <div class="ml-14 flex items-center">
-                                        <div class="w-2/5">Paypal Username:</div>
-                                        <div class="w-3/5"><span class="font-medium">@carlocapuno</span></div>
-                                    </div>
-                                    <div class="ml-14 flex items-center">
-                                        <div class="w-2/5">Paypal Email:</div>
-                                        <div class="w-3/5"><span class="font-medium">carlocapuno@gmail.com</span></div>
+                                        <div class="w-2/5">BPI Number:</div>
+                                        <div class="w-3/5"><span class="font-medium">3309 1010 05</span></div>
                                     </div>
                                 </div>
 

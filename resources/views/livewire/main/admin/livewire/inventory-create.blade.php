@@ -2,7 +2,7 @@
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
 
     @if ($mode == 'read')
-        <div class="bg-white z-10 p-3 rounded-lg max-w-80">
+        <div class="bg-white z-10 p-3 rounded-lg max-w-80 max-h-[37rem] overflow-y-auto overflow-x-hidden">
             @if ($productImages)
                 <div id="inventoryReadCarousel"
                     class="carousel slide d-flex justify-content-center align-items-center w-72" data-ride="carousel">
@@ -107,7 +107,7 @@
             @endif
         </div>
     @elseif($mode == 'write')
-        <div class="bg-white z-10 p-3 rounded-lg max-w-80" id="itemTemplate" >
+        <div class="bg-white z-10 p-3 rounded-lg max-w-80 max-h-[37rem] overflow-y-auto overflow-x-hidden" id="itemTemplate" >
             <div style="display:flex; justify-content: center; align-items: center;">
                 @if ($this->images)
                     @if ($temporaryImages)

@@ -18,7 +18,7 @@
             </div>
         </div>
     @endif
-    <div class="bg-gray-100 p-6 mx-4 rounded-lg relative z-10 border" id="itemTemplate">
+    <div class="bg-gray-100 p-6 mx-2 rounded-lg relative z-10 border max-h-[37rem] overflow-y-auto overflow-x-hidden"  id="itemTemplate">
 
 
         @if ($mode == 'read')

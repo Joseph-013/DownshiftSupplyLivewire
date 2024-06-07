@@ -1,24 +1,24 @@
 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
     @if ($confirmDelete)
-                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border z-20">
-                    <!-- Semi-transparent overlay -->
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border z-20">
+            <!-- Semi-transparent overlay -->
+            <div class="absolute inset-0 bg-black opacity-50"></div>
 
-                    <!-- Confirmation prompt -->
-                    <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
-                        <p class="text-xs text-gray-800 mb-4 font-medium">Are you sure you want to delete this
-                            product?</p>
-                        <div class="flex justify-end">
-                            <button type="button" wire:click="deleteFaq"
-                                class="px-4 py-2 bg-red-600 text-white rounded-md mr-2">Yes</button>
-                            <button type="button" wire:click="$set('confirmDelete', false)"
-                                class="px-4 py-2 bg-gray-400 text-white rounded-md">No</button>
-                        </div>
-                    </div>
+            <!-- Confirmation prompt -->
+            <div class="bg-gray-100 p-6 rounded-lg relative z-10 border">
+                <p class="text-xs text-gray-800 mb-4 font-medium">Are you sure you want to delete this
+                    product?</p>
+                <div class="flex justify-end">
+                    <button type="button" wire:click="deleteFaq"
+                        class="px-4 py-2 bg-red-600 text-white rounded-md mr-2">Yes</button>
+                    <button type="button" wire:click="$set('confirmDelete', false)"
+                        class="px-4 py-2 bg-gray-400 text-white rounded-md">No</button>
                 </div>
-            @endif
-    <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
+            </div>
+        </div>
+    @endif
+    <div class="bg-gray-100 p-6 mx-4 rounded-lg relative z-10 border" id="itemTemplate">
 
 
         @if ($mode == 'read')
@@ -68,7 +68,6 @@
                     </button>
                 </div>
             </div>
-
         @elseif ($mode == 'write')
             <form
                 @if ($faq) wire:submit.prevent="editFaq"

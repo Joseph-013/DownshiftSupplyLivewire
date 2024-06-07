@@ -54,7 +54,7 @@ class UserFaqsEmail extends Component
             }
 
             try {
-                Mail::to('cs@downshiftph.com')
+                Mail::to('downshiftsupplyph@gmail.com')
                     ->send(new InquiryMail(
                         Auth::user()->fullname,
                         Auth::user()->email,

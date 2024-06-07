@@ -1,7 +1,7 @@
 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max px-1 py-2">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
 
-    <div class="bg-gray-100 rounded-lg relative z-10 border w-full min-w-max" id="itemTemplate">
+    <div class="bg-gray-100 rounded-lg relative z-10 border w-90 min-w-max" id="itemTemplate">
         <div class="w-full flex justify-end px-2 z-20 absolute ">
             <button wire:click="dispatch('hideItemTemplate')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray"

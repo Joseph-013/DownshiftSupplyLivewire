@@ -18,7 +18,7 @@
             </div>
         </div>
     @endif
-    <div class="bg-gray-100 p-6 mx-2 rounded-lg relative z-10 border max-h-[37rem] overflow-y-auto overflow-x-hidden"  id="itemTemplate">
+    <div class="bg-gray-100 p-6 mx-2 rounded-lg relative z-10 border max-h-[37rem] overflow-x-hidden"  id="itemTemplate">
 
 
         @if ($mode == 'read')
@@ -28,7 +28,7 @@
                         <div class="font-semibold">
                             Question:
                         </div>
-                        <div class="w-full">
+                        <div class="w-full max-h-80 overlfow-y-auto">
                             {{ $question }}
                         </div>
                     </td>
@@ -38,7 +38,7 @@
                         <div class="font-semibold">
                             Answer:
                         </div>
-                        <div class="w-full">
+                        <div class="w-full max-h-80 overflow-y-auto">
                             {{ $answer }}
                         </div>
                     </td>

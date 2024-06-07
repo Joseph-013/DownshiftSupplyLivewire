@@ -1,8 +1,8 @@
-<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max">
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center border min-w-max px-1 py-2">
     <div class="absolute inset-0 bg-black opacity-50" wire:click="dispatch('hideItemTemplate')"></div>
 
-    <div class="bg-gray-100 p-6 rounded-lg relative z-10 border" id="itemTemplate">
-        <div class="w-full flex justify-end px-2 z-20 absolute -left-6">
+    <div class="bg-gray-100 rounded-lg relative z-10 border w-full min-w-max" id="itemTemplate">
+        <div class="w-full flex justify-end px-2 z-20 absolute ">
             <button wire:click="dispatch('hideItemTemplate')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray"
                     class="bi bi-x-circle-fill" viewBox="0 0 16 16">
@@ -12,7 +12,7 @@
             </button>
         </div>
         @if ($mode == 'read')
-            <div class="w-full overflow-y-auto" style="max-height: 28rem;">
+            <div class="w-full overflow-y-auto sm:text-sm text-xs py-3" style="max-height: 28rem;">
                 <table class="border-separate border-spacing-2">
                     <tr>
                         <th colspan="3" class="text-center">
@@ -39,7 +39,7 @@
                     <tr>
                         <td>Name:</td>
                         <td class="text-left">
-                            <div class="w-full max-w-52">
+                            <div class="w-full ">
                                 {{ $firstName }} {{ $lastName }}
                             </div>
                         </td>
@@ -118,16 +118,16 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text-left">
+                            <td class="w-6/12 text-left sm:text-xs text-xxs">
                                 Item
                             </td>
-                            <td class="text-left">
+                            <td class="w-2/12 text-left sm:text-xs text-xxs">
                                 Price
                             </td>
-                            <td class="text-center">
+                            <td class="w-2/12 text-center sm:text-xs text-xxs">
                                 Qty
                             </td>
-                            <td class="text-left">
+                            <td class="w-2/12 text-left sm:text-xs text-xxs">
                                 Subtotal
                             </td>
                         </tr>
@@ -135,16 +135,16 @@
                             <tr>
                                 <td class="w-2/12">
                                     <img src="{{ filter_var($detail->products->product_images->first()->image, FILTER_VALIDATE_URL) ? $detail->products->product_images->first()->image : asset('storage/assets/' . $detail->products->product_images->first()->image) }}"
-                                        class="w-12 h-12 object-cover rounded" style="vertical-align: middle;">
+                                        class="sm:w-12 sm:h-12 w-10 h-10 object-cover rounded" style="vertical-align: middle;">
                                 </td>
-                                <td class="w-6/12 text-left">
-                                    <div class="w-full max-w-52 line-clamp-3">
+                                <td class="w-3/12 text-left">
+                                    <div class="w-full max-w-52 line-clamp-3 sm:text-xs text-xxs">
                                         {{ $detail->products->name }}
                                     </div>
                                 </td>
-                                <td class="w-1/12 text-left text-sm">{{ $detail->products->price }}</td>
-                                <td class="w-1/12 text-center">{{ $detail->quantity }}</td>
-                                <td class="w-2/12 text-left text-sm">{{ $detail->quantity * $detail->products->price }}
+                                <td class="w-1/12 text-left sm:text-xs text-xxs">{{ $detail->products->price }}</td>
+                                <td class="w-1/12 text-center sm:text-xs text-xxs">{{ $detail->quantity }}</td>
+                                <td class="w-2/12 text-left sm:text-xs text-xxs">{{ $detail->quantity * $detail->products->price }}
                                 </td>
                             </tr>
                         @endforeach
@@ -156,7 +156,7 @@
             </div>
             <div class="w-full flex justify-center mt-4">
                 <button id="updateButton" wire:click="modifyTrans"
-                    class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-blue-500 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+                    class="h-9 px-5 mb-3 flex flex-row items-center justify-center rounded-lg bg-blue-500 border-1 border-black text-white text-sm font-semibold text-spacing">
                     Modify
                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -167,7 +167,7 @@
             </div>
         @elseif ($mode == 'write')
             <form wire:submit.prevent="editTrans">
-                <div class="w-full overflow-y-auto" style="max-height: 28rem;">
+                <div class="w-full overflow-y-auto text-xs p-2" style="max-height: 28rem;">
                     <table class="border-separate border-spacing-2">
                         <tr>
                             <th colspan="3" class="text-center">
@@ -195,21 +195,21 @@
                             <td>First Name:</td>
                             <td class="text-left">
                                 <input id="autocomplete" wire:model="firstName" type="text"
-                                    class="rounded-lg h-9 w-full" />
+                                    class="rounded-lg h-9 w-full text-xs" />
                             </td>
                         </tr>
                         <tr>
                             <td>Last Name:</td>
                             <td class="text-left">
                                 <input id="autocomplete" wire:model="lastName" type="text"
-                                    class="rounded-lg h-9 w-full" />
+                                    class="rounded-lg h-9 w-full text-xs" />
                             </td>
                         </tr>
                         <tr>
                             <td>Contact #:</td>
                             <td class="text-left">
                                 <input id="autocomplete" wire:model="contact" type="number"
-                                        class="rounded-lg h-9 w-full" required/>
+                                        class="rounded-lg h-9 w-full text-xs" required/>
                             </td>
                         </tr>
                         @if ($errors->has('contact'))
@@ -224,8 +224,8 @@
                         </tr>
                         <tr>
                             <td>Preferred Service:</td>
-                            <td class="text-left">
-                                <select wire:model="preferredService" wire:change="updatePreferredService" class="rounded-lg h-10 w-full" required>
+                            <td class="text-left text-xs">
+                                <select wire:model="preferredService" wire:change="updatePreferredService" class="rounded-lg h-10 w-full text-xs" required>
                                     @foreach ($preferredServiceOptions as $option)
                                         <option value="{{ $option }}">{{ $option }}</option>
                                     @endforeach
@@ -234,8 +234,8 @@
                         </tr>
                         <tr>
                             <td>Status:</td>
-                            <td class="underline text-left">
-                                <select wire:model="status" class="rounded-lg h-10 w-full">
+                            <td class="underline text-left text-xs">
+                                <select wire:model="status" class="rounded-lg h-10 w-full text-xs">
                                     @foreach ($statusOptions as $option)
                                         <option value="{{ $option }}">{{ $option }}</option>
                                     @endforeach
@@ -285,7 +285,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="table-row sm:hidden">
+                        <!-- <tr class="table-row sm:hidden">
                             <td>&nbsp;</td>
                         </tr>
                         <tr class="table-row sm:hidden">
@@ -302,12 +302,12 @@
                         </tr>
                         <tr class="table-row sm:hidden">
                             <td>&nbsp;</td>
-                        </tr>
+                        </tr> -->
                     </table>
                 </div>
                 <div class="w-full flex justify-center mt-4">
                     <button type="submit"
-                        class="h-9 px-5 flex flex-row items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
+                        class="h-9 px-5 mb-3 flex flex-row items-center justify-center rounded-lg bg-sky-600 ml-3 border-1 border-black text-white text-sm font-semibold text-spacing">
                         Save
                         <svg class="ml-2"xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
@@ -324,6 +324,12 @@
 
 
 
-
+<style>
+    @media (max-width: 600px) {
+            .text-xxs {
+                font-size: 0.5rem;
+            }
+        }
+</style>
 </div>
 {{-- @livewireScripts --}}

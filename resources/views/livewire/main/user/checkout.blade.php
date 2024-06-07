@@ -315,8 +315,8 @@
                 } = await google.maps.importLibrary("marker");
                 map = new Map(document.getElementById("map"), {
                     center: {
-                        lat: 14.6371991,
-                        lng: 120.9870849
+                        lat: 14.6296422,
+                        lng: 121.0006815
                     },
                     zoom: 16,
                     mapId: "c1568d819b26135",
@@ -396,8 +396,8 @@
                             "140 Cordillera Street, Santa Mesa Heights 1114 Quezon City, Philippines";
                         searchInput.setAttribute('disabled', 'disabled');
                         const pickupCenter = {
-                            lat: 14.6371991,
-                            lng: 120.9870849
+                            lat: 14.6296422,
+                            lng: 121.0006815
                         };
                         map.setCenter(pickupCenter);
                         marker.setPosition(pickupCenter);
